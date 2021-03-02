@@ -24,7 +24,6 @@ Pass an invalid uid
 '''
 def test_join_invalid_uid():
     clear_v1()
-    test_user = auth_register_v1("test@gmail.com", "test", "testF", "testL")
     test_channel_id = channels_create_v1(test, "test channel", True)
     with pytest.raises(InputError):
         channel_join_v1("test invalid", test_channel_id)
@@ -35,7 +34,6 @@ Pass an invalid channel id
 def test_join_invalid_channel_id():
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "test", "testF", "testL")
-    test_channel_id = channels_create_v1(test, "test channel", True)
     with pytest.raises(InputError):
         channel_join_v1(test_user, "invalid channel id")
 
