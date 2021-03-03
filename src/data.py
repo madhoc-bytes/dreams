@@ -10,6 +10,7 @@ users = [
 channels = [
     '''
     {
+        'id': 0,
         'name': 'Hayden',
         'owner_members': [
             {
