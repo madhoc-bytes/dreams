@@ -1,15 +1,16 @@
 users = [
     '''
     {
-        'id': 0,
-        'name' : 'user1',
+        'u_id': 0,
+        'name_first': 'user',
+        'name_last': 'name',
     }
     '''
 ]
 
 channels = [
     '''
-    {
+    {   
         'id': 0,
         'name': 'Hayden',
         'owner_members': [
