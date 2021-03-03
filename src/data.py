@@ -12,6 +12,7 @@ channels = [
     '''
     {   
         'id': 0,
+        'is_public': True,
         'name': 'Hayden',
         'owner_members': [
             {
