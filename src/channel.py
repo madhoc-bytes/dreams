@@ -38,15 +38,15 @@ def user_details(u_id):
 def channel_invite_v1(auth_user_id, channel_id, u_id):
     # invalid channel
     if test_channel_is_invalid(channel_id):
-        raise(InputError)
+        raise InputError()
 
     # invalid user
     if test_user_is_invalid(u_id):
-        raise(InputError)
+        raise InputError() 
 
     # auth user (inviter) is not already a member of the channel
     if test_if_user_in_ch(auth_user_id, channel_id) == False:
-        raise(AccessError)
+        raise AccessError()
     
     # adding user to the channel 
     new_user = user_details(u_id)
@@ -58,11 +58,11 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
 def channel_details_v1(auth_user_id, channel_id):
     # invalid channel
     if test_channel_is_invalid(channel_id):
-        raise(InputError)
+        raise InputError()
 
     # invalid user  
     if test_if_user_in_ch(auth_user_id, channel_id) == False:
-        raise(AccessError)
+        raise AccessError()
 
     # insert info into dictionary
     details = {}
