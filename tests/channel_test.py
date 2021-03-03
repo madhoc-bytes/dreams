@@ -37,4 +37,26 @@ def test_join_invalid_channel_id():
     with pytest.raises(InputError):
         channel_join_v1(test_user, "invalid channel id")
 
+'''
+Call channel with no message
+'''
+def test_messages_nomessage():
+    clear_v1()
+    test_user = auth_register_v1("test@gmail.com", "test", "testF", "testL")
+    test_channel = channels_create_v1(test, "test channel", True)
+    with pytest.raises(InputError):
+        channel_messages_v1(test_user, test_channel, 0)
+
+'''
+Pass an invalid channel id
+'''
+def test_channel_messages_invalid_uid():
+    clear_v1()
+    test_user = auth_register_v1("test@gmail.com", "test", "testF", "testL")
+    test_channel = channels_create_v1(test, "test channel", True)
+    with pytest.raises(AccessError):
+        channel_messages_v1("invalid", test_channel, 0)
+
+
+
 
