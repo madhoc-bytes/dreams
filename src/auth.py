@@ -45,7 +45,7 @@ def auth_register_v1(email, password, name_first, name_last):
 
 
 
-    auth_user_id = {'auth_user_id': len(users)}
+    auth_user_id = len(users)
 
     #adding info to data structure
     users.append({
@@ -54,9 +54,9 @@ def auth_register_v1(email, password, name_first, name_last):
             'name_first': name_first,
             'name_last': name_last,
             'handle': handle,
-            'u_id': auth_user_id['auth_user_id'],
+            'u_id': auth_user_id,
         })
 
-    return auth_user_id
+    return {'auth_user_id': auth_user_id}
 
 
