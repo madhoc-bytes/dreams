@@ -49,7 +49,13 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
         raise AccessError()
     
     # adding user to the channel 
-    new_user = user_details(u_id)
+    new_user_details = user_details(u_id)
+
+    # insert relevant info into channel's info
+    new_user = {}
+    new_user['u_id'] = new_user_details['u_id']
+    new_user['name_first'] = new_user_details['name_first']
+    new_user['name_last'] = new_user_details['name_last']
     channels[channel_id]['all_members'].append(new_user)
 
     return {
