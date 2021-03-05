@@ -81,6 +81,8 @@ def channel_removeowner_v1(auth_user_id, channel_id, u_id):
 # tests if channel exists 
 # returns False if it does
 def test_channel_is_invalid(channel_id):
+    if len(channels) == 0:
+        return True
     for ch in channels:
         key, value = 'id', channel_id
         if key in ch and value == ch[key]:
