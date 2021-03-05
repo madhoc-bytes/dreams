@@ -1,7 +1,7 @@
 from src.data import users, channels
 from src.error import InputError, AccessError
 
-# tests if channel exists
+# tests if channel exists 
 # returns False if it does
 def test_channel_is_invalid(channel_id):
     for ch in channels:
