@@ -8,7 +8,7 @@ from src.other import clear_v1
 def test_channels_create_v1():
     clear_v1()
     auth_user_id00 = auth_register_v1("dubaida28951345@gmail.com", "xujiawen", "Jemma", "Simmons")
-    assert channels_create_v1(auth_user_id00, 'first', True) == {'channel_id' : 1}
+    assert channels_create_v1(auth_user_id00, 'first', True) == {'channel_id' : 0}
     assert channels_create_v1(auth_user_id00, 'second', False) == {'channel_id' : 1}
 
 # test the error stituation
