@@ -8,14 +8,14 @@ from src.other import clear_v1
 def test_channels_create_v1():
     clear_v1()
     auth_user_id00 = src.auth.auth_register_v1("dubaida28951345@gmail.com", "xujiawen", "Jemma", "Simmons")
-    assert channels.channels_create_v1(auth_user_id00, 'first', True) == {'channel_id' : 0}
-    assert channels.channels_create_v1(auth_user_id00, 'second', False) == {'channel_id' : 1}
+    assert src.channels.channels_create_v1(auth_user_id00, 'first', True) == {'channel_id' : 0}
+    assert src.channels.channels_create_v1(auth_user_id00, 'second', False) == {'channel_id' : 1}
 
 # test the error stituation
 def tests_channels_create_v1_except():
     clear_v1()
     auth_user_id11 = src.auth.auth_register_v1("dubaida28951345@gmail.com", "xujiawen", "Jemma", "Simmons")
     with pytest.raises(AccessError):
-        channels.channels_create_v1(auth_user_id11, 'sadskfjh', True)
+        src.channels.channels_create_v1(auth_user_id11, 'sadskfjh', True)
     with pytest.raises(InputError):
-        channels.channels_create_v1(auth_user_id11, "kasbfvkabvadfihviadfvbhidfbuiva", False)
+        src.channels.channels_create_v1(auth_user_id11, "kasbfvkabvadfihviadfvbhidfbuiva", False)
