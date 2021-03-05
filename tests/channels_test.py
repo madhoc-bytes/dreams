@@ -1,8 +1,8 @@
 import pytest
-import channels
-import auth
-from error import InputError, AccessError
-from other import clear_v1
+import src.channels
+import src.auth
+from src.error import InputError, AccessError
+from src.other import clear_v1
 
 # test if channels can be created correctly
 def test_channels_create_v1():
