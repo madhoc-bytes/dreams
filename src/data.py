@@ -1,16 +1,22 @@
 users = [
+    
     {
+        'email': 'emai@email.com',
+        'password': 'Password1',
+        'name_first': 'user',
+        'name_last': 'name',
+        'handle': 'username',
         'u_id': 0,
-        'name_first': 'Hayden',
-        'name_last': 'Jacobs',
     }
+    
 ]
 
 channels = [
-    {
+    
+    {   
         'id': 0,
+        'is_public': True,
         'name': 'Hayden',
-        'public': True 
         'owner_members': [
             {
                 'u_id': 0,
@@ -34,4 +40,5 @@ channels = [
             }
         ],
     }
+    
 ]

@@ -1,5 +1,5 @@
 from src.data import users, channels
-from src.error import AccessError, InputError
+from src.error import InputError, AccessError
 
 # tests if channel exists
 # returns False if it does
@@ -92,7 +92,15 @@ def channel_join_v1(auth_user_id, channel_id):
         raise InputError()
     if channels[channel_id]['public'] == False:
         raise AccessError()
-    channels[channel_id]['all_members'].append(user)
+
+    new_user_details = user_details(auth_user_id)
+
+    new_user = {}
+    new_user['u_id'] = new_user_details['u_id']
+    new_user['name_first'] = new_user_details['name_first']
+    new_user['name_last'] = new_user_details['name_last']
+
+    channels[channel_id]['all_members'].append(new_user)
     return {}
 
 def channel_addowner_v1(auth_user_id, channel_id, u_id):
