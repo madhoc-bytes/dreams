@@ -59,7 +59,7 @@ def test_auth_register_short_first_name():
 def test_auth_register_long_first_name():
     #clear_v1()
     # if the first_name is longer than 50 characters, raise error
-    valid_email, valid_password, valid_last_name = 'abc@def.com', 'helloWorld123!', 'lo'
+    valid_email, valid_password, valid_last_name = 'email@email.com', 'helloWorld123!', 'lo'
     long_first_name = 'a * 52'
     
     #user = auth.auth_register_v1(valid_email, valid_password, long_first_name, valid_last_name) 
