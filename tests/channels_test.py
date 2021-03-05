@@ -1,5 +1,5 @@
 import pytest
-import src.channels 
+from src.channels import channels_create_v1 
 from src.auth import auth_register_v1
 from src.error import InputError, AccessError
 from src.other import clear_v1
@@ -16,6 +16,6 @@ def tests_channels_create_v1_except():
     clear_v1()
     auth_user_id11 = auth_register_v1("dubaida28951345@gmail.com", "xujiawen", "Jemma", "Simmons")
     with pytest.raises(AccessError):
-        src.channels.channels_create_v1(auth_user_id11, 'sadskfjh', True)
+        channels_create_v1(auth_user_id11, 'sadskfjh', True)
     with pytest.raises(InputError):
-        src.channels.channels_create_v1(auth_user_id11, "kasbfvkabvadfihviadfvbhidfbuiva", False)
+        channels_create_v1(auth_user_id11, "kasbfvkabvadfihviadfvbhidfbuiva", False)
