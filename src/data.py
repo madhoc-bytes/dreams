@@ -1,11 +1,15 @@
 users = [
     '''
     {
-        'u_id': 0,
+        'email': 'emai@email.com',
+        'password': 'Password1',
         'name_first': 'user',
         'name_last': 'name',
+        'handle': 'username',
+        'u_id': 0,
     }
     '''
+    
 ]
 
 channels = [
@@ -38,4 +42,5 @@ channels = [
         ],
     }
     '''
+    
 ]
