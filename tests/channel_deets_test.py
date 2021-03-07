@@ -31,7 +31,39 @@ def test_details_basic():
                 'name_last': 'test_lname_user',
         }
     ]
+
+def test_details_multiple ():    
+    clear_v1()
     
+    # register 2 users
+    user1 = auth_register_v1('test_user@gmail.com', 'test_pw_user', 'test_fname_user', 'test_lname_user')
+    user2 = auth_register_v1('test_user1@gmail.com', 'test_pw_user1', 'test_fname_user1', 'test_lname_user1')
+
+    # create a test channel
+    test_channel_id = channels_create_v1(user1, 'test_channel_1', True)
+
+    # add both to the test channel
+    channel_join_v1(user1, test_channel_id)
+    channel_join_v1(user2, test_channel_id)
+
+    # retrieve details
+    channel_dict = channel_details_v1(user1, test_channel_id)
+
+    # ensure the info returned is correct
+    assert channel_dict['name'] == 'test_channel_1'
+    assert channel_dict['all_members'] == [
+        {
+                'u_id': 0,
+                'name_first': 'test_fname_user',
+                'name_last': 'test_lname_user',
+        },
+        {
+                'u_id': 1,
+                'name_first': 'test_fname_user1',
+                'name_last': 'test_lname_user1',
+        }
+    ]
+
 def test_invalid_channel():
     clear_v1()
 
