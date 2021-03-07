@@ -3,13 +3,13 @@ users = []
 {
     'email': 'emai@email.com',
     'password': 'Password1',
-    'name_first': 'user1',
-    'name_last': 'name1',
+    'name_first': 'user',
+    'name_last': 'name',
     'handle': 'username',
     'u_id': 0,
 }
-''' 
-  
+'''
+    
 
 
 channels = []
