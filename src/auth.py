@@ -1,4 +1,4 @@
-
+#from src import data 
 import re
 from src.error import InputError
 from src.data import users
@@ -13,10 +13,25 @@ def email_is_valid(email):
 
 
 def auth_login_v1(email, password):
+    
+    if len(users) != 0:
+        for user in users:
+            
+            if email_is_valid(email) != True:
+                raise InputError
 
-    return ({
-        'auth_user_id': auth_user_id
-    })
+            if (user['email'] == email and user['password'] == password):
+                u_id = user['u_id']
+            elif (user['email'] != email):
+                print(email)
+                print(user['email'])
+                #print(u_id)
+                print(user['u_id'])
+                raise InputError
+            elif (user["password"] != password):
+                raise InputError
+
+    return (u_id)
 
 
 def auth_register_v1(email, password, name_first, name_last):
