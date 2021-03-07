@@ -1,5 +1,8 @@
+from src.data import users, channels
+
 def clear_v1():
-    pass
+    users.clear()
+    channels.clear()
 
 def search_v1(auth_user_id, query_str):
     return {
