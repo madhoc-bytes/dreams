@@ -1,8 +1,6 @@
 from src.error import InputError
-data = {
-    'users': [],
-    'channels': [],
-}
+from src.data import users, channels
+
 def channels_list_v1(auth_user_id):
     return {
         'channels': [
@@ -34,27 +32,23 @@ def channels_create_v1(auth_user_id, name, is_public):
         #last channels id plus 1
         channel_id = last_channel_id() + 1
     new_channel = {
-        'channel_id': channel_id,
-        'name': name,
+        'id': channel_id,
         'is_public': is_public,
-        'owners': [],
-        'users': [],
+        'name': name,
+        'owner_members': [],
+        'all_members': [],
         'messages': [],
     }
-    add_new_channel(new_channel)
+    channels.append(new_channel)
 
     return {
-        'channel_id': channel_id,
+        'id': channel_id,
     }
 
 def check_channel_empty():
-    if data['channels'] == []:
+    if len(channels) == 0:
         return True
     return False
 
 def last_channel_id():
-    return data['channels'][-1]['channel_id']
-
-def add_new_channel(new_channel):
-    data['channels'].append(new_channel)
-    return
+    return channels[-1]['id']
