@@ -24,6 +24,7 @@ def channel_details_v1(auth_user_id, channel_id):
 
 
 def channel_messages_v1(auth_user_id, channel_id, start): 
+    '''Tests potential error cases'''
     if test_user_is_invalid(auth_user_id):
         raise InputError()
     if test_channel_is_invalid(channel_id):
@@ -32,6 +33,7 @@ def channel_messages_v1(auth_user_id, channel_id, start):
         raise AccessError()
     if start > len(channels[channel_id['id']]['messages']):
         raise InputError()
+    '''Appends messages in channel to result, stops when has appended 50 or no more messages'''
     result = []
     i = 0
     for msg in channels[channel_id['id']]['messages']:
@@ -55,6 +57,7 @@ def channel_leave_v1(auth_user_id, channel_id):
     }
 
 def channel_join_v1(auth_user_id, channel_id):
+    '''Tests potential error cases'''
     if test_user_is_invalid(auth_user_id):
         raise InputError()
     if test_channel_is_invalid(channel_id):
@@ -62,12 +65,14 @@ def channel_join_v1(auth_user_id, channel_id):
     if channels[channel_id['id']]['is_public'] == False:
         raise AccessError()
 
+    '''Gets relevant user information'''
     new_user_details = user_details(auth_user_id)
     new_user = {}
     new_user['name_first'] = new_user_details['name_first']
     new_user['name_last'] = new_user_details['name_last']
     new_user['u_id'] = new_user_details['u_id']
 
+    '''Appends to 'all_members' key in dictionary'''
     channels[channel_id['id']]['all_members'].append(new_user)
     return {}
 

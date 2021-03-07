@@ -7,10 +7,8 @@ from src.channels import channels_create_v1
 from src.error import InputError, AccessError
 from src.other import clear_v1
 
-
-#General case for join
-
 def test_join_channel():
+    ''' General working case for joining'''
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "password", "testF", "testL")
     test_channel = channels_create_v1(test_user['auth_user_id'], "test channel", True)
@@ -24,11 +22,8 @@ def test_join_channel():
         }
     ]
 
-
-
-#Pass an invalid uid
-
 def test_join_invalid_uid():
+    '''Passing an invalid user id into join'''
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "password", "testF", "testL")
     test_channel_id = channels_create_v1(test_user, "test channel", True)
@@ -36,19 +31,15 @@ def test_join_invalid_uid():
     with pytest.raises(InputError):
         channel_join_v1(invalid, test_channel_id)
 
-
-#Pass an invalid channel id
-
 def test_join_invalid_channel_id():
+    '''Passing an inavlid channel id into join'''
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "password", "testF", "testL")
     with pytest.raises(InputError):
         channel_join_v1(test_user, "invalid channel id")
 
-'''
-Call channel with no message
-'''
 def test_messages_nomessage():
+    '''Call messages given a channel with no messages'''
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "password", "testF", "testL")
     test_channel = channels_create_v1(test_user, "test channel", True)
@@ -59,10 +50,9 @@ def test_messages_nomessage():
         'end': -1,
     }
 
-'''
-Pass an invalid user id
-'''
+
 def test_channel_messages_invalid_uid():
+    '''Call messages given an invalid user id'''
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "password", "testF", "testL")
     test_channel = channels_create_v1(test_user, "test channel", True)
@@ -70,10 +60,8 @@ def test_channel_messages_invalid_uid():
     with pytest.raises(InputError):
         channel_messages_v1(invalid, test_channel, 0)
 
-'''
-Pass an invalid channel id
-'''
 def test_channel_messages_invalid_ch_id():
+    '''Call messages given an invalid channel id'''
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "password", "testF", "testL")
     test_channel = channels_create_v1(test_user, "test channel", True)
@@ -81,10 +69,8 @@ def test_channel_messages_invalid_ch_id():
     with pytest.raises(InputError):
         channel_messages_v1(test_user, invalid, 0)
 
-'''
-Start > total no. msgs in channel
-'''
 def test_channel_start_too_big():
+    '''Call messages given a start > number of messages in channel'''
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "password", "testF", "testL")
     test_channel = channels_create_v1(test_user, "test channel", True)
@@ -92,10 +78,8 @@ def test_channel_start_too_big():
     with pytest.raises(InputError):
         channel_messages_v1(test_user, test_channel, 1)
 
-'''
-Passed user is not member of passed channel
-'''
 def test_messages_not_member():
+    '''Call messages given a user not a member of the channel'''
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "password", "testF", "testL")
     test_user2 = auth_register_v1("user@example.com", "password2", "testFF", "testLL")
