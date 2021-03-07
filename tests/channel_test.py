@@ -1,6 +1,5 @@
 import pytest
 
-from src.data import users, channels
 from src.auth import auth_register_v1
 from src.channel import channel_messages_v1, channel_join_v1, channel_details_v1
 from src.channels import channels_create_v1
@@ -51,7 +50,7 @@ def test_messages_nomessage():
     }
 
 
-def test_channel_messages_invalid_uid():
+def test_messages_invalid_uid():
     '''Call messages given an invalid user id'''
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "password", "testF", "testL")
@@ -60,7 +59,7 @@ def test_channel_messages_invalid_uid():
     with pytest.raises(InputError):
         channel_messages_v1(invalid, test_channel, 0)
 
-def test_channel_messages_invalid_ch_id():
+def test_messages_invalid_ch_id():
     '''Call messages given an invalid channel id'''
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "password", "testF", "testL")
@@ -69,7 +68,7 @@ def test_channel_messages_invalid_ch_id():
     with pytest.raises(InputError):
         channel_messages_v1(test_user, invalid, 0)
 
-def test_channel_start_too_big():
+def test_messages_start_too_big():
     '''Call messages given a start > number of messages in channel'''
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "password", "testF", "testL")
