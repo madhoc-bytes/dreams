@@ -16,7 +16,6 @@ def test_invite_basic():
     # create a test channel
     test_channel_id = channels_create_v1(auth_id, 'test_channel_1', True)
 
-
     # place inviter and invitee into test channel  
     channel_join_v1(auth_id, test_channel_id)
     channel_invite_v1(auth_id, test_channel_id, invitee_id)
