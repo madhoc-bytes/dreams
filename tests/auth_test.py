@@ -14,8 +14,17 @@ def test_auth_register_valid():
             valid_first_name, 
             valid_last_name)['auth_user_id']
 
+    valid_email1, valid_password1 = 'ab1c@def.com', 'hell1oWorld123!'
+    valid_first_name1, valid_last_name1 = 'joh1n', 'smit1h'
+    new_user_id1 = auth_register_v1(
+            valid_email, 
+            valid_password, 
+            valid_first_name, 
+            valid_last_name)['auth_user_id']
+            
 
-    assert users[new_user_id] == {
+
+    assert users[new_user_id1] == {
             'email': valid_email,
             'password': valid_password,
             'name_first': valid_first_name,
@@ -26,7 +35,7 @@ def test_auth_register_valid():
 
 def test_auth_register_invalid_email():
     #clear_v1()
-    valid_email, valid_password = 'abc@def.com', 'helloWorld123!'
+    valid_password = 'helloWorld123!'
     valid_first_name, valid_last_name = 'john', 'smith'
     
     invalid_email = 'abc.com'

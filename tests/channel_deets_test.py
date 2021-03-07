@@ -32,27 +32,27 @@ def test_details_basic():
         }
     ]
     
-    def test_invalid_channel():
-        clear_v1()
+def test_invalid_channel():
+    clear_v1()
 
-        # register a user
-        auth_id = auth_register_v1('test_auth@gmail.com', 'test_pw_auth', 'test_fname_auth', 'test_lname_auth')
+    # register a user
+    auth_id = auth_register_v1('test_auth@gmail.com', 'test_pw_auth', 'test_fname_auth', 'test_lname_auth')
 
-        #try to recall details of a non-existent channel and expect failure
-        invalid_channel_id = 100
-        with pytest.raises(InputError):
-            channel_details_v1(auth_id, invalid_channel_id);
-    
-    def test_unauthorised_user():
-        clear_v1()
+    #try to recall details of a non-existent channel and expect failure
+    invalid_channel_id = 100
+    with pytest.raises(InputError):
+        channel_details_v1(auth_id, invalid_channel_id)
 
-        # register 1 user
-        auth_id = auth_register_v1('test_user@gmail.com', 'test_pw_user', 'test_fname_user', 'test_lname_user')
+def test_unauthorised_user():
+    clear_v1()
 
-        # create a test channel
-        test_channel_id = channels_create_v1(auth_id, 'test_channel_1', True)
+    # register 1 user
+    auth_id = auth_register_v1('test_user@gmail.com', 'test_pw_user', 'test_fname_user', 'test_lname_user')
 
-        # try to call channel_details when auth_user is not in the channel and expect failure
-        with pytest.raises(AccessError):
-            channel_details_v1(auth_id, test_channel_id)
+    # create a test channel
+    test_channel_id = channels_create_v1(auth_id, 'test_channel_1', True)
+
+    # try to call channel_details when auth_user is not in the channel and expect failure
+    with pytest.raises(AccessError):
+        channel_details_v1(auth_id, test_channel_id)
 

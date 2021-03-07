@@ -6,8 +6,6 @@ from src.channels import channels_create_v1
 from src.other import clear_v1
 from src.error import InputError, AccessError
 
-
-
 def test_invite_basic():    
     clear_v1()
 
@@ -25,17 +23,18 @@ def test_invite_basic():
 
     test_ch_details = channel_details_v1(auth_id, test_channel_id)
     assert test_ch_details['all_members'] == [
-        {
-            'u_id': auth_id, 
+        {             
             'name_first': 'test_fname_auth', 
-            'name_last': 'test_lname_auth'
+            'name_last': 'test_lname_auth',
+            'u_id': auth_id['auth_user_id'],
         },
-        {
-            'u_id': invitee_id, 
+        {             
             'name_first': 'test_fname_user', 
-            'name_last': 'test_lname_user'
+            'name_last': 'test_lname_user',
+            'u_id': invitee_id['auth_user_id'],
         },
     ]
+
 
 def test_invite_channel_invalid():
     clear_v1()
@@ -45,9 +44,10 @@ def test_invite_channel_invalid():
     invitee_id = auth_register_v1('test_user@gmail.com', 'test_pw_user', 'test_fname_user', 'test_lname_user')
 
     # try to invite 1 to a non-existent channel and expect failure
-    invalid_channel_id = 100
+    invalid_channel_id = {'id': 100}
     with pytest.raises(InputError):
         channel_invite_v1(auth_id, invalid_channel_id, invitee_id)
+
 
 def test_invite_user_invalid():
     clear_v1()
@@ -62,7 +62,7 @@ def test_invite_user_invalid():
     channel_join_v1(auth_id, test_channel_id)
 
     # try to add non-existent user to channel and expect failure
-    invalid_user_id = 100
+    invalid_user_id = {'auth_user_id': 10}
     with pytest.raises(InputError):
         channel_invite_v1(auth_id, test_channel_id, invalid_user_id)
 
