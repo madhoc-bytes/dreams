@@ -23,4 +23,4 @@ def data_channels():
 
 ''' create len of users to check if clear'''
 def data_user():
-    return len(channels)
+    return len(users)
