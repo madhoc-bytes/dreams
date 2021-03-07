@@ -28,7 +28,7 @@ def test_channels_list_v1():
     channels_create_v1(auth_user_id00, 'third', True)
     channel_join_v1(auth_user_id01, 0)
     channel_join_v1(auth_user_id01, 2)
-    assert channels_list_v1(auth_user_id01)['channels'] == 
+    assert channels_list_v1(auth_user_id01)['channels'] == \
     [{'id': 0, 'name': 'first'},
      {'id': 2, 'name': 'third'}]
 
