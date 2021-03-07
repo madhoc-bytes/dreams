@@ -28,9 +28,6 @@ def test_unique_channels_listall():
     channel_join_v1(user1_id, {'id': channel['id']})
     
     assert(channels_listall_v1(user1_id) == [{'name': 'My Unique Channel',
-                                        'owner_members': [
-                                            {}
-                                        ],
                                         'all_members': [
                                             {
                                                 'u_id': 0,
@@ -55,9 +52,6 @@ def test_double_channels_listall():
     channel_join_v1(user1_id, {'id': channel2['id']})
 
     assert(channels_listall_v1(user1_id) == [{'name': 'Channel 1',
-                                        'owner_members': [
-                                            {}
-                                        ],
                                         'all_members': [
                                             {
                                                 'u_id': 0,
@@ -68,10 +62,8 @@ def test_double_channels_listall():
                                         
                                         }, {
                                            'name': 'Channel 2',
-                                        'owner_members': [
-                                            {}
-                                        ],
-                                        'all_members': [
+                                    
+                                            'all_members': [
                                             {
                                                 'u_id': 0,
                                                 'name_first': 'Jack',
@@ -100,13 +92,6 @@ def test_channels_with_user_access():
     channel_join_v1(user2_id, {'id': channel3['id']})
     
     assert(channels_listall_v1(user1_id) == [{'name': 'Jack Channel',
-                                        'owner_members': [
-                                            {
-                                                'u_id': 0,
-                                                'name_first': 'Jack',
-                                                'name_last': 'Germani',
-                                            }
-                                        ],
                                         'all_members': [
                                             {
                                                 'u_id': 0,
@@ -117,13 +102,6 @@ def test_channels_with_user_access():
                                         
                                         }, {
                                            'name': 'Elon Channel 1',
-                                        'owner_members': [
-                                            {
-                                                'u_id': 1,
-                                                'name_first': 'Elon',
-                                                'name_last': 'Musk',
-                                            }
-                                        ],
                                         'all_members': [
                                             {
                                                 'u_id': 1,
@@ -133,13 +111,6 @@ def test_channels_with_user_access():
                                         ] 
                                         }, {
                                             'name': 'Elon Channel 2',
-                                        'owner_members': [
-                                            {
-                                                'u_id': 1,
-                                                'name_first': 'Elon',
-                                                'name_last': 'Musk',
-                                            }
-                                        ],
                                         'all_members': [
                                             {
                                                 'u_id': 1,

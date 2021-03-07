@@ -27,7 +27,6 @@ def test_one_channel_in_list():
     channel_join_v1(user_id, {'id': channel['id']})
 
     assert(channels_list_v1(user_id) == [{'name': 'My Unique Channel',
-                                        'owner_members': [],
                                         'all_members': [
                                             {
                                                 'u_id': 0,
@@ -54,9 +53,6 @@ def test_two_channels_in_list():
 
 
     assert(channels_list_v1(user_id) == [{'name': 'Channel 1',
-                                        'owner_members': [
-                                            {}
-                                        ],
                                         'all_members': [
                                             {
                                                 'u_id': 0,
@@ -67,9 +63,7 @@ def test_two_channels_in_list():
                                         
                                         }, {
                                            'name': 'Channel 2',
-                                        'owner_members': [
-                                            {}
-                                        ],
+                                        
                                         'all_members': [
                                             {
                                                 'u_id': 0,
@@ -81,7 +75,7 @@ def test_two_channels_in_list():
 
 
 # Test where user is authorized to access 1 channel, when there are 2 channels in total
-def test_two_users_channels():
+def test_two_users_channels_list():
     clear_v1()
 
     # Create and register two different users
@@ -93,12 +87,9 @@ def test_two_users_channels():
     channel2 = channels_create_v1(user2_id, "Elon Channel", True)
 
     channel_join_v1(user1_id, {'id': channel1['id']})
-    channel_join_v1(user1_id, {'id': channel2['id']})
+    channel_join_v1(user2_id, {'id': channel2['id']})
 
     assert(channels_list_v1(user1_id) == [{'name': 'Jack Channel',
-                                        'owner_members': [
-                                            {}
-                                        ],
                                         'all_members': [
                                             {
                                                 'u_id': 0,

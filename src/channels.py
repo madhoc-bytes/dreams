@@ -18,7 +18,6 @@ def channels_list_v1(auth_user_id):
         if (test_if_user_in_ch(auth_user_id, {'id': channel['id']})):
             channels_details_list.append({
                 'name': channel['name'],
-                'owner_members': channel['owner_members'],
                 'all_members': channel['all_members']
             })
     
@@ -37,7 +36,6 @@ def channels_listall_v1(auth_user_id):
     for channel in channels:
             channels_details_list.append({
                 'name': channel['name'],
-                'owner_members': [],
                 'all_members': channel['all_members']
             })
     # Return the list
