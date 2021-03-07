@@ -1,5 +1,5 @@
 import pytest
-
+from src.channel import channel_join_v1
 from src.channels import channels_create_v1 
 from src.auth import auth_register_v1
 from src.error import InputError
@@ -18,3 +18,22 @@ def tests_channels_create_v1_except():
     auth_user_id11 = auth_register_v1("dubaida28951345@gmail.com", "xujiawen", "Jemma", "Simmons")
     with pytest.raises(InputError):
         channels_create_v1(auth_user_id11, "kasbfvkabvadfihviadfvbhidfbuiva", False)
+
+def test_channels_list_v1():
+    clear_v1()
+    auth_user_id00 = auth_register_v1("dubaida28951345@gmail.com", "xujiawen", "Jemma", "Simmons")
+    auth_user_id01 = auth_register_v1("dubwe28945@gmail.com", "xujdwen", "Leo", "Fitz")
+    channels_create_v1(auth_user_id00, 'first', True)
+    channels_create_v1(auth_user_id00, 'second', True)
+    channels_create_v1(auth_user_id00, 'third', True)
+    channel_join_v1(auth_user_id01, 0)
+    channel_join_v1(auth_user_id01, 2)
+    assert channels_list_v1(auth_user_id01)['channels'] == {}
+
+
+
+
+
+
+
+
