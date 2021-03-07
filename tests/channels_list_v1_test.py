@@ -87,12 +87,13 @@ def test_two_users_channels():
     # Create and register two different users
     user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')
     user2_id = auth_register_v1('elonmusk@yahoo.com', 'bitcoin777', 'Elon', 'Musk')
+
     # Create two channels: one ofr user 1 and one for user 2
     channel1 = channels_create_v1(user1_id, "Jack Channel", True)
     channel2 = channels_create_v1(user2_id, "Elon Channel", True)
 
     channel_join_v1(user1_id, {'id': channel1['id']})
-    channel_join_v1(user2_id, {'id': channel2['id']})
+    channel_join_v1(user1_id, {'id': channel2['id']})
 
     assert(channels_list_v1(user1_id) == [{'name': 'Jack Channel',
                                         'owner_members': [

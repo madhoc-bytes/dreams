@@ -46,15 +46,15 @@ def test_unique_channels_listall():
 def test_double_channels_listall():
     clear_v1()
 
-    user_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')
+    user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')
 
-    channel1 = channels_create_v1(user_id, "Channel 1", True)
-    channel2 = channels_create_v1(user_id, "Channel 2", True)
+    channel1 = channels_create_v1(user1_id, "Channel 1", True)
+    channel2 = channels_create_v1(user1_id, "Channel 2", True)
 
     channel_join_v1(user1_id, {'id': channel1['id']})
     channel_join_v1(user1_id, {'id': channel2['id']})
 
-    assert(channels_listall_v1(user_id) == [{'name': 'Channel 1',
+    assert(channels_listall_v1(user1_id) == [{'name': 'Channel 1',
                                         'owner_members': [
                                             {}
                                         ],

@@ -37,7 +37,7 @@ def channels_listall_v1(auth_user_id):
     for channel in channels:
             channels_details_list.append({
                 'name': channel['name'],
-                'owner_members': channel['owner_members'],
+                'owner_members': [],
                 'all_members': channel['all_members']
             })
     # Return the list
