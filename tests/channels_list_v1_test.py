@@ -72,5 +72,69 @@ def test_two_channels_in_list():
                                             }
                                         ]
                                         
+                                        }, {
+                                           'name': 'Channel 2',
+                                        'owner_members': [
+                                            {
+                                                'u_id': user_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ],
+                                        'all_members': [
+                                            {
+                                                'u_id': user_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ] 
                                         }])
 
+
+# Test where user is authorized to access 1 channel, when there are 2 channels in total
+def test_two_users_channels():
+    clear_v1()
+
+    # Create and register two different users
+    user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+    user2_id = auth_register_v1('elonmusk@yahoo.com', 'bitcoin777', 'Elon', 'Musk')['auth_user_id']
+
+    # Create two channels: one ofr user 1 and one for user 2
+    channels_create_v1(user1_id, "Jack Channel", True)
+    channels_create_v1(user2_id, "Elon Channel", True)
+
+    assert(channels_list_v1(user1_id) == [{'name': 'Jack Channel',
+                                        'owner_members': [
+                                            {
+                                                'u_id': user1_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ],
+                                        'all_members': [
+                                            {
+                                                'u_id': user1_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ]
+                                        
+                                        }])
+
+
+# Test where user is part of no channels, and there are 2 different channels available
+def test_two_users_not_in_channels():
+    clear_v1()
+
+    # registers two seperate users
+    user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+    user2_id = auth_register_v1('elonmusk@yahoo.com', 'bitcoin777', 'Elon', 'Musk')['auth_user_id']
+
+    # Create two channels: one ofr user 1 and one for user 2
+    channels_create_v1(user2_id, "Elon Channel 1", True)
+    channels_create_v1(user2_id, "Elon Channel 2", True)
+
+    channel_list = channels_list_v1(user1_id)
+    length = len(channel_list)
+
+    assert length == 0 

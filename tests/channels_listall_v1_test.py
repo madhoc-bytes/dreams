@@ -22,24 +22,133 @@ def test_no_channels_listall():
 def test_unique_channels_listall():
     clear_v1()
 
-    user = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')
-    id = user['auth_user_id']
+    user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
 
-    channels_create_v1(id, "My Unique Channel", True)
+    channels_create_v1(user1_id, "My Unique Channel", True)
     
-    assert(channels_listall_v1(id) == [{'name': 'My Unique Channel', 'owner_members': [], 'all_members': [0]}])
+    assert(channels_listall_v1(user1_id) == [{'name': 'My Unique Channel',
+                                        'owner_members': [
+                                            {
+                                                'u_id': user_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ],
+                                        'all_members': [
+                                            {
+                                                'u_id': user_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ]
+                                        
+                                        }])
 
 
 # Test for a list with exactly two channels in it
 def test_double_channels_listall():
     clear_v1()
 
-    user = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')
-    id = user['auth_user_id']
+    user_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
 
-    channels_create_v1(id, "Channel 1", True)
-    channels_create_v1(id, "Channel 2", True)
+    channels_create_v1(user_id, "Channel 1", True)
+    channels_create_v1(user_id, "Channel 2", True)
 
-    assert(channels_listall_v1(id) == [{'name': 'Channel 1', 'owner_members': [], 'all_members': [0]}, {'name': 'Channel 2', 'owner_members': [], 'all_members': [0]}])
+    assert(channels_listall_v1(user_id) == [{'name': 'Channel 1',
+                                        'owner_members': [
+                                            {
+                                                'u_id': user_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ],
+                                        'all_members': [
+                                            {
+                                                'u_id': user_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ]
+                                        
+                                        }, {
+                                           'name': 'Channel 2',
+                                        'owner_members': [
+                                            {
+                                                'u_id': user_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ],
+                                        'all_members': [
+                                            {
+                                                'u_id': user_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ] 
+                                        }])
 
 
+# Test where there are 3 channels, in which the user has access to 1
+def test_channels_with_user_access():
+
+    clear_v1()
+
+    # Create and register two users
+    user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+    user2_id = auth_register_v1('elonmusk@yahoo.com', 'bitcoin777', 'Elon', 'Musk')['auth_user_id']
+
+    # Channels
+    channels_create_v1(user1_id, "Jack Channel", True)
+    channels_create_v1(user2_id, "Elon Channel 1", True)
+    channels_create_v1(user2_id, "Elon Channel 2", True)
+    
+    assert(channels_listall_v1(user1_id) == [{'name': 'Jack Channel',
+                                        'owner_members': [
+                                            {
+                                                'u_id': user1_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ],
+                                        'all_members': [
+                                            {
+                                                'u_id': user1_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ]
+                                        
+                                        }, {
+                                           'name': 'Elon Channel 1',
+                                        'owner_members': [
+                                            {
+                                                'u_id': user2_id,
+                                                'name_first': 'Elon',
+                                                'name_last': 'Musk',
+                                            }
+                                        ],
+                                        'all_members': [
+                                            {
+                                                'u_id': user2_id,
+                                                'name_first': 'Elon',
+                                                'name_last': 'Musk',
+                                            }
+                                        ] 
+                                        }, {
+                                            'name': 'Elon Channel 2',
+                                        'owner_members': [
+                                            {
+                                                'u_id': user2_id,
+                                                'name_first': 'Elon',
+                                                'name_last': 'Musk',
+                                            }
+                                        ],
+                                        'all_members': [
+                                            {
+                                                'u_id': user2_id,
+                                                'name_first': 'Elon',
+                                                'name_last': 'Musk',
+                                            }
+                                        ]
+                                        }])
