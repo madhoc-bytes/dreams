@@ -1,43 +1,76 @@
 # Test file for channels_list_v1
 
+# Imports
 import pytest
-from src.error import InputError
-from src import channels
-from src import auth
-from src import channel
-from src import other
+from src.auth import auth_register_v1
+from src.channel import channel_details_v1, channel_join_v1
+from src.channels import channels_create_v1, channels_list_v1, channels_listall_v1
+from src.other import clear_v1
+from src.error import InputError, AccessError
 
 
-def test_valid_channel_details():
-    clear_v1()
-    valid_email, valid_password, valid_name_first, valid_name_last = 'abc@def.com', 'passWord1', 'jack', 'germani'
-    valid_user_id = auth.auth_resgister_v1(valid_email, valid_password, valid_name_first, valid_name_last)
-
-
-    valid_channel_name = 'jack_channel'
-    is_public = True
-    valid_channel_id = channels_create_v1(valid_user_id, valid_channel_name, is_public)
-
-    check_valid_channel_details = channels_details_v1(valid_user_id, valid_channel_id)
-
-    assert check_valid_channel_details == ('jack_channel', 'jackgermani', 'jackgermani')
-
-def test_no_channels_list():
+# Test for a list without any channel details in it
+def test_no_channels_in_list():
     clear_v1()
     user = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')
     id = user['auth_user_id']
     
-    user_list = channels_list_v1(id)
-    assert bool(user_list['channels']) == False
+    channel_list = channels_list_v1(id)
+    assert bool(channel_list) == False
 
 
-def test_unique_channels_list():
+# Test for a list with only one channel details in it
+def test_one_channel_in_list():
     clear_v1()
-    user = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')
-    id = user['auth_user_id']
+    user_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
 
-    channels_create_v1(id, 'Jacks Channel', True)
+    channels_create_v1(user_id, 'My Unique Channel', True)
 
-    user_list = channels_list_v1(id)
-    length = len(user_list['channels'])
-    assert (length == 1)
+    assert(channels_list_v1(user_id) == {'name': 'My Unique Channel',
+                                        'owner_members': [
+                                            {
+                                                'u_id': user_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ],
+                                        'all_members': [
+                                            {
+                                                'u_id': user_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ]
+                                        
+                                        })
+
+
+
+# Test for a list with exactly two channels in it
+def test_two_channels_in_list():
+    clear_v1()
+    user_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+
+    channel_list = []
+
+    channels_create_v1(user_id, 'Channel 1', True)
+    channels_create_v1(user_id, 'Channel 2', True)
+
+    assert(channels_list_v1(user_id) == [{'name': 'Channel 1',
+                                        'owner_members': [
+                                            {
+                                                'u_id': user_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ],
+                                        'all_members': [
+                                            {
+                                                'u_id': user_id,
+                                                'name_first': 'Jack',
+                                                'name_last': 'Germani',
+                                            }
+                                        ]
+                                        
+                                        }])
+

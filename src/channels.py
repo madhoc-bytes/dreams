@@ -1,37 +1,48 @@
-# DON'T FORGET TO COMMIT FIRST TEST 1, THEN FUNCTION 1, THEN TEST 2, THEN FUNCTION 2   
+# channels.py file
 
-def channels_list_v1(auth_user_id):
+# Imports 
+from src.data import channels
+from src.channel import channel_details_v1
 
-    # Create a list of channel IDs for which the user is authorized
-    channels_id_list = []
-    for user in channels['all_members']:
-        if auth_user_id == user['u_id']:
-            channels_id_list.append = channels['id']
-    
-    # Create a list of channel details using previous function
+# Function assume that channels_create_v1() 
+# appends all_members and owner_members lists
+
+def channels_list_v1(auth_user_id):    
+
+    # Create emppty list to store channels details
     channels_details_list = []
-    for i in channels_id_list:
-        channels_details_list.append = channel_details_v1(auth_user_id, i)
 
-    # Return the list of channel details
+    for channel in channels:
+        # Check if the user has access to the channel to get details
+        if auth_user_id in channel['all_members']:
+            channels_details_list.append({
+                'name': channel['name'],
+                'owner_members': channel['owner_members'],
+                'all_members': channel['all_members']
+            })
+    
+    # Return the list
     return channels_details_list
 
+
+# Function assumes that channels_create_v1() is fixed 
+# because owner_members and all_members are empty
 
 def channels_listall_v1(auth_user_id):
 
-    # Create a list of all channel IDs 
-    channels_id_list = []
-    for channel in channels['all members']:
-        channels_id_list.append = channel['id']
-    
-    # Create a list of channel details using previous function
+    # Create empty list to store all channel details
     channels_details_list = []
-    for i in channels_id_list:
-        channels_details_list.append = channel_details_v1(auth_user_id, i)
-
-    # Return the list of channel details
+    # Go through all channels and store details for each one of them
+    for channel in channels:
+            channels_details_list.append({
+                'name': channel['name'],
+                'owner_members': channel['owner_members'],
+                'all_members': channel['all_members']
+            })
+    # Return the list
     return channels_details_list
-    
+
+
 
 def channels_create_v1(auth_user_id, name, is_public):
     ## check if the name is more than 20 raise an Inputerror
@@ -64,4 +75,3 @@ def check_channel_empty():
 
 def last_channel_id():
     return channels[-1]['id']
-

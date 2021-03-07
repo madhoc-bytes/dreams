@@ -7,8 +7,7 @@ def clear_v1():
 
 def search_v1(auth_user_id, query_str):
     return {
-            }
-        ],
+          
     }
 
 ''' create len of channels to check if clear'''
