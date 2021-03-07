@@ -1,6 +1,7 @@
 # channels.py file
 
 # Imports 
+from src.channel import test_if_user_in_ch
 from src.data import channels
 from src.channel import channel_details_v1
 
@@ -14,7 +15,7 @@ def channels_list_v1(auth_user_id):
 
     for channel in channels:
         # Check if the user has access to the channel to get details
-        if auth_user_id in channel['all_members']:
+        if (test_if_user_in_ch(auth_user_id, {'id': channel['id']})):
             channels_details_list.append({
                 'name': channel['name'],
                 'owner_members': channel['owner_members'],
