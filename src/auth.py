@@ -33,8 +33,7 @@ def auth_register_v1(email, password, name_first, name_last):
                 handle = handle[:20] + unique_suffix
             else:
                 handle = handle + unique_suffix
-            n_users += 1        
-    print(email_is_valid(email))
+            n_users += 1
     if email_is_valid(email) != True:
             raise InputError
     #checking len first and last name less than 50 and more than 1 
