@@ -1,3 +1,4 @@
+# pylint: disable=W0613
 """channels.py file"""
 
 # Imports
