@@ -6,7 +6,7 @@ from src.data import users
 def email_is_valid(email):
     '''checking for a valid email using regex'''
     regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
-    bool(re.search(regex, email))
+    return bool(re.search(regex, email))
 
 def auth_login_v1(email, password):
     '''auth login function implementation'''
