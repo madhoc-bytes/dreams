@@ -1,32 +1,29 @@
 # channels.py file
 
-# Imports 
+# Imports
 from src.channel import test_if_user_in_ch
 from src.data import channels
-from src.channel import channel_details_v1
 
-# Function assume that channels_create_v1() 
-# appends all_members and owner_members lists
 
-def channels_list_v1(auth_user_id):    
+
+
+
+def channels_list_v1(auth_user_id):
 
     # Create emppty list to store channels details
     channels_details_list = []
 
     for channel in channels:
         # Check if the user has access to the channel to get details
-        if (test_if_user_in_ch(auth_user_id, {'id': channel['id']})):
+        if test_if_user_in_ch(auth_user_id, {'id': channel['id']}):
             channels_details_list.append({
                 'name': channel['name'],
                 'all_members': channel['all_members']
             })
-    
+
     # Return the list
     return channels_details_list
 
-
-# Function assumes that channels_create_v1() is fixed 
-# because owner_members and all_members are empty
 
 def channels_listall_v1(auth_user_id):
 
@@ -34,13 +31,12 @@ def channels_listall_v1(auth_user_id):
     channels_details_list = []
     # Go through all channels and store details for each one of them
     for channel in channels:
-            channels_details_list.append({
-                'name': channel['name'],
-                'all_members': channel['all_members']
-            })
+        channels_details_list.append({
+            'name': channel['name'],
+            'all_members': channel['all_members']
+        })
     # Return the list
     return channels_details_list
-
 
 
 def channels_create_v1(auth_user_id, name, is_public):
@@ -66,6 +62,7 @@ def channels_create_v1(auth_user_id, name, is_public):
     return {
         'id': channel_id,
     }
+
 
 def check_channel_empty():
     if len(channels) == 0:
