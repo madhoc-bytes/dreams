@@ -1,3 +1,4 @@
+'''Import pytest and relevant functions'''
 import pytest
 
 from src.auth import auth_register_v1
@@ -49,7 +50,6 @@ def test_messages_nomessage():
         'end': -1,
     }
 
-
 def test_messages_invalid_uid():
     '''Call messages given an invalid user id'''
     clear_v1()
@@ -63,7 +63,6 @@ def test_messages_invalid_ch_id():
     '''Call messages given an invalid channel id'''
     clear_v1()
     test_user = auth_register_v1("test@gmail.com", "password", "testF", "testL")
-    test_channel = channels_create_v1(test_user, "test channel", True)
     invalid = {'id': 10}
     with pytest.raises(InputError):
         channel_messages_v1(test_user, invalid, 0)
