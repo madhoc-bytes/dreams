@@ -1,15 +1,12 @@
-# channels.py file
+"""channels.py file"""
 
 # Imports
 from src.channel import test_if_user_in_ch
 from src.data import channels
-
-
-
-
+from src.error import InputError
 
 def channels_list_v1(auth_user_id):
-
+    """Function that lists all channels for which a certain user has access"""
     # Create emppty list to store channels details
     channels_details_list = []
 
@@ -25,7 +22,9 @@ def channels_list_v1(auth_user_id):
     return channels_details_list
 
 
+
 def channels_listall_v1(auth_user_id):
+    """Function that lists all channels"""
 
     # Create empty list to store all channel details
     channels_details_list = []
@@ -39,7 +38,10 @@ def channels_listall_v1(auth_user_id):
     return channels_details_list
 
 
+
 def channels_create_v1(auth_user_id, name, is_public):
+    """Function that creates channel"""
+
     ## check if the name is more than 20 raise an Inputerror
     if len(name) > 20:
         raise InputError("Name is more than 20 characters long!")
@@ -63,11 +65,12 @@ def channels_create_v1(auth_user_id, name, is_public):
         'id': channel_id,
     }
 
-
 def check_channel_empty():
+    """Function that checks if channel is empty"""
     if len(channels) == 0:
         return True
     return False
 
 def last_channel_id():
+    """Function that checks last channel ID"""
     return channels[-1]['id']
