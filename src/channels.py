@@ -13,7 +13,7 @@ def channels_list_v1(auth_user_id):
 
     for channel in channels:
         # Check if the user has access to the channel to get details
-        if test_if_user_in_ch(auth_user_id, {'id': channel['id']}):
+        if test_if_user_in_ch(auth_user_id, channel['id']):
             channels_details_list.append({
                 'name': channel['name'],
                 'all_members': channel['all_members']
@@ -63,7 +63,7 @@ def channels_create_v1(auth_user_id, name, is_public):
     channels.append(new_channel)
 
     return {
-        'id': channel_id,
+        'channel_id': channel_id,
     }
 
 def check_channel_empty():

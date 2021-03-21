@@ -22,10 +22,10 @@ def test_no_channels_listall():
 def test_unique_channels_listall():
     clear_v1()
 
-    user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')
+    user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
 
     channel = channels_create_v1(user1_id, "My Unique Channel", True)
-    channel_join_v1(user1_id, {'id': channel['id']})
+    channel_join_v1(user1_id, channel['channel_id'])
     
     assert(channels_listall_v1(user1_id) == [{'name': 'My Unique Channel',
                                         'all_members': [
@@ -43,13 +43,13 @@ def test_unique_channels_listall():
 def test_double_channels_listall():
     clear_v1()
 
-    user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')
+    user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
 
     channel1 = channels_create_v1(user1_id, "Channel 1", True)
     channel2 = channels_create_v1(user1_id, "Channel 2", True)
 
-    channel_join_v1(user1_id, {'id': channel1['id']})
-    channel_join_v1(user1_id, {'id': channel2['id']})
+    channel_join_v1(user1_id, channel1['channel_id'])
+    channel_join_v1(user1_id, channel2['channel_id'])
 
     assert(channels_listall_v1(user1_id) == [{'name': 'Channel 1',
                                         'all_members': [
@@ -79,17 +79,17 @@ def test_channels_with_user_access():
     clear_v1()
 
     # Create and register two users
-    user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')
-    user2_id = auth_register_v1('elonmusk@yahoo.com', 'bitcoin777', 'Elon', 'Musk')
+    user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+    user2_id = auth_register_v1('elonmusk@yahoo.com', 'bitcoin777', 'Elon', 'Musk')['auth_user_id']
 
     # Channels
     channel1 = channels_create_v1(user1_id, "Jack Channel", True)
     channel2 = channels_create_v1(user2_id, "Elon Channel 1", True)
     channel3 = channels_create_v1(user2_id, "Elon Channel 2", True)
 
-    channel_join_v1(user1_id, {'id': channel1['id']})
-    channel_join_v1(user2_id, {'id': channel2['id']})
-    channel_join_v1(user2_id, {'id': channel3['id']})
+    channel_join_v1(user1_id, channel1['channel_id'])
+    channel_join_v1(user2_id, channel2['channel_id'])
+    channel_join_v1(user2_id, channel3['channel_id'])
     
     assert(channels_listall_v1(user1_id) == [{'name': 'Jack Channel',
                                         'all_members': [
