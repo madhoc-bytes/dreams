@@ -22,7 +22,7 @@ def test_valid_email():
     valid_email, valid_password = 'abc@def.com', 'helloWorld123!'
     valid_first_name, valid_last_name = 'john', 'smith'
     invalid_email = 'abc.com'
-    new_user_id = auth_register_v1(
+    auth_register_v1(
             valid_email, 
             valid_password, 
             valid_first_name, 
@@ -36,7 +36,7 @@ def test_wrong_email():
     valid_email, valid_password = 'abc@def.com', 'helloWorld123!'
     valid_first_name, valid_last_name = 'john', 'smith'
     wrong_email = 'def@def.com'
-    new_user_id = auth_register_v1(
+    auth_register_v1(
             valid_email, 
             valid_password, 
             valid_first_name, 
@@ -50,7 +50,7 @@ def test_wrong_password():
     valid_email, valid_password = 'abc@def.com', 'helloWorld123!'
     valid_first_name, valid_last_name = 'john', 'smith'
     wrong_password = 'helloWorld1'
-    new_user_id = auth_register_v1(
+    auth_register_v1(
             valid_email, 
             valid_password, 
             valid_first_name, 

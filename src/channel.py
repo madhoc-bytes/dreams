@@ -22,7 +22,7 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
     new_member['name_first'] = new_member_details['name_first']
     new_member['name_last'] = new_member_details['name_last']
     new_member['u_id'] = new_member_details['u_id']
-    channels[channel_id['id']]['all_members'].append(new_member)
+    channels[channel_id]['all_members'].append(new_member)
 
     return {}
 
@@ -38,9 +38,9 @@ def channel_details_v1(auth_user_id, channel_id):
 
     # insert info into dictionary and return it
     details = {}
-    details['name'] = channels[channel_id['id']]['name']
-    details['owner_members'] = channels[channel_id['id']]['owner_members']
-    details['all_members'] = channels[channel_id['id']]['all_members']
+    details['name'] = channels[channel_id]['name']
+    details['owner_members'] = channels[channel_id]['owner_members']
+    details['all_members'] = channels[channel_id]['all_members']
     return details
 
 
@@ -52,12 +52,12 @@ def channel_messages_v1(auth_user_id, channel_id, start):
         raise InputError()
     if not test_if_user_in_ch(auth_user_id, channel_id):
         raise AccessError()
-    if start > len(channels[channel_id['id']]['messages']):
+    if start > len(channels[channel_id]['messages']):
         raise InputError()
     '''Appends messages in channel to result, stops when has appended 50 or no more messages'''
     result = []
     i = 0
-    for msg in channels[channel_id['id']]['messages']:
+    for msg in channels[channel_id]['messages']:
         result.append(msg)
         i += 1
         if i == 50:
@@ -85,7 +85,7 @@ def channel_join_v1(auth_user_id, channel_id):
         raise InputError()
     if test_channel_is_invalid(channel_id):
         raise InputError()
-    if not channels[channel_id['id']]['is_public']:
+    if not channels[channel_id]['is_public']:
         raise AccessError()
 
     '''Gets relevant user information'''
@@ -96,7 +96,7 @@ def channel_join_v1(auth_user_id, channel_id):
     new_user['u_id'] = new_user_details['u_id']
 
     '''Appends to 'all_members' key in dictionary'''
-    channels[channel_id['id']]['all_members'].append(new_user)
+    channels[channel_id]['all_members'].append(new_user)
     return {}
 
 '''
@@ -122,7 +122,7 @@ def test_channel_is_invalid(channel_id):
     # searches for the key value pair of 'id': channel_id
     # if found, then channel exists
     for channel in channels:
-        key, value = 'id', channel_id['id']
+        key, value = 'id', channel_id
         if key in channel and value == channel[key]:
             return False
 
@@ -138,7 +138,7 @@ def test_user_is_invalid(u_id):
     # searches for the key value pair of 'u_id': u_id
     # if found, then user exists
     for user in users:
-        key, value = 'u_id', u_id['auth_user_id']
+        key, value = 'u_id', u_id
         if key in user and value == user[key]:
             return False
 
@@ -148,13 +148,13 @@ def test_user_is_invalid(u_id):
 # returns True if they are
 def test_if_user_in_ch(u_id, channel_id):
     # if all_members is empty in given channel, then obviously invalid
-    if len(channels[channel_id['id']]['all_members']) == 0:
+    if len(channels[channel_id]['all_members']) == 0:
         return False
 
     # searches for the key value pair of 'u_id': u_id in all_members within a channel
     # if found, then user is in channel
-    for user in channels[channel_id['id']]['all_members']:
-        key, value = 'u_id', u_id['auth_user_id']
+    for user in channels[channel_id]['all_members']:
+        key, value = 'u_id', u_id
         if key in user and value == user[key]:
             return True
 
@@ -164,7 +164,7 @@ def test_if_user_in_ch(u_id, channel_id):
 def user_details(u_id):
     # finds user in users list and returns all details
     for user in users:
-        key, value = 'u_id', u_id['auth_user_id']
+        key, value = 'u_id', u_id
         if key in user and value == user[key]:
             return user
     # if user isn't found, then return an empty dict

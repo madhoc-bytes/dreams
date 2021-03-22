@@ -11,16 +11,19 @@ def test_details_basic():
     clear_v1()
 
     # register 1 user
-    auth_id = auth_register_v1('test_user@gmail.com', 'test_pw_user', 'test_fname_user', 'test_lname_user')
+    user = auth_register_v1('test_auth@gmail.com',
+    'test_pw_auth',
+    'test_fname_user',
+    'test_lname_user')['auth_user_id']
 
     # create a test channel
-    test_channel_id = channels_create_v1(auth_id, 'test_channel_1', True)
+    test_channel_id = channels_create_v1(user, 'test_channel_1', True)['channel_id']
 
     # add auth to the test channel
-    channel_join_v1(auth_id, test_channel_id)
+    channel_join_v1(user, test_channel_id)
 
     # retrieve details
-    channel_dict = channel_details_v1(auth_id, test_channel_id)
+    channel_dict = channel_details_v1(user, test_channel_id)
 
     # ensure the info returned is correct
     assert channel_dict['name'] == 'test_channel_1'
@@ -36,11 +39,19 @@ def test_details_multiple ():
     clear_v1()
     
     # register 2 users
-    user1 = auth_register_v1('test_user@gmail.com', 'test_pw_user', 'test_fname_user', 'test_lname_user')
-    user2 = auth_register_v1('test_user1@gmail.com', 'test_pw_user1', 'test_fname_user1', 'test_lname_user1')
+    # register 2 users
+    user1 = auth_register_v1('test_auth@gmail.com',
+    'test_pw_user',
+    'test_fname_user',
+    'test_lname_user')['auth_user_id']
+    user2 = auth_register_v1('test_user@gmail.com',
+    'test_pw_user1',
+    'test_fname_user1',
+    'test_lname_user1')['auth_user_id']
+
 
     # create a test channel
-    test_channel_id = channels_create_v1(user1, 'test_channel_1', True)
+    test_channel_id = channels_create_v1(user1, 'test_channel_1', True)['channel_id']
 
     # add both to the test channel
     channel_join_v1(user1, test_channel_id)
@@ -68,7 +79,10 @@ def test_invalid_channel():
     clear_v1()
 
     # register a user
-    auth_id = auth_register_v1('test_auth@gmail.com', 'test_pw_auth', 'test_fname_auth', 'test_lname_auth')
+    auth_id = auth_register_v1('test_auth@gmail.com',
+    'test_pw_auth',
+    'test_fname_auth',
+    'test_lname_auth')['auth_user_id']
 
     #try to recall details of a non-existent channel and expect failure
     invalid_channel_id = 100
@@ -79,10 +93,13 @@ def test_unauthorised_user():
     clear_v1()
 
     # register 1 user
-    auth_id = auth_register_v1('test_user@gmail.com', 'test_pw_user', 'test_fname_user', 'test_lname_user')
+    auth_id = auth_register_v1('test_auth@gmail.com',
+    'test_pw_auth',
+    'test_fname_auth',
+    'test_lname_auth')['auth_user_id']
 
     # create a test channel
-    test_channel_id = channels_create_v1(auth_id, 'test_channel_1', True)
+    test_channel_id = channels_create_v1(auth_id, 'test_channel_1', True)['channel_id']
 
     # try to call channel_details when auth_user is not in the channel and expect failure
     with pytest.raises(AccessError):
