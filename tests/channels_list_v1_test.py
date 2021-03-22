@@ -44,8 +44,6 @@ def test_two_channels_in_list():
     clear_v1()
     user_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
 
-    channel_list = []
-
     channel1 = channels_create_v1(user_id, 'Channel 1', True)
     channel2 = channels_create_v1(user_id, 'Channel 2', True)
     channel_join_v1(user_id, channel1['channel_id'])
