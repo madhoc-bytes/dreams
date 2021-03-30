@@ -14,13 +14,9 @@ def test_valid_register():
         'name_last': 'Smith'
     })
 
-    resp = requests.post(config.url + 'auth/register', params=data, methods='POST')
-    assert json.loads(resp.text) == {
-        'email': 'abc@def.com',
-        'password': 'Password01!',
-        'name_first': 'John',
-        'name_last': 'Smith'
-    }
+    resp = requests.post(config.url + 'auth/register/v2', data=data, methods='POST')
+    assert resp.status_code == 200
+    # check for the length of the dictionary returned 
 
 def test_invalid_email():
     data = json.dumps({
@@ -30,9 +26,8 @@ def test_invalid_email():
         'name_last': 'Smith'
     })
 
-    resp = requests.post(config.url + 'auth/register', params=data, methods='POST')
-    with pytest.raises(InputError):
-        json.load(resp)
+    resp = requests.post(config.url + 'auth/register', data=data, methods='POST')
+    assert resp.status_code == 400
 
 def test_auth_register_short_password():
     data = json.dumps({
@@ -42,9 +37,8 @@ def test_auth_register_short_password():
         'name_last': 'Smith'
     })
 
-    req = requests.post(config.url + 'auth/register', params=data, methods='POST')
-    with pytest.raises(InputError):
-        json.load(req)
+    req = requests.post(config.url + 'auth/register', data=data, methods='POST')
+    assert resp.status_code == 400
 
 def test_auth_register_short_first_name():
     data = json.dumps({
@@ -54,9 +48,8 @@ def test_auth_register_short_first_name():
         'name_last': 'Smith'
     })
 
-    req = requests.post(config.url + 'auth/register', params=data, methods='POST')
-    with pytest.raises(InputError):
-        json.load(req)
+    req = requests.post(config.url + 'auth/register', data=data, methods='POST')
+    assert resp.status_code == 400
 
 def test_auth_register_short_last_name():
     data = json.dumps({
@@ -66,9 +59,8 @@ def test_auth_register_short_last_name():
         'name_last': 'S'
     })
 
-    req = requests.post(config.url + 'auth/register', params=data, methods='POST')
-    with pytest.raises(InputError):
-        json.load(req)
+    req = requests.post(config.url + 'auth/register', data=data, methods='POST')
+    assert resp.status_code == 400
 
 def test_auth_register_long_first_name():
     data = json.dumps({
@@ -78,9 +70,8 @@ def test_auth_register_long_first_name():
         'name_last': 'Smith'
     })
 
-    req = requests.post(config.url + 'auth/register', params=data, methods='POST')
-    with pytest.raises(InputError):
-        json.load(req)
+    req = requests.post(config.url + 'auth/register', data=data, methods='POST')
+    assert resp.status_code == 400
 
 def test_auth_register_long_last_name():
     data = json.dumps({
@@ -90,7 +81,6 @@ def test_auth_register_long_last_name():
         'name_last': 'S'*52
     })
 
-    req = requests.post(config.url + 'auth/register', params=data, methods='POST')
-    with pytest.raises(InputError):
-        json.load(req)
+    req = requests.post(config.url + 'auth/register', data=data, methods='POST')
+    assert resp.status_code == 400
 
