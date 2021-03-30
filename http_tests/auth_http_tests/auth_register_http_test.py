@@ -20,7 +20,7 @@ def test_valid_register():
 
 def test_invalid_email():
     data = json.dumps({
-        'email': 'thisisonvalid',
+        'email': 'thisisinvalid',
         'password': 'Password01!',
         'name_first': 'John',
         'name_last': 'Smith'
