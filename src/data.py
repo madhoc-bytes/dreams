@@ -42,3 +42,18 @@ channels = []
     ],
 }
 '''
+dms = []
+'''
+{   
+    'dm_id': 0,
+    'is_public': True,
+    'dm_name': 'Hayden',
+    'all_dm_members': [
+        {
+            'dm_id': 0,
+            'name_first': 'Hayden',
+            'name_last': 'Jacobs',
+        }
+    ],
+}
+'''
