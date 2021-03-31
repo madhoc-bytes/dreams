@@ -3,8 +3,8 @@
 
 # Imports
 from src.channel import test_if_user_in_ch
-from src.data import channels
-from src.error import InputError
+from src.data import channels, users
+from src.error import InputError, AccessError
 
 def channels_list_v1(auth_user_id):
     """Function that lists all channels for which a certain user has access"""
