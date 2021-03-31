@@ -26,4 +26,3 @@ def test_logout_valid():
 
     assert resp_logout.status_code == 200
     assert json.loads(resp_logout.text) == {is_success}
-
