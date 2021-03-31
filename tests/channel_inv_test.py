@@ -2,7 +2,7 @@ import pytest
 
 from src.auth import auth_register_v1
 from src.channel import channel_invite_v1, channel_details_v1, channel_join_v1
-from src.channels import channels_create_v1
+from src.channels import channels_create_v2
 from src.other import clear_v1
 from src.error import InputError, AccessError
 
@@ -20,7 +20,7 @@ def test_invite_basic():
     'test_lname_user')['auth_user_id']
 
     # create a test channel
-    test_channel_id = channels_create_v1(auth_id, 'test_channel_1', True)['channel_id']
+    test_channel_id = channels_create_v2(auth_id, 'test_channel_1', True)['channel_id']
 
     # place inviter and invitee into test channel  
     channel_join_v1(auth_id, test_channel_id)
@@ -58,7 +58,7 @@ def test_invite_multiple():
     'test_lname_user1')['auth_user_id']
 
     # create a test channel
-    test_channel_id = channels_create_v1(auth_id, 'test_channel_1', True)['channel_id']
+    test_channel_id = channels_create_v2(auth_id, 'test_channel_1', True)['channel_id']
 
     # place inviter test channel  
     channel_join_v1(auth_id, test_channel_id)
@@ -117,7 +117,7 @@ def test_invite_user_invalid():
     'test_lname_auth')['auth_user_id']
 
     # create a test channel
-    test_channel_id = channels_create_v1(auth_id, 'test_channel_1', True)['channel_id']
+    test_channel_id = channels_create_v2(auth_id, 'test_channel_1', True)['channel_id']
 
     # place inviter into test channel  
     channel_join_v1(auth_id, test_channel_id)
@@ -142,7 +142,7 @@ def test_invite_inviter_not_in_channel():
     'test_lname_user')['auth_user_id']
 
     # create a test channel
-    test_channel_id = channels_create_v1(auth_id, 'test_channel_1', True)['channel_id']
+    test_channel_id = channels_create_v2(auth_id, 'test_channel_1', True)['channel_id']
 
     # try to invite users to channel when inviter is not in channel and expect failure
     with pytest.raises(AccessError):
