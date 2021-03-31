@@ -17,7 +17,7 @@ def test_details_basic():
     'test_lname_user')['auth_user_id']
 
     # create a test channel
-    test_channel_id = channels_create_v1(user, 'test_channel_1', True)['channel_id']
+    test_channel_id = channels_create_v2(user, 'test_channel_1', True)['channel_id']
 
     # add auth to the test channel
     channel_join_v1(user, test_channel_id)
@@ -51,7 +51,7 @@ def test_details_multiple ():
 
 
     # create a test channel
-    test_channel_id = channels_create_v1(user1, 'test_channel_1', True)['channel_id']
+    test_channel_id = channels_create_v2(user1, 'test_channel_1', True)['channel_id']
 
     # add both to the test channel
     channel_join_v1(user1, test_channel_id)
@@ -99,7 +99,7 @@ def test_unauthorised_user():
     'test_lname_auth')['auth_user_id']
 
     # create a test channel
-    test_channel_id = channels_create_v1(auth_id, 'test_channel_1', True)['channel_id']
+    test_channel_id = channels_create_v2(auth_id, 'test_channel_1', True)['channel_id']
 
     # try to call channel_details when auth_user is not in the channel and expect failure
     with pytest.raises(AccessError):
