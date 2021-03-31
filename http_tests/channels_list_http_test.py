@@ -41,13 +41,13 @@ def test_one_channel():
     token = payload['token']
     
     # Create a channel with user in it
-    create_data = {token, 'My Unique Channel', True}
+    create_data = {'token': token, 'name': 'My Unique Channel', 'is_public': True}
     r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
     payload = r.json()
     channel_id = payload['channel_id']
     
     # Make the user join channel
-    join_data = {token, channel_id}
+    join_data = {'token': token, 'channel_id': channel_id}
     requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
 
     # Get result
@@ -81,21 +81,21 @@ def test_two_channels():
     token = payload['token']
     
     # Create first channel with user in it
-    create_data = {token, 'Channel 1', True}
+    create_data = {'token': token, 'name': 'Channel 1', 'is_public': True}
     r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
     payload = r.json()
     channel_id_1 = payload['channel_id']
 
     # Create second channel with user in it
-    create_data = {token, 'Channel 2', True}
+    create_data = {'token': token, 'name': 'Channel 2', 'is_public': True}
     r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
     payload = r.json()
     channel_id_2 = payload['channel_id']
     
     # Make the user join both channels
-    join_data = {token, channel_id_1}
+    join_data = {'token': token, 'channel_id': channel_id_1}
     requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
-    join_data = {token, channel_id_2}
+    join_data = {'token': token, 'channel_id': channel_id_2}
     requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
 
     # Get result
@@ -143,23 +143,24 @@ def test_two_users_channels():
     token_user_2 = payload['token']
 
     # Create first channel with user 1 in it
-    create_data = {token_user_1, 'Jack Channel', True}
+    create_data = {'token': token_user_1, 'name': 'Jack Channel', 'is_public': True}
     r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
     payload = r.json()
     channel_id_1 = payload['channel_id']
 
     # Create second channel with user 2 in it
     create_data = {token_user_2, 'Elon Channel', True}
+    create_data = {'token': token_user_2, 'name': 'Elon Channel', 'is_public': True}
     r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
     payload = r.json()
     channel_id_2 = payload['channel_id']
     
     # Make user 1 join channel 1
-    join_data = {token_user_1, channel_id_1}
+    join_data = {'token': token_user_1, 'channel_id': channel_id_1}
     requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
 
     # Make user 2 join channel 2
-    join_data = {token_user_2, channel_id_2}
+    join_data = {'token': token_user_2, 'channel_id': channel_id_2}
     requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
 
     # Get channels for user 1
@@ -198,23 +199,23 @@ def test_two_users_not_in_channels():
     token_user_2 = payload['token']
 
     # Create first channel with user 1 in it
-    create_data = {token_user_2, 'Elon Channel 1', True}
+    create_data = {'token': token_user_2, 'name': 'Elon Channel 1', 'is_public': True}
     r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
     payload = r.json()
     channel_id_1 = payload['channel_id']
 
     # Create second channel with user 2 in it
-    create_data = {token_user_2, 'Elon Channel 2', True}
+    create_data = {'token': token_user_2, 'name': 'Elon Channel 2', 'is_public': True}
     r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
     payload = r.json()
     channel_id_2 = payload['channel_id']
 
     # Make user 2 join channel 1
-    join_data = {token_user_2, channel_id_1}
+    join_data = {'token': token_user_2, 'channel_id': channel_id_1}
     requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
 
     # Make user 2 join channel 2
-    join_data = {token_user_2, channel_id_2}
+    join_data = {'token': token_user_2, 'channel_id': channel_id_2}
     requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')    
 
     # Get channels for user 1 

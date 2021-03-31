@@ -26,17 +26,17 @@ def test_message_too_long():
     message = 'a' * 1001
 
     # Create a channel with user in it
-    create_data = {token, 'My Channel', True}
+    create_data = {'token': token, 'name': 'My Channel', 'is_public': True}
     r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
     payload = r.json()
     channel_id = payload['channel_id']
     
     # Make the user join channel
-    join_data = {token, channel_id}
+    join_data = {'token': token, 'channel_id': channel_id}
     requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
 
     # Send message
-    message_data = {token, channel_id, message}
+    message_data = {'token': token, 'channel_id': channel_id, 'message': message}
     requests.post(config.url + 'message/send/v2', data=message_data, methods='POST')
 
     # Assertions: InputError
@@ -60,13 +60,13 @@ def test_not_authorised_user():
     message = 'This project is so hard!!'
 
     # Create a channel with user in it
-    create_data = {token, 'My Channel', True}
+    create_data = {'token': token, 'name': 'My Channel', 'is_public': True}
     r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
     payload = r.json()
     channel_id = payload['channel_id']
     
     # Send message
-    message_data = {token, channel_id, message}
+    message_data = {'token': token, 'channel_id': channel_id, 'message': message}
     requests.post(config.url + 'message/send/v2', data=message_data, methods='POST')
 
     # Assertions: Access Error
@@ -91,17 +91,17 @@ def test_message():
     message = 'This project is so hard!!'
 
     # Create a channel with user in it
-    create_data = {token, 'My Channel', True}
+    create_data = {'token': token, 'name': 'My Channel', 'is_public': True}
     r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
     payload = r.json()
     channel_id = payload['channel_id']
     
     # Make the user join channel
-    join_data = {token, channel_id}
+    join_data = {'token': token, 'channel_id': channel_id}
     requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
 
     # Send message
-    message_data = {token, channel_id, message}
+    message_data = {'token': token, 'channel_id': channel_id, 'message': message}
     r = requests.post(config.url + 'message/send/v2', data=message_data, methods='POST')
     payload = r.json()
     message_id = payload['message_id']
