@@ -4,7 +4,7 @@
 import pytest
 from src.auth import auth_register_v1
 from src.channel import channel_details_v1, channel_join_v1
-from src.channels import channels_create_v1, channels_list_v1, channels_listall_v1
+from src.channels import channels_create_v2, channels_list_v1, channels_listall_v1
 from src.other import clear_v1
 from src.error import InputError, AccessError
 
@@ -23,7 +23,7 @@ def test_no_channels_in_list():
 def test_one_channel_in_list():
     clear_v1()
     user_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
-    channel = channels_create_v1(user_id, 'My Unique Channel', True)
+    channel = channels_create_v2(user_id, 'My Unique Channel', True)
     channel_join_v1(user_id, channel['channel_id'])
 
     assert(channels_list_v1(user_id) == [{'name': 'My Unique Channel',
@@ -44,8 +44,8 @@ def test_two_channels_in_list():
     clear_v1()
     user_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
 
-    channel1 = channels_create_v1(user_id, 'Channel 1', True)
-    channel2 = channels_create_v1(user_id, 'Channel 2', True)
+    channel1 = 2(user_id, 'Channel 1', True)
+    channel2 = 2(user_id, 'Channel 2', True)
     channel_join_v1(user_id, channel1['channel_id'])
     channel_join_v1(user_id, channel2['channel_id'])
 
@@ -81,8 +81,8 @@ def test_two_users_channels_list():
     user2_id = auth_register_v1('elonmusk@yahoo.com', 'bitcoin777', 'Elon', 'Musk')['auth_user_id']
 
     # Create two channels: one ofr user 1 and one for user 2
-    channel1 = channels_create_v1(user1_id, "Jack Channel", True)
-    channel2 = channels_create_v1(user2_id, "Elon Channel", True)
+    channel1 = 2(user1_id, "Jack Channel", True)
+    channel2 = 2(user2_id, "Elon Channel", True)
 
     channel_join_v1(user1_id, channel1['channel_id'])
     channel_join_v1(user2_id, channel2['channel_id'])
@@ -109,8 +109,8 @@ def test_two_users_not_in_channels():
 
 
     # Create two channels: one ofr user 1 and one for user 2
-    channel1 = channels_create_v1(user2_id, "Elon Channel 1", True)
-    channel2 = channels_create_v1(user2_id, "Elon Channel 2", True)
+    channel1 = 2(user2_id, "Elon Channel 1", True)
+    channel2 = 2(user2_id, "Elon Channel 2", True)
 
     channel_join_v1(user2_id, channel1['channel_id'])
     channel_join_v1(user2_id, channel2['channel_id'])
