@@ -4,7 +4,7 @@
 import pytest
 from src.auth import auth_register_v1
 from src.channel import channel_details_v1, channel_join_v1
-from src.channels import channels_create_v1, channels_list_v1, channels_listall_v1
+from src.channels import channels_create_v2, channels_list_v1, channels_listall_v1
 from src.other import clear_v1
 from src.error import InputError, AccessError
 
@@ -24,7 +24,7 @@ def test_unique_channels_listall():
 
     user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
 
-    channel = channels_create_v1(user1_id, "My Unique Channel", True)
+    channel = channels_create_v2(user1_id, "My Unique Channel", True)
     channel_join_v1(user1_id, channel['channel_id'])
     
     assert(channels_listall_v1(user1_id) == [{'name': 'My Unique Channel',
@@ -45,8 +45,8 @@ def test_double_channels_listall():
 
     user1_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
 
-    channel1 = channels_create_v1(user1_id, "Channel 1", True)
-    channel2 = channels_create_v1(user1_id, "Channel 2", True)
+    channel1 = channels_create_v2(user1_id, "Channel 1", True)
+    channel2 = channels_create_v2(user1_id, "Channel 2", True)
 
     channel_join_v1(user1_id, channel1['channel_id'])
     channel_join_v1(user1_id, channel2['channel_id'])
@@ -83,9 +83,9 @@ def test_channels_with_user_access():
     user2_id = auth_register_v1('elonmusk@yahoo.com', 'bitcoin777', 'Elon', 'Musk')['auth_user_id']
 
     # Channels
-    channel1 = channels_create_v1(user1_id, "Jack Channel", True)
-    channel2 = channels_create_v1(user2_id, "Elon Channel 1", True)
-    channel3 = channels_create_v1(user2_id, "Elon Channel 2", True)
+    channel1 = channels_create_v2(user1_id, "Jack Channel", True)
+    channel2 = channels_create_v2(user2_id, "Elon Channel 1", True)
+    channel3 = channels_create_v2(user2_id, "Elon Channel 2", True)
 
     channel_join_v1(user1_id, channel1['channel_id'])
     channel_join_v1(user2_id, channel2['channel_id'])
