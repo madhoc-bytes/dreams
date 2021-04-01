@@ -6,9 +6,13 @@ from src.channel import test_if_user_in_ch
 from src.data import channels
 from src.error import InputError
 
-def channels_list_v1(auth_user_id):
+def channels_list_v2(token):
     """Function that lists all channels for which a certain user has access"""
-    # Create emppty list to store channels details
+
+    # Get user ID from token
+    auth_user_id = get_user_from_token(token)
+
+    # Create empty list to store channels details
     channels_details_list = []
 
     for channel in channels:
@@ -20,11 +24,13 @@ def channels_list_v1(auth_user_id):
             })
 
     # Return the list
-    return channels_details_list
+    return {
+        'channels': channels_details_list
+    }
 
 
 
-def channels_listall_v1(auth_user_id):
+def channels_listall_v2(token):
     """Function that lists all channels"""
 
     # Create empty list to store all channel details
@@ -36,7 +42,7 @@ def channels_listall_v1(auth_user_id):
             'all_members': channel['all_members']
         })
     # Return the list
-    return channels_details_list
+    return {'channels': channels_details_list}
 
 
 
@@ -75,5 +81,7 @@ def check_channel_empty():
 def last_channel_id():
     """Function that checks last channel ID"""
     return channels[-1]['id']
+
+
 
 

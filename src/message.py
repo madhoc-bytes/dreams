@@ -1,3 +1,5 @@
+""" message.py file"""
+
 from src.error import AccessError, InputError
 from src.channels import channels_list_v1
 from src.data import data

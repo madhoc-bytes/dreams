@@ -51,7 +51,7 @@ def test_one_channel():
     requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
 
     # Get result
-    resp = requests.get(config.url + 'channels/list/v2', params=token, methods='GET')
+    resp = requests.get(config.url + 'channels/list/v2', params={'token': token}, methods='GET')
     
     # Assertions
     assert(resp.status_code = 200 and json.loads(resp.text) == [{'name': 'My Unique Channel',
