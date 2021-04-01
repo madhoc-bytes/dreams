@@ -7,6 +7,8 @@ users = []
     'name_last': 'name',
     'handle': 'username',
     'u_id': 0,
+    'token': 0,
+    'permission_id': 0
 }
 '''
     

@@ -25,17 +25,51 @@ def user_exists(auth_user_id):
     
 def user_authorised(auth_user_id, channel_id):
     authorised = False 
+    channels_list = []
     channels_list = channels_list_v1(auth_user_id)
     for channel in channels_list:
-        if channel['u_id'] == channel_id:
+        if channel['all_members']['u_id'] == channel_id:
             authorised = True
     return authorised
 
+def user_authorised(auth_user_id, channel_id):
+    authorised = False 
+    for user in users:
+        if user['u_id'] == auth_user_id:
+            if user['token']:
+                token = user['token']
+                u_id_token = get_user_from_token(token)
+                if auth_user_id == u_id_token:
+                    authorised = True
+                break
+            else:
+                break 
+    return authorised 
+
+def get_user_from_token(token):    
+    decoded_u_id = jwt.decode(token, data.SECRET, algorithms='HS256')    
+    return decoded_u_id['u_id']
+
 def total_messages():
-    counter = 0
-    for message in channels['messages']:
-        counter = counter + 1
-    return counter 
+    length = 0
+    for channel in channels:
+        length = len(channel['messages'])
+    return length 
+
+def message_exists(message_id):
+    exists = False 
+    for channel in channels:
+        for message in channel['messages']:
+            if message['message_id'] == message_id:
+                exists = True 
+    return exists 
+
+def delete_message(message_id):
+    for channel in channels:
+        for message in channel['messages']:
+            if message_id == message['message_id']:
+                remove(message)
+    return None
 
 def message_send_v1(auth_user_id, channel_id, message):
 
@@ -95,7 +129,15 @@ def message_edit_v1(auth_user_id, message_id, message):
     return {}
 
 def message_remove_v1(auth_user_id, message_id):
-    return {
-    }
+
+    if message_exists(message_id) == False:
+        raise InputError(description='Message no longer exists')
+    
+    # CHECK FOR AccessError
+
+    delete_message(message_id)
+    return {}
+
+
 
 
