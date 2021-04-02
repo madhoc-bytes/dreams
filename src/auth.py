@@ -72,14 +72,11 @@ def auth_register_v1(email, password, name_first, name_last):
 
     return {'auth_user_id': auth_user_id}
 
-
 def get_users():
     global users
     return users
 
-
-@APP.route('/auth/register/v2', methods=['POST'])
-def register_v2():
+def auth_register_v2(email, password, name_first, name_last):
     info = request.get_json()
     users_list = get_users()
 
@@ -139,8 +136,7 @@ def register_v2():
         'auth_user_id': auth_user_id
     })
 
-@APP.route('/auth/login/v2', methods=['POST'])
-def login_v2():
+def auth_login_v2(email, password):
     info = request.get_json()
     users_list = get_users()
 
@@ -161,7 +157,15 @@ def login_v2():
         'auth_user_id': u_id
     })
 
+def auth_logout_v2(token):
+    is_success = False
 
+    for user in users:
+        if user['token'] == token:
+            user['token'] = None
+            is_success = True
+
+    return dumps({'is_success': is_success})
 
 def generate_token(u_id):
     token = jwt.encode({'u_id': u_id}, data.SECRET, algorithm='HS256').decode('UTF-8')
@@ -178,3 +182,4 @@ def email_is_valid(email):
     '''checking for a valid email using regex'''
     regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
     return bool(re.search(regex, email))
+
