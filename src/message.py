@@ -2,7 +2,7 @@
 
 from src.error import AccessError, InputError
 from src.channels import channels_list_v1
-from src.data import data
+from src.data import users, channels
 from datetime import datetime, timezone
 
 
@@ -85,6 +85,37 @@ def message_remove_v1(auth_user_id, message_id):
 
 
 
+def message_share_v1(auth_user_id, og_message_id, message, channel_id, dm_id):
+
+    channel_sent = False 
+    dm_sent = False
+
+    if len(message) == 0:
+        message = ''
+
+    if dm_id == -1:
+        channel_sent = True
+    if channel_id == -1:
+        dm_sent = True
+
+    if (channel_sent == True):
+        for channel in channels:
+            for message in channel['messages']:
+                if message['message_id'] == og_message_id:
+                    new_message = message['message_string']
+                    shared_message_id = message_send_v1(auth_user_id, channel_id, new_message)
+    
+    if (dm_sent == True):
+        # FIND MESSAGE IN DMs
+        shared_message_id = message_senddm_v1(auth_user_id, dm_id, new_message)
+
+
+    return {shared_message_id}
+
+
+    
+
+
 # Jack's Helper Functions
 
 
@@ -113,12 +144,9 @@ def is_user_authorised(auth_user_id, channel_id)
     authorised = False 
     for channel in channels:
         if channel_id == channel['id']:
-            break 
-        
-        for member in channel['all_members']:
-            if auth_user_id == member['u_id']:
-                authorised = True 
-    
+            for member in channel['all_members']:
+                if auth_user_id == member['u_id']:
+                    authorised = True 
     return authorised 
 
 '''
