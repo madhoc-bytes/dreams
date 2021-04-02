@@ -1,16 +1,23 @@
 # pylint: disable=W0613
 """channels.py file"""
 
+'''
+- Question about new file for http functions
+- request.form.get VS request.get_json() VS request.args.get() (thru url)
+- AccessError (both true) : message_remove_v1() case
+- Ask about message functions 
+- Ask about channels.py functions 
+- Ask about tests and resp.status_code return (for channels and message): GET vs POST
+'''
+
 # Imports
 from src.channel import test_if_user_in_ch
+from src.message import get_user_from_token
 from src.data import channels
 from src.error import InputError
 
-def channels_list_v2(token):
+def channels_list_v2(auth_user_id):
     """Function that lists all channels for which a certain user has access"""
-
-    # Get user ID from token
-    auth_user_id = get_user_from_token(token)
 
     # Create empty list to store channels details
     channels_details_list = []
@@ -29,8 +36,7 @@ def channels_list_v2(token):
     }
 
 
-
-def channels_listall_v2(token):
+def channels_listall_v2(auth_user_id):
     """Function that lists all channels"""
 
     # Create empty list to store all channel details
@@ -43,7 +49,6 @@ def channels_listall_v2(token):
         })
     # Return the list
     return {'channels': channels_details_list}
-
 
 
 def channels_create_v1(auth_user_id, name, is_public):

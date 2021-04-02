@@ -106,8 +106,6 @@ def test_message():
     payload = r.json()
     message_id = payload['message_id']
 
-    # MAKE SURE MESSAGE ID IS UNIQUE 
-
     # Assertions
     assert resp.status_code == 200
 
