@@ -53,7 +53,7 @@ def data_channels():
 def data_user():
     return len(users)
 def importuIDfromtoken(token):
-    return
+    return token
 def check_if_token_valid(token):
     if not if_token_exit(token) or token == None:
         raise AccessError('Invalid Token')
