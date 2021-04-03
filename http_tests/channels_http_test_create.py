@@ -12,9 +12,9 @@ def test_channels_create_httptest(url):
         'name_first': "Baida", 
         'name_last': "Du",
     }
-    r = requests.post(f"{url}/auth/register", json=dataIn1)
-    return_data1 = r.json()
-    resp = requests.post(f"{url}/channels/create", json={'token': return_data1['token'], 'name': 'first', 'is_public': True}) 
+    r = requests.post(f"{url}/auth/register", json=data1)
+    channels_http_return = r.json()
+    resp = requests.post(f"{url}/channels/create", json={'token': channels_http_return['token'], 'name': 'first', 'is_public': True}) 
     assert resp.json() == {'channel_id' : 0}
-    resp = requests.post(f"{url}/channels/create", json={'token': return_data1['token'], 'name': 'second', 'is_public': True}) 
+    resp = requests.post(f"{url}/channels/create", json={'token': channels_http_return['token'], 'name': 'second', 'is_public': True}) 
     assert resp.json() == {'channel_id' : 1}
