@@ -4,6 +4,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from src.error import InputError
 from src import config
+from src.channels import channels_create_v2
 
 def defaultHandler(err):
     response = err.get_response()
