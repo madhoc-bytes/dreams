@@ -5,6 +5,7 @@ from flask_cors import CORS
 from src.error import InputError
 from src import config
 from src.channels import channels_create_v2
+from src.other import adminuserpermissionchangev1
 
 def defaultHandler(err):
     response = err.get_response()
@@ -50,12 +51,12 @@ def server_channels_create():
 #####################
 #admin_userpermission_change
 @APP.route('/admin/userpermission/change', methods=['POST'])
-def route_admin_userpermission_change():
+def admin_user_permission_change_v1():
 
     token = request.form.get("token")
     u_id = int(request.form.get("u_id"))
     p_id = int(request.form.get("permission_id"))
-    return_values = admin_userpermission_change(token, u_id, p_id)
+    return_values = adminuserpermissionchangev1(token, u_id, p_id)
 
     return dumps(return_values)
 
