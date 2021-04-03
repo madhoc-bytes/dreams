@@ -32,5 +32,19 @@ def echo():
         'data': data
     })
 
+#####################
+#####################
+#####################
+#channels 
+@APP.route('/channels/create', methods = ['POST'])
+def server_channels_create():
+
+    token = request.form.get('token')
+    name = request.form.get('name')
+    is_public = request.form.get('is_public')
+    return_value = channels_create_v2(token, name, is_public)
+    return dumps(return_value)
+
+
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port
