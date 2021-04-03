@@ -18,3 +18,10 @@ def search_v1(auth_user_id, query_str):
             }
         ],
     }
+
+''' create len of channels to check if clear'''
+def data_channels():
+    return len(channels)
+''' create len of users to check if clear'''
+def data_user():
+    return len(users)
