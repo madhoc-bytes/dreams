@@ -45,7 +45,7 @@ def data_change_permission(u_id, permission_id):
     for user in users: 
         if user['u_id'] == u_id: 
             user['permission_id'] = permission_id 
-                return permission_id
+                return 
 ''' create len of channels to check if clear'''
 def data_channels():
     return len(channels)
