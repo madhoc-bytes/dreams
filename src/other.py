@@ -55,8 +55,8 @@ def data_user():
     return len(users)
 def importuIDfromtoken(token):
      '''Input a token, return its corresponding u_id''' 
-    u_id_jwt = jwt.decode(token.encode(), SECRET, algorithms=['HS256']) 
-    u_id = int(u_id_jwt['u_id'])
+    decoded_jwt = jwt.decode(token.encode(), SECRET, algorithms=['HS256']) 
+    u_id = int(decoded_jwt['u_id'])
     return u_id
 def check_if_token_valid(token):
     if not if_token_exit(token) or token == None:
