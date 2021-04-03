@@ -1,34 +1,35 @@
 """ message.py file"""
 
+# Imports
 from src.error import AccessError, InputError
-from src.channels import channels_list_v1
-from src.data import users, channels
+from src.data import users, channels, dms
 from datetime import datetime, timezone
 
-
+# Send Message
 def message_send_v1(auth_user_id, channel_id, message):
+    ''' Function that sends message'''
 
     # Check that length of message is less than 1000 characters
+
     if valid_message_length(message) == False:
         raise InputError(description='Message is more than 1000 characters')
     
-    # Check that the channel for the given channel_id exists
-    if channel_exists() == False:
-        raise InputError(description='Channel does not exist')
-
-    # Check that user for given auth_user_id exists
-    if user_exists(auth_user_id) == False:
-        raise InputError(description='User does not exist')
 
     # Check that user is authorised to view channel 
-    if is_user_authorised() == False:
+    if is_user_authorised(auth_user_id, channel_id) == False:
         raise AccessError(description='User is not authorised to this channel')
 
+    
     # Message Details
-    m_message_id = total_messages() + 1
+
+    total_messages = 0
+    for channel in channels:
+        total_messages = len(channel['messages'])
+
+    m_message_id = total_messages + 1
     m_u_id = auth_user_id
     m_message_string = message
-    time = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    m_time = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
 
 
     # Find appropriate channel
@@ -40,7 +41,7 @@ def message_send_v1(auth_user_id, channel_id, message):
         {
             'message_id' : m_message_id,
             'u_id': m_u_id,
-            'message': m_message,
+            'message': m_message_string,
             'time': m_time,
         }
     )
@@ -52,39 +53,38 @@ def message_send_v1(auth_user_id, channel_id, message):
         'message_id': m_message_id,
     }
 
-
+# Edit message
 def message_edit_v1(auth_user_id, message_id, message):
+    ''' Function that edits message'''
 
     if valid_message_length(message) == False:
         raise InputError(description='Message is more than 1000 characters')
 
-    if message_exists(message) == False:
-        raise InputError(description='Message is deleted')
-
-    if check_user_deleting == False and is_user_owner == False:
+    if message_sent_by_user(auth_user_id, message_id) == False and is_user_owner(auth_user_id, message_id) == False:
         raise AccessError(description='Access Error')
 
-    for message in channels['messages']:
-        if message_id == message['message_id']:
-            message['message_string'] = message
-        
-    return { }
+    for channel in channels:
+        for message_stored in channel['messages']:
+            if message_id == {'message_id': message_stored['message_id']}:
+                message_stored['message_string'] = message
+    
+    return {}
 
-
+# Delete Message
 def message_remove_v1(auth_user_id, message_id):
+    ''' Function that removes message'''
 
     if message_exists(message_id) == False:
         raise InputError(description='Message no longer exists')
 
-    if check_user_deleting == False and is_user_owner == False:
+    if message_sent_by_user(auth_user_id, message_id) == False and is_user_owner(auth_user_id, message_id) == False:
         raise AccessError(description='Access Error')
     
 
     delete_message(message_id)
-    return { }
+    return {}
 
-
-
+# Share Message
 def message_share_v1(auth_user_id, og_message_id, message, channel_id, dm_id):
 
     channel_sent = False 
@@ -106,9 +106,13 @@ def message_share_v1(auth_user_id, og_message_id, message, channel_id, dm_id):
                     shared_message_id = message_send_v1(auth_user_id, channel_id, new_message)
     
     if (dm_sent == True):
-        # FIND MESSAGE IN DMs
-        shared_message_id = message_senddm_v1(auth_user_id, dm_id, new_message)
-
+        for dm in dms:
+            if dm_id == dm['dm_id']:
+                for message in dm['messages']:
+                    if (og_message_id == message['message_id']):
+                        new_message = message['message_string']
+                        shared_message_id = message_senddm_v1(auth_user_id, dm_id, new_message)
+                        
 
     return {shared_message_id}
 
@@ -116,8 +120,9 @@ def message_share_v1(auth_user_id, og_message_id, message, channel_id, dm_id):
     
 
 
+# -----------------------
 # Jack's Helper Functions
-
+# -----------------------
 
 def valid_message_length(message):
     if len(message) > 1000:
@@ -125,103 +130,53 @@ def valid_message_length(message):
     else:
         return True
 
-def channel_exists(channel_id):
-    exists = False
-    for channel in channels:
-        if channel['id'] == channel_id:
-            exists = True
-    return exists
-
-def user_exists(auth_user_id):
-    exists = False
-    for user in users:
-        if user['u_id'] == auth_user_id:
-            exists = True
-    return exists
-
-
-def is_user_authorised(auth_user_id, channel_id)
-    authorised = False 
-    for channel in channels:
-        if channel_id == channel['id']:
-            for member in channel['all_members']:
-                if auth_user_id == member['u_id']:
-                    authorised = True 
-    return authorised 
-
-'''
 def is_user_authorised(auth_user_id, channel_id):
     authorised = False 
-    channels_list = []
-    channels_list = channels_list_v1(auth_user_id)
-    for channel in channels_list:
-        if channel['all_members']['u_id'] == channel_id:
+    for channel in channels:
+        if channel_id == {'channel_id': channel['id']}:
+            break
+
+    for member in channel['all_members']:
+        if member['u_id'] == auth_user_id:
             authorised = True
-    return authorised
-'''
-'''
-def is_user_authorised(auth_user_id, channel_id):
-    authorised = False 
-    for user in users:
-        if user['u_id'] == auth_user_id:
-            if user['token']:
-                token = user['token']
-                u_id_token = get_user_from_token(token)
-                if auth_user_id == u_id_token:
-                    authorised = True
-                break
-            else:
-                break 
+            break
+
     return authorised 
-'''
+
+def message_sent_by_user(auth_user_id, message_id):
+    result = False
+    for channel in channels:
+        for message in channel['messages']:
+            if message_id == {'message_id': message['message_id']}:
+                if message['u_id'] == auth_user_id:
+                    result = True
+    return result
 
 def get_user_from_token(token):    
     decoded_u_id = jwt.decode(token, data.SECRET, algorithms='HS256')    
     return decoded_u_id['u_id']
 
-def total_messages():
-    length = 0
-    for channel in channels:
-        length = len(channel['messages'])
-    return length 
-
 def message_exists(message_id):
     exists = False 
     for channel in channels:
         for message in channel['messages']:
-            if message['message_id'] == message_id:
+            if {'message_id': message['message_id']} == message_id:
                 exists = True 
     return exists 
 
 def delete_message(message_id):
     for channel in channels:
         for message in channel['messages']:
-            if message_id == message['message_id']:
-                message.remove(message)
+            if message_id == {'message_id': message['message_id']}:
+                channel['messages'].remove(message)
     return None
 
-def check_user_deleting(token, message_id):
+def is_user_owner(auth_user_id, message_id):
     result = False 
-    auth_user_id = get_user_from_token(token)
-
     for channel in channels:
         for message in channel['messages']:
-            if (message_id == message['message_id']):
-                if(auth_user_id == message['u_id']):
-                    result = True
-                    break 
-    return result
-
-def is_user_owner(token, message_id):
-    result = False 
-    auth_user_id = get_user_from_token(token)
-
-    for channel in channels:
-        for message in channel['messages']:
-            if message_id == message['message_id']:
+            if message_id == {'message_id': message['message_id']}:
                 break
-            else:
-                raise InputError(description='Message does not exist')
             
         for member in channel['owner_members']:
             if auth_user_id == member['u_id']:
@@ -231,9 +186,17 @@ def is_user_owner(token, message_id):
 
 def is_message_edited(message_id, new_message):
     message_test = False
-        for channel in channels:
-            for message in channel['messages']:
-                if message_id == message['message_id']:
-                    if new_message == message['message_string']:
-                        message_test = True 
+    for channel in channels:
+        for message in channel['messages']:
+            if message_id == {'message_id': message['message_id']}:
+                if new_message == message['message_string']:
+                    message_test = True 
     return message_test
+
+def is_message_deleted(message_id):
+    result = True 
+    for channel in channels:
+        for message in channel['messages']:
+            if message_id == {'message_id': message['message_id']}:
+                result = False
+    return result 

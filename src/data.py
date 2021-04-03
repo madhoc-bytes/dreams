@@ -51,6 +51,14 @@ dms = []
 	    'dm_id': 0,
 	    'is_public': True,
 	    'dm_name': 'Hayden',
+        'messages': [
+        {
+            'message_id': 0,
+            'u_id': 0,
+            'message_string': 'hello123',
+            'time': 123123123,
+        }
+        ],
 	    'all_dm_members': [
 	        {
 	            'dm_id': 0,
@@ -58,13 +66,23 @@ dms = []
 	            'name_last': 'Jacobs',
 	        }
 	    ],
+        'messages': [
+        {
+            'message_id': 0,
+            'u_id': 0,
+            'message_string': 'hello123',
+            'time': 123123123,
+        }
+    ],
 	}
 '''
 
 
 notifications = []
+'''
     {
         'channel_id': 0,
         'dm_id': 0
         'notifications_message': 'You have a new message'
     }
+'''

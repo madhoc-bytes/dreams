@@ -1,14 +1,14 @@
-'''Test file for message_send_v1.py'''
+'''Test file for message_edit_v1.py'''
 
 # Imports
 import pytest
-from message import message_edit_v1, message_send_v1, is_message_edited
+from src.message import message_edit_v1, message_send_v1, is_message_edited
 from src.data import users, channels
 from src.auth import auth_register_v1
 from src.channel import channel_join_v1
 from src.channels import channels_create_v1
 from src.other import clear_v1
-from error import InputError, AccessError
+from src.error import InputError, AccessError
 
 
 # Message is more than 1000 characters
@@ -24,7 +24,9 @@ def test_message_too_long():
 
     message_one_id = message_send_v1(user_id, channel, message) 
 
-    assert message_edit_v1(user_id, message_one_id, new_long_message) == 'Message is more than 1000 characters' 
+    # Assertions: InputError
+    with pytest.raises(InputError):
+        message_edit_v1(user_id, message_one_id, new_long_message)
     
 
 
@@ -45,6 +47,76 @@ def test_valid_message_edit():
     message_test = is_message_edited(message_one_id, new_message)
 
     assert message_test == True 
+
+
+def test_message_edit_two_messages():
+    # Reset
+    clear_v1()
+
+    user_id_1 = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+    channel_1 = channels_create_v1(user_id_1, 'Channel 1', True)
+    channel_join_v1(user_id_1, channel_1['channel_id'])
+
+    message_1 = 'Valid message!'
+    message_2 = 'Another valid message'
+    new_message = 'This message was edited'
+
+    message_one_id = message_send_v1(user_id_1, channel_1, message_1) 
+    message_two_id = message_send_v1(user_id_1, channel_1, message_2)
+
+    message_edit_v1(user_id_1, message_two_id, new_message)
+
+    message_test = is_message_edited(message_two_id, new_message)
+
+    assert message_test == True 
+
+
+def test_message_edit_two_channels():
+    # Reset
+    clear_v1()
+
+    user_id_1 = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+    user_id_2 = auth_register_v1('test@yahoo.com', 'jack123', 'Test', 'Germani')['auth_user_id']
+
+    channel_1 = channels_create_v1(user_id_1, 'Channel 1', True)
+    channel_2 = channels_create_v1(user_id_2, 'Channel 2', True)
+
+    channel_join_v1(user_id_1, channel_1['channel_id'])
+    channel_join_v1(user_id_2, channel_2['channel_id'])
+
+    message_1 = 'Valid message!'
+    message_2 = 'Another valid message'
+    new_message = 'This message was edited'
+
+    message_one_id = message_send_v1(user_id_1, channel_1, message_1) 
+    message_two_id = message_send_v1(user_id_2, channel_2, message_2)
+
+    message_edit_v1(user_id_2, message_two_id, new_message)
+
+    message_test = is_message_edited(message_two_id, new_message)
+
+    assert message_test == True
+
+
+def test_message_edit_not_sent_by_user():
+    # Reset
+    clear_v1()
+
+    user_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+    user_id_2 = auth_register_v1('test@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+
+    channel = channels_create_v1(user_id, 'My Channel', True)
+    channel_join_v1(user_id, channel['channel_id'])
+    channel_join_v1(user_id_2, channel['channel_id'])
+
+    message = 'Valid message!'
+    new_message = 'This message was edited'
+
+    message_one_id = message_send_v1(user_id, channel, message) 
+
+
+    with pytest.raises(AccessError):
+        message_edit_v1(user_id_2, message_one_id, new_message)
 
 
 

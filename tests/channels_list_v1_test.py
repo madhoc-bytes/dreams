@@ -1,10 +1,10 @@
-# Test file for channels_list_v1
+# Test file for channels_list_v2
 
 # Imports
 import pytest
 from src.auth import auth_register_v1
 from src.channel import channel_details_v1, channel_join_v1
-from src.channels import channels_create_v1, channels_list_v1, channels_listall_v1
+from src.channels import channels_create_v1, channels_list_v2, channels_listall_v2
 from src.other import clear_v1
 from src.error import InputError, AccessError
 
@@ -15,7 +15,7 @@ def test_no_channels_in_list():
     user = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')
     id = user['auth_user_id']
     
-    channel_list = channels_list_v1(id)
+    channel_list = channels_list_v2(id)
     assert bool(channel_list) == False
 
 
@@ -26,7 +26,7 @@ def test_one_channel_in_list():
     channel = channels_create_v1(user_id, 'My Unique Channel', True)
     channel_join_v1(user_id, channel['channel_id'])
 
-    assert(channels_list_v1(user_id) == [{'name': 'My Unique Channel',
+    assert(channels_list_v2(user_id) == [{'name': 'My Unique Channel',
                                         'all_members': [
                                             {
                                                 'u_id': 0,
@@ -50,7 +50,7 @@ def test_two_channels_in_list():
     channel_join_v1(user_id, channel2['channel_id'])
 
 
-    assert(channels_list_v1(user_id) == [{'name': 'Channel 1',
+    assert(channels_list_v2(user_id) == [{'name': 'Channel 1',
                                         'all_members': [
                                             {
                                                 'u_id': 0,
@@ -87,7 +87,7 @@ def test_two_users_channels_list():
     channel_join_v1(user1_id, channel1['channel_id'])
     channel_join_v1(user2_id, channel2['channel_id'])
 
-    assert(channels_list_v1(user1_id) == [{'name': 'Jack Channel',
+    assert(channels_list_v2(user1_id) == [{'name': 'Jack Channel',
                                         'all_members': [
                                             {
                                                 'u_id': 0,
@@ -115,7 +115,7 @@ def test_two_users_not_in_channels():
     channel_join_v1(user2_id, channel1['channel_id'])
     channel_join_v1(user2_id, channel2['channel_id'])
 
-    channel_list = channels_list_v1(user1_id)
+    channel_list = channels_list_v2(user1_id)
     length = len(channel_list)
 
     assert length == 0 

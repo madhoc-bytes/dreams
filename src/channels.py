@@ -1,18 +1,9 @@
 # pylint: disable=W0613
 """channels.py file"""
 
-'''
-- Question about new file for http functions
-- request.form.get VS request.get_json() VS request.args.get() (thru url)
-- AccessError (both true) : message_remove_v1() case
-- Ask about message functions 
-- Ask about channels.py functions 
-- Ask about tests and resp.status_code return (for channels and message): GET vs POST
-'''
 
 # Imports
 from src.channel import test_if_user_in_ch
-from src.message import get_user_from_token
 from src.data import channels
 from src.error import InputError
 
@@ -87,6 +78,9 @@ def last_channel_id():
     """Function that checks last channel ID"""
     return channels[-1]['id']
 
+def get_user_from_token(token):    
+    decoded_u_id = jwt.decode(token, data.SECRET, algorithms='HS256')    
+    return decoded_u_id['u_id']
 
 
 

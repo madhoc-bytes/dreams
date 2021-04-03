@@ -54,7 +54,7 @@ def test_one_channel():
     resp = requests.get(config.url + 'channels/list/v2', params={'token': token}, methods='GET')
     
     # Assertions
-    assert(resp.status_code = 200 and json.loads(resp.text) == [{'name': 'My Unique Channel',
+    assert(resp.status_code = 200 and resp.json() == [{'name': 'My Unique Channel',
                                                                 'all_members': [
                                                                     {
                                                                         'u_id': 0,
