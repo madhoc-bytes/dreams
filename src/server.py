@@ -50,15 +50,7 @@ def server_channels_create():
 #####################
 #####################
 #admin_userpermission_change
-@APP.route('/admin/userpermission/change', methods=['POST'])
-def admin_user_permission_change_v1():
 
-    token = request.form.get("token")
-    u_id = int(request.form.get("u_id"))
-    p_id = int(request.form.get("permission_id"))
-    return_values = adminuserpermissionchangev1(token, u_id, p_id)
-
-    return dumps(return_values)
 
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port
