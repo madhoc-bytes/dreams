@@ -45,7 +45,19 @@ def server_channels_create():
     is_public = request.form.get('is_public')
     return_value = channels_create_v2(token, name, is_public)
     return dumps(return_value)
+#####################
+#####################
+#####################
+#admin_userpermission_change
+@APP.route('/admin/userpermission/change', methods=['POST'])
+def route_admin_userpermission_change():
 
+    token = request.form.get("token")
+    u_id = int(request.form.get("u_id"))
+    p_id = int(request.form.get("permission_id"))
+    return_values = admin_userpermission_change(token, u_id, p_id)
+
+    return dumps(return_values)
 
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port
