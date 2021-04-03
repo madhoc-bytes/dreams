@@ -1,9 +1,6 @@
 from src.data import users, channels
 from src.channel import test_user_is_invalid
 from src.error import InputError, AccessError
-import jwt
-import re
-SECRET = "Team WE"
 
 ''' Resets the internal data of the application to it's initial state '''
 def clear_v1():
@@ -56,10 +53,7 @@ def data_channels():
 def data_user():
     return len(users)
 def importuIDfromtoken(token):
-     '''Input a token, return its corresponding u_id''' 
-    decoded_jwt = jwt.decode(token.encode(), SECRET, algorithms=['HS256']) 
-    u_id = int(decoded_jwt['u_id'])
-    return u_id
+    return
 def check_if_token_valid(token):
     if not if_token_exit(token) or token == None:
         raise AccessError('Invalid Token')
