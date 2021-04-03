@@ -38,7 +38,7 @@ def adminuserpermissionchangev1(token, u_id, permission_id):
                 break 
 
     if not_owner:
-        raise error.AccessError("Authorised user is not owner")
+        raise AccessError("Authorised user is not owner")
     data_change_permission(u_id, permission_id)
     
 #helper
