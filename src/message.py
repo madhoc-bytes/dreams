@@ -4,6 +4,7 @@
 from src.error import AccessError, InputError
 from src.data import users, channels, dms
 from datetime import datetime, timezone
+from src.message_senddm_v2 import message_senddm_v2
 
 # Send Message
 def message_send_v1(auth_user_id, channel_id, message):
@@ -24,7 +25,7 @@ def message_send_v1(auth_user_id, channel_id, message):
 
     total_messages = 0
     for channel in channels:
-        total_messages = len(channel['messages'])
+        total_messages = total_messages + len(channel['messages'])
 
     m_message_id = total_messages + 1
     m_u_id = auth_user_id
@@ -34,14 +35,14 @@ def message_send_v1(auth_user_id, channel_id, message):
 
     # Find appropriate channel
     for channel in channels:
-        if channel['id'] == channel_id:
+        if channel['id'] == channel_id['channel_id']:
             break
 
     channel['messages'].append(
         {
             'message_id' : m_message_id,
             'u_id': m_u_id,
-            'message': m_message_string,
+            'message_string': m_message_string,
             'time': m_time,
         }
     )
@@ -87,6 +88,14 @@ def message_remove_v1(auth_user_id, message_id):
 # Share Message
 def message_share_v1(auth_user_id, og_message_id, message, channel_id, dm_id):
 
+    if is_user_authorised(auth_user_id, channel_id) == False:
+        raise AccessError(description='User has not joined the channel he is trying to share to')
+
+    if dm_id != -1:
+        for user in users:
+            if user['u_id'] == auth_user_id:
+                token = user['token']
+
     channel_sent = False 
     dm_sent = False
 
@@ -98,23 +107,26 @@ def message_share_v1(auth_user_id, og_message_id, message, channel_id, dm_id):
     if channel_id == -1:
         dm_sent = True
 
+    shared_message_id = 0
     if (channel_sent == True):
         for channel in channels:
             for message in channel['messages']:
-                if message['message_id'] == og_message_id:
+                if message['message_id'] == og_message_id['message_id']:
                     new_message = message['message_string']
                     shared_message_id = message_send_v1(auth_user_id, channel_id, new_message)
-    
+
+
+    shared_message_id = 0
     if (dm_sent == True):
         for dm in dms:
             if dm_id == dm['dm_id']:
                 for message in dm['messages']:
                     if (og_message_id == message['message_id']):
                         new_message = message['message_string']
-                        shared_message_id = message_senddm_v1(auth_user_id, dm_id, new_message)
+                        shared_message_id = message_senddm_v2(token, dm_id, new_message)
                         
 
-    return {shared_message_id}
+    return {'shared_message_id': shared_message_id}
 
 
     
@@ -200,3 +212,19 @@ def is_message_deleted(message_id):
             if message_id == {'message_id': message['message_id']}:
                 result = False
     return result 
+
+def is_message_shared(message_id, channel_id):
+    shared = False
+    for channel in channels:
+        if channel['id'] == channel_id['channel_id']:
+            break
+    
+    #print(f"I am now in channel {channel['id']}")
+    #print(len(channel['messages']))
+    for message in channel['messages']:
+
+        if {'message_id': message['message_id']} == message_id:
+            #print(f"The only message I will work on is {message['message_id']}")
+            shared = True
+    return shared
+

@@ -3,7 +3,7 @@
 # Imports
 import pytest
 from src.data import channels, users, dms
-from src.message import message_send_v1
+from src.message import message_send_v1, is_message_shared
 from src.auth import auth_register_v1
 from src.channel import channel_join_v1
 from src.channels import channels_create_v1
@@ -62,10 +62,11 @@ def test_one_message():
     message = 'Valid message!'
 
     # Assertions: InputError
-    assert message_send_v1(user_id, channel, message) == {'message_id': 1}
+    message_id = message_send_v1(user_id, channel, message)
+    exists = is_message_shared(message_id, channel)
+    assert exists == True and message_id == {'message_id': 1}
 
 
-# Test normal message with authorised user in channel
 def test_two_messages():
     # Reset
     clear_v1()
@@ -77,9 +78,46 @@ def test_two_messages():
     message_two = 'My ID should be 2!'
 
     # Send first message
-    message_send_v1(user_id, channel, message_one)
+    message_id_1 = message_send_v1(user_id, channel, message_one)
+    message_id_2 = message_send_v1(user_id, channel, message_two)
+    
+    exists1 = is_message_shared(message_id_1, channel)
+    exists2 = is_message_shared(message_id_2, channel) 
 
     # Assertion
-    assert message_send_v1(user_id, channel, message_two) == {'message_id': 2}
+    assert exists1 == True and exists2 == True and message_id_2 == {'message_id': 2}
+
+
+def test_two_messages_channels():
+    # Reset
+    clear_v1()
+
+    user_id_1 = auth_register_v1('test@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+    user_id_2 = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+
+    channel_1 = channels_create_v1(user_id_1, 'My Channel 1', True)
+    channel_2 = channels_create_v1(user_id_2, 'My Channel 1', True)
+
+    channel_join_v1(user_id_1, channel_1['channel_id'])
+    channel_join_v1(user_id_2, channel_1['channel_id'])
+    channel_join_v1(user_id_2, channel_2['channel_id'])
+
+    message_one = 'I am message #1'
+    message_two = 'My ID should be 2!'
+
+    # Send first message
+    message_id_1 = message_send_v1(user_id_1, channel_1, message_one)
+    message_id_2 = message_send_v1(user_id_2, channel_1, message_two)
+    
+    exists1 = is_message_shared(message_id_1, channel_1)
+    exists2 = is_message_shared(message_id_2, channel_1) 
+    exists3 = is_message_shared(message_id_2, channel_2)
+
+    # Assertion
+    print(exists1)
+    print(exists2)
+    print(exists3)
+    assert exists1 == True and exists2 == True and exists3 == False
+
 
 
