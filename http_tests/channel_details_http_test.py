@@ -16,7 +16,7 @@ def test_valid():
     r = requests.post(config.url + 'auth/register/v2', data=reg_data)
 
     # acquire token  
-    token = r.json.get('token')
+    token = r.json()['token']
 
     # create a channel
     ch_data = json.dumps({
@@ -27,7 +27,7 @@ def test_valid():
     r = requests.post(config.url + 'channels/create', data=ch_data)    
     
     # acquire channel id    
-    ch_id = r.json.get('id')
+    ch_id = r.json()['channel_id']
 
     # add user to channel
     join_data = json.dumps({
