@@ -1,7 +1,9 @@
 from src.data import users, channels
 from src.error import InputError, AccessError
 
-def channel_invite_v1(auth_user_id, channel_id, u_id):
+def channel_invite_v2(token, channel_id, u_id):
+    auth_user_id = token_to_id(token)
+
     # invalid channel
     if test_channel_is_invalid(channel_id):
         raise InputError()
@@ -27,11 +29,12 @@ def channel_invite_v1(auth_user_id, channel_id, u_id):
     return {}
 
 
-def channel_details_v1(auth_user_id, channel_id):
+def channel_details_v2(token, channel_id):
+    auth_user_id = token_to_id(token)
     # invalid channel
     if test_channel_is_invalid(channel_id):
         raise InputError()
-
+    
     # invalid user
     if not test_if_user_in_ch(auth_user_id, channel_id):
         raise AccessError()
@@ -39,6 +42,7 @@ def channel_details_v1(auth_user_id, channel_id):
     # insert info into dictionary and return it
     details = {}
     details['name'] = channels[channel_id]['name']
+    details['is_public'] = channels[channel_id]['is_public']
     details['owner_members'] = channels[channel_id]['owner_members']
     details['all_members'] = channels[channel_id]['all_members']
     return details
@@ -99,20 +103,64 @@ def channel_join_v1(auth_user_id, channel_id):
     channels[channel_id]['all_members'].append(new_user)
     return {}
 
-'''
-def channel_addowner_v1(auth_user_id, channel_id, u_id):
+
+def channel_addowner_v2(token, channel_id, u_id):
+    auth_user_id = token_to_id(token)
+
+    if test_channel_is_invalid(auth_user_id):
+        raise InputError()
+    
+    if user_is_owner(u_id):
+        raise InputError()
+
+    if not (user_is_owner(auth_user_id) or user_is_owner(auth_user_id)):
+        raise AccessError()
+
+    new_owner = {}
+    new_owner['u_id'] = u_id
+    new_owner['name_first'] = users[u_id]['name_first']
+    new_owner['name_last'] = users[u_id]['name_last']
+    channels['owner_members'].append = new_owner
     return {
     }
 
-def channel_removeowner_v1(auth_user_id, channel_id, u_id):
+def channel_removeowner_v2(auth_user_id, channel_id, u_id):
     return {
     }
-'''
+
 
 # CUSTOM FUNCTIONS
 
 # Jeffery's functions
 # ====================================================================
+# looks for token and returns the u_id associated with token
+# returns -1 if error
+def token_to_id(token):
+    if len(users) == 0:
+        return -1
+    for user in users:
+        key, value = 'token', token
+        if key in user and value == user[key]:
+            return user['u_id']
+    return -1
+
+# given a u_id and channel, checks whether they are an owner of the
+# channel or not. returns true if they are already owner
+def user_is_owner(u_id, channel_id):
+    if len(channels[channel_id]['owner_members']) == 0:
+        return False
+    
+    for user in channels[channel_id]['owner_members']:
+        key, value = 'u_id', u_id
+        if key in user and value == user[key]:
+            return True
+
+    return False
+
+# checks if given u_id is the owner of the server Dreams
+def user_is_owner(u_id): 
+    return users[auth_user_id]['permission_id']
+
 # tests if channel is invalid. 
 # returns True if it is; False otherwise
 def test_channel_is_invalid(channel_id):

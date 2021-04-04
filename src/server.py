@@ -4,6 +4,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from src.error import InputError
 from src import config
+from src.channel import channel_details_v2
 
 def defaultHandler(err):
     response = err.get_response()
@@ -32,5 +33,13 @@ def echo():
         'data': data
     })
 
+# channel details
+@APP.route("/channel/details/v2", methods=['GET'])
+def channel_details():
+    token = request.args.get('token')
+    channel_id = request.args.get('channel_id')
+    return json.dumps(channel_details_v2(token, channel_id))
+
 if __name__ == "__main__":
-    APP.run(port=config.port) # Do not edit this port
+    APP.run(port=9002) # Do not edit this port 
+
