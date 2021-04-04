@@ -30,7 +30,7 @@ def test_details_basic():
     assert channel_dict['all_members'] == [
         {
             'u_id': 0,
-            'token' = auth_token,
+            'token' : auth_token,
             'name_first': 'test_fname_user',
             'name_last': 'test_lname_user',
         }
@@ -66,13 +66,13 @@ def test_details_multiple ():
     assert channel_dict['all_members'] == [
         {
             'u_id': 0,
-            'token' = token1,
+            'token' : token1,
             'name_first': 'test_fname_user',
             'name_last': 'test_lname_user',
         },
         {
             'u_id': 1,
-            'token' = token2,
+            'token' : token2,
             'name_first': 'test_fname_user1',
             'name_last': 'test_lname_user1',
         }
