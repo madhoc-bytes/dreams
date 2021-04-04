@@ -41,5 +41,5 @@ def channel_details():
     return json.dumps(channel_details_v2(token, channel_id))
 
 if __name__ == "__main__":
-    APP.run(port=9002) # Do not edit this port 
+    APP.run(port=config.port) # Do not edit this port 
 
