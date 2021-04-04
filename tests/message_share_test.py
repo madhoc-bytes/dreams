@@ -6,7 +6,7 @@ from src.data import channels, users, dms
 from src.dm_create_v2 import dm_create_v2
 from src.message import message_send_v1, message_share_v1, is_message_shared, message_exists
 from src.message_senddm_v2 import message_senddm_v2
-from src.auth import auth_register_v1
+from src.auth import auth_register_v1, auth_register_v2
 from src.channel import channel_join_v1
 from src.channels import channels_create_v1
 from src.other import clear_v1
@@ -107,7 +107,6 @@ def test_message_share_two_messages_to_channel():
     message_two_id = message_send_v1(user_id, channel1, message_two) 
     message_three_id = message_send_v1(user_id, channel2, message_three) 
 
-
     # Share messages
     first_share_id = message_share_v1(user_id, message_one_id, message, channel1, dm_id) 
     second_share_id = message_share_v1(user_id_2, message_three_id, message, channel0, dm_id)
@@ -121,26 +120,27 @@ def test_message_share_two_messages_to_channel():
     
     assert result_1 == True and result_2 == True and first_share_id == {'shared_message_id': {'message_id': 4}} and second_share_id == {'shared_message_id': {'message_id': 5}}
 
+
 # Test sharing one message to DM: still doesn't work, missing teammates functions
 def test_share_message_to_dm():
-
-    if dm_id != -1:
-        for user in users:
-            if user['u_id'] == auth_user_id:
-                token = user['token']
 
     clear_v1()
     channel_id = -1
     message = ''
 
     # Create user
-    user_id = auth_register_v1('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+    user_id = auth_register_v2('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
+
+    # Get token from user ID
+    for user in users:
+        if user['u_id'] == user_id:
+            token = user['token']
 
     # Create 1 dm
     dm_id = dm_create_v2(token, user_id)
 
     # Join user in both channels
-    dm_invite_v1(token, dm_id, user_id)
+    dm_invite_v1(user_id, dm_id, user_id)
 
     # Create one messsage
     message_one = 'I am message #1'

@@ -1,6 +1,7 @@
 from src.channel import test_user_is_invalid
 from src.error import InputError, AccessError
-from src.data import dms
+from src.data import dms, users, channels
+from src.message import get_user_from_token
 import jwt
 SECRET = 'team'
 
@@ -8,7 +9,7 @@ def dm_create_v2(token, u_ids):
     #check valid token#
     check_if_token_valid(token)
     #import uid from token
-    token_uid = importuIDfromtoken(token)
+    token_uid = get_user_from_token(token)
     #check valid user
     if not test_user_is_invalid(token_uid):
         raise InputError('u_id does not refer to a valid user')
@@ -41,11 +42,11 @@ def last_dm_id():
     """Function that checks last channel ID"""
     return dms[-1]['dm_id']
 
+
 def check_if_token_valid(token):
     if not if_token_exit(token) or token == None:
         raise AccessError('Invalid Token')
     return
-
 def if_token_exit(token):
     for user in users:
         if token == user[token]:

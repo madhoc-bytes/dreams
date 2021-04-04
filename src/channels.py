@@ -26,7 +26,6 @@ def channels_list_v2(auth_user_id):
         'channels': channels_details_list
     }
 
-
 def channels_listall_v2(auth_user_id):
     """Function that lists all channels"""
 
@@ -41,6 +40,9 @@ def channels_listall_v2(auth_user_id):
     # Return the list
     return {'channels': channels_details_list}
 
+
+
+# Helper Functions
 
 def channels_create_v1(auth_user_id, name, is_public):
     """Function that creates channel"""

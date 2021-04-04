@@ -10,6 +10,7 @@ from json import dumps
 # message/send/v1
 @APP.route('/message/send/v1', methods=['POST'])
 def send_message():
+    ''' Function that sends message to channel '''
 
     token = request.form.get('token')
     auth_user_id = get_user_from_token(token)
@@ -22,6 +23,7 @@ def send_message():
 # message/edit/v1
 @APP.route('/message/edit/v1', methods=['PUT'])
 def edit_message():
+    ''' Function that edits a message '''
 
     token = request.form.get('token')
     auth_user_id = get_user_from_token(token)
@@ -34,6 +36,7 @@ def edit_message():
 # message/remove/v1
 @APP.route('/message/remove/v1', methods=['DELETE'])
 def remove_message():
+    ''' Function that removes message '''
 
     token = request.form.get('token')
     auth_user_id = get_user_from_token(token)
@@ -45,6 +48,7 @@ def remove_message():
 # message/share/v1
 @APP.route('/message/share/v1', methods=['POST'])
 def share_message():
+    ''' Function that shares message to channel or DM '''
 
     token = request.form.get('token')
     auth_user_id = get_user_from_token(token)

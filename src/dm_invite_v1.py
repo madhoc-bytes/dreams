@@ -1,10 +1,12 @@
 ''' dm_invite_v1 file'''
 
+# Imports
 from src.error import InputError, AccessError
 from src.data import dms, users
 
 
 def dm_invite_v1(auth_user_id, dm_id, u_id):
+    ''' Function that invites user to a DM '''
     for user in users:
         if user['u_id'] == u_id:
             name_first = user['name_first']

@@ -1,4 +1,4 @@
-""" message.py file"""
+""" File for send, edit and remove messages functions """
 
 # Imports
 from src.error import AccessError, InputError
@@ -8,7 +8,7 @@ from src.message_senddm_v2 import message_senddm_v2
 
 # Send Message
 def message_send_v1(auth_user_id, channel_id, message):
-    ''' Function that sends message'''
+    ''' Function that sends message to a channel'''
 
     # Check that length of message is less than 1000 characters
 
@@ -87,28 +87,18 @@ def message_remove_v1(auth_user_id, message_id):
 
 # Share Message
 def message_share_v1(auth_user_id, og_message_id, message, channel_id, dm_id):
+    ''' Function that shares message to channel or DM'''
 
     if is_user_authorised(auth_user_id, channel_id) == False:
         raise AccessError(description='User has not joined the channel he is trying to share to')
 
-    if dm_id != -1:
-        for user in users:
-            if user['u_id'] == auth_user_id:
-                token = user['token']
-
-    channel_sent = False 
-    dm_sent = False
 
     if len(message) == 0:
         message = ''
+    
 
-    if dm_id == -1:
-        channel_sent = True
-    if channel_id == -1:
-        dm_sent = True
-
-    shared_message_id = 0
-    if (channel_sent == True):
+    if (dm_id == -1):
+        shared_message_id = 0
         for channel in channels:
             for message in channel['messages']:
                 if message['message_id'] == og_message_id['message_id']:
@@ -116,15 +106,20 @@ def message_share_v1(auth_user_id, og_message_id, message, channel_id, dm_id):
                     shared_message_id = message_send_v1(auth_user_id, channel_id, new_message)
 
 
-    shared_message_id = 0
-    if (dm_sent == True):
+    if (channel_id == -1):
+        for user in users:
+            if user['u_id'] == auth_user_id:
+                token = user['token']
+
+        shared_message_id = 0
         for dm in dms:
             if dm_id == dm['dm_id']:
                 for message in dm['messages']:
                     if (og_message_id == message['message_id']):
                         new_message = message['message_string']
                         shared_message_id = message_senddm_v2(token, dm_id, new_message)
-                        
+
+                    
 
     return {'shared_message_id': shared_message_id}
 
@@ -137,12 +132,15 @@ def message_share_v1(auth_user_id, og_message_id, message, channel_id, dm_id):
 # -----------------------
 
 def valid_message_length(message):
+    ''' Function that checks if the length of a message is valid'''
     if len(message) > 1000:
         return False
     else:
         return True
 
 def is_user_authorised(auth_user_id, channel_id):
+    ''' Function that checks if user is member of a channel'''
+
     authorised = False 
     for channel in channels:
         if channel_id == {'channel_id': channel['id']}:
@@ -156,6 +154,7 @@ def is_user_authorised(auth_user_id, channel_id):
     return authorised 
 
 def message_sent_by_user(auth_user_id, message_id):
+    ''' Function that checks if a message is sent by a certain user'''
     result = False
     for channel in channels:
         for message in channel['messages']:
@@ -164,11 +163,13 @@ def message_sent_by_user(auth_user_id, message_id):
                     result = True
     return result
 
-def get_user_from_token(token):    
+def get_user_from_token(token):   
+    ''' Function that gets user ID from token''' 
     decoded_u_id = jwt.decode(token, data.SECRET, algorithms='HS256')    
     return decoded_u_id['u_id']
 
 def message_exists(message_id):
+    ''' Function that checks if a certain message exists'''
     exists = False 
     for channel in channels:
         for message in channel['messages']:
@@ -177,6 +178,7 @@ def message_exists(message_id):
     return exists 
 
 def delete_message(message_id):
+    ''' Function that deletes a certain message'''
     for channel in channels:
         for message in channel['messages']:
             if message_id == {'message_id': message['message_id']}:
@@ -184,6 +186,7 @@ def delete_message(message_id):
     return None
 
 def is_user_owner(auth_user_id, message_id):
+    ''' Function that checks if a user is the owner of a channel'''
     result = False 
     for channel in channels:
         for message in channel['messages']:
@@ -197,6 +200,7 @@ def is_user_owner(auth_user_id, message_id):
     return result
 
 def is_message_edited(message_id, new_message):
+    ''' Function that checks if a message was edited successfully'''
     message_test = False
     for channel in channels:
         for message in channel['messages']:
@@ -206,6 +210,7 @@ def is_message_edited(message_id, new_message):
     return message_test
 
 def is_message_deleted(message_id):
+    ''' Function that checks if a message was deleted successfully'''
     result = True 
     for channel in channels:
         for message in channel['messages']:
@@ -214,6 +219,7 @@ def is_message_deleted(message_id):
     return result 
 
 def is_message_shared(message_id, channel_id):
+    ''' Function that checks if a message was sent/shared successfully'''
     shared = False
     for channel in channels:
         if channel['id'] == channel_id['channel_id']:
