@@ -4,7 +4,7 @@ import json
 from src import config
 
 def test_valid():
-    requests.delete(config.url + 'clear/v2', methods='DELETE')
+    # requests.delete(config.url + 'clear/v2', methods='DELETE')
 
     # register a user
     reg_data = json.dumps({
