@@ -48,7 +48,13 @@ def test_valid():
     assert json.loads(r.text) == {
         'name': 'test_ch',
         'is_public' : True,
-        'owner_members' : []
-        'all_members' : [{'u_id': 0, 'name_first': 'test_fname', 'name_last': 'test_lname'}]
+        'owner_members' : [],
+        'all_members' : [
+            {
+                'u_id': 0, 
+                'name_first': 'test_fname',
+                'name_last': 'test_lname'
+            }
+        ]
     }
 
