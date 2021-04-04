@@ -89,7 +89,7 @@ def test_message_share_two_messages_to_channel():
     channel1 = channels_create_v1(user_id, 'My Channel 2', True)
     channel2 = channels_create_v1(user_id, 'My Channel 3', True)
 
-    # Join user in both channels
+    # Join users in all channels
     channel_join_v1(user_id, channel0['channel_id'])
     channel_join_v1(user_id, channel1['channel_id'])
     channel_join_v1(user_id, channel2['channel_id'])

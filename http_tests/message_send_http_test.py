@@ -73,7 +73,6 @@ def test_not_authorised_user():
     assert resp.status_code == 403
 
 
-
 # Test normal message with authorised user in channel
 def test_send_message():
     # Reset
