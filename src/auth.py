@@ -7,8 +7,10 @@ import hashlib
 import smtplib
 import ssl
 import jwt
-import data
-from error import InputError, AccessError
+from src.data import users
+from src import data
+from src.error import InputError, AccessError
+
 
 def auth_login_v1(email, password):
     '''auth login function implementation'''
@@ -77,82 +79,83 @@ def get_users():
     return users
 
 def auth_register_v2(email, password, name_first, name_last):
-    info = request.get_json()
-    users_list = get_users()
-
-    auth_user_id = len(users_list)
-    
-    new_token = generate_token(auth_user_id)
-
+    '''auth register function implementation'''
     #setting handle
-    handle = (info[name_first] + info[name_last])
+    handle = (name_first + name_last)
     handle = handle.lower()
-    if len(users_list) != 0:
-        for user in users_list:
-            if user['email'] == info[email]:
+    if len(users) != 0:
+        for user in users:
+            if user['email'] == email:
                 raise InputError
 
 
     n_users = 0
 
-    for user in users_list:
+    for user in users:
         unique_suffix = str(n_users)
         handle_len = len(handle)
         if user['handle'] == handle:
             if handle_len > 20:
-                handle = (info[name_first] + info[name_last])[:20] + unique_suffix
+                handle = (name_first + name_last)[:20] + unique_suffix
             elif handle_len <= 20:
-                handle = info[name_first] + info[name_last] + unique_suffix
+                handle = name_first + name_last + unique_suffix
         n_users += 1
-    if not email_is_valid(info[email]):
+    if not email_is_valid(email):
+        raise InputError
+    if not is_email_used:
         raise InputError
     #checking len first and last name less than 50 and more than 1
-    if len(info[name_first]) > 50 or  len(info[name_first]) <= 1 or len(info[name_last]) > 50 or len(info[name_last]) <= 1:
+    if len(name_first) > 50 or  len(name_first) <= 1 or len(name_last) > 50 or len(name_last) <= 1:
         raise InputError
-    if not info[name_first].strip() or not info[name_last].strip():
+    if not name_first.strip() or not name_last.strip():
         raise InputError
 
     #checking valid pass len
-    if len(info[password]) < 6:
+    if len(password) < 6:
         raise InputError
-    
-    users_list.append({
-            'email': info[email],
-            'password': hash_password(info[password]),
-            'name_first': info[name_first],
-            'name_last': info[name_last],
+
+    auth_user_id = len(users)
+
+    new_token = generate_token(auth_user_id)
+
+    permission_id = False
+
+    #adding info to data structure
+    users.append({
+            'email': email,
+            'password': password,
+            'name_first': name_first,
+            'name_last': name_last,
             'handle': handle,
             'u_id': auth_user_id,
             'token': new_token,
-            'permission_id': 0,
-            'profile_img_url': None
+            'permission_id': permission_id
         })
-    if len(users_list) == 1:
-            users_list[0]['permission_id'] = 1
+
+    if len(users) == 1:
+            users[0]['permission_id'] = 1
 
     
-    return dumps({
+    return ({
         'token': new_token,
         'auth_user_id': auth_user_id
     })
 
 def auth_login_v2(email, password):
-    info = request.get_json()
-    users_list = get_users()
-
-    if len(users_list) != 0:
-        for user in users_lsit:
-            if not email_is_valid(info[email]):
+    '''auth login function implementation'''
+    if len(users) != 0:
+        for user in users:
+            if not email_is_valid(email):
                 raise InputError
-            if user['email'] == info[email] and user['password'] == hash_password(info[password]):
+            if user['email'] == email and user['password'] == password:
                 u_id = user['u_id']
                 new_token = generate_token(u_id)
-            elif user['email'] != info[email]:
+            elif user['email'] != email:
                 raise InputError
-            elif user["password"] != infp[password]:
+            elif user["password"] != password:
                 raise InputError
 
-    return dumps({
+    return ({
         'token': new_token,
         'auth_user_id': u_id
     })
@@ -165,13 +168,15 @@ def auth_logout_v2(token):
             user['token'] = None
             is_success = True
 
-    return dumps({'is_success': is_success})
+    return ({'is_success': is_success})
 
 def generate_token(u_id):
-    token = jwt.encode({'u_id': u_id}, data.SECRET, algorithm='HS256').decode('UTF-8')
+    SECRET = 'break'
+    token = jwt.encode({'u_id': u_id}, SECRET, algorithm='HS256')
     return str(token)
 
 def get_user_from_token(token):
+    SECRET = 'break'
     decoded_u_id = jwt.decode(token, data.SECRET, algorithms='HS256')
     return decoded_u_id['u_id']
 
@@ -183,3 +188,13 @@ def email_is_valid(email):
     regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
     return bool(re.search(regex, email))
 
+def is_email_used(email):
+    used = False
+    for user in users:
+        if user['email'] == email:
+            used = True
+    return used
+
+
+#request.form.get only for POST and PUT
+#
