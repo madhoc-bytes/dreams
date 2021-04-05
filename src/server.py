@@ -117,10 +117,10 @@ def server_channels_create():
 #admin userpermission change
 @APP.route('/admin/userpermission/change/v1', methods=['POST'])
 def admin_userpermission_change():
-
-    token = request.form.get("token")
-    u_id = int(request.form.get("u_id"))
-    p_id = int(request.form.get("permission_id"))
+    data = request.get_json()
+    token = data['token']    
+    u_id = data['u_id']
+    p_id = data['permission_id']
     return_values = adminuserpermissionchangev1(token, u_id, p_id)
     return dumps(return_values)
 
@@ -128,9 +128,10 @@ def admin_userpermission_change():
 @APP.route('/message/senddm/v2', methods=['POST'])
 def message_senddm_v2():
 
-    token = request.form.get('token')
-    dm_id = int(request.form.get('dm_id'))
-    message = request.form.get('message')
+    data = request.get_json()
+    token = data['token']    
+    dm_id = data['dm_id']
+    message =data['message']
     
     return dumps(message_senddm_v2(token, dm_id, message))
 
