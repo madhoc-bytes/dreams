@@ -1,6 +1,5 @@
 from src.error import InputError, AccessError
 from src.channel import token_to_id
-import jwt
 from src.data import users, dms
 
 def message_senddm_v2(token, dm_id, message):
@@ -29,6 +28,17 @@ def if_token_exit(token):
             return user
     return False
     
+def test_if_user_in_dm(u_id, dm_id):
+    # if all_members is empty in given dm, then obviously invalid
+    if len(dms[dm_id]['all_members']) == 0:
+        return False
+
+    for user in dms[dm_id]['all_members']:
+        key, value = 'u_id', u_id
+        if key in user and value == user[key]:
+            return True
+    return False
+
 def is_member_exist(u_id, dm_id): 
     for dm in dms: 
         if dm['dm_id'] == dm_id: 
