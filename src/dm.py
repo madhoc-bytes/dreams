@@ -34,7 +34,6 @@ def dm_create_v1(token, u_ids):
         handles.append(get_handle_from_uid(uid))
     dm_id = len(dms)
     dm_name = ", ".join(handles)
-    print(dm_name)
     dms.append(
         {
             'dm_id': dm_id,
@@ -82,9 +81,10 @@ def dm_list_v1(token):
                 'members': dm['all_members']
             })
 
+    print(dm_details_list)
     # Return the list
     return {
-        'dms': dms_details_list
+        'dms': dm_details_list
     }
 
 def dm_invite_v1(token, dm_id, u_id):

@@ -5,7 +5,6 @@ from src.auth import auth_register_v2
 from src.channel import channel_messages_v2, channel_join_v2, channel_details_v2
 from src.channels import channels_create_v2
 from src.error import InputError, AccessError
-from src.data import users, channels
 from src.other import clear_v2
 
 def test_join_channel():
