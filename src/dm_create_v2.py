@@ -1,8 +1,6 @@
 from src.channel import test_user_is_invalid, token_to_id
 from src.error import InputError, AccessError
-from src.data import dms
-import jwt
-SECRET = 'team'
+from src.data import dms, users
 
 def dm_create_v2(token, u_ids):
     #check valid token#
