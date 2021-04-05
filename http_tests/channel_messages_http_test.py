@@ -69,7 +69,7 @@ def test_messages_invalid_ch_id():
         'start': 0
     }
 
-     r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
+    r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
 
     assert(r.status_code == 400)
 
@@ -129,19 +129,14 @@ def test_messages_not_member():
     u_id = r.json().get('auth_user_id')
     #create one user to pass in the list of users for dm create
     reg_data2 = {
-        'email': 'test_auth@gmail.com',
-        'password': 'test_pw_auth',
-        'name_first': 'testf',
-        'name_last': 'testl'
+        'email': 'test_second@gmail.com',
+        'password': 'test_pw_second',
+        'name_first': 'secondf',
+        'name_last': 'secondl'
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
     token2 = r.json().get('token')
     u_id2 = r.json().get('auth_user_id')
-
-    create_data = {
-        'token': token,
-        'u_ids': [u_id2]
-    }
 
 
     ch_data = {
@@ -166,6 +161,6 @@ def test_messages_not_member():
         'start': 0
     }
 
-     r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
+    r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
 
     assert(r.status_code == 403)
