@@ -24,7 +24,7 @@ def test_dm_list_basic_onedm():
     auth_token = auth['token']
     
     u_ids = []
-    dm_data = dm_create_v1(auth_token, u_ids)
+    dm_create_v1(auth_token, u_ids)
     assert(dm_list_v1(auth_token) == {'dms': [
         {
             'name': 'testftestl', 
