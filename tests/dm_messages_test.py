@@ -14,7 +14,6 @@ def test_dm_messages_nomessage():
     #owner of dm/caller of dm_create
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
 
     #create one user to pass in the list of users for dm create
     user_id = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')['auth_user_id']
@@ -36,7 +35,6 @@ def test_dm_messages_invalid_d_id():
     #owner of dm/caller of dm_create
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
     with pytest.raises(InputError):
         dm_messages_v1(auth_token, 10, 0)
 
@@ -47,7 +45,6 @@ def test_dm_messages_start_too_big():
     #owner of dm/caller of dm_create
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
 
     #create one user to pass in the list of users for dm create
     user_id = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')['auth_user_id']
@@ -66,7 +63,6 @@ def test_dm_messages_not_member():
     #owner of dm/caller of dm_create
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
 
     #create one user to pass in the list of users for dm create
     user_id = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')['auth_user_id']
