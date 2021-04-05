@@ -47,7 +47,7 @@ def test_invite_invalid_dmid():
 
     #pass invalid dm id to dm invite
     with pytest.raises(InputError):
-        dm_invite_v1(auth_token, 2, invitee_id)
+        dm_invite_v1(auth_token, 10, invitee_id)
 
 def test_invite_invalid_uid():
     clear_v2()

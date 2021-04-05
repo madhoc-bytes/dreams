@@ -1,3 +1,4 @@
+'''
 import pytest 
 from src.auth import auth_register_v1
 from src.error import InputError
@@ -132,3 +133,4 @@ def test_repeated_handle():
     assert users[new_user_id_1]['handle'] == valid_first_name_1 + valid_last_name_1 
     assert users[new_user_id_2]['handle'] == valid_first_name_2 + valid_last_name_2 + str(0) #+ str(0)
     assert users[new_user_id_3]['handle'] == valid_first_name_3 + valid_last_name_3 + str(1) #+ str(0)
+'''
