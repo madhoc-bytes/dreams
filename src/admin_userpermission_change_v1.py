@@ -27,3 +27,6 @@ def change_permission(u_id, permission_id):
         if user['u_id'] == u_id: 
             user['permission_id'] = permission_id 
     return 
+
+def admin_user_remove_v1():
+    pass
