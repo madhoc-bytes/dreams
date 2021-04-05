@@ -58,7 +58,7 @@ def dm_details_v1(token, dm_id):
         raise InputError()
 
     # invalid user
-    if not test_if_user_in_dm(auth_user_id, dm_id):
+    if not check_user_in_dm(auth_user_id, dm_id):
         raise AccessError()
 
     # insert info into dictionary and return it
@@ -75,7 +75,7 @@ def dm_list_v1(token):
 
     for dm in dms:
         # Check if the user has access to the dm to get details
-        if test_if_user_in_dm(auth_user_id, dm['dm_id']):
+        if check_user_in_dm(auth_user_id, dm['dm_id']):
             dm_details_list.append({
                 'name': dm['dm_name'],
                 'members': dm['all_members']
@@ -97,7 +97,7 @@ def dm_invite_v1(token, dm_id, u_id):
         raise InputError()
 
     # auth user (inviter) is not already a member of the dm
-    if not test_if_user_in_dm(auth_user_id, dm_id):
+    if not check_user_in_dm(auth_user_id, dm_id):
         raise AccessError()
 
     # acquiring the details of the user (invitee)
@@ -119,7 +119,7 @@ def dm_messages_v1(token, dm_id, start):
         raise InputError()
     if test_dm_is_invalid(dm_id):
         raise InputError()
-    if not test_if_user_in_dm(auth_user_id, dm_id):
+    if not check_user_in_dm(auth_user_id, dm_id):
         raise AccessError()
     if start > len(dms[dm_id]['messages']):
         raise InputError()
@@ -165,7 +165,7 @@ def test_dm_is_invalid(dm_id):
             return False
     return True
 
-def test_if_user_in_dm(u_id, dm_id):
+def check_user_in_dm(u_id, dm_id):
     # if all_members is empty in given dm, then obviously invalid
     if len(dms[dm_id]['all_members']) == 0:
         return False

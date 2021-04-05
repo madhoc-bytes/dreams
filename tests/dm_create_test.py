@@ -1,7 +1,7 @@
 import pytest
 
 from src.auth import auth_register_v2
-from src.dm import dm_create_v1, dm_invite_v1, dm_details_v1, dm_list_v1, dm_messages_v1
+from src.dm import dm_create_v1
 from src.error import InputError, AccessError
 from src.other import clear_v2
 
@@ -15,9 +15,9 @@ def test_dm_create_basic():
     auth_id = auth['auth_user_id']
 
     #create one user to pass in the list of users for dm create
-    invitee_id = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')['auth_user_id']
+    user_id = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')['auth_user_id']
 
-    u_ids = [invitee_id]
+    u_ids = [user_id]
     # create a test dm
     dm_data = dm_create_v1(auth_token, u_ids)
     assert(dm_data['dm_id'] == 0 and dm_data['dm_name'] == 'testftestl, userfuserl')
