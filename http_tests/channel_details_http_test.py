@@ -29,7 +29,7 @@ def test_valid():
     r = requests.post(config.url + 'channels/create', data=ch_data)
     ch_id = r.json().get('channel_id')
 
-    # add user to channel
+    # add inviter to channel
     join_data = json.dumps({
         'token': token,
         'channel_id': ch_id
@@ -41,7 +41,6 @@ def test_valid():
         'channel_id': ch_id
     }
     # testing channel details v2
-    # join_data will provide the right input for channel details as well
     r = requests.get(config.url + 'channel/details/v2', params=details_params)
     assert r.status_code == 200
 
