@@ -47,7 +47,7 @@ def test_dm_leave_invalid_dmid():
 
     u_ids = [user_id]
     # create a test dm
-    dm_data = dm_create_v1(auth_token, u_ids)
+    dm_create_v1(auth_token, u_ids)
 
     with pytest.raises(InputError):
         dm_leave_v1(auth_token, 10)
