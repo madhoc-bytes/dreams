@@ -34,6 +34,6 @@ def dm_create_v2(token, u_ids):
 
 def check_if_user_exit(u_id):
     for user in users:
-        if user['u_id'] = u_id:
+    if user['u_id'] = u_id and user['name_first'] != 'Removed user':
             return user
     return False
