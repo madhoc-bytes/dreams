@@ -166,6 +166,16 @@ def dm_leave_v1(token, dm_id):
     dms[dm_id]['all_members'].remove(removed)
     return {}
 
+def dm_remove_v1(token, dm_id):
+    auth_user_id = token_to_id(token)
+    if test_dm_is_invalid(dm_id):
+        raise InputError()
+    if auth_user_id != dms[dm_id]['owner_id']:
+        raise AccessError()
+    dms.remove(dms[dm_id])
+
+    return {}
+
 ##############################################################
 # Helper functions
 def find_user_in_dm(u_id, dm_id):
