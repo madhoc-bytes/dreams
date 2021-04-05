@@ -1,56 +1,39 @@
-from src.channel import test_user_is_invalid, token_to_id
+from src.channel import token_to_id
 from src.error import InputError, AccessError
 from src.data import dms, users
 
 def dm_create_v2(token, u_ids):
-    #check valid token#
-    check_if_token_valid(token)
-    #import uid from token
     token_uid = token_to_id(token)
-    #check valid user
-    if not test_user_is_invalid(token_uid):
-        raise InputError('u_id does not refer to a valid user')
-    if check_dm_empty():
-        # if dm is empty
-        dm_id = 0
-    else:
-        #last channels id plus 1
-        dm_id = last_dm_id() + 1
+    authuser = check_if_user_exit(token_uid)
+    handlelist = []
+    userlist = []
+
+    for userid in u_ids:
+        user = check_if_user_exit(userid)
+        if not user:
+            raise InputError('userid does not refer to a valid user')
+        handlelist.append(user['handle_str'])
+        userlist.append(user)
+    new_dm_id = int(len(dms))
+    handlelist.sort()
+    new_dm_handle = ', '.join(handlelist)
+
     new_dm = {
         'dm_id': dm_id,
-        'dm_name': dm_name,
-        'all_dm_members': [],
+        'creator':authuser
+        'dm_name': new_dm_handle,
+        'all_dm_members': userlist,
+        'messages':[],
     }
     dms.append(new_dm)
+
     return {
-        'dm_id': dm_id,
-        'dm_name': dm_name,
+        'dm_id': new_dm_id
+        'dm_name': new_dm_handle
     }
-    
-#helper function#
-def check_dm_empty():
-    """Function that checks if channel is empty"""
-    if len(dms) == 0:
-        return True
-    return False
 
-def last_dm_id():
-    """Function that checks last channel ID"""
-    return dms[-1]['dm_id']
-
-def check_if_token_valid(token):
-    if not if_token_exit(token) or token == None:
-        raise AccessError('Invalid Token')
-    return
-
-def if_token_exit(token):
+def check_if_user_exit(u_id):
     for user in users:
-        if token == user[token]:
+        if user['u_id'] = u_id:
             return user
     return False
-
-def get_dm_name(u_ids):
-    from user in users:
-        if u_ids = users['u_id']:
-            name = users['handle']
-    return name
