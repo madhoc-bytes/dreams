@@ -4,7 +4,7 @@ from src.data import dms, users
 
 def dm_create_v2(token, u_ids):
     token_uid = token_to_id(token)
-    auth_user = check_if_user_exit(token_uid)
+    user_creator = check_if_user_exit(token_uid)
     handlelist = []
     userlist = []
 
@@ -12,7 +12,7 @@ def dm_create_v2(token, u_ids):
         user = check_if_user_exit(userid)
         if not user:
             raise InputError('userid does not refer to a valid user')
-        handlelist.append(user['handle_str'])
+        handlelist.append(user['handle'])
         userlist.append(user)
     new_dm_id = int(len(dms))
     handlelist.sort()
@@ -20,7 +20,7 @@ def dm_create_v2(token, u_ids):
 
     new_dm = {
         'dm_id': dm_id,
-        'creator':auth_user
+        'creator':user_creator
         'dm_name': new_dm_handle,
         'all_dm_members': userlist,
         'messages':[],
