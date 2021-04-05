@@ -5,7 +5,9 @@ from flask_cors import CORS
 from src.error import InputError
 from src import config
 from src.auth import auth_register_v2
-from src.channel import channel_details_v2, channel_join_v2, channel_invite_v2, channel_addowner_v2,channel_removeowner_v2
+from src.channel import channel_details_v2, channel_invite_v2
+from src.channel import channel_addowner_v2,channel_removeowner_v2
+from src.channel import channel_join_v2, channel_leave_v2
 from src.channels import channels_create_v2
 from src.other import clear_v2
 
@@ -54,6 +56,14 @@ def channel_join():
     token = data['token']
     channel_id = data['channel_id']
     return dumps(channel_join_v2(token, channel_id))
+
+# channel leave
+@APP.route("/channel/leave/v2", methods=['POST'])
+def channel_leave():
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    return dumps(channel_leave_v2(token, channel_id))
 
 # channel invite
 @APP.route("/channel/invite/v2", methods=['POST'])

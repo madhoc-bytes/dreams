@@ -87,6 +87,11 @@ def channel_leave_v2(token, channel_id):
     if not test_if_user_in_ch(auth_user_id, channel_id):
         raise AccessError() 
 
+    # if owner as well, remove ownership as well
+    if user_is_owner(auth_user_id, channel_id):
+        removed = find_owner(auth_user_id, channel_id)
+        channels[channel_id]['owner_members'].remove(removed)
+
     removed = find_user_in_ch(auth_user_id, channel_id)
     channels[channel_id]['all_members'].remove(removed)   
 

@@ -1,7 +1,7 @@
 import pytest
 
 from src.auth import auth_register_v2
-from src.channel import channel_join_v2, channel_details_v2, channel_leave_v2
+from src.channel import channel_join_v2, channel_details_v2, channel_leave_v2, channel_addowner_v2
 from src.channels import channels_create_v2
 from src.error import InputError, AccessError
 from src.other import clear_v2
@@ -15,10 +15,17 @@ def test_basic():
     # create channel
     test_channel = channels_create_v2(test_user['token'], "test channel", True)['channel_id']
 
-    # add user to channel and check if successful
-    channel_join_v2(test_user['token'], test_channel)
+    # add user to channel as an owner and check if successful
+    channel_addowner_v2(test_user['token'], test_channel, test_user['auth_user_id'])
     details = channel_details_v2(test_user['token'], test_channel)
     assert details['all_members'] == [
+        {
+            'u_id': test_user['auth_user_id'],
+            'name_first': 'testF',
+            'name_last': 'testL'
+        }
+    ]
+    assert details['owner_members'] == [
         {
             'u_id': test_user['auth_user_id'],
             'name_first': 'testF',
@@ -29,6 +36,7 @@ def test_basic():
     # remove user from channel and check if channel is empty
     channel_leave_v2(test_user['token'], test_channel)
     assert details['all_members'] == []
+    assert details['owner_members'] == []
 
 def test_invalid_channel():
     clear_v2()
@@ -36,8 +44,9 @@ def test_invalid_channel():
     test_user = auth_register_v2("test@gmail.com", "password", "testF", "testL")
 
     # try to leave from non-existent channel and expect input error
+    invalid_id = 10
     with pytest.raises(InputError):
-        channel_leave_v2(test_user['token'], "invalid channel id")
+        channel_leave_v2(test_user['token'], invalid_id)
 
 def test_unauthorised_user():
     clear_v2()
