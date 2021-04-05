@@ -224,7 +224,6 @@ def test_no_privileges():
     user1_id = r.json().get('auth_user_id')    
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
-    token2 = r.json().get('token')
     user2_id = r.json().get('auth_user_id')
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data3)

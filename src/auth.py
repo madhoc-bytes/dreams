@@ -112,10 +112,6 @@ def generate_token(u_id):
     token = jwt.encode({'u_id': u_id}, SECRET, algorithm='HS256')
     return str(token)
 
-def get_user_from_token(token):
-    SECRET = 'break'
-    decoded_u_id = jwt.decode(token, data.SECRET, algorithms='HS256')
-    return decoded_u_id['u_id']
 
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()

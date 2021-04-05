@@ -14,10 +14,9 @@ def test_valid():
         'name_last': 'test_lname'
     }
 
-    # acquire token and id of user
+    # acquire token of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
     
     # create a channel
     ch_data = {
@@ -81,10 +80,9 @@ def test_unauthorised_user():
         'name_last': 'test_lname'
     }
 
-    # acquire token and id of user
+    # acquire token of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
     
     # create a channel
     ch_data = {
