@@ -1,4 +1,4 @@
-rom src.data import users, channels
+from src.data import users, channels
 from src.error import InputError, AccessError
 
 def channel_invite_v2(token, channel_id, u_id):
