@@ -15,7 +15,7 @@ from src.channels import channels_list_v2, channels_listall_v2
 from src.users import users_all_v1
 from src.message_senddm_v2 import message_senddm_v2
 from src.admin_userpermission_change_v1 import adminuserpermissionchangev1
-#from src.search import search_v2
+from src.search import search_v2
 from src.other import clear_v2
 
 def defaultHandler(err):
@@ -210,7 +210,7 @@ def users_all():
     token = request.args.get('token')
     return dumps(users_all_v1(token))
 
-'''
+
 # search
 @APP.route("/search/v2", methods=['GET'])
 def search():
@@ -218,7 +218,7 @@ def search():
     token = data['token']
     query_str = data['query_str']
     return dumps(search_v2(token, query_str))
-'''
+
 # clear 
 @APP.route('/clear/v1', methods = ['DELETE'])
 def clear():
