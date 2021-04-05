@@ -1,11 +1,3 @@
-'''Import pytest and relevant functions'''
-import pytest
-
-from src.auth import auth_register_v1
-from src.channel import channel_messages_v1, channel_join_v1, channel_details_v1
-from src.channels import channels_create_v1
-from src.error import InputError, AccessError
-from src.other import clear_v1
 
 def test_join_channel():
     pass
