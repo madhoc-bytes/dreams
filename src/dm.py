@@ -37,7 +37,7 @@ def dm_create_v1(token, u_ids):
     dms.append(
         {
             'dm_id': dm_id,
-            'owner_id': token_to_id(u_id),
+            'owner_id': token_to_id(token),
             'dm_name': dm_name,
             'all_members': members,
             'messages': []
@@ -157,6 +157,16 @@ def dm_leave_v1(token, dm_id):
 
     removed = find_user_in_dm(auth_user_id, dm_id)
     dms[dm_id]['all_members'].remove(removed)
+    return {}
+
+def dm_remove_v1(token, dm_id):
+    auth_user_id = token_to_id(token)
+    if test_dm_is_invalid(dm_id):
+        raise InputError()
+    if auth_user_id != dms[dm_id]['owner_id']:
+        raise AccessError()
+    dms.remove(dms[dm_id])
+
     return {}
 
 
