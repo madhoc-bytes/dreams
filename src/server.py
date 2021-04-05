@@ -59,7 +59,23 @@ def route_admin_userpermission_change():
 #####################
 #####################
 #####################
-#admin_userpermission_change
+@APP.route('/dm/create/v2', methods=['POST'])
+def route_dm_create_v2():
+
+    token = request.form.get("token")
+    u_ids = int(request.form.get("u_ids"))
+    return_values = dm_create_v2(token, u_ids)
+
+    return dumps(return_values)
+
+@APP.route('/dm/remove/v2', methods=['DELETE'])
+def route_dm_remove_v2():
+
+    token = request.form.get("token")
+    dm_id = int(request.form.get("dm_id"))
+    return_values = dm_create_v2(token, dm_id)
+
+    return dumps(return_values)
 
 
 if __name__ == "__main__":
