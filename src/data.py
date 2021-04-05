@@ -46,13 +46,21 @@ dms = []
 '''
 {   
     'dm_id': 0,
-    'is_public': True,
     'dm_name': 'Hayden',
+    'owner_id': id
     'all_dm_members': [
         {
             'dm_id': 0,
             'name_first': 'Hayden',
             'name_last': 'Jacobs',
+        }
+    ],
+    'messages': [
+        {
+            'message_id': 0,
+            'u_id': 0,
+            'message_string': 'hello123',
+            'time': 123123123,
         }
     ],
 }
