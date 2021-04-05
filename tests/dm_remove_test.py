@@ -20,7 +20,8 @@ def test_dm_remove_basic():
     # create a test dm
     dm_data = dm_create_v1(auth_token, u_ids)
     dm_remove_v1(auth_token, dm_data['dm_id'])
-    assert (not check_dm_id_exists(dm_data['dm_id']))
+    status = check_dm_id_exists(dm_data['dm_id'])
+    assert (status == True)
 
 def test_dm_remove_invalid_dmid():
     clear_v2()
