@@ -1,4 +1,4 @@
-from src.data import users, channels
+from src.data import users, channels, dms
 
 ''' Resets the internal data of the application to it's initial state '''
 def clear_v2():
@@ -25,3 +25,5 @@ def data_channels():
 ''' create len of users to check if clear'''
 def data_user():
     return len(users)
+def data_dms():
+    return len(dms)
