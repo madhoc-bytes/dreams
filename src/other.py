@@ -1,11 +1,10 @@
-from src.data import users, channels
-from src.channel import test_user_is_invalid
-from src.error import InputError, AccessError
+from src.data import users, channels, dms
 
 ''' Resets the internal data of the application to it's initial state '''
 def clear_v2():
     users.clear()
     channels.clear()
+    dms.clear()
 
 def search_v1(auth_user_id, query_str):
     return {

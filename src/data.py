@@ -47,26 +47,18 @@ channels = []
 
 dms = []
 '''
-	{   
-	    'dm_id': 0,
-	    'is_public': True,
-	    'dm_name': 'Hayden',
-        'messages': [
+{   
+    'dm_id': 0,
+    'dm_name': 'Hayden',
+    'owner_id': id
+    'all_dm_members': [
         {
-            'message_id': 0,
-            'u_id': 0,
-            'message_string': 'hello123',
-            'time': 123123123,
+            'dm_id': 0,
+            'name_first': 'Hayden',
+            'name_last': 'Jacobs',
         }
-        ],
-	    'all_dm_members': [
-	        {
-	            'dm_id': 0,
-	            'name_first': 'Hayden',
-	            'name_last': 'Jacobs',
-	        }
-	    ],
-        'messages': [
+    ],
+    'messages': [
         {
             'message_id': 0,
             'u_id': 0,
@@ -74,15 +66,5 @@ dms = []
             'time': 123123123,
         }
     ],
-	}
-'''
-
-
-notifications = []
-'''
-    {
-        'channel_id': 0,
-        'dm_id': 0
-        'notifications_message': 'You have a new message'
-    }
+}
 '''

@@ -1,10 +1,16 @@
 import sys
-from src import config
 from json import dumps
 from flask import Flask, request
 from flask_cors import CORS
 from src.error import InputError
-from src.data import messages
+from src import config
+from src.auth import auth_register_v2
+from src.channel import channel_details_v2, channel_invite_v2
+from src.channel import channel_addowner_v2,channel_removeowner_v2
+from src.channel import channel_join_v2, channel_leave_v2
+from src.channels import channels_create_v2
+from src.users import users_all_v1
+from src.other import clear_v2
 from src.message import message_send_v1, message_edit_v1, message_remove_v1, message_share_v1
 from src.channel import channel_details_v2
 from src.channels import channels_list_v2, channels_listall_v2
@@ -26,15 +32,6 @@ CORS(APP)
 
 APP.config['TRAP_HTTP_EXCEPTIONS'] = True
 APP.register_error_handler(Exception, defaultHandler)
-def defaultHandler(err):
-    response = err.get_response()
-    print('response', err, err.get_response())
-    response.data = dumps({
-        "code": err.code,
-        "name": "System Error",
-        "message": err.get_description(),
-    })
-    response.content_type = 'application/json'
 
 # Example
 @APP.route("/echo", methods=['GET'])
@@ -45,6 +42,90 @@ def echo():
     return dumps({
         'data': data
     })
+
+# auth register
+@APP.route('/auth/register/v2', methods=['POST'])
+def auth_register():
+    data = request.get_json()
+    email = data['email']
+    password = data['password']
+    name_first = data['name_first']
+    name_last = data['name_last']
+    return_value = auth_register_v2(email, password, name_first, name_last)
+    return dumps(return_value)
+
+# channel join
+@APP.route("/channel/join/v2", methods=['POST'])
+def channel_join():
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    return dumps(channel_join_v2(token, channel_id))
+
+# channel leave
+@APP.route("/channel/leave/v2", methods=['POST'])
+def channel_leave():
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    return dumps(channel_leave_v2(token, channel_id))
+
+# channel invite
+@APP.route("/channel/invite/v2", methods=['POST'])
+def channel_invite():
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    u_id = data['u_id']
+    return dumps(channel_invite_v2(token, channel_id, u_id))
+
+# channel details
+@APP.route("/channel/details/v2", methods=['GET'])
+def channel_details():
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    return dumps(channel_details_v2(token, channel_id))
+
+# channel addowner
+@APP.route("/channel/addowner/v1", methods=['POST'])
+def channel_addowner():
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    u_id = data['u_id']
+    return dumps(channel_addowner_v2(token, channel_id, u_id))
+
+# channel removeowner
+@APP.route("/channel/removeowner/v1", methods=['POST'])
+def channel_removeowner():
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    u_id = data['u_id']
+    return dumps(channel_removeowner_v2(token, channel_id, u_id))
+
+# channel create
+@APP.route('/channels/create/v2', methods = ['POST'])
+def server_channels_create():
+    data = request.get_json()
+    token = data['token']
+    name = data['name']
+    is_public = data['is_public']
+    return_value = channels_create_v2(token, name, is_public)
+    return dumps(return_value)
+
+# users all
+@APP.route("/users/all/v1", methods=['GET'])
+def users_all():
+    token = request.args.get('token')
+    return dumps(users_all_v1(token))
+
+# clear 
+@APP.route('/clear/v1', methods = ['DELETE'])
+def clear():
+    return dumps(clear_v2())
+
 
 # channels/list/v2
 @APP.route('/channels/list/v2', methods=['GET'])

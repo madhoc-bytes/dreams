@@ -96,16 +96,13 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
     ''' Function that shares message to channel or DM'''
     auth_user_id = token_to_id(token)
 
-
-    if is_user_authorised(auth_user_id, channel_id) == False:
-        raise AccessError(description='User has not joined the channel he is trying to share to')
-
-
     if len(message) == 0:
         message = ''
     
 
     if (dm_id == -1):
+        if is_user_authorised(auth_user_id, channel_id) == False:
+            raise AccessError(description='User has not joined the channel he is trying to share to')
         shared_message_id = 0
         for channel in channels:
             for message in channel['messages']:
@@ -115,20 +112,20 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
 
 
     if (channel_id == -1):
+        if is_user_in_dm(auth_user_id, dm_id) == False:
+            raise AccessError(description='User has not joined the DM he is trying to share to')
         for user in users:
             if user['u_id'] == auth_user_id:
                 token = user['token']
 
         shared_message_id = 0
         for dm in dms:
-            if dm_id == dm['dm_id']:
-                for message in dm['messages']:
-                    if (og_message_id == message['message_id']):
-                        new_message = message['message_string']
-                        shared_message_id = message_senddm_v2(token, dm_id, new_message)
+            for message in dm['messages']:
+                if (og_message_id['message_id'] == message['message_id']):
+                    new_message = message['message']
+                    shared_message_id = message_senddm_v2(token, dm_id, new_message)
 
-                    
-
+                
     return {'shared_message_id': shared_message_id}
 
 
@@ -169,6 +166,12 @@ def message_sent_by_user(auth_user_id, message_id):
             if message_id == {'message_id': message['message_id']}:
                 if message['u_id'] == auth_user_id:
                     result = True
+
+    for dm in dms:
+        for message in dm['messages']:
+            if message_id == {'message_id': message['message_id']}:
+                if message['u_id'] == auth_user_id:
+                    result = True
     return result
 
 def message_exists(message_id):
@@ -178,10 +181,20 @@ def message_exists(message_id):
         for message in channel['messages']:
             if {'message_id': message['message_id']} == message_id:
                 exists = True 
+
+    for dm in dms:
+        for message in dm['messages']:
+            if {'message_id': message['message_id']} == message_id:
+                exists = True
     return exists 
 
 def delete_message(message_id):
     ''' Function that deletes a certain message'''
+    for dm in dms:
+        for message in dm['messages']:
+            if message_id == {'message_id': message['message_id']}:
+                dm['messages'].remove(message)
+
     for channel in channels:
         for message in channel['messages']:
             if message_id == {'message_id': message['message_id']}:
@@ -228,12 +241,29 @@ def is_message_shared(message_id, channel_id):
         if channel['id'] == channel_id['channel_id']:
             break
     
-    #print(f"I am now in channel {channel['id']}")
-    #print(len(channel['messages']))
     for message in channel['messages']:
 
         if {'message_id': message['message_id']} == message_id:
-            #print(f"The only message I will work on is {message['message_id']}")
             shared = True
     return shared
 
+def is_message_in_dm(dm_id, message_id):
+    ''' Function that checks if a message is in a DM '''
+    result = False
+    for dm in dms:
+        if dm_id == dm['dm_id']:
+            for message in dm['messages']:
+                if message_id == message['message_id']:
+                    result = True
+    return result
+
+def is_user_in_dm(auth_user_id, dm_id):
+    ''' Function that checks if a user is in a DM '''
+    result = False
+    for dm in dms:
+        if dm['dm_id'] == dm_id:
+            break
+    for user in dm['all_members']:
+        if user['u_id'] == auth_user_id:
+            result = True
+    return result

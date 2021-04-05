@@ -8,7 +8,7 @@ from src import config
 import flask
 from error import InputError, AccessError
 
-
+'''
 # Message is more than 1000 characters
 def test_message_too_long():
     # Reset
@@ -76,15 +76,20 @@ def test_not_authorised_user():
 # Test normal message with authorised user in channel
 def test_send_message():
     # Reset
-    requests.delete(config.url + 'clear/v2', methods='DELETE')
+    requests.delete(config.url + 'clear/v1', methods='DELETE')
 
     # Register user
-    register_data = {'email': 'germanijack@yahoo.com', 'password': 'jack123', 'name_first': 'Jack', 'name_last': 'Germani'}
-    r = requests.post(config.url + 'auth/register/v2', data=register_data, methods='POST')
+    reg_data = {
+        'email': 'test@gmail.com',
+        'password': 'testpw123',
+        'name_first': 'test_fname',
+        'name_last': 'test_lname'
+    }
     
-    # Get token
-    payload = r.json()
-    token = payload['token']
+    # acquire token and id of user
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data, methods='POST')
+    token = r.json().get('token')
+    u_id = r.json().get('auth_user_id')
 
     # Create message
     message = 'This project is so hard!!'
@@ -95,9 +100,26 @@ def test_send_message():
     payload = r.json()
     channel_id = payload['channel_id']
     
+    # create a channel
+    ch_data = {
+        'token': token,
+        'name': 'test_ch',
+        'is_public': True
+    }
+    # acquire channel id
+    r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    ch_id = r.json().get('channel_id')
+
     # Make the user join channel
     join_data = {'token': token, 'channel_id': channel_id}
     requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
+
+    # join user to channel
+    join_data = {
+        'token': token,
+        'channel_id': ch_id
+    }   
+    requests.post(config.url + 'channel/join/v2', json=join_data)
 
     # Send message
     message_data = {'token': token, 'channel_id': channel_id, 'message': message}
@@ -105,6 +127,47 @@ def test_send_message():
     payload = r.json()
     message_id = payload['message_id']
 
+
     # Assertions
     assert resp.status_code == 200
+'''
 
+def test_valid():
+    requests.delete(config.url + 'clear/v1')
+
+    # register a user
+    reg_data = {
+        'email': 'test@gmail.com',
+        'password': 'testpw123',
+        'name_first': 'test_fname',
+        'name_last': 'test_lname'
+    }
+
+    # acquire token and id of user
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+    token = r.json().get('token')
+    u_id = r.json().get('auth_user_id')
+    
+    # create a channel
+    ch_data = {
+        'token': token,
+        'name': 'test_ch',
+        'is_public': True
+    }
+
+    # acquire channel id
+    r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    ch_id = r.json().get('channel_id')
+
+    # join user to channel
+    join_data = {
+        'token': token,
+        'channel_id': ch_id
+    }   
+    requests.post(config.url + 'channel/join/v2', json=join_data)
+
+    # Testing sending message
+    message_data = {'token': token, 'channel_id': ch_id, 'message': message}
+    r = requests.post(config.url + 'message/send/v1', json=message_data)
+
+    assert r.status_code == 200
