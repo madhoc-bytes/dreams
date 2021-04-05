@@ -1,19 +1,14 @@
 from src.error import InputError, AccessError
 from src.data import dms, users
 from src.channel import token_to_id
-from src.dm import test_dm_is_invalid, check_user_in_dm, find_user_in_dm
+from src.dm import test_dm_is_invalid
 
 def dm_remove_v1(token, dm_id):
     auth_user_id = token_to_id(token)
-    # invalid channel
     if test_dm_is_invalid(dm_id):
         raise InputError()
-
-    # invalid user
-    if not check_user_in_dm(auth_user_id, dm_id):
+    if auth_user_id != dms[dm_id]['owner_id']:
         raise AccessError()
-    
-    removed = find_user_in_dm(auth_user_id, dm_id)
-    dms[dm_id]['owner_members'].remove(removed)  
+    dms.remove(dms[dm_id])
 
-    return{}
+    return {}
