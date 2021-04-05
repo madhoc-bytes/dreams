@@ -40,4 +40,4 @@ def test_long_message_send():
     message_data = {'token': token, 'dm_id': dm_id, 'message': message}
     r = requests.post(config.url + 'message/senddm/v1', json=message_data)
 
-    assert r.status_code == 400
+    assert r.status_code == 404
