@@ -9,8 +9,8 @@ import ssl
 import jwt
 from src.data import users
 from src import data
-
 from src.error import InputError, AccessError
+
 
 def auth_login_v1(email, password):
     '''auth login function implementation'''
@@ -136,10 +136,10 @@ def auth_register_v2(email, password, name_first, name_last):
             users[0]['permission_id'] = 1
 
     
-    return {
+    return ({
         'token': new_token,
         'auth_user_id': auth_user_id
-    }
+    })
 
 def auth_login_v2(email, password):
     '''auth login function implementation'''
@@ -149,12 +149,13 @@ def auth_login_v2(email, password):
                 raise InputError
             if user['email'] == email and user['password'] == password:
                 u_id = user['u_id']
+                new_token = generate_token(u_id)
             elif user['email'] != email:
                 raise InputError
             elif user["password"] != password:
                 raise InputError
 
-    return dumps({
+    return ({
         'token': new_token,
         'auth_user_id': u_id
     })
@@ -167,7 +168,7 @@ def auth_logout_v2(token):
             user['token'] = None
             is_success = True
 
-    return dumps({'is_success': is_success})
+    return ({'is_success': is_success})
 
 def generate_token(u_id):
     SECRET = 'break'
@@ -175,6 +176,7 @@ def generate_token(u_id):
     return str(token)
 
 def get_user_from_token(token):
+    SECRET = 'break'
     decoded_u_id = jwt.decode(token, data.SECRET, algorithms='HS256')
     return decoded_u_id['u_id']
 

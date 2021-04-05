@@ -1,7 +1,9 @@
 from src.data import users, channels
+from src.channel import test_user_is_invalid
+from src.error import InputError, AccessError
 
 ''' Resets the internal data of the application to it's initial state '''
-def clear_v1():
+def clear_v2():
     users.clear()
     channels.clear()
 

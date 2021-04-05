@@ -1,36 +1,61 @@
 ''' Test file for dm_invite_v1 '''
 
-from src.dm_invite_v1 import dm_invite_v1
+import pytest 
+from src.dm_invite_v1 import dm_invite_v1, is_user_in_dm
 from src.error import InputError, AccessError
 from src.data import users, dms
-from src.dm_create_v2 import dm_create_v2
-from src.other import clear_v1
+from src.dm_create_v2 import dm_create_v1
+from src.other import clear_v2
 from src.auth import auth_register_v2
 
 def test_dm_invite():
-    clear_v1()
+    clear_v2()
 
-    user_id = auth_register_v2('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['auth_user_id']
-    token = 0
+    token = auth_register_v2('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['token']
+    user_id_1 = auth_register_v2('test132@yahoo.com', 'test123', 'Test', 'Test')['auth_user_id']
+    user_id_2 = auth_register_v2('test@yahoo.com', 'test123', 'Test', 'Test')['auth_user_id']
 
-    for user in users:
-        if user['u_id'] == user_id:
-            token = user['token']
+    dm_id = dm_create_v1(token, user_id_1)['dm_id']
+    dm_invite_v1(token, dm_id, user_id_1)
 
-    dm_id = dm_create_v2(token, user_id)
-    dm_invite_v1(user_id, dm_id, user_id)
+    assert is_user_in_dm(user_id_1, dm_id) == True
 
-    assert is_user_in_dm(user_id, dm_id) == True
+def test_dm_invite_invalid_dm():
+    clear_v2()
 
-# Function to check if user is in the DM
-def is_user_in_dm(user_id, dm_id):
-    exists = False
-    for dm in dms:
-        if dm_id == dm['dm_id']:
-            break 
-    for member in dm['all_dm_members']:
-        if member['user_id'] == user_id:
-            exists = True
-    return exists
+    token = auth_register_v2('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['token']
+    user_id_1 = auth_register_v2('test132@yahoo.com', 'test123', 'Test', 'Test')['auth_user_id']
+    user_id_2 = auth_register_v2('test@yahoo.com', 'test123', 'Test', 'Test')['auth_user_id']
+
+    dm_id = 12
+
+    with pytest.raises(InputError):
+        dm_invite_v1(token, dm_id, user_id_1)
+
+def test_dm_invite_invalid_user():
+    clear_v2()
+
+    token = auth_register_v2('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['token']
+    user_id_1 = 14
+    user_id_2 = auth_register_v2('test@yahoo.com', 'test123', 'Test', 'Test')['auth_user_id']
+
+    dm_id = dm_create_v1(token, user_id_2)['dm_id']
+
+    with pytest.raises(InputError):
+        dm_invite_v1(token, dm_id, user_id_1)
+
+
+def test_dm_invite_user_already_in_dm():
+    clear_v2()
+
+    token = auth_register_v2('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['token']
+    user_id_1 = auth_register_v2('test132@yahoo.com', 'test123', 'Test', 'Test')['auth_user_id']
+    user_id_2 = auth_register_v2('test@yahoo.com', 'test123', 'Test', 'Test')['auth_user_id']
+
+    dm_id = dm_create_v1(token, user_id_1)['dm_id']
+    dm_invite_v1(token, dm_id, user_id_1)
+
+    with pytest.raises(AccessError):
+        dm_invite_v1(token, dm_id, user_id_1)
 
 

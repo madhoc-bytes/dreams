@@ -2,20 +2,23 @@
 
 # Imports
 from src.error import AccessError, InputError
+import jwt
 from src.data import users, channels, dms
+from src.channel import token_to_id
 from datetime import datetime, timezone
 from src.message_senddm_v2 import message_senddm_v2
 
 # Send Message
-def message_send_v1(auth_user_id, channel_id, message):
+def message_send_v1(token, channel_id, message):
     ''' Function that sends message to a channel'''
 
-    # Check that length of message is less than 1000 characters
+    auth_user_id = token_to_id(token)
 
+    # Check that length of message is less than 1000 characters
     if valid_message_length(message) == False:
         raise InputError(description='Message is more than 1000 characters')
     
-
+    
     # Check that user is authorised to view channel 
     if is_user_authorised(auth_user_id, channel_id) == False:
         raise AccessError(description='User is not authorised to this channel')
@@ -55,8 +58,9 @@ def message_send_v1(auth_user_id, channel_id, message):
     }
 
 # Edit message
-def message_edit_v1(auth_user_id, message_id, message):
+def message_edit_v1(token, message_id, message):
     ''' Function that edits message'''
+    auth_user_id = token_to_id(token)
 
     if valid_message_length(message) == False:
         raise InputError(description='Message is more than 1000 characters')
@@ -72,22 +76,26 @@ def message_edit_v1(auth_user_id, message_id, message):
     return {}
 
 # Delete Message
-def message_remove_v1(auth_user_id, message_id):
+def message_remove_v1(token, message_id):
     ''' Function that removes message'''
+    auth_user_id = token_to_id(token)
 
     if message_exists(message_id) == False:
         raise InputError(description='Message no longer exists')
 
+
     if message_sent_by_user(auth_user_id, message_id) == False and is_user_owner(auth_user_id, message_id) == False:
         raise AccessError(description='Access Error')
-    
+
 
     delete_message(message_id)
     return {}
 
 # Share Message
-def message_share_v1(auth_user_id, og_message_id, message, channel_id, dm_id):
+def message_share_v1(token, og_message_id, message, channel_id, dm_id):
     ''' Function that shares message to channel or DM'''
+    auth_user_id = token_to_id(token)
+
 
     if is_user_authorised(auth_user_id, channel_id) == False:
         raise AccessError(description='User has not joined the channel he is trying to share to')
@@ -103,7 +111,7 @@ def message_share_v1(auth_user_id, og_message_id, message, channel_id, dm_id):
             for message in channel['messages']:
                 if message['message_id'] == og_message_id['message_id']:
                     new_message = message['message_string']
-                    shared_message_id = message_send_v1(auth_user_id, channel_id, new_message)
+                    shared_message_id = message_send_v1(token, channel_id, new_message)
 
 
     if (channel_id == -1):
@@ -162,11 +170,6 @@ def message_sent_by_user(auth_user_id, message_id):
                 if message['u_id'] == auth_user_id:
                     result = True
     return result
-
-def get_user_from_token(token):   
-    ''' Function that gets user ID from token''' 
-    decoded_u_id = jwt.decode(token, data.SECRET, algorithms='HS256')    
-    return decoded_u_id['u_id']
 
 def message_exists(message_id):
     ''' Function that checks if a certain message exists'''
