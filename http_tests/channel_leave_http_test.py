@@ -62,7 +62,6 @@ def test_invalid_channel():
     token = r.json().get('token')
     u_id = r.json().get('auth_user_id')
 
-    # try to add owner to a non-existent channel and expect failure
     invalid_id = 10
     addowner_data = {
         'token': token,

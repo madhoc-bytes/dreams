@@ -5,6 +5,7 @@ from src.users import users_all_v1
 from src.other import clear_v2
 
 def test_system():
+    clear_v2()
     # register 1 user
     user1 = auth_register_v2(
         'test_email1@gmail.com',
