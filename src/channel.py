@@ -120,7 +120,7 @@ def channel_addowner_v2(token, channel_id, u_id):
     auth_user_id = token_to_id(token)
     
     # input errors
-    if test_channel_is_invalid(auth_user_id):
+    if test_channel_is_invalid(channel_id):
         raise InputError()
     
     if user_is_owner(u_id, channel_id):
@@ -149,7 +149,7 @@ def channel_removeowner_v2(token, channel_id, u_id):
     auth_user_id = token_to_id(token)
 
     # input errors
-    if test_channel_is_invalid(auth_user_id):
+    if test_channel_is_invalid(channel_id):
         raise InputError()
     
     if not user_is_owner(u_id, channel_id):

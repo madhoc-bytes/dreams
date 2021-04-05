@@ -30,20 +30,12 @@ def test_basic():
     r = requests.post(config.url + 'channels/create', data=ch_data)
     ch_id = r.json().get('channel_id')
 
-    # add inviter to channel
-    join_data = json.dumps({
-        'token': token,
-        'channel_id': ch_id
-    })    
-    requests.post(config.url + 'channel/join/v2', data=join_data)
-
+    # testing channel addowner v2
     addowner_data = json.dumps({
         'token': token,
         'channel_id': ch_id,
         'u_id': u_id
-    })
-
-    # testing channel addowner v2
+    })    
     r = requests.post(config.url + 'channel/addowner/v2', data=addowner_data)
     assert r.status_code == 200
 
@@ -102,20 +94,12 @@ def test_already_owner():
     r = requests.post(config.url + 'channels/create', data=ch_data)
     ch_id = r.json().get('channel_id')
 
-    # add inviter to channel
-    join_data = json.dumps({
-        'token': token,
-        'channel_id': ch_id
-    })    
-    requests.post(config.url + 'channel/join/v2', data=join_data)
-
+    # make user an owner
     addowner_data = json.dumps({
         'token': token,
         'channel_id': ch_id,
         'u_id': u_id
-    })
-
-    # make user an owner
+    })    
     requests.post(config.url + 'channel/addowner/v2', data=addowner_data)
 
     # try to make user owner again and expect input error

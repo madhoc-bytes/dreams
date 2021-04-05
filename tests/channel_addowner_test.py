@@ -23,9 +23,6 @@ def test_basic():
         'test_channel_1',
         True)['channel_id']
 
-    # add auth to the test channel
-    channel_join_v2(user['token'], test_channel_id)
-
     # make user an owner
     channel_addowner_v2(user['token'], test_channel_id, user['auth_user_id'])
 
@@ -72,10 +69,7 @@ def test_already_owner():
         user['token'],
         'test_channel_1',
         True)['channel_id']
-
-    # add auth to the test channel
-    channel_join_v2(user['token'], test_channel_id)
-
+    
     # make user an owner
     channel_addowner_v2(user['token'], test_channel_id, user['auth_user_id'])    
     
