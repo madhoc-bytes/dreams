@@ -121,12 +121,11 @@ def admin_userpermission_change():
     token = data['token']    
     u_id = data['u_id']
     p_id = data['permission_id']
-    return_values = adminuserpermissionchangev1(token, u_id, p_id)
-    return dumps(return_values)
+    return dumps(adminuserpermissionchangev1(token, u_id, p_id))
 
 #message
 @APP.route('/message/senddm/v2', methods=['POST'])
-def message_senddm_v2():
+def message_senddm():
 
     data = request.get_json()
     token = data['token']    
