@@ -77,6 +77,16 @@ def route_dm_remove_v2():
 
     return dumps(return_values)
 
+#message
+@APP.route('/message/senddm/v2', methods=['POST'])
+def route_message_senddm_v2():
+
+    token = request.form.get('token')
+    dm_id = int(request.form.get('dm_id'))
+    message = request.form.get('message')
+    
+    return dumps(message_send(token, dm_id, message))
+
 
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port
