@@ -34,11 +34,10 @@ def dm_create_v1(token, u_ids):
         handles.append(get_handle_from_uid(uid))
     dm_id = len(dms)
     dm_name = ", ".join(handles)
-    print(dm_name)
     dms.append(
         {
             'dm_id': dm_id,
-            'owner_id': token_to_id(u_id),
+            'owner_id': token_to_id(token),
             'dm_name': dm_name,
             'all_members': members,
             'messages': []
@@ -82,9 +81,10 @@ def dm_list_v1(token):
                 'members': dm['all_members']
             })
 
+    print(dm_details_list)
     # Return the list
     return {
-        'dms': dms_details_list
+        'dms': dm_details_list
     }
 
 def dm_invite_v1(token, dm_id, u_id):
@@ -143,8 +143,44 @@ def dm_messages_v1(token, dm_id, start):
         'end': -1,
     }
 
+def dm_leave_v1(token, dm_id):
+    # change the token to a u id
+    auth_user_id = token_to_id(token)
+
+    # invalid channel
+    if test_dm_is_invalid(dm_id):
+        raise InputError()
+
+    # invalid user
+    if not check_user_in_dm(auth_user_id, dm_id):
+        raise AccessError() 
+
+    removed = find_user_in_dm(auth_user_id, dm_id)
+    dms[dm_id]['all_members'].remove(removed)
+    return {}
+
+def dm_remove_v1(token, dm_id):
+    auth_user_id = token_to_id(token)
+    if test_dm_is_invalid(dm_id):
+        raise InputError()
+    if auth_user_id != dms[dm_id]['owner_id']:
+        raise AccessError()
+    dms.remove(dms[dm_id])
+
+    return {}
+
+
 ##############################################################
 # Helper functions
+def find_user_in_dm(u_id, dm_id):
+    # searches for the key value pair of 'u_id': u_id in all_members within a channel
+    # if found, then user is in channel
+    for user in dms[dm_id]['all_members']:
+        key, value = 'u_id', u_id
+        if key in user and value == user[key]:
+            return user
+    return {}
+
 def get_handle_from_uid(u_id):
     # finds user in users list 
     for user in users:
@@ -178,34 +214,3 @@ def check_user_in_dm(u_id, dm_id):
         if key in user and value == user[key]:
             return True
     return False
-
-def check_dm_empty():
-    """Function that checks if channel is empty"""
-    if len(dms) == 0:
-        return True
-    return False
-
-def last_dm_id():
-    """Function that checks last channel ID"""
-    return dms[-1]['dm_id']
-
-def check_if_token_valid(token):
-    if not if_token_exit(token) or token == None:
-        raise AccessError('Invalid Token')
-    return
-
-def if_token_exit(token):
-    for user in users:
-        if token == user['token']:
-            return user
-    return False
-
-def importuIDfromtoken(token):
-    '''Input a token, return its corresponding u_id''' 
-    if len(users) == 0:
-        return -1
-    for user in users:
-        key, value = 'token', token
-        if key in user and value == user[key]:
-            return user['u_id']
-    return -1
