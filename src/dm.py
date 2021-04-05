@@ -21,7 +21,7 @@ def dm_create_v1(token, u_ids):
     details['u_id'] = owner_details['u_id']
     details['name_first'] = owner_details['name_first']
     details['name_last'] = owner_details['name_last']
-    members.append(owner_details)
+    members.append(details)
     handles.append(get_handle_from_uid(u_id))
 
     for uid in u_ids:
@@ -30,7 +30,7 @@ def dm_create_v1(token, u_ids):
         new_user['u_id'] = new_user_details['u_id']
         new_user['name_first'] = new_user_details['name_first']
         new_user['name_last'] = new_user_details['name_last']
-        members.append(new_user_details)
+        members.append(new_user)
         handles.append(get_handle_from_uid(uid))
     dm_id = len(dms)
     dm_name = ", ".join(handles)
@@ -38,7 +38,7 @@ def dm_create_v1(token, u_ids):
     dms.append(
         {
             'dm_id': dm_id,
-            'owner_id': get_handle_from_uid(u_id),
+            'owner_id': token_to_id(u_id),
             'dm_name': dm_name,
             'all_members': members,
             'messages': []
@@ -65,6 +65,7 @@ def dm_details_v1(token, dm_id):
     details = {}
     details['name'] = dms[dm_id]['dm_name']
     details['members'] = dms[dm_id]['all_members']
+    print(details)
     return details
 
 def dm_list_v1(token):
