@@ -47,7 +47,6 @@ def channel_details_v2(token, channel_id):
 
 def channel_messages_v2(token, channel_id, start): 
     auth_user_id = token_to_id(token)
-
     '''Tests potential error cases'''
     if test_user_is_invalid(auth_user_id):
         raise InputError()
