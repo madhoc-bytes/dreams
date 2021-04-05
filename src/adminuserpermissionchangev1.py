@@ -30,12 +30,6 @@ def data_change_permission(u_id, permission_id):
         if user['u_id'] == u_id: 
             user['permission_id'] = permission_id 
     return 
-''' create len of channels to check if clear'''
-def data_channels():
-    return len(channels)
-''' create len of users to check if clear'''
-def data_user():
-    return len(users)
 
 def check_if_token_valid(token):
     if not if_token_exit(token) or token == None:
