@@ -9,6 +9,7 @@ from src.channel import channel_details_v2, channel_invite_v2
 from src.channel import channel_addowner_v2,channel_removeowner_v2
 from src.channel import channel_join_v2, channel_leave_v2
 from src.channels import channels_create_v2
+from src.users import users_all_v1
 from src.other import clear_v2
 
 def defaultHandler(err):
@@ -77,8 +78,9 @@ def channel_invite():
 # channel details
 @APP.route("/channel/details/v2", methods=['GET'])
 def channel_details():
-    token = request.args.get('token')
-    channel_id = request.args.get('channel_id')
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
     return dumps(channel_details_v2(token, channel_id))
 
 # channel addowner
@@ -108,6 +110,12 @@ def server_channels_create():
     is_public = data['is_public']
     return_value = channels_create_v2(token, name, is_public)
     return dumps(return_value)
+
+# users all
+@APP.route("/users/all/v1", methods=['GET'])
+def users_all():
+    token = request.args.get('token')
+    return dumps(users_all_v1(token))
 
 # clear 
 @APP.route('/clear/v1', methods = ['DELETE'])
