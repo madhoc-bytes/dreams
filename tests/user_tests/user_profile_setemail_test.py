@@ -45,11 +45,11 @@ def test_used_email():
 
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
-    new_token_1 = auth_register_v2(
+    auth_register_v2(
         valid_email_1, 
         valid_password_1, 
         valid_first_name_1, 
-        valid_last_name_1)['token']
+        valid_last_name_1)
     
     
     valid_email_2, valid_password_2 = 'abc@defg.com', 'helloWorld123!'

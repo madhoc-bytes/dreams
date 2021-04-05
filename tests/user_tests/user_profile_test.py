@@ -57,11 +57,11 @@ def test_invalid_user():
     valid_email_2, valid_password_2 = 'abc@defg.com', 'helloWorld123!'
     valid_first_name_2, valid_last_name_2 = 'mitchel', 'johnson'
     
-    new_user_id_2 = auth_register_v2(
+    auth_register_v2(
         valid_email_2, 
         valid_password_2, 
         valid_first_name_2, 
-        valid_last_name_2)['auth_user_id']
+        valid_last_name_2)
 
     invalid_user_id = 5
 
