@@ -18,8 +18,8 @@ def dm_create_v2(token, u_ids):
 
     new_dm = {
         'dm_id': dm_id,
-        'creator':user
         'dm_name': new_dm_handle,
+        'creator':user
         'all_dm_members': userlist,
         'messages':[],
     }
