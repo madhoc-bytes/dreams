@@ -215,34 +215,3 @@ def check_user_in_dm(u_id, dm_id):
             return True
     return False
 
-def check_dm_empty():
-    """Function that checks if channel is empty"""
-    if len(dms) == 0:
-        return True
-    return False
-
-def last_dm_id():
-    """Function that checks last channel ID"""
-    return dms[-1]['dm_id']
-
-def check_if_token_valid(token):
-    if not if_token_exit(token) or token == None:
-        raise AccessError('Invalid Token')
-    return
-
-def if_token_exit(token):
-    for user in users:
-        if token == user['token']:
-            return user
-    return False
-
-def importuIDfromtoken(token):
-    '''Input a token, return its corresponding u_id''' 
-    if len(users) == 0:
-        return -1
-    for user in users:
-        key, value = 'token', token
-        if key in user and value == user[key]:
-            return user['u_id']
-    return -1
-
