@@ -1,3 +1,4 @@
+'''
 from src.data import users, channels, dms
 from src.error import InputError, AccessError
 from src.channel import test_if_user_in_ch
@@ -42,3 +43,4 @@ def dms_related_to_user(u_id):
         if (test_if_user_in_ch(u_id, dm['id'])):
             participated_dms.append(dm)
     return participated_dms
+'''
