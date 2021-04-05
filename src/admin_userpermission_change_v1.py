@@ -22,10 +22,10 @@ def adminuserpermissionchangev1(token, u_id, permission_id):
 
     if not_oDuner:
         raise AccessError("Authorised user is not oDuner")
-    data_change_permission(u_id, permission_id)
+    change_permission(u_id, permission_id)
     
 #helper
-def data_change_permission(u_id, permission_id): 
+def change_permission(u_id, permission_id): 
     for user in users: 
         if user['u_id'] == u_id: 
             user['permission_id'] = permission_id 
