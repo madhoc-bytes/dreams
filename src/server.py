@@ -45,6 +45,17 @@ def server_channels_create():
     is_public = request.form.get('is_public')
     return_value = channels_create_v2(token, name, is_public)
     return dumps(return_value)
+#admin userpermission change
+@APP.route('/admin/userpermission/change/v1', methods=['POST'])
+def route_admin_userpermission_change():
+
+    token = request.form.get("token")
+    u_id = int(request.form.get("u_id"))
+    p_id = int(request.form.get("permission_id"))
+    return_values = adminuserpermissionchangev1(token, u_id, p_id)
+
+    return dumps(return_values)
+
 #####################
 #####################
 #####################
