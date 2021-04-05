@@ -11,7 +11,6 @@ def test_invite_basic():
     #owner of dm/caller of dm_create
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
 
     #create one user to pass in the list of users for dm create
     user_id = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')['auth_user_id']
@@ -33,7 +32,6 @@ def test_invite_invalid_dmid():
     #owner of dm/caller of dm_create
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
 
     #create one user to pass in the list of users for dm create
     user_id = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')['auth_user_id']
@@ -43,7 +41,7 @@ def test_invite_invalid_dmid():
 
     u_ids = [user_id]
     # create a test dm with two users
-    dm_data = dm_create_v1(auth_token, u_ids)
+    dm_create_v1(auth_token, u_ids)
 
     #pass invalid dm id to dm invite
     with pytest.raises(InputError):
@@ -55,13 +53,8 @@ def test_invite_invalid_uid():
     #owner of dm/caller of dm_create
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
-
     #create one user to pass in the list of users for dm create
     user_id = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')['auth_user_id']
-
-    #create third user to invite to the dm
-    invitee_id = auth_register_v2('test_invitee@gmail.com', 'test_pw_user', 'userf', 'userl')['auth_user_id']
 
     u_ids = [user_id]
     # create a test dm with two users
@@ -77,8 +70,6 @@ def test_invite_not_member():
     #owner of dm/caller of dm_create
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
-
     #create one user to pass in the list of users for dm create
     user_id = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')['auth_user_id']
 
