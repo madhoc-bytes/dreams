@@ -1,4 +1,4 @@
-from src.channel import test_user_is_invalid
+from src.channel import test_user_is_invalid, token_to_id
 from src.error import InputError, AccessError
 from src.data import dms
 import jwt
@@ -8,7 +8,7 @@ def dm_create_v2(token, u_ids):
     #check valid token#
     check_if_token_valid(token)
     #import uid from token
-    token_uid = importuIDfromtoken(token)
+    token_uid = token_to_id(token)
     #check valid user
     if not test_user_is_invalid(token_uid):
         raise InputError('u_id does not refer to a valid user')
@@ -51,9 +51,3 @@ def if_token_exit(token):
         if token == user[token]:
             return user
     return False
-
-def importuIDfromtoken(token):
-     '''Input a token, return its corresponding u_id''' 
-    u_id_jwt = jwt.decode(token.encode(), SECRET, algorithms=['HS256']) 
-    u_id = int(u_id_jwt['u_id'])
-    return u_id
