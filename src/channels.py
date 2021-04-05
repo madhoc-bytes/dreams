@@ -1,14 +1,14 @@
-# pylint: disable=W0613
-"""channels.py file"""
-
-# Imports
 from src.channel import test_if_user_in_ch
-from src.data import users, channels
+from src.channel import token_to_id
+from src.data import channels, users
 from src.error import InputError, AccessError
+import jwt
 
-def channels_list_v1(auth_user_id):
+def channels_list_v2(token):
     """Function that lists all channels for which a certain user has access"""
-    # Create emppty list to store channels details
+
+    auth_user_id = token_to_id(token)
+    # Create empty list to store channels details
     channels_details_list = []
 
     for channel in channels:
@@ -20,11 +20,11 @@ def channels_list_v1(auth_user_id):
             })
 
     # Return the list
-    return channels_details_list
+    return {
+        'channels': channels_details_list
+    }
 
-
-
-def channels_listall_v1(auth_user_id):
+def channels_listall_v2(token):
     """Function that lists all channels"""
 
     # Create empty list to store all channel details
@@ -36,9 +36,7 @@ def channels_listall_v1(auth_user_id):
             'all_members': channel['all_members']
         })
     # Return the list
-    return channels_details_list
-
-
+    return {'channels': channels_details_list}
 
 def channels_create_v2(token, name, is_public):
     """Function that creates channel"""
