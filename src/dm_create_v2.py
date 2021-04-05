@@ -20,7 +20,6 @@ def dm_create_v2(token, u_ids):
         'dm_id': dm_id,
         'dm_name': new_dm_handle,
         'creator':user
-        'all_dm_members': userlist,
         'messages':[],
     }
     dms.append(new_dm)
