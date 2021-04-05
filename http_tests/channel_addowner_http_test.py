@@ -4,7 +4,7 @@ import json
 from src import config
 
 def test_basic():
-    requests.delete(config.url + 'clear/v2')
+    requests.delete(config.url + 'clear/v1')
 
     # register a user
     reg_data = {
@@ -19,7 +19,6 @@ def test_basic():
     token = r.json().get('token')
     u_id = r.json().get('auth_user_id')
     
-    print(f'uid = {u_id}')
     # create a channel
     ch_data = {
         'token': token,
@@ -37,11 +36,11 @@ def test_basic():
         'channel_id': ch_id,
         'u_id': u_id
     }
-    r = requests.post(config.url + 'channel/addowner/v2', json=addowner_data)
+    r = requests.post(config.url + 'channel/addowner/v1', json=addowner_data)
     assert r.status_code == 200
 
 def test_invalid_channel():
-    requests.delete(config.url + 'clear/v2')
+    requests.delete(config.url + 'clear/v1')
 
     # register a user
     reg_data = {
@@ -65,11 +64,11 @@ def test_invalid_channel():
     }
 
     # testing channel addowner v2
-    r = requests.post(config.url + 'channel/addowner/v2', json=addowner_data)
+    r = requests.post(config.url + 'channel/addowner/v1', json=addowner_data)
     assert r.status_code == 400
 
 def test_already_owner():
-    requests.delete(config.url + 'clear/v2')
+    requests.delete(config.url + 'clear/v1')
 
     # register a user
     reg_data = {
@@ -101,14 +100,14 @@ def test_already_owner():
         'channel_id': ch_id,
         'u_id': u_id
     } 
-    requests.post(config.url + 'channel/addowner/v2', json=addowner_data)
+    requests.post(config.url + 'channel/addowner/v1', json=addowner_data)
 
     # try to make user owner again and expect input error
-    r = requests.post(config.url + 'channel/addowner/v2', json=addowner_data)
+    r = requests.post(config.url + 'channel/addowner/v1', json=addowner_data)
     assert r.status_code == 400
 
 def test_no_privileges():
-    requests.delete(config.url + 'clear/v2')
+    requests.delete(config.url + 'clear/v1')
 
     # register 2 users
     reg_data1 = {
@@ -163,5 +162,5 @@ def test_no_privileges():
         'channel_id': ch_id,
         'u_id': user1_id
     }
-    r = requests.post(config.url + 'channel/addowner/v2', json=addowner_data)
+    r = requests.post(config.url + 'channel/addowner/v1', json=addowner_data)
     assert r.status_code == 403
