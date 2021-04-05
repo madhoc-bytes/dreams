@@ -17,5 +17,3 @@ def tests_channels_create_v2_except():
     auth_user_id11 = auth_register_v2("dubaida28951345@gmail.com", "xujiawen", "Jemma", "Simmons")
     with pytest.raises(InputError):
         channels_create_v2(auth_user_id11['token'], "kasbfvkabvadfihviadfvbhidfbuiva", False)
-    with pytest.raises(AccessError):
-        channels_create_v2(auth_user_id11['token'] + 'a', 'first', True)
