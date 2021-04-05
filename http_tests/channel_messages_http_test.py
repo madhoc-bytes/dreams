@@ -5,122 +5,167 @@ from src import config
 import flask 
 
 def test_messages_nomessage():
-    '''Call messages given a channel with no messages'''
-    #clear_v1()
-    requests.delete(config.url + 'clear/v2', methods='DELETE')
+    requests.delete(config.url + 'clear/v1')
 
-    #auth_register_v1
-    data = json.dumps({'email': 'test@gmail.com', 'password': 'password', 'name_first': 'testF', 'name_last': 'testL'})
-    r = requests.post(config.url + 'auth/register/v2', data=details, methods='POST')
-    #get return value of auth register 
-    payload = r.json()
-    #get token
-    token = payload['token']
+    # register a user
+    reg_data = {
+        'email': 'test@gmail.com',
+        'password': 'testpw123',
+        'name_first': 'test_fname',
+        'name_last': 'test_lname'
+    }
 
-    #channel create
-    channel_data = json.dumps({'token': token, 'name': 'test channel', 'is_public': True})
-    r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
+    # acquire token and id of user
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+    token = r.json().get('token')
+    u_id = r.json().get('auth_user_id')
 
-    #get return value channel create
-    payload = r.json()
-    #get token
-    ch_id = payload['id']
+    # create a channel
+    ch_data = {
+        'token': token,
+        'name': 'test_ch',
+        'is_public': True
+    }
 
-    #channel join
-    join_data = json.dumps({'token': token, 'channel_id': ch_id]})
-    r = requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
+    # acquire channel id
+    r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    ch_id = r.json().get('channel_id')
+    
+    # join user to channel
+    join_data = {
+        'token': token,
+        'channel_id': ch_id
+    }   
+    r = requests.post(config.url + 'channel/join/v2', json=join_data)
 
-    #channel messages
-    messages_params = json.dumps({'token': token, 'channel_id': ch_id, 'start': 0})
-    r = requests.get(config.url + 'channel/messages/v2', params=messages_params, methods='GET')
+    messages_params = {
+        'token': token, 
+        'channel_id': ch_id, 
+        'start': 0
+    }
+    r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
 
     assert(r.status_code == 200)
 
 def test_messages_invalid_ch_id():
-    '''Call messages given an invalid channel id'''
-    #clear_v1()
-    requests.delete(config.url + 'clear/v2', methods='DELETE')
+    requests.delete(config.url + 'clear/v1')
 
-    #auth_register_v1
-    data = json.dumps({'email': 'test@gmail.com', 'password': 'password', 'name_first': 'testF', 'name_last': 'testL'})
-    r = requests.post(config.url + 'auth/register/v2', data=details, methods='POST')
-    #get return value of auth register 
-    payload = r.json()
-    #get ch id
-    token = payload['token']
+    # register a user
+    reg_data = {
+        'email': 'test@gmail.com',
+        'password': 'testpw123',
+        'name_first': 'test_fname',
+        'name_last': 'test_lname'
+    }
 
-    #channel messages
-    messages_params = json.dumps({'token': token, 'channel_id': 10, 'start': 0})
-    r = requests.get(config.url + 'channel/messages/v2', params=messages_params, methods='GET')
+    # acquire token and id of user
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+    token = r.json().get('token')
+    u_id = r.json().get('auth_user_id')
+
+    messages_params = {
+        'token': token, 
+        'channel_id': 10, 
+        'start': 0
+    }
+
+     r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
 
     assert(r.status_code == 400)
 
 def test_messages_start_too_big():
-    '''Call messages given a start > number of messages in channel'''
-    #clear_v1()
-    requests.delete(config.url + 'clear/v2', methods='DELETE')
+    requests.delete(config.url + 'clear/v1')
 
-    #auth_register_v1
-    data = json.dumps({'email': 'test@gmail.com', 'password': 'password', 'name_first': 'testF', 'name_last': 'testL'})
-    r = requests.post(config.url + 'auth/register/v2', data=details, methods='POST')
-    #get return value of auth register 
-    payload = r.json()
-    #get token
-    token = payload['token']
+    # register a user
+    reg_data = {
+        'email': 'test@gmail.com',
+        'password': 'testpw123',
+        'name_first': 'test_fname',
+        'name_last': 'test_lname'
+    }
 
-    #channel create
-    channel_data = json.dumps({'token': token, 'name': 'test channel', 'is_public': True})
-    r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
-    #get return value channel create
-    payload = r.json()
-    #get ch id
-    ch_id = payload['id']
+    # acquire token and id of user
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+    token = r.json().get('token')
+    u_id = r.json().get('auth_user_id')
 
-    #channel join
-    join_data = json.dumps({'token': token, 'channel_id': ch_id]})
-    r = requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
+    # create a channel
+    ch_data = {
+        'token': token,
+        'name': 'test_ch',
+        'is_public': True
+    }
+
+    # acquire channel id
+    r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    ch_id = r.json().get('channel_id')
     
-    #channel messages
-    messages_params = json.dumps({'token': token, 'channel_id': ch_id, 'start': 10})
-    r = requests.get(config.url + 'channel/messages/v2', params=messages_params, methods='GET')
+    # join user to channel
+    join_data = {
+        'token': token,
+        'channel_id': ch_id
+    }   
+    r = requests.post(config.url + 'channel/join/v2', json=join_data)
 
-    assert(r.status_code == 400)
+    join_data = {
+        'token': token,
+        'channel_id': ch_id
+    }   
+    r = requests.post(config.url + 'channel/join/v2', json=join_data)
 
 def test_messages_not_member():
-    '''Call messages given a user not a member of the channel'''
-    #clear_v1()
-    requests.delete(config.url + 'clear/v2', methods='DELETE')
+    requests.delete(config.url + 'clear/v1')
 
-    #auth_register_v1 first user
-    data = json.dumps({'email': 'test@gmail.com', 'password': 'password', 'name_first': 'testF', 'name_last': 'testL'})
-    r = requests.post(config.url + 'auth/register/v2', data=details, methods='POST')
-    #get return value of auth register 
-    payload = r.json()
-    #get token of first user
-    token1 = payload['token']
+    #owner of dm/caller of dm_create
+    reg_data = {
+        'email': 'test_auth@gmail.com',
+        'password': 'test_pw_auth',
+        'name_first': 'testf',
+        'name_last': 'testl'
+    }
 
-    #auth_register_v1 second user
-    data = json.dumps({'email': 'test2@gmail.com', 'password': 'password2', 'name_first': 'testFF', 'name_last': 'testLL'})
-    r = requests.post(config.url + 'auth/register/v2', data=details, methods='POST')
-    #get return value of auth register 
-    payload = r.json()
-    #get token
-    token2 = payload['token']
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+    token = r.json().get('token')
+    u_id = r.json().get('auth_user_id')
+    #create one user to pass in the list of users for dm create
+    reg_data2 = {
+        'email': 'test_auth@gmail.com',
+        'password': 'test_pw_auth',
+        'name_first': 'testf',
+        'name_last': 'testl'
+    }
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
+    token2 = r.json().get('token')
+    u_id2 = r.json().get('auth_user_id')
 
-    #channel create
-    channel_data = json.dumps({'token': token, 'name': 'test channel', 'is_public': True})
-    r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
-    #get return value channel create
-    payload = r.json()
-    #get ch id
-    ch_id = payload['id']
+    create_data = {
+        'token': token,
+        'u_ids': [u_id2]
+    }
 
-    #channel join
-    join_data = json.dumps({'token': token, 'channel_id': ch_id]})
-    r = requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
 
+    ch_data = {
+        'token': token,
+        'name': 'test_ch',
+        'is_public': True
+    }
+
+    # acquire channel id
+    r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    ch_id = r.json().get('channel_id')
+
+    join_data = {
+        'token': token,
+        'channel_id': ch_id
+    }   
+    r = requests.post(config.url + 'channel/join/v2', json=join_data)
     #channel messages
-    messages_params = json.dumps({'token': token2, 'channel_id': ch_id, 'start': 0})
-    r = requests.get(config.url + 'channel/messages/v2', params=messages_data, methods='GET')
+    messages_params = {
+        'token': token2, 
+        'channel_id': ch_id, 
+        'start': 0
+    }
 
-    assert(r.status_code == 500)
+     r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
+
+    assert(r.status_code == 403)
