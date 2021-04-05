@@ -10,6 +10,8 @@ from src.channel import channel_details_v2, channel_invite_v2
 from src.channel import channel_addowner_v2,channel_removeowner_v2, channel_messages_v2
 from src.channel import channel_join_v2, channel_leave_v2
 from src.channels import channels_create_v2
+from src.message import message_send_v1, message_edit_v1, message_remove_v1, message_share_v1
+from src.channels import channels_list_v2, channels_listall_v2
 from src.users import users_all_v1
 from src.message_senddm_v2 import message_senddm_v2
 from src.admin_userpermission_change_v1 import adminuserpermissionchangev1
@@ -132,6 +134,64 @@ def admin_userpermission_change():
     u_id = data['u_id']
     p_id = data['permission_id']
     return dumps(adminuserpermissionchangev1(token, u_id, p_id))
+
+
+# channels/list/v2
+@APP.route('/channels/list/v2', methods=['GET'])
+def channels_list():
+    """Function that lists all channels for which a certain user has access"""
+    data = request.get_json()
+    token = data['token']
+    return dumps(channels_list_v2(token))
+
+# channels/listall/v2
+@APP.route('/channels/listall/v2', methods=['GET'])
+def channels_listall():
+    """Function that lists all channels"""
+    data = request.get_json()
+    token = data['token']
+    return dumps(channels_listall_v2(token))
+
+# message/send/v1
+@APP.route('/message/send/v1', methods=['POST'])
+def send_message():
+    ''' Function that sends message to channel '''
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    message = data['message']
+    return dumps(message_send_v1(token, channel_id, message))
+
+# message/edit/v1
+@APP.route('/message/edit/v1', methods=['PUT'])
+def edit_message():
+    ''' Function that edits a message '''
+    data = request.get_json()
+    token = data['token']
+    message_id = data['message_id']
+    message = data['message']
+    return dumps(message_edit_v1(token, message_id, message))
+
+# message/remove/v1
+@APP.route('/message/remove/v1', methods=['DELETE'])
+def remove_message():
+    ''' Function that removes message '''
+    data = request.get_json()
+    token = data['token']
+    message_id = data['message_id']
+    return dumps(message_remove_v1(token, message_id))
+
+# message/share/v1
+@APP.route('/message/share/v1', methods=['POST'])
+def share_message():
+    ''' Function that shares message to channel or DM '''
+    data = request.get_json()
+    token = data['token']
+    og_message_id = data['og_message_id']
+    message = data['message']
+    channel_id = data['channel_id']
+    dm_id = data['dm_id']
+    return dumps(message_share_v1(token, og_message_id, message, channel_id, dm_id))
 
 #message
 @APP.route('/message/senddm/v2', methods=['POST'])
