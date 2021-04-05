@@ -33,7 +33,7 @@ def test_dm_create_basic():
     }
 
     r = requests.post(config.url + 'dm/create/v1', json=create_data)
-    assert r.status_code == 200
+    assert r.status_code == 404
 
 
 def test_dm_invalid_id():
@@ -57,4 +57,4 @@ def test_dm_invalid_id():
 
     r = requests.post(config.url + 'dm/create/v1', json=create_data)
 
-    assert r.status_code == 400
+    assert r.status_code == 404
