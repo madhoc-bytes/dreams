@@ -86,7 +86,7 @@ def test_already_owner():
 def test_no_privileges():
     clear_v2()
     
-    # register 2 users. first one will be the owner of Dreams
+    # register 3 users. first one will be the owner of Dreams
     user1 = auth_register_v2(
         'test_auth1@gmail.com',
         'test_pw_auth',
@@ -108,8 +108,8 @@ def test_no_privileges():
 
     # add both users to the test channel
     channel_join_v2(user1['token'], test_channel_id)
-    channel_join_v2(user2['token'], test_channel_id)
+    channel_join_v2(user2['token'], test_channel_id)    
 
     # try to let non-owner (user2) make user1 an owner and expect failure
-    with pytest.raises(InputError):
+    with pytest.raises(AccessError):
         channel_addowner_v2(user2['token'], test_channel_id, user1['auth_user_id'])
