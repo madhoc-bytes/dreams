@@ -22,7 +22,7 @@ def test_not_authorised_to_channel_message_share():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     
     # create a channel 1
     ch_data = {
@@ -81,7 +81,7 @@ def test_valid_message_share_to_channel():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     
     # create a channel 1
     ch_data = {
@@ -145,7 +145,7 @@ def test_message_share_to_dm():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     #create one user to pass in the list of users for dm create
     reg_data2 = {
         'email': 'test_second@gmail.com',
@@ -154,7 +154,7 @@ def test_message_share_to_dm():
         'name_last': 'secondl'
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
-    token2 = r.json().get('token')
+
     u_id2 = r.json().get('auth_user_id')
 
     # Create DM 1
@@ -203,7 +203,7 @@ def test_message_share_to_dm_user_not_in_dm():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
 
     #create one user to pass in the list of users for dm create
     reg_data2 = {

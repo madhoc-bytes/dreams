@@ -22,11 +22,11 @@ def test_remove_one_message_from_channel():
     channel_join_v2(token, channel['channel_id'])
 
     message_one = 'I am message #1'
-    message_two = 'My ID should be 2!'
+
 
     # Send two message
     message_one_id = message_send_v1(token, channel, message_one)
-    message_two_id = message_send_v1(token, channel, message_two)
+
 
     # Delete message 1
     message_remove_v1(token, message_one_id)
@@ -45,12 +45,11 @@ def test_remove_two_messages_from_channel():
 
     message_one = 'I am message #1'
     message_two = 'My ID should be 2!'
-    message_three = 'I will not be deleted!'
+
 
     # Send two message
     message_one_id = message_send_v1(token, channel, message_one)
     message_two_id = message_send_v1(token, channel, message_two)
-    message_three_id = message_send_v1(token, channel, message_three)
 
     # Delete message 1 and 2
     message_remove_v1(token, message_one_id)
@@ -75,12 +74,12 @@ def test_remove_two_messages_two_channels():
 
     message_one = 'I am message #1'
     message_two = 'My ID should be 2!'
-    message_three = 'I will not be deleted!'
+    
 
     # Send two message
     message_one_id = message_send_v1(token, channel, message_one)
     message_two_id = message_send_v1(token_2, channel_2, message_two)
-    message_three_id = message_send_v1(token, channel, message_three)
+
 
     # Delete message 1 and 2
     message_remove_v1(token, message_one_id)
@@ -101,11 +100,11 @@ def test_remove_deleted_message_channel():
     channel_join_v2(token, channel['channel_id'])
 
     message_one = 'I am message #1'
-    message_two = 'My ID should be 2!'
+
 
     # Send two message
     message_one_id = message_send_v1(token, channel, message_one)
-    message_two_id = message_send_v1(token, channel, message_two)
+    
 
     # Delete message 1
     message_remove_v1(token, message_one_id)
@@ -124,11 +123,9 @@ def test_remove_message_not_sent_by_same_user():
     channel_join_v2(token, channel['channel_id'])
     channel_join_v2(token_2, channel['channel_id'])
 
-    message_one = 'I am message #1'
-    message_two = 'My ID should be 2!'
+    message_two = 'Hello!'
 
     # Send two message
-    message_one_id = message_send_v1(token, channel, message_one)
     message_two_id = message_send_v1(token_2, channel, message_two)
 
 
@@ -147,7 +144,7 @@ def test_remove_message_from_dm():
     dm_id_1 = dm_create_v1(token, u_ids)['dm_id']
 
     message_one = 'I am message #1'
-    message_two = 'My ID should be 2!'
+    
 
     # Send two message
     message_one_id = message_senddm_v2(token, dm_id_1, message_one)

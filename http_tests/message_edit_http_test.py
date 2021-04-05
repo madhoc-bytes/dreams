@@ -23,7 +23,7 @@ def test_valid_message_edit():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     
     # create a channel
     ch_data = {
@@ -69,7 +69,7 @@ def test_long_message_edit():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     
     # create a channel
     ch_data = {
@@ -115,7 +115,7 @@ def test_message_not_sent_by_same_user_message_edit():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
 
     # register a user 2
     reg_data = {
@@ -128,7 +128,7 @@ def test_message_not_sent_by_same_user_message_edit():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token_2 = r.json().get('token')
-    u_id_2 = r.json().get('auth_user_id')
+
     
     # create a channel
     ch_data = {

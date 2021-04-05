@@ -23,7 +23,7 @@ def test_message_remove_from_channel_invalid_message():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     
     # create a channel
     ch_data = {
@@ -47,7 +47,7 @@ def test_message_remove_from_channel_invalid_message():
     message = 'a'
     message_data = {'token': token, 'channel_id': ch_id, 'message': message}
     r = requests.post(config.url + 'message/send/v1', json=message_data)
-    message_id = r.json().get('message_id')
+    
 
     # Creating not valid message 
     message_id_2 = 42
@@ -72,7 +72,7 @@ def test_message_remove_from_channel_not_sent_by_same_user():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
 
     # register a user
     reg_data = {
@@ -85,7 +85,7 @@ def test_message_remove_from_channel_not_sent_by_same_user():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token_2 = r.json().get('token')
-    u_id_2 = r.json().get('auth_user_id')
+
     
     # create a channel
     ch_data = {
@@ -131,7 +131,7 @@ def test_message_remove_from_channe():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     
     # create a channel
     ch_data = {
@@ -176,7 +176,7 @@ def test_message_remove_from_dm():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     #create one user to pass in the list of users for dm create
     reg_data2 = {
         'email': 'test_second@gmail.com',
@@ -185,7 +185,7 @@ def test_message_remove_from_dm():
         'name_last': 'secondl'
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
-    token2 = r.json().get('token')
+
     u_id2 = r.json().get('auth_user_id')
 
     # Create DM 1
@@ -204,7 +204,7 @@ def test_message_remove_from_dm():
     }
 
     r = requests.post(config.url + 'dm/create/v1', json=create_data)
-    dm_id_2 = r.json().get('dm_id')
+
 
 
     # Sending a message to dm 1

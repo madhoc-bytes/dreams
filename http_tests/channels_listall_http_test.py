@@ -21,7 +21,7 @@ def test_no_channels_list():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     
     # create a channel 1
     ch_data = {
@@ -31,7 +31,7 @@ def test_no_channels_list():
     }
     # acquire channel id
     r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-    ch_id = r.json().get('channel_id')
+
 
 
     # Testing listing the channels for user
@@ -54,7 +54,7 @@ def test_two_channels_one_user_list():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     
     # create a channel 1
     ch_data = {
@@ -76,7 +76,7 @@ def test_two_channels_one_user_list():
 
     # acquire channel id
     r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-    ch_id_2 = r.json().get('channel_id')
+
 
     # Make user 1 join channel 1
     join_data = {
@@ -106,7 +106,7 @@ def test_two_users_two_channels_list():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
 
     # register a user 2
     reg_data = {

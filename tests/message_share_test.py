@@ -52,7 +52,7 @@ def test_message_share_one_message_to_channel():
     # Create 2 channels
     channel0 = channels_create_v2(token, 'My Channel', True)
     channel1 = channels_create_v2(token, 'My Channel 2', True)
-    channel2 = channels_create_v2(token, 'My Channel 3', True)
+
 
     # Join user in both channels
     channel_join_v2(token, channel0['channel_id'])
@@ -99,12 +99,11 @@ def test_message_share_two_messages_to_channel():
 
     # Create one messsage
     message_one = 'I am message #1'
-    message_two = 'Hello!'
+    
     message_three = 'Goodbye!'
 
     # Send messages
-    message_one_id = message_send_v1(token, channel0, message_one) 
-    message_two_id = message_send_v1(token, channel1, message_two) 
+    message_one_id = message_send_v1(token, channel0, message_one)  
     message_three_id = message_send_v1(token, channel2, message_three) 
 
     # Share messages
@@ -118,7 +117,7 @@ def test_message_share_two_messages_to_channel():
     result_1 = is_message_shared(sharing_id_1, channel1)
     result_2 = is_message_shared(sharing_id_2, channel0)
     
-    assert result_1 == True and result_2 == True and first_share_id == {'shared_message_id': {'message_id': 4}} and second_share_id == {'shared_message_id': {'message_id': 5}}
+    assert result_1 == True and result_2 == True and first_share_id == {'shared_message_id': {'message_id': 3}} and second_share_id == {'shared_message_id': {'message_id': 4}}
 
 # Test sharing to a DM
 def test_share_message_to_dm():
@@ -128,7 +127,7 @@ def test_share_message_to_dm():
     # Create a user, owner of the DM
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
+    
 
     # Create another user 
     user_id = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')['auth_user_id']
@@ -167,7 +166,7 @@ def test_share_message_dm_with_user_not_in_dm():
     # Create a user, owner of the DM
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
+    
 
     token_2 = auth_register_v2('germanijack@gmail.com', 'test_pw_awuth', 'tedastf', 'testl')['token']
 
@@ -187,14 +186,6 @@ def test_share_message_dm_with_user_not_in_dm():
 
     og_message_id = message_senddm_v2(auth_token, dm_id_1, message_one)
 
-    result = False
-    for dm in dms:
-        if dm['dm_id'] == dm_id_1:
-            break
-
-    for message in dm['messages']:
-        if message['message_id'] == og_message_id['message_id']:
-            result = True
 
 
     with pytest.raises(AccessError):

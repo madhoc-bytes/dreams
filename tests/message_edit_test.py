@@ -57,11 +57,11 @@ def test_message_edit_two_messages():
     channel_1 = channels_create_v2(token_1, 'Channel 1', True)
     channel_join_v2(token_1, channel_1['channel_id'])
 
-    message_1 = 'Valid message!'
+    
     message_2 = 'Another valid message'
     new_message = 'This message was edited'
 
-    message_one_id = message_send_v1(token_1, channel_1, message_1) 
+
     message_two_id = message_send_v1(token_1, channel_1, message_2)
 
     message_edit_v1(token_1, message_two_id, new_message)
@@ -84,11 +84,11 @@ def test_message_edit_two_channels():
     channel_join_v2(token_1, channel_1['channel_id'])
     channel_join_v2(token_2, channel_2['channel_id'])
 
-    message_1 = 'Valid message!'
+
     message_2 = 'Another valid message'
     new_message = 'This message was edited'
 
-    message_one_id = message_send_v1(token_1, channel_1, message_1) 
+    
     message_two_id = message_send_v1(token_2, channel_2, message_2)
 
     message_edit_v1(token_2, message_two_id, new_message)

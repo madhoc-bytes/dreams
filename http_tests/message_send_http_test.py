@@ -23,7 +23,7 @@ def test_valid_message_send():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     
     # create a channel
     ch_data = {
@@ -64,7 +64,7 @@ def test_long_message_send():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     
     # create a channel
     ch_data = {
@@ -105,7 +105,7 @@ def test_message_send_not_authorised_user():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
+
     
     # create a channel
     ch_data = {
