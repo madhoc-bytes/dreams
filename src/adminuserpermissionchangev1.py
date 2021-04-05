@@ -1,4 +1,5 @@
 from src.channel import test_user_is_invalid
+from src.channel import token_to_id
 from src.error import InputError, AccessError
 from src.data import users
 
@@ -6,7 +7,7 @@ def adminuserpermissionchangev1(token, u_id, permission_id):
     check_if_token_valid(token) 
     #$check valid user
     test_user_is_invalid(u_id)
-    token_uid = importuIDfromtoken(token)
+    token_uid = token_to_id(token)
     #If permission_id invalid
     if permission_id < 1 or permission_id > 2:
         raise InputError('perjmission_id invalid')
