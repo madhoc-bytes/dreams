@@ -8,6 +8,7 @@ from src.data import messages
 from src.message import message_send_v1, message_edit_v1, message_remove_v1, message_share_v1
 from src.channel import channel_details_v2
 from src.channels import channels_list_v2, channels_listall_v2
+from src.dm_invite_v1 import dm_invite_v1
 
 def defaultHandler(err):
     response = err.get_response()
@@ -111,6 +112,16 @@ def share_message():
     dm_id = request.form.get('dm_id')
 
     return_value = message_share_v1(token, og_message_id, message, channel_id, dm_id)
+    return dumps(return_value)
+
+@APP.route('dm/invite/v1', methods=['POST'])
+def dm_invite():
+    ''' Function that invites user to DM '''
+    token = request.form.get('token')
+    dm_id = request.form.get('dm_id')
+    u_id = request.form.get('u_id')
+
+    return_value = dm_invite_v1(token, dm_id, u_id)
     return dumps(return_value)
 
 @APP.route("/channel/details/v2", methods=['GET'])
