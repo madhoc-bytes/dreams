@@ -15,7 +15,6 @@ def test_dm_leave_invalid_dmid():
 
     #create one user to pass in the list of users for dm create
     user = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')
-    user_token = user['token']
     user_id = user['auth_user_id']
 
     u_ids = [user_id]
@@ -34,7 +33,7 @@ def test_dm_leave_not_member():
 
     #create one user to pass in the list of users for dm create
     user = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')
-
+    user_token = user['token']
     u_ids = []
     # create a test dm
     dm_data = dm_create_v1(auth_token, u_ids)
