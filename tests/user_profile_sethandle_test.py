@@ -3,10 +3,10 @@ from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_set
 from src.auth import auth_register_v2, auth_login_v2
 from src.error import InputError
 from src.data import users
-from src.other import clear_v1
+from src.other import clear_v2
 
 def test_user_set_handle_valid():
-    clear_v1()
+    clear_v2()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
     new_token_1 = auth_register_v2(
@@ -26,7 +26,7 @@ def test_user_set_handle_valid():
     assert user_info['handle'] == new_handle
 
 def test_new_handle_too_short():
-    clear_v1()
+    clear_v2()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
     new_token_1 = auth_register_v2(
@@ -41,7 +41,7 @@ def test_new_handle_too_short():
         user_profile_sethandle_v1(new_token_1, new_handle_short)
 
 def test_new_handle_too_long():
-    clear_v1()
+    clear_v2()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
     new_token_1 = auth_register_v2(
@@ -57,7 +57,7 @@ def test_new_handle_too_long():
 
 def test_used_handle():
 
-    clear_v1()
+    clear_v2()
 
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
