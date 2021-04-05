@@ -55,5 +55,13 @@ dms = []
             'name_last': 'Jacobs',
         }
     ],
+    'messages': [
+        {
+            'message_id': 0,
+            'u_id': 0,
+            'message_string': 'hello123',
+            'time': 123123123,
+        }
+    ],
 }
 '''
