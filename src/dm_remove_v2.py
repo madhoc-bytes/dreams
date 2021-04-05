@@ -37,4 +37,4 @@ def remove_dm(u_id, dm_id):
             for user in users:
                 if u_id == user['u_id']: 
                     dm['owners'].remove(user) 
-                    return
+    return
