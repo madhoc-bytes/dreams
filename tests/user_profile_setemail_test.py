@@ -3,10 +3,10 @@ from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_set
 from src.auth import auth_register_v2, auth_login_v2
 from src.error import InputError
 from src.data import users
-from src.other import clear_v1
+from src.other import clear_v2
 
 def test_user_profile_setemail_valid():
-    clear_v1()
+    clear_v2()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
     new_token_1 = auth_register_v2(
@@ -26,7 +26,7 @@ def test_user_profile_setemail_valid():
     assert user_info['email'] == new_email
 
 def test_invalid_email():
-    clear_v1()
+    clear_v2()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
     new_token_1 = auth_register_v2(
@@ -41,7 +41,7 @@ def test_invalid_email():
         user_profile_setemail_v1(new_token_1, invalid_new_email)
 
 def test_used_email():
-    clear_v1()
+    clear_v2()
 
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
