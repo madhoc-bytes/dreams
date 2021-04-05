@@ -36,12 +36,12 @@ def data_channels():
 ''' create len of users to check if clear'''
 def data_user():
     return len(users)
-def importuIDfromtoken(token):
-    return token
+
 def check_if_token_valid(token):
     if not if_token_exit(token) or token == None:
         raise AccessError('Invalid Token')
     return
+    
 def if_token_exit(token):
     for user in users:
         if token == user[token]:
