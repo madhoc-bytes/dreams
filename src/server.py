@@ -5,7 +5,10 @@ from flask_cors import CORS
 from src.error import InputError
 from src import config
 from src.auth import auth_register_v2
-from src.channel import channel_details_v2, channel_join_v2, channel_invite_v2
+from src.channel import channel_details_v2, 
+channel_join_v2, 
+channel_invite_v2, 
+channel_addowner_v2
 from src.channels import channels_create_v2
 from src.other import clear_v2
 
@@ -67,6 +70,14 @@ def channel_details():
     token = request.args.get('token')
     channel_id = request.args.get('channel_id')
     return dumps(channel_details_v2(token, channel_id))
+
+# channel addowner
+@APP.route("/channel/addowner/v2", methods=['POST'])
+def channel_addowner():
+    token = request.form.get('token')
+    channel_id = request.form.get('channel_id')
+    u_id = request.form.get('u_id')
+    return dumps(channel_addowner_v2(token, channel_id, u_id))
 
 # channel create
 @APP.route('/channels/create', methods = ['POST'])

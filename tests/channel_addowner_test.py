@@ -79,6 +79,7 @@ def test_already_owner():
     # make user an owner
     channel_addowner_v2(user['token'], test_channel_id, user['auth_user_id'])    
     
+    # try to make user owner again and expect input error
     with pytest.raises(InputError):
         channel_addowner_v2(user['token'], test_channel_id, user['auth_user_id'])
 
