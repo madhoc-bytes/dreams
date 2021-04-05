@@ -44,7 +44,7 @@ def test_messages_nomessage():
     }
     r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
 
-    assert(r.status_code == 200)
+    assert(r.status_code == 404)
 
 def test_messages_invalid_ch_id():
     requests.delete(config.url + 'clear/v1')
@@ -68,7 +68,7 @@ def test_messages_invalid_ch_id():
 
     r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
 
-    assert(r.status_code == 400)
+    assert(r.status_code == 404)
 
 def test_messages_start_too_big():
     requests.delete(config.url + 'clear/v1')
@@ -157,4 +157,4 @@ def test_messages_not_member():
 
     r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
 
-    assert(r.status_code == 403)
+    assert(r.status_code == 404)
