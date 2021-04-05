@@ -26,7 +26,6 @@ def channel_invite_v2(token, channel_id, u_id):
 
     return {}
 
-
 def channel_details_v2(token, channel_id):
     # change the token to a u id
     auth_user_id = token_to_id(token)
@@ -76,8 +75,7 @@ def channel_messages_v2(token, channel_id, start):
         'end': -1,
     }
 
-
-def channel_leave_v1(token, channel_id):
+def channel_leave_v2(token, channel_id):
     # change the token to a u id
     auth_user_id = token_to_id(token)
 
@@ -86,14 +84,13 @@ def channel_leave_v1(token, channel_id):
         raise InputError()   
 
     # invalid user
-    if test_if_user_in_ch(auth_user_id, channel_id):
+    if not test_if_user_in_ch(auth_user_id, channel_id):
         raise AccessError() 
 
     removed = find_user_in_ch(auth_user_id, channel_id)
     channels[channel_id]['all_members'].remove(removed)   
 
     return {}
-
 
 def channel_join_v2(token, channel_id):
     auth_user_id = token_to_id(token)

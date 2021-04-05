@@ -118,7 +118,6 @@ def test_invite_channel_invalid():
     with pytest.raises(InputError):
         channel_invite_v2(auth_id['token'], invalid_channel_id, invitee_id['auth_user_id'])
 
-
 def test_invite_user_invalid():
     clear_v2()
 
@@ -140,7 +139,6 @@ def test_invite_user_invalid():
     invalid_user_id = 100
     with pytest.raises(InputError):
         channel_invite_v2(auth_id['token'], test_channel_id, invalid_user_id)
-
 
 def test_invite_inviter_not_in_channel():    
     clear_v2()

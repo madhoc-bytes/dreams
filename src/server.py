@@ -72,7 +72,7 @@ def channel_details():
     return dumps(channel_details_v2(token, channel_id))
 
 # channel addowner
-@APP.route("/channel/addowner/v2", methods=['POST'])
+@APP.route("/channel/addowner/v1", methods=['POST'])
 def channel_addowner():
     data = request.get_json()
     token = data['token']
@@ -81,7 +81,7 @@ def channel_addowner():
     return dumps(channel_addowner_v2(token, channel_id, u_id))
 
 # channel removeowner
-@APP.route("/channel/removeowner/v2", methods=['POST'])
+@APP.route("/channel/removeowner/v1", methods=['POST'])
 def channel_removeowner():
     data = request.get_json()
     token = data['token']
@@ -100,7 +100,7 @@ def server_channels_create():
     return dumps(return_value)
 
 # clear 
-@APP.route('/clear/v2', methods = ['DELETE'])
+@APP.route('/clear/v1', methods = ['DELETE'])
 def clear():
     return dumps(clear_v2())
 
