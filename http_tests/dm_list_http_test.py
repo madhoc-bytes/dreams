@@ -17,7 +17,6 @@ def test_dm_list_basic():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     list_params = {
         'token': token

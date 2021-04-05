@@ -17,7 +17,6 @@ def test_dm_messages_nomessage():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     create_data = {
         'token': token,
@@ -49,7 +48,6 @@ def test_dm_messages_invalid_d_id():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     msg_params = {
         'token': token,
@@ -73,7 +71,6 @@ def test_dm_messages_start_too_big():
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     create_data = {
         'token': token,
@@ -105,7 +102,6 @@ def test_dm_messages_not_member():
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     reg_data2 = {
         'email': 'test_second@gmail.com',
@@ -115,7 +111,6 @@ def test_dm_messages_not_member():
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
     token2 = r.json().get('token')
-    u_id2 = r.json().get('auth_user_id')
 
     create_data = {
         'token': token,

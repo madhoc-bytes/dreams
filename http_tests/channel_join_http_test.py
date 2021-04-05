@@ -18,7 +18,6 @@ def test_join_channel():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
     
     # create a channel
     ch_data = {
@@ -56,7 +55,6 @@ def test_join_invalid_uid():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     
     #channel join
@@ -80,7 +78,6 @@ def test_join_private():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
     
     # create a private channel
     ch_data = {

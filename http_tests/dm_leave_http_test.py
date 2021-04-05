@@ -17,7 +17,6 @@ def test_dm_leave_basic():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     reg_data2 = {
         'email': 'test_second@gmail.com',
@@ -26,8 +25,6 @@ def test_dm_leave_basic():
         'name_last': 'secondl'
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
-    token2 = r.json().get('token')
-    u_id2 = r.json().get('auth_user_id')
 
     create_data = {
         'token': token,
@@ -58,7 +55,6 @@ def test_dm_leave_invalid_dmid():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     reg_data2 = {
         'email': 'test_second@gmail.com',
@@ -67,8 +63,6 @@ def test_dm_leave_invalid_dmid():
         'name_last': 'secondl'
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
-    token2 = r.json().get('token')
-    u_id2 = r.json().get('auth_user_id')
 
     create_data = {
         'token': token,
@@ -76,7 +70,6 @@ def test_dm_leave_invalid_dmid():
     }
 
     r = requests.post(config.url + 'dm/create/v1', json=create_data)
-    dm_id = r.json().get('dm_id')
 
     leave_data = {
         'token': token,
@@ -100,7 +93,6 @@ def test_dm_leave_not_member():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     reg_data2 = {
         'email': 'test_second@gmail.com',
@@ -110,7 +102,6 @@ def test_dm_leave_not_member():
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
     token2 = r.json().get('token')
-    u_id2 = r.json().get('auth_user_id')
 
     create_data = {
         'token': token,

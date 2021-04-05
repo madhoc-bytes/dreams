@@ -11,6 +11,7 @@ from src.channel import channel_addowner_v2,channel_removeowner_v2
 from src.channel import channel_join_v2, channel_leave_v2, channel_messages_v2
 from src.channels import channels_create_v2
 from src.other import clear_v2
+from src.users import users_all_v1
 
 def defaultHandler(err):
     response = err.get_response()

@@ -17,7 +17,6 @@ def test_dm_create_basic():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
     #create one user to pass in the list of users for dm create
     reg_data2 = {
         'email': 'test_second@gmail.com',
@@ -26,7 +25,6 @@ def test_dm_create_basic():
         'name_last': 'secondl'
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
-    token2 = r.json().get('token')
     u_id2 = r.json().get('auth_user_id')
 
     create_data = {
@@ -51,7 +49,6 @@ def test_dm_invalid_id():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     create_data = {
         'token': token,

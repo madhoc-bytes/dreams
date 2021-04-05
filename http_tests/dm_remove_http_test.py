@@ -17,7 +17,6 @@ def test_dm_remove_basic():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     create_data = {
         'token': token,
@@ -47,7 +46,6 @@ def test_dm_remove_invalid_dmid():
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     rem_data = {
         'token': token,

@@ -13,7 +13,6 @@ def test_dm_leave_basic():
     #owner of dm/caller of dm_create
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
 
     #create one user to pass in the list of users for dm create
     user = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')
@@ -41,16 +40,6 @@ def test_dm_leave_invalid_dmid():
     #owner of dm/caller of dm_create
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
-
-    #create one user to pass in the list of users for dm create
-    user = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')
-    user_id = user['auth_user_id']
-    user_token = user['token']
-
-    u_ids = [user_id]
-    # create a test dm
-    dm_data = dm_create_v1(auth_token, u_ids)
 
     with pytest.raises(InputError):
         dm_leave_v1(auth_token, 10)
@@ -61,11 +50,9 @@ def test_dm_leave_not_member():
     #owner of dm/caller of dm_create
     auth = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')
     auth_token = auth['token']
-    auth_id = auth['auth_user_id']
 
     #create one user to pass in the list of users for dm create
     user = auth_register_v2('test_user@gmail.com', 'test_pw_user', 'userf', 'userl')
-    user_id = user['auth_user_id']
     user_token = user['token']
 
     u_ids = []

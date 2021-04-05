@@ -18,7 +18,6 @@ def test_messages_nomessage():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     # create a channel
     ch_data = {
@@ -61,8 +60,6 @@ def test_messages_invalid_ch_id():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
-
     messages_params = {
         'token': token, 
         'channel_id': 10, 
@@ -87,7 +84,6 @@ def test_messages_start_too_big():
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
 
     # create a channel
     ch_data = {
@@ -126,7 +122,6 @@ def test_messages_not_member():
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
     token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
     #create one user to pass in the list of users for dm create
     reg_data2 = {
         'email': 'test_second@gmail.com',
@@ -136,7 +131,6 @@ def test_messages_not_member():
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
     token2 = r.json().get('token')
-    u_id2 = r.json().get('auth_user_id')
 
 
     ch_data = {
