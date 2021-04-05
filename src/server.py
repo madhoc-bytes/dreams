@@ -114,6 +114,7 @@ def share_message():
     return_value = message_share_v1(token, og_message_id, message, channel_id, dm_id)
     return dumps(return_value)
 
+# dm/invite/v1
 @APP.route('dm/invite/v1', methods=['POST'])
 def dm_invite():
     ''' Function that invites user to DM '''

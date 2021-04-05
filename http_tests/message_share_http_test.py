@@ -51,6 +51,7 @@ def test_share_message_to_channel_user_not_joined():
     dm_id = -1
     message = 'Test'
     share_id = {'token': token, 'message_id': message_id, 'message': message, 'channel_id': channel_id, 'dm_id': dm_id}
+    requests.post(config.url + 'message/share/v1', data=share_id, methods='POST')
 
     # Assertions
     assert resp.status_code == 403
@@ -102,6 +103,7 @@ def test_share_message_to_channel():
     dm_id = -1
     message = 'Test'
     share_id = {'token': token, 'message_id': message_id, 'message': message, 'channel_id': channel_id, 'dm_id': dm_id}
+    requests.post(config.url + 'message/share/v1', data=share_id, methods='POST')
 
     # Assertions
     assert resp.status_code == 200
