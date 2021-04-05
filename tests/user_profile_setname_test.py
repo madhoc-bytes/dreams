@@ -3,10 +3,10 @@ from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_set
 from src.auth import auth_register_v2, auth_login_v2
 from src.error import InputError
 from src.data import users
-from src.other import clear_v1
+from src.other import clear_v2
 
 def test_user_profile_setname_valid():
-    clear_v1()
+    clear_v2()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
     new_token_1 = auth_register_v2(
@@ -28,7 +28,7 @@ def test_user_profile_setname_valid():
     assert user_info['name_first'] == new_name_first and user_info['name_last'] == new_name_last
 
 def test_name_first_too_short():
-    clear_v1()
+    clear_v2()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
     new_token_1 = auth_register_v2(
@@ -44,7 +44,7 @@ def test_name_first_too_short():
         user_profile_setname_v1(new_token_1, new_name_first_short, new_name_last)
 
 def test_name_first_too_long():
-    clear_v1()
+    clear_v2()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
     new_token_1 = auth_register_v2(
@@ -60,7 +60,7 @@ def test_name_first_too_long():
         user_profile_setname_v1(new_token_1, new_name_first_long, new_name_last)
 
 def test_name_last_too_short():
-    clear_v1()
+    clear_v2()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
     new_token_1 = auth_register_v2(
@@ -76,7 +76,7 @@ def test_name_last_too_short():
         user_profile_setname_v1(new_token_1, new_name_first, new_name_last_short)
 
 def test_name_last_too_long():
-    clear_v1()
+    clear_v2()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
     new_token_1 = auth_register_v2(
