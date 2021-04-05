@@ -1,4 +1,3 @@
-'''
 from src.data import users, channels, dms
 from src.error import InputError, AccessError
 from src.channel import test_if_user_in_ch
@@ -23,8 +22,8 @@ def search_v2(token, query_str):
 
     for dm in participated_dms:
         for msg in dm['messages']:
-            if query_str in msg['message_string']:
-                found_messages.append(msg['message_string'])
+            if query_str in msg['message']:
+                found_messages.append(msg['message'])
     
     return {'messages' : found_messages}
 
@@ -40,7 +39,6 @@ def channels_related_to_user(u_id):
 def dms_related_to_user(u_id):
     participated_dms = []
     for dm in dms:
-        if (test_if_user_in_ch(u_id, dm['id'])):
+        if (check_user_in_dm(u_id, dm['dm_id'])):
             participated_dms.append(dm)
     return participated_dms
-'''
