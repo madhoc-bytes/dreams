@@ -5,7 +5,7 @@ from flask_cors import CORS
 from src.error import InputError
 from src import config
 from src.auth import auth_register_v2
-from src.dm import dm_create_v1, dm_details_v1, dm_invite_v1, dm_leave_v1, dm_list_v1, dm_messages_v1
+from src.dm import dm_create_v1, dm_details_v1, dm_invite_v1, dm_leave_v1, dm_list_v1, dm_messages_v1, dm_remove_v1
 from src.channel import channel_details_v2, channel_invite_v2
 from src.channel import channel_addowner_v2,channel_removeowner_v2
 from src.channel import channel_join_v2, channel_leave_v2, channel_messages_v2
