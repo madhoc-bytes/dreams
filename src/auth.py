@@ -13,7 +13,7 @@ from src.error import InputError, AccessError
 
 
 def auth_login_v1(email, password):
-    '''auth login function implementation'''
+    
     if len(users) != 0:
         for user in users:
             if not email_is_valid(email):
@@ -27,7 +27,6 @@ def auth_login_v1(email, password):
     return u_id
 
 def auth_register_v1(email, password, name_first, name_last):
-    '''auth register function implementation'''
     #setting handle
     handle = (name_first + name_last)
     handle = handle.lower()
@@ -133,7 +132,7 @@ def auth_register_v2(email, password, name_first, name_last):
         })
 
     if len(users) == 1:
-            users[0]['permission_id'] = 1
+            users[0]['permission_id'] = True
 
     
     return ({
@@ -169,6 +168,8 @@ def auth_logout_v2(token):
             is_success = True
 
     return ({'is_success': is_success})
+
+########## HELPERS ##########
 
 def generate_token(u_id):
     SECRET = 'break'

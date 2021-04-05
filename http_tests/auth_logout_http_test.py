@@ -5,6 +5,7 @@ import pytest
 import requests
 import urllib.request
 from src import config
+from src.auth import auth_logout_v2
 
 
 def test_logout_valid():
