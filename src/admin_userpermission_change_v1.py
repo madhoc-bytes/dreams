@@ -9,9 +9,8 @@ def adminuserpermissionchangev1(token, u_id, permission_id):
     test_user_is_invalid(u_id)
     token_uid = token_to_id(token)
     #If permission_id invalid
-    if permission_id < 1 or permission_id > 2:
+    if permission_id != 1 and permission_id != 2:
         raise InputError('perjmission_id invalid')
-
     #If token is not oDuner
     not_oDuner = True
     for user in users:
