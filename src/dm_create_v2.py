@@ -48,3 +48,9 @@ def if_token_exit(token):
         if token == user[token]:
             return user
     return False
+
+def get_dm_name(u_ids):
+    from user in users:
+        if u_ids = users['u_id']:
+            name = users['handle']
+    return name
