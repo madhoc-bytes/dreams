@@ -1,4 +1,5 @@
 from src.error import InputError, AccessError
+from src.channel import token_to_id
 import jwt
 from src.data import users, dms
 
@@ -6,7 +7,7 @@ def message_senddm_v2(token, dm_id, message):
     #check valid token#
     check_if_token_valid(token)
     #import uid from token
-    token_uid = importuIDfromtoken(token)
+    token_uid = token_to_id(token)
     if not test_if_user_in_dm(token_uid, dm_id):
         raise AccessError('authorised user has not joined the channel they are trying to post to')
     #InputError when any of:
@@ -27,13 +28,7 @@ def if_token_exit(token):
         if token == user[token]:
             return user
     return False
-
-def importuIDfromtoken(token):
-     '''Input a token, return its corresponding u_id''' 
-    u_id_jwt = jwt.decode(token.encode(), SECRET, algorithms=['HS256']) 
-    u_id = int(u_id_jwt['u_id'])
-    return u_id
-
+    
 def is_member_exist(u_id, dm_id): 
     for dm in dms: 
         if dm['dm_id'] == dm_id: 
