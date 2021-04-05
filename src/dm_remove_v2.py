@@ -1,7 +1,6 @@
 from src.error import InputError, AccessError
 from src.data import dms,users
 from src.channel import token_to_id
-import jwt
 
 def dm_remove_v2(token, dm_id):
     if not test_dm_id_is_invalid(dm_id):
