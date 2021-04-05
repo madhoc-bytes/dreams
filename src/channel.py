@@ -170,3 +170,11 @@ def user_details(u_id):
     # if user isn't found, then return an empty dict
     return {}
 # ====================================================================
+def token_to_id(token):
+    if len(users) == 0:
+        return -1
+    for user in users:
+        key, value = 'token', token
+        if key in user and value == user[key]:
+            return user['u_id']
+    return -1

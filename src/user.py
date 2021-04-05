@@ -1,9 +1,11 @@
 from src.error import InputError
 from src.data import users
 import re
+from src.channel import token_to_id
 
-def user_profile_v1(auth_user_id, u_id):
+def user_profile_v1(token, u_id):
 
+    #auth_user_id = token_to_id(token)
     #auth user id - person logged in 
     # u_id - person whose profile you want to see
     exists = False
@@ -33,7 +35,10 @@ def user_profile_v1(auth_user_id, u_id):
         },
     }
 
-def user_profile_setname_v1(auth_user_id, name_first, name_last):
+def user_profile_setname_v1(token, name_first, name_last):
+
+    auth_user_id = token_to_id(token)
+
     if len(name_first) <= 1:
         raise InputError(description='first name too short')
     if len(name_first) >= 50:
@@ -52,7 +57,10 @@ def user_profile_setname_v1(auth_user_id, name_first, name_last):
     return {
     }
 
-def user_profile_setemail_v1(auth_user_id, email):
+def user_profile_setemail_v1(token, email):
+
+    auth_user_id = token_to_id(token)
+
     if email_is_valid(email) == False:
         raise InputError(description='Email address is not valid')
 
@@ -64,7 +72,9 @@ def user_profile_setemail_v1(auth_user_id, email):
             user['email'] = email
     return { }
 
-def user_profile_sethandle_v1(auth_user_id, handle_str):
+def user_profile_sethandle_v1(token, handle_str):
+
+    auth_user_id = token_to_id(token)
 
     if len(handle_str) <= 3:
         raise InputError(description='new handle is too short')

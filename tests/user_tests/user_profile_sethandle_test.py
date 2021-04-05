@@ -9,18 +9,18 @@ def test_user_set_handle_valid():
     clear_v1()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
-    new_user_id_1 = auth_register_v2(
+    new_token_1 = auth_register_v2(
             valid_email_1, 
             valid_password_1, 
             valid_first_name_1, 
-            valid_last_name_1)['auth_user_id']
+            valid_last_name_1)['token']
 
     new_handle = 'thisisnewhandle'
 
-    user_profile_sethandle_v1(new_user_id_1, new_handle)
+    user_profile_sethandle_v1(new_token_1, new_handle)
 
     for user in users:
-        if user['u_id'] == new_user_id_1:
+        if user['token'] == new_token_1:
             user_info = user
         
     assert user_info['handle'] == new_handle
@@ -29,31 +29,31 @@ def test_new_handle_too_short():
     clear_v1()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
-    new_user_id_1 = auth_register_v2(
+    new_token_1 = auth_register_v2(
             valid_email_1, 
             valid_password_1, 
             valid_first_name_1, 
-            valid_last_name_1)['auth_user_id']
+            valid_last_name_1)['token']
         
     new_handle_short = 'h'
 
     with pytest.raises(InputError):
-        user_profile_sethandle_v1(new_user_id_1, new_handle_short)
+        user_profile_sethandle_v1(new_token_1, new_handle_short)
 
 def test_new_handle_too_long():
     clear_v1()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
-    new_user_id_1 = auth_register_v2(
+    new_token_1 = auth_register_v2(
             valid_email_1, 
             valid_password_1, 
             valid_first_name_1, 
-            valid_last_name_1)['auth_user_id']
+            valid_last_name_1)['token']
         
     new_handle_long = 'h' * 22
 
     with pytest.raises(InputError):
-        user_profile_sethandle_v1(new_user_id_1, new_handle_long)
+        user_profile_sethandle_v1(new_token_1, new_handle_long)
 
 def test_used_handle():
 
@@ -61,26 +61,26 @@ def test_used_handle():
 
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
-    new_user_id_1 = auth_register_v2(
+    new_token_1 = auth_register_v2(
         valid_email_1, 
         valid_password_1, 
         valid_first_name_1, 
-        valid_last_name_1)['auth_user_id']
+        valid_last_name_1)['token']
     
     
     valid_email_2, valid_password_2 = 'abc@defg.com', 'helloWorld123!'
     valid_first_name_2, valid_last_name_2 = 'mitchel', 'johnson'
-    new_user_id_2 = auth_register_v2(
+    new_token_2 = auth_register_v2(
         valid_email_2, 
         valid_password_2, 
         valid_first_name_2, 
-        valid_last_name_2)['auth_user_id']
+        valid_last_name_2)['token']
 
     for user in users:
-        if user['u_id'] == new_user_id_1:
+        if user['token'] == new_token_1:
             user_1_handle = user['handle']
 
     new_handle = user_1_handle
 
     with pytest.raises(InputError):
-        user_profile_sethandle_v1(new_user_id_2, new_handle)
+        user_profile_sethandle_v1(new_token_2, new_handle)

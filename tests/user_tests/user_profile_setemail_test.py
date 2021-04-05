@@ -9,18 +9,18 @@ def test_user_profile_setemail_valid():
     clear_v1()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
-    new_user_id_1 = auth_register_v2(
+    new_token_1 = auth_register_v2(
             valid_email_1, 
             valid_password_1, 
             valid_first_name_1, 
-            valid_last_name_1)['auth_user_id']
+            valid_last_name_1)['token']
 
     new_email = 'thisisnew@email.com'
 
-    user_profile_setemail_v1(new_user_id_1, new_email)
+    user_profile_setemail_v1(new_token_1, new_email)
 
     for user in users:
-        if user['u_id'] == new_user_id_1:
+        if user['token'] == new_token_1:
             user_info = user
 
     assert user_info['email'] == new_email
@@ -29,36 +29,36 @@ def test_invalid_email():
     clear_v1()
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
-    new_user_id_1 = auth_register_v2(
+    new_token_1 = auth_register_v2(
             valid_email_1, 
             valid_password_1, 
             valid_first_name_1, 
-            valid_last_name_1)['auth_user_id']
+            valid_last_name_1)['token']
 
     invalid_new_email = 'thisisinvalidemail.com'
 
     with pytest.raises(InputError):
-        user_profile_setemail_v1(new_user_id_1, invalid_new_email)
+        user_profile_setemail_v1(new_token_1, invalid_new_email)
 
 def test_used_email():
     clear_v1()
 
     valid_email_1, valid_password_1 = 'abc@def.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'steve', 'smith'
-    new_user_id_1 = auth_register_v2(
+    new_token_1 = auth_register_v2(
         valid_email_1, 
         valid_password_1, 
         valid_first_name_1, 
-        valid_last_name_1)['auth_user_id']
+        valid_last_name_1)['token']
     
     
     valid_email_2, valid_password_2 = 'abc@defg.com', 'helloWorld123!'
     valid_first_name_2, valid_last_name_2 = 'mitchel', 'johnson'
-    new_user_id_2 = auth_register_v2(
+    new_token_2 = auth_register_v2(
         valid_email_2, 
         valid_password_2, 
         valid_first_name_2, 
-        valid_last_name_2)['auth_user_id']
+        valid_last_name_2)['token']
 
     with pytest.raises(InputError):
-        user_profile_setemail_v1(new_user_id_2, valid_email_1)
+        user_profile_setemail_v1(new_token_2, valid_email_1)

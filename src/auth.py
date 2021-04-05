@@ -7,9 +7,9 @@ import hashlib
 import smtplib
 import ssl
 import jwt
-from src.data import users
-from src import data
+import pickle
 from src.error import InputError, AccessError
+from src.data import users
 
 
 def auth_login_v1(email, password):
@@ -178,7 +178,7 @@ def generate_token(u_id):
 
 def get_user_from_token(token):
     SECRET = 'break'
-    decoded_u_id = jwt.decode(token, data.SECRET, algorithms='HS256')
+    decoded_u_id = jwt.decode(token, SECRET, algorithms='HS256')
     return decoded_u_id['u_id']
 
 def hash_password(password):
