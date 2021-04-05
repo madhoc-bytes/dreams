@@ -1,6 +1,6 @@
 import pytest
 from src.auth import auth_register_v2
-from src.dm_create_v2 import dm_create_v2
+from src.dm import dm_create_v1
 from src.error import InputError, AccessError
 from src.other import clear_v2
 from src.message_senddm_v2 import message_senddm_v2
