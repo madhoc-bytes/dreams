@@ -143,8 +143,34 @@ def dm_messages_v1(token, dm_id, start):
         'end': -1,
     }
 
+def dm_leave_v1(token, dm_id):
+    # change the token to a u id
+    auth_user_id = token_to_id(token)
+
+    # invalid channel
+    if test_dm_is_invalid(dm_id):
+        raise InputError()
+
+    # invalid user
+    if not check_user_in_dm(auth_user_id, dm_id):
+        raise AccessError() 
+
+    removed = find_user_in_dm(auth_user_id, dm_id)
+    dms[dm_id]['all_members'].remove(removed)
+    return {}
+
+
 ##############################################################
 # Helper functions
+def find_user_in_dm(u_id, dm_id):
+    # searches for the key value pair of 'u_id': u_id in all_members within a channel
+    # if found, then user is in channel
+    for user in dms[dm_id]['all_members']:
+        key, value = 'u_id', u_id
+        if key in user and value == user[key]:
+            return user
+    return {}
+
 def get_handle_from_uid(u_id):
     # finds user in users list 
     for user in users:

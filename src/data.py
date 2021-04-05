@@ -48,9 +48,9 @@ dms = []
     'dm_id': 0,
     'dm_name': 'Hayden',
     'owner_id': id
-    'all_dm_members': [
+    'all_members': [
         {
-            'dm_id': 0,
+            'u_id': 0,
             'name_first': 'Hayden',
             'name_last': 'Jacobs',
         }

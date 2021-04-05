@@ -135,6 +135,16 @@ def channel_removeowner_v2(auth_user_id, channel_id, u_id):
 
 # Jeffery's functions
 # ====================================================================
+def find_user_in_ch(u_id, channel_id):
+    # searches for the key value pair of 'u_id': u_id in all_members within a channel
+    # if found, then user is in channel
+    for user in channels[channel_id]['all_members']:
+        key, value = 'u_id', u_id
+        if key in user and value == user[key]:
+            return user
+
+    return {}
+
 # looks for token and returns the u_id associated with token
 # returns -1 if error
 def token_to_id(token):
