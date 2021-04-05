@@ -1,4 +1,4 @@
-# HTTP Test File for channels/listall/v2 
+# HTTP Test File for channels/list/v2 
 
 # Imports
 import pytest
@@ -7,199 +7,165 @@ import json
 from src import config
 import flask 
 
-# Test for one user with no channels created
-def test_no_channels_listall():
-    # Reset
-    requests.delete(config.url + 'clear/v2', methods='DELETE')
+def test_no_channels_list():
+    requests.delete(config.url + 'clear/v1')
 
-    # Register user
-    register_data = {'email': 'germanijack@yahoo.com', 'password': 'jack123', 'name_first': 'Jack', 'name_last': 'Germani'}
-    r = requests.post(config.url + 'auth/register/v2', data=register_data, methods='POST')
+    # register a user
+    reg_data = {
+        'email': 'test@gmail.com',
+        'password': 'testpw123',
+        'name_first': 'test_fname',
+        'name_last': 'test_lname'
+    }
+
+    # acquire token and id of user
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+    token = r.json().get('token')
+    u_id = r.json().get('auth_user_id')
     
-    # Get token
-    payload = r.json()
-    token = payload['token']
+    # create a channel 1
+    ch_data = {
+        'token': token,
+        'name': 'test_ch',
+        'is_public': True
+    }
+    # acquire channel id
+    r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    ch_id = r.json().get('channel_id')
+
+
+    # Testing listing the channels for user
+    channels_list_data = {'token': token} 
+    r = requests.get(config.url + 'channels/listall/v2', json=channels_list_data)
+
+    assert r.status_code == 200
+
+def test_two_channels_one_user_list():
+    requests.delete(config.url + 'clear/v1')
+
+    # register a user
+    reg_data = {
+        'email': 'test@gmail.com',
+        'password': 'testpw123',
+        'name_first': 'test_fname',
+        'name_last': 'test_lname'
+    }
+
+    # acquire token and id of user
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+    token = r.json().get('token')
+    u_id = r.json().get('auth_user_id')
     
-    # Get list of channels for that user
-    resp = requests.get(config.url + 'channels/listall/v2', params=token, methods='GET')
+    # create a channel 1
+    ch_data = {
+        'token': token,
+        'name': 'test_ch',
+        'is_public': True
+    }
 
-    # Assertions
-    assert(resp.status_code = 200 and json.loads(resp.text) == {})
+    # acquire channel id
+    r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    ch_id_1 = r.json().get('channel_id')
 
+    # create a channel 2
+    ch_data = {
+        'token': token,
+        'name': 'test_ch_2',
+        'is_public': True
+    }
 
-# Test for one channel
-def test_one_channel_listall():
-    # Reset
-    requests.delete(config.url + 'clear/v2', methods='DELETE')
+    # acquire channel id
+    r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    ch_id_2 = r.json().get('channel_id')
 
-    # Register one user
-    register_data = {'email': 'germanijack@yahoo.com', 'password': 'jack123', 'name_first': 'Jack', 'name_last': 'Germani'}
-    r = requests.post(config.url + 'auth/register/v2', data=register_data, methods='POST')
-
-    # Get the token
-    payload = r.json()
-    token = payload['token']
-    
-    # Create a channel with user in it
-    create_data = {'token': token, 'name': 'My Unique Channel', 'is_public': True}
-    r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
-    payload = r.json()
-    channel_id = payload['channel_id']
-    
-    # Make the user join channel
-    join_data = {'token': token, 'channel_id': channel_id}
-    requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
-
-    # Get result
-    resp = requests.get(config.url + 'channels/listall/v2', params=token, methods='GET')
-    
-    # Assertions
-    assert(resp.status_code = 200 and json.loads(resp.text) == [{'name': 'My Unique Channel',
-                                                                'all_members': [
-                                                                    {
-                                                                        'u_id': 0,
-                                                                        'name_first': 'Jack',
-                                                                        'name_last': 'Germani',
-                                                                    }
-                                                                ]
-                                                                
-                                                                }])
-
-
-
-# Test for two channels and one user
-def test_two_channels_listall():
-    # Reset
-    requests.delete(config.url + 'clear/v2', methods='DELETE')
-
-    # Register a user
-    register_data = {'email': 'germanijack@yahoo.com', 'password': 'jack123', 'name_first': 'Jack', 'name_last': 'Germani'}
-    r = requests.post(config.url + 'auth/register/v2', data=register_data, methods='POST')
-
-    # Get the token
-    payload = r.json()
-    token = payload['token']
-    
-    # Create first channel with user in it
-    create_data = {'token': token, 'name': 'Channel 1', 'is_public': True}
-    r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
-    payload = r.json()
-    channel_id_1 = payload['channel_id']
-
-    # Create second channel with user in it
-    create_data = {'token': token, 'name': 'Channel 2', 'is_public': True}
-    r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
-    payload = r.json()
-    channel_id_2 = payload['channel_id']
-    
-    # Make the user join both channels
-    join_data = {'token': token, 'channel_id': channel_id_1}
-    requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
-    join_data = {'token': token, 'channel_id': channel_id_2}
-    requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
-
-    # Get result
-    resp = requests.get(config.url + 'channels/listall/v2', params=token, methods='GET')
-    
-    # Assertions
-    assert(resp.status_code = 200 and json.loads(resp.text) == [{'name': 'Channel 1',
-                                                                'all_members': [
-                                                                    {
-                                                                        'u_id': 0,
-                                                                        'name_first': 'Jack',
-                                                                        'name_last': 'Germani',
-                                                                    }
-                                                                ]
-                                                                
-                                                                }, {
-                                                                'name': 'Channel 2',
-                                                                
-                                                                'all_members': [
-                                                                    {
-                                                                        'u_id': 0,
-                                                                        'name_first': 'Jack',
-                                                                        'name_last': 'Germani',
-                                                                    }
-                                                                ] 
-                                                                }])
-
-
-# Test for 3 channels in which user has only access to 1
-def test_two_users_channels():
-    # Reset
-    requests.delete(config.url + 'clear/v2', methods='DELETE')
-
-    # Register user 1 and get token
-    register_data = {'email': 'germanijack@yahoo.com', 'password': 'jack123', 'name_first': 'Jack', 'name_last': 'Germani'}
-    r = requests.post(config.url + 'auth/register/v2', data=register_data, methods='POST')
-    payload = r.json()
-    token_user_1 = payload['token']
-    
-    # Register user 2 and get token
-    register_data = {'email': 'elonmusk@yahoo.com', 'password': 'bitcoin777', 'name_first': 'Elon', 'name_last': 'Musk'}
-    r = requests.post(config.url + 'auth/register/v2', data=register_data, methods='POST')
-    payload = r.json()
-    token_user_2 = payload['token']
-
-    # Create first channel with user 1 in it
-    create_data = {'token': token_user_1, 'name': 'Jack Channel', 'is_public': True}
-    r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
-    payload = r.json()
-    channel_id_1 = payload['channel_id']
-
-    # Create second channel with user 2 in it
-    create_data = {'token': token_user_2, 'name': 'Elon Channel 1', 'is_public': True}
-    r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
-    payload = r.json()
-    channel_id_2 = payload['channel_id']
-
-    # Create third channel with user 2 in it
-    create_data = {'token': token_user_2, 'name': 'Elon Channel 2', 'is_public': True}
-    r = requests.post(config.url + 'channels/create/v2', data=create_data, methods='POST')
-    payload = r.json()
-    channel_id_3 = payload['channel_id']
-    
     # Make user 1 join channel 1
-    join_data = {'token': token_user_1, 'channel_id': channel_id_1}
-    requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
+    join_data = {
+        'token': token,
+        'channel_id': ch_id_1
+    }   
+    requests.post(config.url + 'channel/join/v2', json=join_data)
+
+
+    # Testing listing the channels for user
+    channels_list_data = {'token': token} 
+    r = requests.get(config.url + 'channels/listall/v2', json=channels_list_data)
+
+    assert r.status_code == 200
+
+def test_two_users_two_channels_list():
+    requests.delete(config.url + 'clear/v1')
+
+    # register a user 1
+    reg_data = {
+        'email': 'test@gmail.com',
+        'password': 'testpw123',
+        'name_first': 'test_fname',
+        'name_last': 'test_lname'
+    }
+
+    # acquire token and id of user
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+    token = r.json().get('token')
+    u_id = r.json().get('auth_user_id')
+
+    # register a user 2
+    reg_data = {
+        'email': 'test123@gmail.com',
+        'password': 'testpw123',
+        'name_first': 'test_fname',
+        'name_last': 'test_lname'
+    }
+
+    # acquire token and id of user
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+    token_2 = r.json().get('token')
+    
+    # create a channel 1
+    ch_data = {
+        'token': token,
+        'name': 'test_ch',
+        'is_public': True
+    }
+
+    # acquire channel id
+    r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    ch_id_1 = r.json().get('channel_id')
+
+    # create a channel 2
+    ch_data = {
+        'token': token,
+        'name': 'test_ch_2',
+        'is_public': True
+    }
+
+    # acquire channel id
+    r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    ch_id_2 = r.json().get('channel_id')
+
+    # Make user 1 join channel 1
+    join_data = {
+        'token': token,
+        'channel_id': ch_id_1
+    }   
+    requests.post(config.url + 'channel/join/v2', json=join_data)
+
+    # Make user 2 join channel 1
+    join_data = {
+        'token': token,
+        'channel_id': ch_id_1
+    }   
+    requests.post(config.url + 'channel/join/v2', json=join_data)
 
     # Make user 2 join channel 2
-    join_data = {'token': token_user_2, 'channel_id': channel_id_2}
-    requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
-    
-    # Make user 2 join channel 3
-    join_data = {'token': token_user_2, 'channel_id': channel_id_3}
-    requests.post(config.url + 'channel/join/v2', data=join_data, methods='POST')
+    join_data = {
+        'token': token,
+        'channel_id': ch_id_2
+    }   
+    requests.post(config.url + 'channel/join/v2', json=join_data)
 
-    # List all channels for user 1
-    resp = requests.get(config.url + 'channels/listall/v2', params=token_user_1, methods='GET')
 
-    # Assertions
-    assert(assert resp.status_code = 200 and channels_listall_v1(user1_id) == [{'name': 'Jack Channel',
-                                                                                'all_members': [
-                                                                                    {
-                                                                                        'u_id': 0,
-                                                                                        'name_first': 'Jack',
-                                                                                        'name_last': 'Germani',
-                                                                                    }
-                                                                                ]
-                                                                                
-                                                                                }, {
-                                                                                'name': 'Elon Channel 1',
-                                                                                'all_members': [
-                                                                                    {
-                                                                                        'u_id': 1,
-                                                                                        'name_first': 'Elon',
-                                                                                        'name_last': 'Musk',
-                                                                                    }
-                                                                                ] 
-                                                                                }, {
-                                                                                    'name': 'Elon Channel 2',
-                                                                                'all_members': [
-                                                                                    {
-                                                                                        'u_id': 1,
-                                                                                        'name_first': 'Elon',
-                                                                                        'name_last': 'Musk',
-                                                                                    }
-                                                                                ]
-                                                                                }])
+    # Testing listing the channels for user
+    channels_list_data = {'token': token_2} 
+    r = requests.get(config.url + 'channels/listall/v2', json=channels_list_data)
+
+    assert r.status_code == 200

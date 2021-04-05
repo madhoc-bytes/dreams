@@ -5,16 +5,16 @@ from flask_cors import CORS
 from src.error import InputError
 from src import config
 from src.auth import auth_register_v2
-from src.channel import channel_details_v2, channel_invite_v2
-from src.channel import channel_addowner_v2,channel_removeowner_v2
-from src.channel import channel_join_v2, channel_leave_v2
+#from src.channel import channel_details_v2, channel_invite_v2
+#from src.channel import channel_addowner_v2,channel_removeowner_v2
+from src.channel import channel_join_v2 #, channel_leave_v2
 from src.channels import channels_create_v2
-from src.users import users_all_v1
+#from src.users import users_all_v1
 from src.other import clear_v2
 from src.message import message_send_v1, message_edit_v1, message_remove_v1, message_share_v1
-from src.channel import channel_details_v2
 from src.channels import channels_list_v2, channels_listall_v2
-from src.dm_invite_v1 import dm_invite_v1
+from src.dm import dm_create_v1
+from src.message_senddm_v2 import message_senddm_v2
 
 def defaultHandler(err):
     response = err.get_response()
@@ -126,92 +126,81 @@ def users_all():
 def clear():
     return dumps(clear_v2())
 
-
 # channels/list/v2
 @APP.route('/channels/list/v2', methods=['GET'])
 def channels_list():
     """Function that lists all channels for which a certain user has access"""
-
-    token = request.form.get('token')
-    return_value = channels_list_v2(token)
-    return dumps(return_value)
+    data = request.get_json()
+    token = data['token']
+    return dumps(channels_list_v2(token))
 
 # channels/listall/v2
 @APP.route('/channels/listall/v2', methods=['GET'])
 def channels_listall():
     """Function that lists all channels"""
-
-    token = request.form.get('token')
-    return_value = channels_listall_v1(token)
-    return dumps(return_value)
+    data = request.get_json()
+    token = data['token']
+    return dumps(channels_listall_v2(token))
 
 # message/send/v1
 @APP.route('/message/send/v1', methods=['POST'])
 def send_message():
     ''' Function that sends message to channel '''
-
-    token = request.form.get('token')
-    channel_id = request.form.get('channel_id')
-    message = request.form.get('message')
-
-    return_value = message_send_v1(token, channel_id, message)
-    return dumps(return_value)
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    message = data['message']
+    return dumps(message_send_v1(token, channel_id, message))
 
 # message/edit/v1
 @APP.route('/message/edit/v1', methods=['PUT'])
 def edit_message():
     ''' Function that edits a message '''
-
-    token = request.form.get('token')
-    channel_id = request.form.get('channel_id')
-    message = request.form.get('message')
-
-    return_value = message_edit_v1(token, channel_id, message)
-    return dumps(return_value)
+    data = request.get_json()
+    token = data['token']
+    message_id = data['message_id']
+    message = data['message']
+    return dumps(message_edit_v1(token, message_id, message))
 
 # message/remove/v1
 @APP.route('/message/remove/v1', methods=['DELETE'])
 def remove_message():
     ''' Function that removes message '''
-
-    token = request.form.get('token')
-    message_id = request.form.get('message_id')
-
-    return_value = message_remove_v1(token, message_id)
-    return dumps(return_value)
+    data = request.get_json()
+    token = data['token']
+    message_id = data['message_id']
+    return dumps(message_remove_v1(token, message_id))
 
 # message/share/v1
 @APP.route('/message/share/v1', methods=['POST'])
 def share_message():
     ''' Function that shares message to channel or DM '''
+    data = request.get_json()
+    token = data['token']
+    og_message_id = data['og_message_id']
+    message = data['message']
+    channel_id = data['channel_id']
+    dm_id = data['dm_id']
+    return dumps(message_share_v1(token, og_message_id, message, channel_id, dm_id))
 
-    token = request.form.get('token')
+# dm create
+@APP.route('/dm/create/v1', methods = ['POST'])
+def dm_create():
+    data = request.get_json()
+    token = data['token']
+    u_ids = data['u_ids']
+    return dumps(dm_create_v1(token, u_ids))
+
+#message senddm
+@APP.route('/message/senddm/v2', methods=['POST'])
+def route_message_senddm_v2():
+    data = request.get_json()
+    token = data['token']
+    dm_id = data['dm_id']
+    message = data['message']
     
-    og_message_id = request.form.get('og_message_id')
-    message = request.form.get('message')
-    channel_id = request.form.get('channel_id')
-    dm_id = request.form.get('dm_id')
-
-    return_value = message_share_v1(token, og_message_id, message, channel_id, dm_id)
-    return dumps(return_value)
-
-# dm/invite/v1
-@APP.route('dm/invite/v1', methods=['POST'])
-def dm_invite():
-    ''' Function that invites user to DM '''
-    token = request.form.get('token')
-    dm_id = request.form.get('dm_id')
-    u_id = request.form.get('u_id')
-
-    return_value = dm_invite_v1(token, dm_id, u_id)
-    return dumps(return_value)
-
-@APP.route("/channel/details/v2", methods=['GET'])
-def channel_details():
-    token = request.args.get('token')
-    channel_id = request.args.get('channel_id')
-    return json.dumps(channel_details_v2(token, channel_id))
+    return dumps(message_senddm_v2(token, dm_id, message))
 
 
 if __name__ == "__main__":
-    APP.run(port=config.port) # Do not edit this port
+    APP.run(port=config.port) # Do not edit this port 

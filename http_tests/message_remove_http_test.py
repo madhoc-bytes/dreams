@@ -1,4 +1,4 @@
-# HTTP Test File for message/send/v1
+# HTTP Test File for message/share/v1 
 
 # Imports
 import pytest
@@ -9,7 +9,7 @@ import flask
 from src.error import InputError, AccessError
 
 
-def test_valid_message_edit():
+def test_message_remove_from_channel_invalid_message():
     requests.delete(config.url + 'clear/v1')
 
     # register a user
@@ -43,65 +43,22 @@ def test_valid_message_edit():
     }   
     requests.post(config.url + 'channel/join/v2', json=join_data)
 
-    # Testing sending message
+    # Sending message
     message = 'a'
     message_data = {'token': token, 'channel_id': ch_id, 'message': message}
     r = requests.post(config.url + 'message/send/v1', json=message_data)
     message_id = r.json().get('message_id')
 
-    new_message = 'b'
-    edit_message_data = {'token': token, 'message_id': message_id, 'message': new_message}
-    r = requests.put(config.url + 'message/edit/v1', json=edit_message_data)
+    # Creating not valid message 
+    message_id_2 = 42
 
-    assert r.status_code == 200
-
-def test_long_message_edit():
-    requests.delete(config.url + 'clear/v1')
-
-    # register a user
-    reg_data = {
-        'email': 'test@gmail.com',
-        'password': 'testpw123',
-        'name_first': 'test_fname',
-        'name_last': 'test_lname'
-    }
-
-    # acquire token and id of user
-    r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-    token = r.json().get('token')
-    u_id = r.json().get('auth_user_id')
-    
-    # create a channel
-    ch_data = {
-        'token': token,
-        'name': 'test_ch',
-        'is_public': True
-    }
-
-    # acquire channel id
-    r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-    ch_id = r.json().get('channel_id')
-
-    # join user to channel
-    join_data = {
-        'token': token,
-        'channel_id': ch_id
-    }   
-    requests.post(config.url + 'channel/join/v2', json=join_data)
-
-    # Testing sending message
-    message = 'a'
-    message_data = {'token': token, 'channel_id': ch_id, 'message': message}
-    r = requests.post(config.url + 'message/send/v1', json=message_data)
-    message_id = r.json().get('message_id')
-
-    new_message = 'b' * 1001
-    edit_message_data = {'token': token, 'message_id': message_id, 'message': new_message}
-    r = requests.put(config.url + 'message/edit/v1', json=edit_message_data)
+    # Test removing the same message
+    remove_data = {'token': token, 'message_id': message_id_2}
+    r = requests.delete(config.url + 'message/remove/v1', json=remove_data)
 
     assert r.status_code == 400
 
-def test_message_not_sent_by_same_user_message_edit():
+def test_message_remove_from_channel_not_sent_by_same_user():
     requests.delete(config.url + 'clear/v1')
 
     # register a user
@@ -117,7 +74,7 @@ def test_message_not_sent_by_same_user_message_edit():
     token = r.json().get('token')
     u_id = r.json().get('auth_user_id')
 
-    # register a user 2
+    # register a user
     reg_data = {
         'email': 'test123@gmail.com',
         'password': 'testpw123',
@@ -148,23 +105,116 @@ def test_message_not_sent_by_same_user_message_edit():
     }   
     requests.post(config.url + 'channel/join/v2', json=join_data)
 
-    # join user to channel
-    join_data = {
-        'token': token_2,
-        'channel_id': ch_id
-    }   
-    requests.post(config.url + 'channel/join/v2', json=join_data)
-
     # Sending message from user 1
     message = 'a'
     message_data = {'token': token, 'channel_id': ch_id, 'message': message}
     r = requests.post(config.url + 'message/send/v1', json=message_data)
     message_id = r.json().get('message_id')
 
-    # Test user 2 editing the message
-    new_message = 'b' 
-    edit_message_data = {'token': token_2, 'message_id': message_id, 'message': new_message}
-    r = requests.put(config.url + 'message/edit/v1', json=edit_message_data)
+    # Test removing the message from user 2
+    remove_data = {'token': token_2, 'message_id': message_id}
+    r = requests.delete(config.url + 'message/remove/v1', json=remove_data)
 
     assert r.status_code == 403
 
+def test_message_remove_from_channe():
+    requests.delete(config.url + 'clear/v1')
+
+    # register a user
+    reg_data = {
+        'email': 'test@gmail.com',
+        'password': 'testpw123',
+        'name_first': 'test_fname',
+        'name_last': 'test_lname'
+    }
+
+    # acquire token and id of user
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+    token = r.json().get('token')
+    u_id = r.json().get('auth_user_id')
+    
+    # create a channel
+    ch_data = {
+        'token': token,
+        'name': 'test_ch',
+        'is_public': True
+    }
+
+    # acquire channel id
+    r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    ch_id = r.json().get('channel_id')
+
+    # join user to channel
+    join_data = {
+        'token': token,
+        'channel_id': ch_id
+    }   
+    requests.post(config.url + 'channel/join/v2', json=join_data)
+
+    # Sending message
+    message = 'a'
+    message_data = {'token': token, 'channel_id': ch_id, 'message': message}
+    r = requests.post(config.url + 'message/send/v1', json=message_data)
+    message_id = r.json().get('message_id')
+
+    # Test removing the message
+    remove_data = {'token': token, 'message_id': message_id}
+    r = requests.delete(config.url + 'message/remove/v1', json=remove_data)
+
+    assert r.status_code == 200
+
+def test_message_remove_from_dm():
+    requests.delete(config.url + 'clear/v1')
+
+    #owner of dm/caller of dm_create
+    reg_data = {
+        'email': 'test_auth@gmail.com',
+        'password': 'test_pw_auth',
+        'name_first': 'testf',
+        'name_last': 'testl'
+    }
+
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+    token = r.json().get('token')
+    u_id = r.json().get('auth_user_id')
+    #create one user to pass in the list of users for dm create
+    reg_data2 = {
+        'email': 'test_second@gmail.com',
+        'password': 'test_pw_second',
+        'name_first': 'secondf',
+        'name_last': 'secondl'
+    }
+    r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
+    token2 = r.json().get('token')
+    u_id2 = r.json().get('auth_user_id')
+
+    # Create DM 1
+    create_data = {
+        'token': token,
+        'u_ids': [u_id2]
+    }
+
+    r = requests.post(config.url + 'dm/create/v1', json=create_data)
+    dm_id_1 = r.json().get('dm_id')
+
+    # Create DM 2
+    create_data = {
+        'token': token,
+        'u_ids': [u_id2]
+    }
+
+    r = requests.post(config.url + 'dm/create/v1', json=create_data)
+    dm_id_2 = r.json().get('dm_id')
+
+
+    # Sending a message to dm 1
+    message = 'a'
+    message_data = {'token': token, 'dm_id': dm_id_1, 'message': message}
+    r = requests.post(config.url + '/message/senddm/v2', json=message_data)
+    message_id = r.json().get('message_id')
+
+    # Test removing the message
+    remove_data = {'token': token, 'message_id': message_id}
+    r = requests.delete(config.url + 'message/remove/v1', json=remove_data)
+
+    assert r.status_code == 200

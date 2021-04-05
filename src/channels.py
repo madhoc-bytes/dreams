@@ -5,8 +5,8 @@
 # Imports
 from src.channel import test_if_user_in_ch
 from src.channel import token_to_id
-from src.data import channels
-from src.error import InputError
+from src.data import channels, users
+from src.error import InputError, AccessError
 import jwt
 
 def channels_list_v2(token):
@@ -71,12 +71,7 @@ def channels_create_v2(token, name, is_public):
         'channel_id': channel_id,
     }
 
-#helper function#
-def check_channel_empty():
-    """Function that checks if channel is empty"""
-    if len(channels) == 0:
-        return True
-    return False
+
 
 def last_channel_id():
     """Function that checks last channel ID"""
@@ -100,10 +95,4 @@ def check_channel_empty():
     if len(channels) == 0:
         return True
     return False
-
-def last_channel_id():
-    """Function that checks last channel ID"""
-    return channels[-1]['id']
-
-
 

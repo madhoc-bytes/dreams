@@ -35,11 +35,11 @@ def message_send_v1(token, channel_id, message):
     m_message_string = message
     m_time = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
 
-
     # Find appropriate channel
     for channel in channels:
-        if channel['id'] == channel_id['channel_id']:
+        if {'channel_id': channel['id']} == channel_id:
             break
+
 
     channel['messages'].append(
         {
@@ -80,6 +80,7 @@ def message_remove_v1(token, message_id):
     ''' Function that removes message'''
     auth_user_id = token_to_id(token)
 
+
     if message_exists(message_id) == False:
         raise InputError(description='Message no longer exists')
 
@@ -106,7 +107,7 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
         shared_message_id = 0
         for channel in channels:
             for message in channel['messages']:
-                if message['message_id'] == og_message_id['message_id']:
+                if og_message_id == {'message_id': message['message_id']}:
                     new_message = message['message_string']
                     shared_message_id = message_send_v1(token, channel_id, new_message)
 
@@ -121,7 +122,7 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
         shared_message_id = 0
         for dm in dms:
             for message in dm['messages']:
-                if (og_message_id['message_id'] == message['message_id']):
+                if og_message_id == {'message_id': message['message_id']}:
                     new_message = message['message']
                     shared_message_id = message_senddm_v2(token, dm_id, new_message)
 
@@ -163,13 +164,13 @@ def message_sent_by_user(auth_user_id, message_id):
     result = False
     for channel in channels:
         for message in channel['messages']:
-            if message_id == {'message_id': message['message_id']}:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
                 if message['u_id'] == auth_user_id:
                     result = True
 
     for dm in dms:
         for message in dm['messages']:
-            if message_id == {'message_id': message['message_id']}:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
                 if message['u_id'] == auth_user_id:
                     result = True
     return result
@@ -179,12 +180,12 @@ def message_exists(message_id):
     exists = False 
     for channel in channels:
         for message in channel['messages']:
-            if {'message_id': message['message_id']} == message_id:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
                 exists = True 
 
     for dm in dms:
         for message in dm['messages']:
-            if {'message_id': message['message_id']} == message_id:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
                 exists = True
     return exists 
 
