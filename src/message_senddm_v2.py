@@ -1,10 +1,4 @@
-from src.error import InputError, AccessError
-from src.channel import token_to_id
-from src.data import users, dms
-
 def message_senddm_v2(token, dm_id, message):
-    #check valid token#
-    check_if_token_valid(token)
     #import uid from token
     token_uid = token_to_id(token)
     if not test_if_user_in_dm(token_uid, dm_id):
@@ -17,17 +11,6 @@ def message_senddm_v2(token, dm_id, message):
         'message_id': messagesendreturn(dm_id, token_uid, message),
     }
 
-def check_if_token_valid(token):
-    if not if_token_exit(token) or token == None:
-        raise AccessError('Invalid Token')
-    return
-
-def if_token_exit(token):
-    for user in users:
-        if token == user[token]:
-            return user
-    return False
-    
 def test_if_user_in_dm(u_id, dm_id):
     # if all_members is empty in given dm, then obviously invalid
     if len(dms[dm_id]['all_members']) == 0:
