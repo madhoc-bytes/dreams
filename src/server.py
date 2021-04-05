@@ -39,26 +39,29 @@ def echo():
 # auth register
 @APP.route('/auth/register/v2', methods=['POST'])
 def auth_register():
-    email = request.form.get('email')
-    password = request.form.get('password')
-    name_first = request.form.get('name_first')
-    name_last = request.form.get('name_last')
+    data = request.get_json()
+    email = data['email']
+    password = data['password']
+    name_first = data['name_first']
+    name_last = data['name_last']
     return_value = auth_register_v2(email, password, name_first, name_last)
     return dumps(return_value)
 
 # channel join
 @APP.route("/channel/join/v2", methods=['POST'])
 def channel_join():
-    token = request.form.get('token')
-    channel_id = request.form.get('channel_id')
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
     return dumps(channel_join_v2(token, channel_id))
 
 # channel invite
 @APP.route("/channel/invite/v2", methods=['POST'])
 def channel_invite():
-    token = request.form.get('token')
-    channel_id = request.form.get('channel_id')
-    u_id = request.form.get('u_id')
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    u_id = data['u_id']
     return dumps(channel_invite_v2(token, channel_id, u_id))
 
 # channel details
@@ -71,32 +74,35 @@ def channel_details():
 # channel addowner
 @APP.route("/channel/addowner/v2", methods=['POST'])
 def channel_addowner():
-    token = request.form.get('token')
-    channel_id = request.form.get('channel_id')
-    u_id = request.form.get('u_id')
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    u_id = data['u_id']
     return dumps(channel_addowner_v2(token, channel_id, u_id))
 
 # channel removeowner
 @APP.route("/channel/removeowner/v2", methods=['POST'])
 def channel_removeowner():
-    token = request.form.get('token')
-    channel_id = request.form.get('channel_id')
-    u_id = request.form.get('u_id')
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    u_id = data['u_id']
     return dumps(channel_removeowner_v2(token, channel_id, u_id))
 
 # channel create
-@APP.route('/channels/create', methods = ['POST'])
+@APP.route('/channels/create/v2', methods = ['POST'])
 def server_channels_create():
-    token = request.form.get('token')
-    name = request.form.get('name')
-    is_public = request.form.get('is_public')
+    data = request.get_json()
+    token = data['token']
+    name = data['name']
+    is_public = data['is_public']
     return_value = channels_create_v2(token, name, is_public)
     return dumps(return_value)
 
 # clear 
 @APP.route('/clear/v2', methods = ['DELETE'])
 def clear():
-    return dumps(clear_v2)
+    return dumps(clear_v2())
 
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port 

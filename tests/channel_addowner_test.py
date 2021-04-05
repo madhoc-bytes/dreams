@@ -107,3 +107,4 @@ def test_no_privileges():
     # try to let non-owner (user2) make user1 an owner and expect failure
     with pytest.raises(AccessError):
         channel_addowner_v2(user2['token'], test_channel_id, user1['auth_user_id'])
+
