@@ -2,11 +2,11 @@ import pytest
 from src.auth import auth_register_v1
 from src.error import InputError
 from src.data import users
-from src.other import clear_v1
+from src.other import clear_v2
 
 
 def test_auth_register_valid():
-    clear_v1()
+    clear_v2()
     valid_email, valid_password = 'abcd@def.com', 'helloWorld123!'
     valid_first_name, valid_last_name = 'john', 'smith'
     new_user_id = auth_register_v1(
@@ -26,7 +26,7 @@ def test_auth_register_valid():
     }
 
 def test_auth_register_invalid_email():
-    clear_v1()
+    clear_v2()
     valid_password = 'helloWorld123!'
     valid_first_name, valid_last_name = 'john', 'smith'
     
@@ -36,7 +36,7 @@ def test_auth_register_invalid_email():
         auth_register_v1(invalid_email, valid_password, valid_first_name, valid_last_name)
 
 def test_auth_register_short_password():
-    #clear_v1()
+    #clear_v2()
     # if password string less than 6 characters raise error
     valid_email, valid_first_name, valid_last_name = 'abc@def.com', 'john', 'smith'
     short_password = 'hello'
@@ -47,7 +47,7 @@ def test_auth_register_short_password():
         auth_register_v1(valid_email, short_password, valid_first_name, valid_last_name)
 
 def test_auth_register_short_first_name():
-    clear_v1()
+    clear_v2()
     # if first_name string is less than 1 character, raise error
     valid_email, valid_password, valid_last_name = 'abc@def.com', 'helloWorld123!', 'lo'
     short_first_name = 'f'
@@ -58,7 +58,7 @@ def test_auth_register_short_first_name():
         auth_register_v1(valid_email, valid_password,short_first_name, valid_last_name)
 
 def test_auth_register_long_first_name():
-    clear_v1()
+    clear_v2()
     # if the first_name is longer than 50 characters, raise error
     valid_email, valid_password, valid_last_name = 'email@email.com', 'helloWorld123!', 'lo'
     long_first_name = 'a' * 52
@@ -69,7 +69,7 @@ def test_auth_register_long_first_name():
         auth_register_v1(valid_email, valid_password, long_first_name, valid_last_name)
 
 def test_auth_register_short_last_name():
-    clear_v1()
+    clear_v2()
     # if last_name string is less than 1 character, raise error
     valid_email, valid_password, valid_first_name = 'abc@def.com', 'helloWorld123!', 'jo'
     short_last_name = 'b'
@@ -80,7 +80,7 @@ def test_auth_register_short_last_name():
         auth_register_v1(valid_email, valid_password,valid_first_name, short_last_name)
 
 def test_auth_register_long_last_name():
-    clear_v1()
+    clear_v2()
     # if last_name is longer than 50 characters, raise error
     valid_email, valid_password, valid_first_name = 'abc@def.com', 'helloWorld123!', 'jo'
     long_last_name = 'b' * 52
@@ -92,7 +92,7 @@ def test_auth_register_long_last_name():
 
 
 def test_valid_handle():
-    clear_v1()
+    clear_v2()
     valid_email, valid_password = 'ok@done.com', 'helloWorld123!'
     valid_first_name, valid_last_name = 'jack', 'smith'
     new_user_id = auth_register_v1(
@@ -104,7 +104,7 @@ def test_valid_handle():
     assert users[new_user_id]['handle'] == valid_first_name + valid_last_name
 
 def test_repeated_handle():
-    clear_v1()
+    clear_v2()
     valid_email_1, valid_password_1 = 'ok1@done.com', 'helloWorld123!'
     valid_first_name_1, valid_last_name_1 = 'jack', 'smith'
     new_user_id_1 = auth_register_v1(
