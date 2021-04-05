@@ -4,6 +4,7 @@ from src.data import users, channels
 def clear_v2():
     users.clear()
     channels.clear()
+    dms.clear()
     return {}
 
 def search_v1(auth_user_id, query_str):
