@@ -11,10 +11,10 @@ def dm_create_v1(token, u_ids):
     handles = []
     u_id = token_to_id(token)
     if test_user_is_invalid(u_id):
-        raise AccessError("id from token is invalid")
+        raise InputError("id from token is invalid")
     for uid in u_ids:
         if test_user_is_invalid(uid):
-            raise AccessError("id in list is invalid")
+            raise InputError("id in list is invalid")
 
     owner_details = user_details(u_id)
     details = {}
