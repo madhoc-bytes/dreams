@@ -10,6 +10,8 @@ from src.channel import channel_addowner_v2,channel_removeowner_v2
 from src.channel import channel_join_v2, channel_leave_v2
 from src.channels import channels_create_v2
 from src.users import users_all_v1
+from src.message_senddm_v2 import message_senddm_v2
+from src.admin_userpermission_change_v1 import adminuserpermissionchangev1
 #from src.search import search_v2
 from src.other import clear_v2
 
@@ -111,6 +113,26 @@ def server_channels_create():
     is_public = data['is_public']
     return_value = channels_create_v2(token, name, is_public)
     return dumps(return_value)
+
+#admin userpermission change
+@APP.route('/admin/userpermission/change/v1', methods=['POST'])
+def admin_userpermission_change():
+
+    token = request.form.get("token")
+    u_id = int(request.form.get("u_id"))
+    p_id = int(request.form.get("permission_id"))
+    return_values = adminuserpermissionchangev1(token, u_id, p_id)
+    return dumps(return_values)
+
+#message
+@APP.route('/message/senddm/v2', methods=['POST'])
+def message_senddm_v2():
+
+    token = request.form.get('token')
+    dm_id = int(request.form.get('dm_id'))
+    message = request.form.get('message')
+    
+    return dumps(message_senddm_v2(token, dm_id, message))
 
 # users all
 @APP.route("/users/all/v1", methods=['GET'])
