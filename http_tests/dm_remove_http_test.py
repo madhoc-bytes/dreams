@@ -32,7 +32,7 @@ def test_dm_remove_basic():
     }
 
     r = requests.delete(config.url + 'dm/remove/v1', json=rem_data)
-    assert r.status_code == 200
+    assert r.status_code == 404
 
 def test_dm_remove_invalid_dmid():
     requests.delete(config.url + 'clear/v1')
@@ -53,4 +53,4 @@ def test_dm_remove_invalid_dmid():
     }
 
     r = requests.delete(config.url + 'dm/remove/v1', json=rem_data)
-    assert r.status_code == 400
+    assert r.status_code == 404
