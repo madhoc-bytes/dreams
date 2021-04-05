@@ -16,7 +16,6 @@ def dm_create_v2(token, u_ids):
     else:
         #last channels id plus 1
         dm_id = last_dm_id() + 1
-    dm_name = dm_name.sort()
     new_dm = {
         'dm_id': dm_id,
         'dm_name': dm_name,
