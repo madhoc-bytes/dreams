@@ -4,7 +4,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from src.error import InputError
 from src import config
-from src.auth import auth_register_v2
+from src.auth import auth_register_v2, auth_login_v2, auth_logout_v2
 from src.dm import dm_create_v1, dm_details_v1, dm_invite_v1, dm_leave_v1, dm_list_v1, dm_messages_v1, dm_remove_v1
 from src.channel import channel_details_v2, channel_invite_v2
 from src.channel import channel_addowner_v2,channel_removeowner_v2, channel_messages_v2
@@ -13,6 +13,7 @@ from src.channels import channels_create_v2
 from src.message import message_send_v1, message_edit_v1, message_remove_v1, message_share_v1
 from src.channels import channels_list_v2, channels_listall_v2
 from src.users import users_all_v1
+from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_sethandle_v1, user_profile_setname_v1
 from src.message_senddm_v2 import message_senddm_v2
 from src.admin_userpermission_change_v1 import adminuserpermissionchangev1
 from src.search import search_v2
@@ -55,6 +56,61 @@ def auth_register():
     name_last = data['name_last']
     return_value = auth_register_v2(email, password, name_first, name_last)
     return dumps(return_value)
+
+@APP.route('/auth/login/v2', methods=['POST'])
+def auth_login():
+    data = request.get_json()
+    email = data['email']
+    password = data['password']
+    return_value = auth_login_v2(email, password)
+    return dumps(return_value)
+
+@APP.route('/auth/logout/v2', methods=['POST'])
+def auth_logout():
+
+    data = request.get_json()
+    token = data['token']
+    return_value = auth_logout_v2(token)
+    return dumps(return_value)
+
+@APP.route('/user/profile/v1', methods=['GET'])
+def user_profile():
+    data = request.get_json()
+    token = data['token']
+    auth_user_id = data['u_id']
+    return_value = user_profile_v1(token, auth_user_id)
+    return dumps(return_value)
+
+@APP.route('/user/profile/setname/v1', methods=['PUT'])
+def user_profile_setname():
+
+    data = request.get_json()
+    token = data['token']
+    name_first = data['name_first']
+    name_last = data['name_last']
+    return_value = user_profile_setname_v1(token, name_first, name_last)
+    return dumps(return_value)
+
+
+@APP.route('/user/profile/setemail/v1', methods=['PUT'])
+def user_profile_setemail():
+
+    data = request.get_json()
+    token = data['token']
+    email = data['email']
+    return_value = user_profile_setemail_v1(token, email)
+    return dumps(return_value)
+
+
+@APP.route('/user/profile/sethandle/v1', methods=['PUT'])
+def user_profile_sethandle():
+
+    data = request.get_json()
+    token = data['token']
+    handle_str = data['handle']
+    return_value = user_profile_sethandle_v1(token, handle_str)
+    return dumps(return_value)
+
 
 # channel join
 @APP.route("/channel/join/v2", methods=['POST'])
