@@ -61,7 +61,7 @@ def test_invalid_user():
 
     resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
     token_1 = resp_register_1.json().get('token')
-    resp_register_2 = requests.post(config.url + 'auth/register/v2', json=data_2)
+    requests.post(config.url + 'auth/register/v2', json=data_2)
     u_id_2 = 4
     data_3 = {
         'token': token_1,

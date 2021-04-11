@@ -71,9 +71,9 @@ def test_user_profile_setemail_used():
     }
 
     resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-    resp_register_2 = requests.post(config.url + 'auth/register/v2', json=data_2)
+    requests.post(config.url + 'auth/register/v2', json=data_2)
     token_1 = resp_register_1.json().get('token')
-    token_2 = resp_register_2.json().get('token')
+    #token_2 = resp_register_2.json().get('token')
     new_email = 'abc@defgh.com'
     
     data_3 = {

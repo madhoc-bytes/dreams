@@ -21,9 +21,9 @@ def test_logout_valid():
         'password': 'Password01!'
     }
 
-    resp_register = requests.post(config.url + 'auth/register/v2', json=data_register)
-    #resp_login = requests.post(config.url + 'auth/login/v2', data=data_login)
-    token = resp_register.json().get('token')
+    requests.post(config.url + 'auth/register/v2', json=data_register)
+    resp_login = requests.post(config.url + 'auth/login/v2', json=data_login)
+    token = resp_login.json().get('token')
 
     data_logout = {
         'token': token
