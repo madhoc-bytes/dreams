@@ -2,7 +2,7 @@
 
 # Imports
 import pytest
-from src.message import message_edit_v1, message_send_v1, message_remove_v1, is_message_deleted
+from src.message import message_edit_v1, message_send_v2, message_remove_v1, is_message_deleted
 from src.data import users, channels, dms
 from src.auth import auth_register_v2
 from src.channel import channel_join_v2
@@ -25,7 +25,7 @@ def test_remove_one_message_from_channel():
 
 
     # Send two message
-    message_one_id = message_send_v1(token, channel, message_one)
+    message_one_id = message_send_v2(token, channel, message_one)
 
 
     # Delete message 1
@@ -48,8 +48,8 @@ def test_remove_two_messages_from_channel():
 
 
     # Send two message
-    message_one_id = message_send_v1(token, channel, message_one)
-    message_two_id = message_send_v1(token, channel, message_two)
+    message_one_id = message_send_v2(token, channel, message_one)
+    message_two_id = message_send_v2(token, channel, message_two)
 
     # Delete message 1 and 2
     message_remove_v1(token, message_one_id)
@@ -77,8 +77,8 @@ def test_remove_two_messages_two_channels():
     
 
     # Send two message
-    message_one_id = message_send_v1(token, channel, message_one)
-    message_two_id = message_send_v1(token_2, channel_2, message_two)
+    message_one_id = message_send_v2(token, channel, message_one)
+    message_two_id = message_send_v2(token_2, channel_2, message_two)
 
 
     # Delete message 1 and 2
@@ -103,7 +103,7 @@ def test_remove_deleted_message_channel():
 
 
     # Send two message
-    message_one_id = message_send_v1(token, channel, message_one)
+    message_one_id = message_send_v2(token, channel, message_one)
     
 
     # Delete message 1
@@ -126,7 +126,7 @@ def test_remove_message_not_sent_by_same_user():
     message_two = 'Hello!'
 
     # Send two message
-    message_two_id = message_send_v1(token_2, channel, message_two)
+    message_two_id = message_send_v2(token_2, channel, message_two)
 
 
     # Assertion
