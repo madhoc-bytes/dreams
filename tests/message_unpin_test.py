@@ -2,7 +2,7 @@
 
 # Imports
 import pytest
-from src.message import message_send_v2, is_message_deleted, message_unpin_v1, message_is_pinned
+from src.message import message_send_v2, is_message_deleted, message_unpin_v1, message_pin_v1, message_is_unpinned
 from src.data import users, channels, dms
 from src.auth import auth_register_v2
 from src.channel import channel_join_v2
@@ -28,12 +28,13 @@ def test_unpin_one_message_from_channel():
 
     # Delete message 1
     message_pin_v1(token, message_one_id)
+    message_unpin_v1(token, message_one_id)
     result = message_is_unpinned(message_one_id) 
 
     # Assertion
     assert result == True
 
-def test_pin_one_message_from_dm():
+def test_unpin_one_message_from_dm():
     # Reset
     clear_v2()
 
@@ -51,13 +52,13 @@ def test_pin_one_message_from_dm():
 
     # Delete message 1
     message_pin_v1(token, message_one_id)
+    message_unpin_v1(token, message_one_id)
     result = message_is_unpinned(message_one_id) 
 
     # Assertion
     assert result == True
 
-'''
-def test_pin_not_existant_message():
+def test_unpin_not_existant_message():
     # Reset
     clear_v2()
 
@@ -68,9 +69,9 @@ def test_pin_not_existant_message():
 
     # Assertion
     with pytest.raises(InputError):
-        message_pin_v1(token, 42)
+        message_unpin_v1(token, 42)
 
-def test_pin_user_not_in_channel():
+def test_unpin_user_not_in_channel():
     # Reset
     clear_v2()
 
@@ -90,8 +91,10 @@ def test_pin_user_not_in_channel():
     message_one_id = message_send_v2(token, channel, message_one)
     message_two_id = message_send_v2(token2, channel2, message_two)
 
+    message_pin_v1(token, message_one_id)
+
     with pytest.raises(AccessError):
-        message_pin_v1(token, message_two_id)
+        message_unpin_v1(token2, message_one_id)
 
 def test_pin_user_not_in_dm():
     clear_v2()
@@ -110,9 +113,9 @@ def test_pin_user_not_in_dm():
     message_one = 'I am message #1'
     
 
-    # Send two message
+    # Send two messages
     message_one_id = message_senddm_v2(token, dm_id_1, message_one)
+    message_pin_v1(token, message_one_id)
 
     with pytest.raises(AccessError):
-        message_pin_v1(token2, message_one_id)
-'''
+        message_unpin_v1(token2, message_one_id)

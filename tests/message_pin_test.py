@@ -19,6 +19,7 @@ def test_pin_one_message_from_channel():
 
     token = auth_register_v2('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['token']
     channel = channels_create_v2(token, 'My Channel', True)
+    channel2 = channels_create_v2(token, 'My Channel 2', True)
     channel_join_v2(token, channel['channel_id'])
 
     message_one = 'I am message #1'
@@ -88,6 +89,7 @@ def test_pin_user_not_in_channel():
     # Send two message
     message_one_id = message_send_v2(token, channel, message_one)
     message_two_id = message_send_v2(token2, channel2, message_two)
+
 
     with pytest.raises(AccessError):
         message_pin_v1(token, message_two_id)
