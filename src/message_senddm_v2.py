@@ -42,7 +42,8 @@ def messagesendreturn(dm_id, u_id, message):
 
     message_send = { 'message_id': total_messages + 1, 
                     'u_id': u_id, 
-                    'message': message,  
+                    'message': message,
+                    'pinned': False  
                     } 
     dm['messages'].append(message_send)
     print(f"this is the length: {len(dm['messages'])}")

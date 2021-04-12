@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from src.message_senddm_v2 import message_senddm_v2
 
 # Send Message
-def message_send_v1(token, channel_id, message):
+def message_send_v2(token, channel_id, message):
     ''' Function that sends message to a channel'''
 
     auth_user_id = token_to_id(token)
@@ -47,6 +47,7 @@ def message_send_v1(token, channel_id, message):
             'u_id': m_u_id,
             'message_string': m_message_string,
             'time': m_time,
+            'pinned': False
         }
     )
 
@@ -128,6 +129,7 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
 
                 
     return {'shared_message_id': shared_message_id}
+
 
 
     
@@ -268,3 +270,19 @@ def is_user_in_dm(auth_user_id, dm_id):
         if user['u_id'] == auth_user_id:
             result = True
     return result
+
+def message_is_pinned(message_id):
+    ''' Function that checks if a certain message is pinned'''
+    pinned = False 
+    for channel in channels:
+        for message in channel['messages']:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
+                if message['pinned'] == True:
+                    pinned = True
+
+    for dm in dms:
+        for message in dm['messages']:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
+                if message['pinned'] == True:
+                    pinned = True
+    return pinned 
