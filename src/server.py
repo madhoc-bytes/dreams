@@ -4,6 +4,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from src.error import InputError
 from src import config
+from src.data import persist_data
 from src.auth import auth_register_v2, auth_login_v2, auth_logout_v2
 from src.dm import dm_create_v1, dm_details_v1, dm_invite_v1, dm_leave_v1, dm_list_v1, dm_messages_v1, dm_remove_v1
 from src.channel import channel_details_v2, channel_invite_v2
@@ -55,6 +56,7 @@ def auth_register():
     name_first = data['name_first']
     name_last = data['name_last']
     return_value = auth_register_v2(email, password, name_first, name_last)
+    persist_data()
     return dumps(return_value)
 
 @APP.route('/auth/login/v2', methods=['POST'])
@@ -63,14 +65,15 @@ def auth_login():
     email = data['email']
     password = data['password']
     return_value = auth_login_v2(email, password)
+    persist_data()
     return dumps(return_value)
 
 @APP.route('/auth/logout/v2', methods=['POST'])
 def auth_logout():
-
     data = request.get_json()
     token = data['token']
     return_value = auth_logout_v2(token)
+    persist_data()
     return dumps(return_value)
 
 @APP.route('/user/profile/v1', methods=['GET'])
@@ -83,32 +86,32 @@ def user_profile():
 
 @APP.route('/user/profile/setname/v1', methods=['PUT'])
 def user_profile_setname():
-
     data = request.get_json()
     token = data['token']
     name_first = data['name_first']
     name_last = data['name_last']
     return_value = user_profile_setname_v1(token, name_first, name_last)
+    persist_data()
     return dumps(return_value)
 
 
 @APP.route('/user/profile/setemail/v1', methods=['PUT'])
 def user_profile_setemail():
-
     data = request.get_json()
     token = data['token']
     email = data['email']
     return_value = user_profile_setemail_v1(token, email)
+    persist_data()
     return dumps(return_value)
 
 
 @APP.route('/user/profile/sethandle/v1', methods=['PUT'])
 def user_profile_sethandle():
-
     data = request.get_json()
     token = data['token']
     handle_str = data['handle']
     return_value = user_profile_sethandle_v1(token, handle_str)
+    persist_data()
     return dumps(return_value)
 
 
@@ -118,6 +121,7 @@ def channel_join():
     data = request.get_json()
     token = data['token']
     channel_id = data['channel_id']
+    persist_data()
     return dumps(channel_join_v2(token, channel_id))
 
 # channel join
@@ -135,6 +139,7 @@ def channel_leave():
     data = request.get_json()
     token = data['token']
     channel_id = data['channel_id']
+    persist_data()
     return dumps(channel_leave_v2(token, channel_id))
 
 # channel invite
@@ -144,6 +149,7 @@ def channel_invite():
     token = data['token']
     channel_id = data['channel_id']
     u_id = data['u_id']
+    persist_data()
     return dumps(channel_invite_v2(token, channel_id, u_id))
 
 # channel details
@@ -161,6 +167,7 @@ def channel_addowner():
     token = data['token']
     channel_id = data['channel_id']
     u_id = data['u_id']
+    persist_data()
     return dumps(channel_addowner_v2(token, channel_id, u_id))
 
 # channel removeowner
@@ -170,6 +177,7 @@ def channel_removeowner():
     token = data['token']
     channel_id = data['channel_id']
     u_id = data['u_id']
+    persist_data()
     return dumps(channel_removeowner_v2(token, channel_id, u_id))
 
 # channel create
@@ -180,6 +188,7 @@ def server_channels_create():
     name = data['name']
     is_public = data['is_public']
     return_value = channels_create_v2(token, name, is_public)
+    persist_data()
     return dumps(return_value)
 
 #admin userpermission change
@@ -189,6 +198,7 @@ def admin_userpermission_change():
     token = data['token']    
     u_id = data['u_id']
     p_id = data['permission_id']
+    persist_data()
     return dumps(adminuserpermissionchangev1(token, u_id, p_id))
 
 
@@ -216,6 +226,7 @@ def send_message():
     token = data['token']
     channel_id = data['channel_id']
     message = data['message']
+    persist_data()
     return dumps(message_send_v1(token, channel_id, message))
 
 # message/edit/v1
@@ -226,6 +237,7 @@ def edit_message():
     token = data['token']
     message_id = data['message_id']
     message = data['message']
+    persist_data()
     return dumps(message_edit_v1(token, message_id, message))
 
 # message/remove/v1
@@ -235,6 +247,7 @@ def remove_message():
     data = request.get_json()
     token = data['token']
     message_id = data['message_id']
+    persist_data()
     return dumps(message_remove_v1(token, message_id))
 
 # message/share/v1
@@ -247,17 +260,17 @@ def share_message():
     message = data['message']
     channel_id = data['channel_id']
     dm_id = data['dm_id']
+    persist_data()
     return dumps(message_share_v1(token, og_message_id, message, channel_id, dm_id))
 
 #message
 @APP.route('/message/senddm/v2', methods=['POST'])
 def message_senddm():
-
     data = request.get_json()
     token = data['token']    
     dm_id = data['dm_id']
     message =data['message']
-    
+    persist_data()
     return dumps(message_senddm_v2(token, dm_id, message))
 
 # users all
@@ -265,7 +278,6 @@ def message_senddm():
 def users_all():
     token = request.args.get('token')
     return dumps(users_all_v1(token))
-
 
 # search
 @APP.route("/search/v2", methods=['GET'])
@@ -278,6 +290,7 @@ def search():
 # clear 
 @APP.route('/clear/v1', methods = ['DELETE'])
 def clear():
+    persist_data()
     return dumps(clear_v2())
 
 
@@ -287,6 +300,7 @@ def dm_create():
     data = request.get_json()
     token = data['token']
     u_ids = data['u_ids']
+    persist_data()
     return dumps(dm_create_v1(token, u_ids))
 
 # dm details
@@ -295,6 +309,7 @@ def dm_details():
     data = request.get_json()
     token = data['token']
     dm_id = data['dm_id']
+    persist_data()
     return dumps(dm_details_v1(token, dm_id))
 
 # dm list
@@ -302,6 +317,7 @@ def dm_details():
 def dm_list():
     data = request.get_json()
     token = data['token']
+    persist_data()
     return dumps(dm_list_v1(token))
 
 # dm invite
@@ -311,6 +327,7 @@ def dm_invite():
     token = data['token']
     dm_id = data['dm_id']
     u_id = data['u_id']
+    persist_data()
     return dumps(dm_invite_v1(token, dm_id, u_id))
 
 # dm messages
@@ -320,6 +337,7 @@ def dm_messages():
     token = data['token']
     dm_id = data['dm_id']
     start = data['start']
+    persist_data()
     return dumps(dm_messages_v1(token, dm_id,start))
 
 # dm leave
@@ -328,6 +346,7 @@ def dm_leave():
     data = request.get_json()
     token = data['token']
     dm_id = data['dm_id']
+    persist_data()
     return dumps(dm_leave_v1(token, dm_id))
 
 # dm remove
@@ -336,6 +355,7 @@ def dm_remove():
     data = request.get_json()
     token = data['token']
     dm_id = data['dm_id']
+    persist_data()
     return dumps(dm_remove_v1(token, dm_id))
 
 if __name__ == "__main__":
