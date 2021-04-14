@@ -52,7 +52,6 @@ def test_user_profile_sethandle_used():
     resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
     resp_register_2 = requests.post(config.url + 'auth/register/v2', json=data_2)
     token_1 = resp_register_1.json().get('token')
-    token_2 = resp_register_2.json().get('token')
     handle_used = resp_register_2.json().get('handle')
     
 
