@@ -109,7 +109,7 @@ def user_profile_setemail():
 def user_profile_sethandle():
     data = request.get_json()
     token = data['token']
-    handle_str = data['handle']
+    handle_str = data['handle_str']
     return_value = user_profile_sethandle_v1(token, handle_str)
     persist_data()
     return dumps(return_value)

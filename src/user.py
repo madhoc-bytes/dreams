@@ -75,7 +75,8 @@ def user_profile_setemail_v1(token, email):
 def user_profile_sethandle_v1(token, handle_str):
 
     auth_user_id = token_to_id(token)
-
+    if handle_str == None:
+        raise InputError(description='hanlde string is empty')
     if len(handle_str) <= 3:
         raise InputError(description='new handle is too short')
     

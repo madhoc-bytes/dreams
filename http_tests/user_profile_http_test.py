@@ -10,7 +10,6 @@ from src.user import user_profile_v1
 from src.error import InputError
 
 
-
 def test_valid_user_profile():
     requests.delete(config.url + 'clear/v1')
 
