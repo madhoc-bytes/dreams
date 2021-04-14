@@ -10,7 +10,7 @@ from src.user import user_profile_setname_v1
 from src.error import InputError
 
 def test_user_profile_setname_valid():
-
+    requests.delete(config.url + 'clear/v1')
     data_1 = {
         'email': 'abc@def.com',
         'password': 'Password01!',
@@ -33,6 +33,7 @@ def test_user_profile_setname_valid():
     assert resp_user_setname.status_code == 200
 
 def test_first_name_too_short():
+    requests.delete(config.url + 'clear/v1')
     data_1 = {
         'email': 'abc@def.com',
         'password': 'Password01!',
@@ -55,6 +56,7 @@ def test_first_name_too_short():
     assert resp_user_setname.status_code == 400
 
 def test_first_name_too_long():
+    requests.delete(config.url + 'clear/v1')
     data_1 = {
         'email': 'abc@def.com',
         'password': 'Password01!',
@@ -77,6 +79,7 @@ def test_first_name_too_long():
     assert resp_user_setname.status_code == 400
 
 def test_last_name_too_short():
+    requests.delete(config.url + 'clear/v1')
     data_1 = {
         'email': 'abc@def.com',
         'password': 'Password01!',
@@ -99,6 +102,7 @@ def test_last_name_too_short():
     assert resp_user_setname.status_code == 400
 
 def test_last_name_too_long():
+    requests.delete(config.url + 'clear/v1')
     data_1 = {
         'email': 'abc@def.com',
         'password': 'Password01!',

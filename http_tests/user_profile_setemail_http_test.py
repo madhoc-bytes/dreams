@@ -56,6 +56,8 @@ def test_invalid_user_email():
     assert resp_user_profile.status_code == 400
 
 def test_user_profile_setemail_used():
+    requests.delete(config.url + 'clear/v1')
+
     data_1 = {
         'email': 'abc@def.com',
         'password': 'Password01!',
