@@ -78,9 +78,8 @@ def auth_logout():
 
 @APP.route('/user/profile/v1', methods=['GET'])
 def user_profile():
-    data = request.get_json()
-    token = data['token']
-    auth_user_id = data['u_id']
+    token = request.args.get('token')
+    auth_user_id = int(request.args.get('u_id'))
     return_value = user_profile_v1(token, auth_user_id)
     return dumps(return_value)
 
@@ -124,13 +123,12 @@ def channel_join():
     persist_data()
     return dumps(channel_join_v2(token, channel_id))
 
-# channel join
+# channel messages
 @APP.route("/channel/messages/v2", methods=['GET'])
 def channel_messages():
-    data = request.get_json()
-    token = data['token']
-    channel_id = data['channel_id']
-    start = data['start']
+    token = request.args.get('token')
+    channel_id = int(request.args.get('channel_id'))
+    start = int(request.args.get('start'))
     return dumps(channel_messages_v2(token, channel_id, start))
 
 # channel leave
@@ -155,9 +153,8 @@ def channel_invite():
 # channel details
 @APP.route("/channel/details/v2", methods=['GET'])
 def channel_details():
-    data = request.get_json()
-    token = data['token']
-    channel_id = data['channel_id']
+    token = request.args.get('token')
+    channel_id = int(request.args.get('channel_id'))
     return dumps(channel_details_v2(token, channel_id))
 
 # channel addowner
@@ -206,16 +203,14 @@ def admin_userpermission_change():
 @APP.route('/channels/list/v2', methods=['GET'])
 def channels_list():
     """Function that lists all channels for which a certain user has access"""
-    data = request.get_json()
-    token = data['token']
+    token = request.args.get('token')
     return dumps(channels_list_v2(token))
 
 # channels/listall/v2
 @APP.route('/channels/listall/v2', methods=['GET'])
 def channels_listall():
     """Function that lists all channels"""
-    data = request.get_json()
-    token = data['token']
+    token = request.args.get('token')
     return dumps(channels_listall_v2(token))
 
 # message/send/v1
@@ -282,9 +277,8 @@ def users_all():
 # search
 @APP.route("/search/v2", methods=['GET'])
 def search():
-    data = request.get_json()
-    token = data['token']
-    query_str = data['query_str']
+    token = request.args.get('token')
+    query_str = token = request.args.get('query_str')
     return dumps(search_v2(token, query_str))
 
 # clear 
@@ -306,18 +300,14 @@ def dm_create():
 # dm details
 @APP.route('/dm/details/v1', methods = ['GET'])
 def dm_details():
-    data = request.get_json()
-    token = data['token']
-    dm_id = data['dm_id']
-    persist_data()
+    token = request.args.get('token')
+    dm_id = int(request.args.get('dm_id'))
     return dumps(dm_details_v1(token, dm_id))
 
 # dm list
 @APP.route('/dm/list/v1', methods = ['GET'])
 def dm_list():
-    data = request.get_json()
-    token = data['token']
-    persist_data()
+    token = request.args.get('token')
     return dumps(dm_list_v1(token))
 
 # dm invite
@@ -333,11 +323,9 @@ def dm_invite():
 # dm messages
 @APP.route('/dm/messages/v1', methods = ['GET'])
 def dm_messages():
-    data = request.get_json()
-    token = data['token']
-    dm_id = data['dm_id']
-    start = data['start']
-    persist_data()
+    token = request.args.get('token')
+    dm_id = int(request.args.get('dm_id'))
+    start = int(request.args.get('start'))
     return dumps(dm_messages_v1(token, dm_id,start))
 
 # dm leave

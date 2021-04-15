@@ -28,16 +28,16 @@ def test_valid_user_profile():
     }
 
     resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-    token_1 = resp_register_1.json().get('token')
+    token_1 = resp_register_1.json()['token']
     resp_register_2 = requests.post(config.url + 'auth/register/v2', json=data_2)
-    u_id_2 = resp_register_2.json().get('auth_user_id')
+    u_id_2 = resp_register_2.json()['auth_user_id']
     data_3 = {
         'token': token_1,
         'u_id': u_id_2
     }
     print(data_3)
 
-    resp_user_profile = requests.get(config.url + 'user/profile/v1', json=data_3)
+    resp_user_profile = requests.get(config.url + 'user/profile/v1', params=data_3)
     assert resp_user_profile.status_code == 200
 
 
@@ -59,7 +59,7 @@ def test_invalid_user():
     }
 
     resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-    token_1 = resp_register_1.json().get('token')
+    token_1 = resp_register_1.json()['token']
     requests.post(config.url + 'auth/register/v2', json=data_2)
     u_id_2 = 4
     data_3 = {
@@ -67,5 +67,5 @@ def test_invalid_user():
         'u_id': u_id_2
     }
 
-    resp_user_profile = requests.get(config.url + 'user/profile/v1', json=data_3)
+    resp_user_profile = requests.get(config.url + 'user/profile/v1', params=data_3)
     assert resp_user_profile.status_code == 400

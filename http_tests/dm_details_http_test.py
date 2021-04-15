@@ -16,7 +16,7 @@ def test_dm_details_basic():
     }
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-    token = r.json().get('token')
+    token = r.json()['token']
     #create one user to pass in the list of users for dm create
     reg_data2 = {
         'email': 'test_second@gmail.com',
@@ -25,7 +25,7 @@ def test_dm_details_basic():
         'name_last': 'secondl'
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
-    u_id2 = r.json().get('auth_user_id')
+    u_id2 = r.json()['auth_user_id']
 
     create_data = {
         'token': token,
@@ -33,14 +33,15 @@ def test_dm_details_basic():
     }
 
     r = requests.post(config.url + 'dm/create/v1', json=create_data)
-    dm_id = r.json().get('dm_id')
+    dm_id = r.json()['dm_id']
+    
 
     details_params = {
         'token': token,
         'dm_id': dm_id
     }
 
-    r = requests.get(config.url + 'dm/details/v1', json=details_params)
+    r = requests.get(config.url + 'dm/details/v1', params=details_params)
     assert r.status_code == 200
 
 def test_dm_details_invalid_dmid():    
@@ -55,7 +56,7 @@ def test_dm_details_invalid_dmid():
     }
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-    token = r.json().get('token')
+    token = r.json()['token']
     #create one user to pass in the list of users for dm create
     reg_data2 = {
         'email': 'test_second@gmail.com',
@@ -64,7 +65,7 @@ def test_dm_details_invalid_dmid():
         'name_last': 'secondl'
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
-    u_id2 = r.json().get('auth_user_id')
+    u_id2 = r.json()['token']
 
     create_data = {
         'token': token,
@@ -78,7 +79,7 @@ def test_dm_details_invalid_dmid():
         'dm_id': 3
     }
 
-    r = requests.get(config.url + 'dm/details/v1', json=details_params)
+    r = requests.get(config.url + 'dm/details/v1', params=details_params)
     assert r.status_code == 400
 
 def test_dm_details_not_member():    
@@ -93,7 +94,7 @@ def test_dm_details_not_member():
     }
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-    token = r.json().get('token')
+    token = r.json()['token']
     #create one user to pass in the list of users for dm create
     reg_data2 = {
         'email': 'test_second@gmail.com',
@@ -102,16 +103,16 @@ def test_dm_details_not_member():
         'name_last': 'secondl'
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
-    u_id2 = r.json().get('auth_user_id')
+    u_id2 = r.json()['auth_user_id']
 
     reg_data3 = {
-        'email': 'test_auth@gmail.com',
-        'password': 'test_pw_auth',
-        'name_first': 'testf',
-        'name_last': 'testl'
+        'email': 'test_auth3@gmail.com',
+        'password': 'test_pw_auth3',
+        'name_first': 'testf3',
+        'name_last': 'testl3'
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data3)
-    token3 = r.json().get('token')
+    token3 = r.json()['token']
 
     create_data = {
         'token': token,
@@ -119,11 +120,11 @@ def test_dm_details_not_member():
     }
 
     r = requests.post(config.url + 'dm/create/v1', json=create_data)
-    dm_id = r.json().get('dm_id')
+    dm_id = r.json()['dm_id']
     details_params = {
         'token': token3,
         'dm_id': dm_id
     }
 
-    r = requests.get(config.url + 'dm/details/v1', json=details_params)
+    r = requests.get(config.url + 'dm/details/v1', params=details_params)
     assert r.status_code == 403

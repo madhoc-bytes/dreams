@@ -17,7 +17,7 @@ def test_messages_nomessage():
 
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-    token = r.json().get('token')
+    token = r.json()['token']
 
     # create a channel
     ch_data = {
@@ -28,7 +28,7 @@ def test_messages_nomessage():
 
     # acquire channel id
     r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-    ch_id = r.json().get('channel_id')
+    ch_id = r.json()['channel_id']
     
     # join user to channel
     join_data = {
@@ -42,7 +42,7 @@ def test_messages_nomessage():
         'channel_id': ch_id, 
         'start': 0
     }
-    r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
+    r = requests.get(config.url + 'channel/messages/v2', params=messages_params)
 
     assert(r.status_code == 200)
 
@@ -59,14 +59,14 @@ def test_messages_invalid_ch_id():
 
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-    token = r.json().get('token')
+    token = r.json()['token']
     messages_params = {
         'token': token, 
         'channel_id': 10, 
         'start': 0
     }
 
-    r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
+    r = requests.get(config.url + 'channel/messages/v2', params=messages_params)
 
     assert(r.status_code == 400)
 
@@ -83,7 +83,7 @@ def test_messages_start_too_big():
 
     # acquire token and id of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-    token = r.json().get('token')
+    token = r.json()['token']
 
     # create a channel
     ch_data = {
@@ -94,7 +94,7 @@ def test_messages_start_too_big():
 
     # acquire channel id
     r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-    ch_id = r.json().get('channel_id')
+    ch_id = r.json()['channel_id']
     
     # join user to channel
     join_data = {
@@ -121,7 +121,7 @@ def test_messages_not_member():
     }
 
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-    token = r.json().get('token')
+    token = r.json()['token']
     #create one user to pass in the list of users for dm create
     reg_data2 = {
         'email': 'test_second@gmail.com',
@@ -130,7 +130,7 @@ def test_messages_not_member():
         'name_last': 'secondl'
     }
     r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
-    token2 = r.json().get('token')
+    token2 = r.json()['token']
 
 
     ch_data = {
@@ -141,7 +141,7 @@ def test_messages_not_member():
 
     # acquire channel id
     r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-    ch_id = r.json().get('channel_id')
+    ch_id = r.json()['channel_id']
 
     join_data = {
         'token': token,
@@ -155,6 +155,6 @@ def test_messages_not_member():
         'start': 0
     }
 
-    r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
+    r = requests.get(config.url + 'channel/messages/v2', params=messages_params)
 
     assert(r.status_code == 403)

@@ -16,7 +16,7 @@ def test_valid():
 
     # acquire token of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-    token = r.json().get('token')
+    token = r.json()['token']
     
     # create a channel
     ch_data = {
@@ -27,7 +27,7 @@ def test_valid():
 
     # acquire channel id
     r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-    ch_id = r.json().get('channel_id')
+    ch_id = r.json()['channel_id']
 
     # join user to channel
     join_data = {
@@ -41,7 +41,7 @@ def test_valid():
         'token': token,
         'channel_id': ch_id,
     }    
-    r = requests.get(config.url + 'channel/details/v2', json=details_params)
+    r = requests.get(config.url + 'channel/details/v2', params=details_params)
     assert r.status_code == 200
 
 def test_invalid_channel():
@@ -57,7 +57,7 @@ def test_invalid_channel():
 
     # acquire token of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-    token = r.json().get('token')
+    token = r.json()['token']
 
     # try to recall details of a non-existent channel and expect input
     # error
@@ -66,7 +66,7 @@ def test_invalid_channel():
         'token': token,
         'channel_id': invalid_id
     }
-    r = requests.get(config.url + 'channel/details/v2', json=details_params)
+    r = requests.get(config.url + 'channel/details/v2', params=details_params)
     assert r.status_code == 400
 
 def test_unauthorised_user():
@@ -82,7 +82,7 @@ def test_unauthorised_user():
 
     # acquire token of user
     r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-    token = r.json().get('token')
+    token = r.json()['token']
     
     # create a channel
     ch_data = {
@@ -93,7 +93,7 @@ def test_unauthorised_user():
 
     # acquire channel id
     r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-    ch_id = r.json().get('channel_id')
+    ch_id = r.json()['channel_id']
     
     # try to call channel_details when auth_user is not in the channel 
     # and expect access error
@@ -101,5 +101,5 @@ def test_unauthorised_user():
         'token': token,
         'channel_id': ch_id,
     }    
-    r = requests.get(config.url + 'channel/details/v2', json=details_params)
+    r = requests.get(config.url + 'channel/details/v2', params=details_params)
     assert r.status_code == 403

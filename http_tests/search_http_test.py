@@ -23,7 +23,7 @@ def test_valid():
         'query_str': 'test'
     }
 
-    r = requests.get(config.url + 'search/v2', json=search_data)
+    r = requests.get(config.url + 'search/v2', params=search_data)
     assert r.status_code == 200
 
     # create a channel
@@ -60,7 +60,7 @@ def test_valid():
     requests.post(config.url + 'message/send/v1', json=msg_data)
     
 
-    r = requests.get(config.url + 'search/v2', json=search_data)
+    r = requests.get(config.url + 'search/v2', params=search_data)
     assert r.status_code == 200
 
 def test_long_querystr():
@@ -84,7 +84,7 @@ def test_long_querystr():
         'query_str': long_str
     }
 
-    r = requests.get(config.url + 'search/v2', json=search_data)
+    r = requests.get(config.url + 'search/v2', params=search_data)
     assert r.status_code == 400
 
 

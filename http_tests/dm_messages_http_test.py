@@ -32,7 +32,7 @@ def test_dm_messages_nomessage():
         'start': 0
     }
 
-    r = requests.get(config.url + 'dm/messages/v1', json=msg_params)
+    r = requests.get(config.url + 'dm/messages/v1', params=msg_params)
     assert r.status_code == 200
 
 def test_dm_messages_invalid_d_id():
@@ -55,7 +55,7 @@ def test_dm_messages_invalid_d_id():
         'start': 0
     }
 
-    r = requests.get(config.url + 'dm/messages/v1', json=msg_params)
+    r = requests.get(config.url + 'dm/messages/v1', params=msg_params)
 
     assert r.status_code == 400
 
@@ -86,7 +86,7 @@ def test_dm_messages_start_too_big():
         'start': 2
     }
 
-    r = requests.get(config.url + 'dm/messages/v1', json=msg_params)
+    r = requests.get(config.url + 'dm/messages/v1', params=msg_params)
 
     assert r.status_code == 400
 
@@ -126,6 +126,6 @@ def test_dm_messages_not_member():
         'start': 0
     }
 
-    r = requests.get(config.url + 'dm/messages/v1', json=msg_params)
+    r = requests.get(config.url + 'dm/messages/v1', params=msg_params)
 
     assert r.status_code == 403
