@@ -78,11 +78,15 @@ def auth_logout():
 
 @APP.route('/user/profile/v1', methods=['GET'])
 def user_profile():
-    data = request.get_json()
+    '''data = request.get_json()
     token = data['token']
-    auth_user_id = data['u_id']
+    auth_user_id = data['u_id']'''
+    token = request.args.get('token')
+    auth_user_id = int(request.args.get('u_id'))
     return_value = user_profile_v1(token, auth_user_id)
     return dumps(return_value)
+
+    token = request.args.get('token')
 
 @APP.route('/user/profile/setname/v1', methods=['PUT'])
 def user_profile_setname():
