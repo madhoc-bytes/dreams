@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from src.message_senddm_v2 import message_senddm_v2
 
 # Send Message
-def message_send_v1(token, channel_id, message):
+def message_send_v2(token, channel_id, message):
     ''' Function that sends message to a channel'''
 
     auth_user_id = token_to_id(token)
@@ -47,6 +47,7 @@ def message_send_v1(token, channel_id, message):
             'u_id': m_u_id,
             'message_string': m_message_string,
             'time': m_time,
+            'pinned': False
         }
     )
 
@@ -109,7 +110,7 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
             for message in channel['messages']:
                 if og_message_id == {'message_id': message['message_id']}:
                     new_message = message['message_string']
-                    shared_message_id = message_send_v1(token, channel_id, new_message)
+                    shared_message_id = message_send_v2(token, channel_id, new_message)
 
 
     if (channel_id == -1):
@@ -128,6 +129,60 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
 
                 
     return {'shared_message_id': shared_message_id}
+
+# Pin Message
+def message_pin_v1(token, message_id):
+    auth_user_id = token_to_id(token)
+
+    if message_exists(message_id) == False:
+        raise InputError(description='Message does not exist')
+
+    if message_is_pinned(message_id) == True:
+        raise InputError(description='Message is already pinned')
+
+        
+    for channel in channels:
+        for message in channel['messages']:
+            if message_id == {'message_id': message['message_id']}:
+                channel_id = channel['id']
+                if is_user_authorised(auth_user_id, {'channel_id': channel_id}) == False and is_user_owner(auth_user_id, message_id) == False:
+                    raise AccessError(description='User is not authorised or user is not owner of the channel')
+                message['pinned'] = True
+
+    for dm in dms:
+        for message in dm['messages']:
+            if message_id == {'message_id': message['message_id']}:
+                dm_id = dm['dm_id']
+                if is_user_in_dm(auth_user_id, dm_id) == False:
+                    raise AccessError(description='User is not authorised to the DM')
+                message['pinned'] = True
+
+# Unpin Message
+def message_unpin_v1(token, message_id):
+    auth_user_id = token_to_id(token)
+
+    if message_exists(message_id) == False:
+        raise InputError(description='Message does not exist')
+
+    if message_is_unpinned(message_id) == True:
+        raise InputError(description='Message is already unpinned')
+
+        
+    for channel in channels:
+        for message in channel['messages']:
+            if message_id == {'message_id': message['message_id']}:
+                channel_id = channel['id']
+                if is_user_authorised(auth_user_id, {'channel_id': channel_id}) == False and is_user_owner(auth_user_id, message_id) == False:
+                    raise AccessError(description='User is not authorised or user is not owner of the channel')
+                message['pinned'] = False
+
+    for dm in dms:
+        for message in dm['messages']:
+            if message_id == {'message_id': message['message_id']}:
+                dm_id = dm['dm_id']
+                if is_user_in_dm(auth_user_id, dm_id) == False:
+                    raise AccessError(description='User is not authorised to the DM')
+                message['pinned'] = False
 
 
     
@@ -151,12 +206,12 @@ def is_user_authorised(auth_user_id, channel_id):
     for channel in channels:
         if channel_id == {'channel_id': channel['id']}:
             break
-
+   
     for member in channel['all_members']:
         if member['u_id'] == auth_user_id:
             authorised = True
             break
-
+    
     return authorised 
 
 def message_sent_by_user(auth_user_id, message_id):
@@ -268,3 +323,35 @@ def is_user_in_dm(auth_user_id, dm_id):
         if user['u_id'] == auth_user_id:
             result = True
     return result
+
+def message_is_pinned(message_id):
+    ''' Function that checks if a certain message is pinned'''
+    pinned = False 
+    for channel in channels:
+        for message in channel['messages']:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
+                if message['pinned'] == True:
+                    pinned = True
+
+    for dm in dms:
+        for message in dm['messages']:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
+                if message['pinned'] == True:
+                    pinned = True
+    return pinned 
+
+def message_is_unpinned(message_id):
+    ''' Function that checks if a certain message is unpinned'''
+    unpinned = False 
+    for channel in channels:
+        for message in channel['messages']:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
+                if message['pinned'] == False:
+                    unpinned = True
+
+    for dm in dms:
+        for message in dm['messages']:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
+                if message['pinned'] == False:
+                    unpinned = True
+    return unpinned 

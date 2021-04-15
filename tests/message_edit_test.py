@@ -2,7 +2,7 @@
 
 # Imports
 import pytest
-from src.message import message_edit_v1, message_send_v1, is_message_edited
+from src.message import message_edit_v1, message_send_v2, is_message_edited
 from src.data import users, channels
 from src.auth import auth_register_v2
 from src.channel import channel_join_v2
@@ -22,7 +22,7 @@ def test_message_too_long():
     message = 'Valid message!'
     new_long_message = 'a' * 1001
 
-    message_one_id = message_send_v1(token, channel, message) 
+    message_one_id = message_send_v2(token, channel, message) 
 
     # Assertions: InputError
     with pytest.raises(InputError):
@@ -41,7 +41,7 @@ def test_valid_message_edit():
     message = 'Valid message!'
     new_message = 'This message was edited'
 
-    message_one_id = message_send_v1(token, channel, message) 
+    message_one_id = message_send_v2(token, channel, message) 
     message_edit_v1(token, message_one_id, new_message)
 
     message_test = is_message_edited(message_one_id, new_message)
@@ -62,7 +62,7 @@ def test_message_edit_two_messages():
     new_message = 'This message was edited'
 
 
-    message_two_id = message_send_v1(token_1, channel_1, message_2)
+    message_two_id = message_send_v2(token_1, channel_1, message_2)
 
     message_edit_v1(token_1, message_two_id, new_message)
 
@@ -89,7 +89,7 @@ def test_message_edit_two_channels():
     new_message = 'This message was edited'
 
     
-    message_two_id = message_send_v1(token_2, channel_2, message_2)
+    message_two_id = message_send_v2(token_2, channel_2, message_2)
 
     message_edit_v1(token_2, message_two_id, new_message)
 
@@ -112,7 +112,7 @@ def test_message_edit_not_sent_by_user():
     message = 'Valid message!'
     new_message = 'This message was edited'
 
-    message_one_id = message_send_v1(token, channel, message) 
+    message_one_id = message_send_v2(token, channel, message) 
 
 
     with pytest.raises(AccessError):

@@ -3,7 +3,7 @@ import pytest
 from src.auth import auth_register_v2
 from src.channel import channel_join_v2, channel_details_v2
 from src.channels import channels_create_v2
-from src.message import message_send_v1
+from src.message import message_send_v2
 from src.dm import dm_create_v1
 from src.search import search_v2
 from src.message_senddm_v2 import message_senddm_v2
@@ -30,9 +30,9 @@ def test_system():
     channel_join_v2(user['token'], test_channel_id)
 
     # send a message
-    message_send_v1(user['token'], test_channel_id, "test_msg1")
-    message_send_v1(user['token'], test_channel_id, "test_msg2")
-    message_send_v1(user['token'], test_channel_id, "random_msg1")
+    message_send_v2(user['token'], test_channel_id, "test_msg1")
+    message_send_v2(user['token'], test_channel_id, "test_msg2")
+    message_send_v2(user['token'], test_channel_id, "random_msg1")
 
     assert search_v2(user['token'], 'test') == {
         'messages': [
