@@ -22,4 +22,4 @@ def test_dm_list_basic():
         'token': token
     }
 
-    r = requests.get(config.url + 'channel/list/v2', json=list_params)
+    r = requests.get(config.url + 'channel/list/v2', params=list_params)
