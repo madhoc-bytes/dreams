@@ -116,3 +116,23 @@ def test_pin_user_not_in_dm():
 
     with pytest.raises(AccessError):
         message_pin_v1(token2, message_one_id)
+
+def test_pin_message_pinned():
+    # Reset
+    clear_v2()
+
+    token = auth_register_v2('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['token']
+    channel = channels_create_v2(token, 'My Channel', True)
+    channel_join_v2(token, channel['channel_id'])
+
+    message_one = 'I am message #1'
+
+    # Send two message
+    message_one_id = message_send_v2(token, channel, message_one)
+
+    # Delete message 1
+    message_pin_v1(token, message_one_id)
+
+    # Assertion
+    with pytest.raises(InputError):
+        message_pin_v1(token, message_one_id)

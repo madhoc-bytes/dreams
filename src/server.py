@@ -11,7 +11,7 @@ from src.channel import channel_details_v2, channel_invite_v2
 from src.channel import channel_addowner_v2,channel_removeowner_v2, channel_messages_v2
 from src.channel import channel_join_v2, channel_leave_v2
 from src.channels import channels_create_v2
-from src.message import message_send_v1, message_edit_v1, message_remove_v1, message_share_v1
+from src.message import message_send_v2, message_edit_v1, message_remove_v1, message_share_v1, message_pin_v1, message_unpin_v1
 from src.channels import channels_list_v2, channels_listall_v2
 from src.users import users_all_v1
 from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_sethandle_v1, user_profile_setname_v1
@@ -222,7 +222,7 @@ def send_message():
     channel_id = data['channel_id']
     message = data['message']
     persist_data()
-    return dumps(message_send_v1(token, channel_id, message))
+    return dumps(message_send_v2(token, channel_id, message))
 
 # message/edit/v1
 @APP.route('/message/edit/v1', methods=['PUT'])
@@ -257,6 +257,22 @@ def share_message():
     dm_id = data['dm_id']
     persist_data()
     return dumps(message_share_v1(token, og_message_id, message, channel_id, dm_id))
+
+# message/pin/v1
+@APP.route('/message/pin/v1', methods=['POST'])
+def pin_message():
+    data = request.get_json()
+    token = data['token']
+    message_id = data['message_id']
+    return dumps(message_pin_v1(token, message_id))
+
+# message/unpin/v1
+@APP.route('/message/unpin/v1', methods=['POST'])
+def unpin_message():
+    data = request.get_json()
+    token = data['token']
+    message_id = data['message_id']
+    return dumps(message_unpin_v1(token, message_id))
 
 #message
 @APP.route('/message/senddm/v2', methods=['POST'])

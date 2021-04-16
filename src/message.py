@@ -47,7 +47,8 @@ def message_send_v2(token, channel_id, message):
             'u_id': m_u_id,
             'message_string': m_message_string,
             'time': m_time,
-            'pinned': False
+            'reacts': 'reacts',
+            'is_pinned': False,
         }
     )
 
@@ -147,7 +148,7 @@ def message_pin_v1(token, message_id):
                 channel_id = channel['id']
                 if is_user_authorised(auth_user_id, {'channel_id': channel_id}) == False and is_user_owner(auth_user_id, message_id) == False:
                     raise AccessError(description='User is not authorised or user is not owner of the channel')
-                message['pinned'] = True
+                message['is_pinned'] = True
 
     for dm in dms:
         for message in dm['messages']:
@@ -155,7 +156,7 @@ def message_pin_v1(token, message_id):
                 dm_id = dm['dm_id']
                 if is_user_in_dm(auth_user_id, dm_id) == False:
                     raise AccessError(description='User is not authorised to the DM')
-                message['pinned'] = True
+                message['is_pinned'] = True
 
 # Unpin Message
 def message_unpin_v1(token, message_id):
@@ -174,7 +175,7 @@ def message_unpin_v1(token, message_id):
                 channel_id = channel['id']
                 if is_user_authorised(auth_user_id, {'channel_id': channel_id}) == False and is_user_owner(auth_user_id, message_id) == False:
                     raise AccessError(description='User is not authorised or user is not owner of the channel')
-                message['pinned'] = False
+                message['is_pinned'] = False
 
     for dm in dms:
         for message in dm['messages']:
@@ -182,7 +183,7 @@ def message_unpin_v1(token, message_id):
                 dm_id = dm['dm_id']
                 if is_user_in_dm(auth_user_id, dm_id) == False:
                     raise AccessError(description='User is not authorised to the DM')
-                message['pinned'] = False
+                message['is_pinned'] = False
 
 
     
@@ -330,13 +331,13 @@ def message_is_pinned(message_id):
     for channel in channels:
         for message in channel['messages']:
             if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
-                if message['pinned'] == True:
+                if message['is_pinned'] == True:
                     pinned = True
 
     for dm in dms:
         for message in dm['messages']:
             if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
-                if message['pinned'] == True:
+                if message['is_pinned'] == True:
                     pinned = True
     return pinned 
 
@@ -346,12 +347,12 @@ def message_is_unpinned(message_id):
     for channel in channels:
         for message in channel['messages']:
             if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
-                if message['pinned'] == False:
+                if message['is_pinned'] == False:
                     unpinned = True
 
     for dm in dms:
         for message in dm['messages']:
             if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
-                if message['pinned'] == False:
+                if message['is_pinned'] == False:
                     unpinned = True
     return unpinned 
