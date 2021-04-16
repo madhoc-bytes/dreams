@@ -39,8 +39,10 @@ if not os.path.isfile('persistent_data.p'):
             {
                 'message_id': 0,
                 'u_id': 0,
-                'message_string': 'hello123',
-                'time': 123123123,
+                'message': 'hello123',
+                'time_created': 123123123,
+                'reacts': 'reacts',
+                'is_pinned': false,
             }
         ],
     }
@@ -62,8 +64,10 @@ if not os.path.isfile('persistent_data.p'):
             {
                 'message_id': 0,
                 'u_id': 0,
-                'message_string': 'hello123',
-                'time': 123123123,
+                'message': 'hello123',
+                'time_created': 123123123,
+                'reacts': 'reacts',
+                'is_pinned': false,
             }
         ],
     }
