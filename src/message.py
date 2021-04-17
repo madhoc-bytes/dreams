@@ -181,57 +181,7 @@ def message_unpin_v1(token, message_id):
                     raise AccessError(description='User is not authorised to the DM')
                 message['is_pinned'] = False
 
-def message_sendlater_v1(token, channel_id, message, time_sent):
-    '''Send a message to a channel at a specified time in the future'''
-    auth_user_id = token_to_id(token)
-    if test_user_is_invalid(auth_user_id):
-        raise InputError()
-    if test_channel_is_invalid(channel_id):
-        raise InputError()
-    if len(message) > 1000:
-        raise InputError()
-    if not test_if_user_in_ch(auth_user_id, channel_id):
-        raise AccessError() 
 
-    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
-    if time_now > time_sent:
-        raise InputError()
-    
-    seconds_after = time_sent - time_now
-    #start message_send after '_a sec 
-    Timer(seconds_after, message_send_v1, [token, channel_id, message]).start()
-
-    message_id = get_current_message_id()
-    message_id = message_id + 1
-    return {"message_id": message_id}
-
-def message_sendlaterdm_v1(token, dm_id, message, time_sent):
-    auth_user_id = token_to_id(token)
-    if test_user_is_invalid(auth_user_id):
-        raise InputError()
-    #if dm_id not valid dm -> inputer
-    if test_dm_is_invalid(dm_id):
-        raise InputError()
-    if len(message) > 1000:
-        raise InputError()
-    # invalid user
-    if not check_user_in_dm(auth_user_id, dm_id):
-        raise AccessError()
-
-
-    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
-    if time_now > time_sent:
-        raise InputError()
-    
-    seconds_after = time_sent - time_now
-    #start message_senddm after seconds_after has past
-    Timer(seconds_after, message_senddm_v2, [token, dm_id, message]).start()
-
-    message_id = get_current_message_id()
-    message_id = message_id + 1
-    return {"message_id": message_id}
-
-    
 
 
 # -----------------------
