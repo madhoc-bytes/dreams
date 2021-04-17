@@ -1,4 +1,5 @@
 from src.data import users, channels, dms
+import os 
 
 ''' Resets the internal data of the application to it's initial state '''
 def clear_v2():
