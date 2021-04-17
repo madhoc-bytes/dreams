@@ -74,7 +74,7 @@ def test_standup_active():
     user1_token = user1['token']
 
     #create two channels 
-    channel_user1_id = channels_create_v2(user1_token,'gitb',True)
+    channel_user1_id = channels_create_v2(user1_token,'gitb',True).get('channel_id')
     channel_user2_id = channels_create_v2(user1_token,'gitb2',True).get('channel_id')
 
     #start a standup 
