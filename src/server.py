@@ -289,7 +289,7 @@ def clear():
     return dumps(clear_v2())
 
 #standup start
-@APP.route('/start/v1', methods = ['POST'])
+@APP.route('/standup/start/v1', methods = ['POST'])
 def standup_start():
     data = request.get_json()
     token = data['token']
@@ -298,13 +298,13 @@ def standup_start():
     persist_data()
     return dumps(standup_start_v1(token, channel_id, length))
 #standup_active
-@APP.route('/active/v1', methods = ['GET'])
+@APP.route('/standup/active/v1', methods = ['GET'])
 def is_active():
     token = request.args.get('token')
     channel_id = int(request.args.get('channel_id'))
     return dumps(standup_active(token, channel_id))
 #standup_send
-@APP.route('/send/v1', methods = ['POST'])
+@APP.route('/standup/send/v1', methods = ['POST'])
 def standup_send():
     data = request.get_json()
     token = data['token']
