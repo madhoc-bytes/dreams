@@ -111,7 +111,6 @@ def test_pin_user_not_in_dm():
     message_one = 'I am message #1'
     
 
-    # Send two message
     message_one_id = message_senddm_v2(token, dm_id_1, message_one)
 
     with pytest.raises(AccessError):
@@ -127,12 +126,12 @@ def test_pin_message_pinned():
 
     message_one = 'I am message #1'
 
-    # Send two message
+    # Send a message
     message_one_id = message_send_v2(token, channel, message_one)
 
-    # Delete message 1
+    # Pin message
     message_pin_v1(token, message_one_id)
 
-    # Assertion
+    # InputError
     with pytest.raises(InputError):
         message_pin_v1(token, message_one_id)

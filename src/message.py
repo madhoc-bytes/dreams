@@ -37,7 +37,7 @@ def message_send_v2(token, channel_id, message):
 
     # Find appropriate channel
     for channel in channels:
-        if {'channel_id': channel['id']} == channel_id:
+        if {'channel_id': channel['id']} == channel_id or channel['id'] == channel_id:
             break
 
 
@@ -51,6 +51,7 @@ def message_send_v2(token, channel_id, message):
             'is_pinned': False,
         }
     )
+
 
     total_messages = total_messages + 1
 
@@ -141,18 +142,19 @@ def message_pin_v1(token, message_id):
     if message_is_pinned(message_id) == True:
         raise InputError(description='Message is already pinned')
 
-        
+
     for channel in channels:
         for message in channel['messages']:
-            if message_id == {'message_id': message['message_id']}:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
                 channel_id = channel['id']
                 if is_user_authorised(auth_user_id, {'channel_id': channel_id}) == False and is_user_owner(auth_user_id, message_id) == False:
                     raise AccessError(description='User is not authorised or user is not owner of the channel')
                 message['is_pinned'] = True
 
+
     for dm in dms:
         for message in dm['messages']:
-            if message_id == {'message_id': message['message_id']}:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
                 dm_id = dm['dm_id']
                 if is_user_in_dm(auth_user_id, dm_id) == False:
                     raise AccessError(description='User is not authorised to the DM')
@@ -171,7 +173,7 @@ def message_unpin_v1(token, message_id):
         
     for channel in channels:
         for message in channel['messages']:
-            if message_id == {'message_id': message['message_id']}:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
                 channel_id = channel['id']
                 if is_user_authorised(auth_user_id, {'channel_id': channel_id}) == False and is_user_owner(auth_user_id, message_id) == False:
                     raise AccessError(description='User is not authorised or user is not owner of the channel')
@@ -179,7 +181,7 @@ def message_unpin_v1(token, message_id):
 
     for dm in dms:
         for message in dm['messages']:
-            if message_id == {'message_id': message['message_id']}:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
                 dm_id = dm['dm_id']
                 if is_user_in_dm(auth_user_id, dm_id) == False:
                     raise AccessError(description='User is not authorised to the DM')
@@ -249,12 +251,12 @@ def delete_message(message_id):
     ''' Function that deletes a certain message'''
     for dm in dms:
         for message in dm['messages']:
-            if message_id == {'message_id': message['message_id']}:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
                 dm['messages'].remove(message)
 
     for channel in channels:
         for message in channel['messages']:
-            if message_id == {'message_id': message['message_id']}:
+            if message_id == {'message_id': message['message_id']} or message_id == message['message_id']:
                 channel['messages'].remove(message)
     return None
 
@@ -299,7 +301,6 @@ def is_message_shared(message_id, channel_id):
             break
     
     for message in channel['messages']:
-
         if {'message_id': message['message_id']} == message_id:
             shared = True
     return shared

@@ -47,16 +47,15 @@ def test_message_remove_from_channel_invalid_message():
     message = 'a'
     message_data = {'token': token, 'channel_id': ch_id, 'message': message}
     r = requests.post(config.url + 'message/send/v1', json=message_data)
-    
-
-    # Creating not valid message 
-    message_id_2 = 42
+    message_id = r.json().get('message_id')
 
     # Test removing the same message
-    remove_data = {'token': token, 'message_id': message_id_2}
-    r = requests.delete(config.url + 'message/remove/v1', json=remove_data)
+    remove_data = {'token': token, 'message_id': message_id}
+    r1 = requests.delete(config.url + 'message/remove/v1', json=remove_data)
+    r2 = requests.delete(config.url + 'message/remove/v1', json=remove_data)
+    
 
-    assert r.status_code == 400
+    assert r2.status_code == 400
 
 def test_message_remove_from_channel_not_sent_by_same_user():
     requests.delete(config.url + 'clear/v1')
