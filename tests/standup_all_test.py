@@ -125,10 +125,8 @@ def test_stand_send_not_member():
 
     #create and login in two users
     user1 = auth_register_v2('dbdqwe3@gmail.com', 'qwerasdf', 'df', 'asdf')
-    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qwerasdf')
     user1_token = user1['token']
     user2 = auth_register_v2('qweaqwed@gmail.com', 'tyuighjk', 'df2', 'asdf2')
-    user2 = auth_login_v2('qweaqwed@gmail.com', 'tyuighjk')
     user2_token = user2['token']
 
     #create a channel 
