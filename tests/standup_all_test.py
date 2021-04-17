@@ -115,7 +115,7 @@ def test_stand_send_no_active():
     user1_token = user1['token']
 
     #create a channel 
-    channel_user1_id = channels_create_v2(user1_token,'gitb',True).get('channel_id')
+    channel_user1_id = channels_create_v2(user1_token,'gitb',True)
 
     with pytest.raises(InputError):
         standup_send_v1(user1_token, channel_user1_id,'')
@@ -132,7 +132,7 @@ def test_stand_send_not_member():
     user2_token = user2['token']
 
     #create a channel 
-    channel_user1_id = channels_create_v2(user1_token,'gitb',True).get('channel_id')
+    channel_user1_id = channels_create_v2(user1_token,'gitb',True)
 
     with pytest.raises(AccessError):
         standup_send_v1(user2_token, channel_user1_id,'')
@@ -146,7 +146,7 @@ def test_standup_long_message():
     user1_token = user1['token']
 
     #create a channel 
-    channel_user1_id = channels_create_v2(user1_token,'gitb',True).get('channel_id')
+    channel_user1_id = channels_create_v2(user1_token,'gitb',True)
 
     #longmessage check
     message = "jjjjj"
