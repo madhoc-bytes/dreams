@@ -15,9 +15,36 @@ if not os.path.isfile('persistent_data.p'):
         'u_id': auth_user_id,
         'token': new_token,
         'permission_id': permission_id,
-        'timestamp_ch': 1234,
-        'timestamp_dm': 1234,
-        'timestamp_msg': 1234,
+        'timestamp_ch': [
+            {
+                'num_channels_joined': 0,
+                'time_stamp': 123
+            },
+            {
+                'num_channels_joined': 1,
+                'time_stamp': 130
+            }
+        ],
+        'timestamp_dm': [
+            {
+                'num_dms_joined': 0,
+                'time_stamp': 123
+            },
+            {
+                'num_dms_joined': 1,
+                'time_stamp': 130
+            }
+        ],
+        'timestamp_msg': [
+            {
+                'num_messages_sent': 0,
+                'time_stamp': 123
+            },
+            {
+                'num_messages_sent': 1,
+                'time_stamp': 130
+            }
+        ],
     }
     '''
     channels = []
