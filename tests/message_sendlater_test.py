@@ -20,10 +20,10 @@ def test_message_sendlater_basic():
     # Get the current time and add a second
     time_sent = int(datetime.now().replace(tzinfo=timezone.utc).timestamp()) + 1
     message_sendlater_v1(auth_token, test_channel, "message", time_sent)
-    time.sleep(1)
+    time.sleep(2)
     test_message = channel_messages_v2(auth_token, test_channel , 0)['messages']
 
-    assert test_message[0]['message'] == "message"
+    assert test_message[test_channel]['message'] == "message"
 
 def test_message_sendlater_timeinpast():
     clear_v2()

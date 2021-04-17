@@ -18,7 +18,7 @@ def test_message_sendlaterdm_basic():
     # Get the current time and add a second
     time_sent = int(datetime.now().replace(tzinfo=timezone.utc).timestamp()) + 1
     message_sendlaterdm_v1(auth_token, dm_id, "message", time_sent)
-    time.sleep(1)
+    time.sleep(3)
     test_message = dm_messages_v1(auth_token, dm_id , 0)['messages']
     assert test_message[dm_id]['message'] == "message"
 
