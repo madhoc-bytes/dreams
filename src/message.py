@@ -50,7 +50,12 @@ def message_send_v1(token, channel_id, message):
         }
     )
 
-    total_messages = total_messages + 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[auth_user_id]['num_messages_sent'] += 1
+    users[auth_user_id]['timestamp_msg'].append({
+        'num_messages_sent': users[auth_user_id]['num_messages_sent'],
+        'time_stamp': time_now,
+    })
 
     # Return message_id
     return {
@@ -88,7 +93,12 @@ def message_remove_v1(token, message_id):
     if message_sent_by_user(auth_user_id, message_id) == False and is_user_owner(auth_user_id, message_id) == False:
         raise AccessError(description='Access Error')
 
-
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[auth_user_id]['num_messages_sent'] -= 1
+    users[auth_user_id]['timestamp_msg'].append({
+        'num_messages_sent': users[auth_user_id]['num_messages_sent'],
+        'time_stamp': time_now,
+    })
     delete_message(message_id)
     return {}
 
@@ -126,7 +136,13 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
                     new_message = message['message']
                     shared_message_id = message_senddm_v2(token, dm_id, new_message)
 
-                
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[auth_user_id]['num_messages_sent'] += 1
+    users[auth_user_id]['timestamp_msg'].append({
+        'num_messages_sent': users[auth_user_id]['num_messages_sent'],
+        'time_stamp': time_now,
+    })
+    
     return {'shared_message_id': shared_message_id}
 
 

@@ -9,6 +9,7 @@ import jwt
 import pickle
 from src.error import InputError, AccessError
 from src.data import users
+from datetime import datetime, timezone
 
 
 def auth_login_v1(email, password):
@@ -128,7 +129,13 @@ def auth_register_v2(email, password, name_first, name_last):
             'handle': handle,
             'u_id': auth_user_id,
             'token': new_token,
-            'permission_id': permission_id
+            'permission_id': permission_id,
+            'num_channels_joined': 0,                    
+            'num_dms_joined': 0,
+            'num_messages_sent': 0,
+            'timestamp_ch': [],
+            'timestamp_dm': [],
+            'timestamp_msg': [],
         })
 
     if len(users) == 1:
