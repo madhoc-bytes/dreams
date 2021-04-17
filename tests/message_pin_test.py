@@ -19,15 +19,15 @@ def test_pin_one_message_from_channel():
 
     token = auth_register_v2('germanijack@yahoo.com', 'jack123', 'Jack', 'Germani')['token']
     channel = channels_create_v2(token, 'My Channel', True)
-    channel2 = channels_create_v2(token, 'My Channel 2', True)
+    channels_create_v2(token, 'My Channel 2', True)
     channel_join_v2(token, channel['channel_id'])
 
     message_one = 'I am message #1'
 
-    # Send two message
+    # Send a message
     message_one_id = message_send_v2(token, channel, message_one)
 
-    # Delete message 1
+    # Pin the message
     message_pin_v1(token, message_one_id)
     result = message_is_pinned(message_one_id) 
 
@@ -45,12 +45,11 @@ def test_pin_one_message_from_dm():
     dm_id_1 = dm_create_v1(token, u_ids)['dm_id']
 
     message_one = 'I am message #1'
-    
 
-    # Send two message
+    # Send a message to dm
     message_one_id = message_senddm_v2(token, dm_id_1, message_one)
 
-    # Delete message 1
+    # Pin message 
     message_pin_v1(token, message_one_id)
     result = message_is_pinned(message_one_id) 
 
@@ -86,8 +85,8 @@ def test_pin_user_not_in_channel():
     message_one = 'I am message #1'
     message_two = 'Message 2'
 
-    # Send two message
-    message_one_id = message_send_v2(token, channel, message_one)
+    # Send a message
+    message_send_v2(token, channel, message_one)
     message_two_id = message_send_v2(token2, channel2, message_two)
 
 
@@ -104,7 +103,6 @@ def test_pin_user_not_in_dm():
     token2 = user2['token']
 
     auth_user_id_1 = user['auth_user_id']
-    auth_user_id_2 = user2['auth_user_id']
     u_ids = [auth_user_id_1]
     dm_id_1 = dm_create_v1(token, u_ids)['dm_id']
 

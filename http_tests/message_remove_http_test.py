@@ -51,7 +51,7 @@ def test_message_remove_from_channel_invalid_message():
 
     # Test removing the same message
     remove_data = {'token': token, 'message_id': message_id}
-    r1 = requests.delete(config.url + 'message/remove/v1', json=remove_data)
+    requests.delete(config.url + 'message/remove/v1', json=remove_data)
     r2 = requests.delete(config.url + 'message/remove/v1', json=remove_data)
     
 

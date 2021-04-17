@@ -49,7 +49,6 @@ def test_valid_message_send():
     message = 'a'
     message_data = {'token': token, 'channel_id': ch_id, 'message': message}
     r = requests.post(config.url + 'message/send/v1', json=message_data)
-    message_id = r.json().get('message_id')
 
     #result = message_exists(message_id)
     #assert result == True

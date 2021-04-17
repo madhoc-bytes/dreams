@@ -23,10 +23,8 @@ def test_unpin_one_message_from_channel():
 
     message_one = 'I am message #1'
 
-    # Send two message
     message_one_id = message_send_v2(token, channel, message_one)
 
-    # Delete message 1
     message_pin_v1(token, message_one_id)
     message_unpin_v1(token, message_one_id)
     result = message_is_unpinned(message_one_id) 
@@ -46,11 +44,8 @@ def test_unpin_one_message_from_dm():
 
     message_one = 'I am message #1'
     
-
-    # Send two message
     message_one_id = message_senddm_v2(token, dm_id_1, message_one)
 
-    # Delete message 1
     message_pin_v1(token, message_one_id)
     message_unpin_v1(token, message_one_id)
     result = message_is_unpinned(message_one_id) 
@@ -85,11 +80,9 @@ def test_unpin_user_not_in_channel():
     channel_join_v2(token2, channel2['channel_id'])
 
     message_one = 'I am message #1'
-    message_two = 'Message 2'
 
-    # Send two message
+    # Send a message
     message_one_id = message_send_v2(token, channel, message_one)
-    message_two_id = message_send_v2(token2, channel2, message_two)
 
     message_pin_v1(token, message_one_id)
 
@@ -106,14 +99,12 @@ def test_pin_user_not_in_dm():
     token2 = user2['token']
 
     auth_user_id_1 = user['auth_user_id']
-    auth_user_id_2 = user2['auth_user_id']
     u_ids = [auth_user_id_1]
     dm_id_1 = dm_create_v1(token, u_ids)['dm_id']
 
     message_one = 'I am message #1'
     
 
-    # Send two messages
     message_one_id = message_senddm_v2(token, dm_id_1, message_one)
     message_pin_v1(token, message_one_id)
 

@@ -144,7 +144,7 @@ def test_pin_message_pinned():
     message_id = r.json()['message_id']
 
     pin_data = {'token': token, 'message_id': message_id}
-    r1 = requests.post(config.url + '/message/pin/v1', json=pin_data)
+    requests.post(config.url + '/message/pin/v1', json=pin_data)
     r2 = requests.post(config.url + '/message/pin/v1', json=pin_data)
     
     assert r2.status_code == 400
