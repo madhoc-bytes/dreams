@@ -14,7 +14,7 @@ from src.channels import channels_create_v2
 from src.message import message_send_v1, message_edit_v1, message_remove_v1, message_share_v1
 from src.channels import channels_list_v2, channels_listall_v2
 from src.users import users_all_v1
-from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_sethandle_v1, user_profile_setname_v1
+from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_sethandle_v1, user_profile_setname_v1, user_stats_v1
 from src.message_senddm_v2 import message_senddm_v2
 from src.admin_userpermission_change_v1 import adminuserpermissionchangev1
 from src.search import search_v2
@@ -75,6 +75,12 @@ def auth_logout():
     return_value = auth_logout_v2(token)
     persist_data()
     return dumps(return_value)
+
+# user stats
+@APP.route("/user/stats/v1", methods=['GET'])
+def user_stats():
+    token = request.args.get('token')
+    return dumps(user_stats_v1(token))
 
 @APP.route('/user/profile/v1', methods=['GET'])
 def user_profile():
