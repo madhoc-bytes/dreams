@@ -1,6 +1,7 @@
 from src.channel import test_channel_is_invalid, test_if_user_in_ch, token_to_id
 from src.data import channels, users
 from src.error import InputError, AccessError
+from src.message_send import message_send
 import datetime
 import threading
 import json
@@ -88,7 +89,7 @@ def standup_send_v1(token, channel_id, message):
     
     userfirstname = token_to_name(token)
     send_message = userfirstname + '-> ' + message + '\n'
-    data.addmessage(channel_id, send_message)
+    addmessage(channel_id, send_message)
 
     return {}
 ############
