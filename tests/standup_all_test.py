@@ -48,7 +48,7 @@ def test_standup_start_occpuy():
 
     standup_start_v1(user1_token, channel_user1_id, 3)
 
-    with pytest.raises(AccessError):
+    with pytest.raises(InputError):
         standup_start_v1(user1_token, channel_user1_id, 1)
 
 def test_standup_active_invalidchannel_id():
