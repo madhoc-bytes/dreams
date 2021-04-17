@@ -4,9 +4,12 @@
 from src.error import AccessError, InputError
 import jwt
 from src.data import users, channels, dms
-from src.channel import token_to_id
+from src.channel import token_to_id, test_user_is_invalid, test_channel_is_invalid, test_if_user_in_ch
 from datetime import datetime, timezone
+from src.dm import test_dm_is_invalid, check_user_in_dm
 from src.message_senddm_v2 import message_senddm_v2
+from threading import Timer
+from time import mktime
 
 # Send Message
 def message_send_v1(token, channel_id, message):
@@ -26,13 +29,11 @@ def message_send_v1(token, channel_id, message):
     
     # Message Details
 
-    total_messages = 0
-    for channel in channels:
-        total_messages = total_messages + len(channel['messages'])
-
-    m_message_id = total_messages + 1
+    m_message_id = get_current_message_id()
+    m_message_id = m_message_id + 1
     m_u_id = auth_user_id
-    m_message_string = message
+    m_message = message
+    m_react_id = 0
     m_time = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
 
     # Find appropriate channel
@@ -45,12 +46,12 @@ def message_send_v1(token, channel_id, message):
         {
             'message_id' : m_message_id,
             'u_id': m_u_id,
-            'message_string': m_message_string,
-            'time': m_time,
+            'message': m_message,
+            'time_created': m_time,
+            'reacts': m_react_id,
+            'is_pinned': False,
         }
     )
-
-    total_messages = total_messages + 1
 
     # Return message_id
     return {
@@ -71,7 +72,7 @@ def message_edit_v1(token, message_id, message):
     for channel in channels:
         for message_stored in channel['messages']:
             if message_id == {'message_id': message_stored['message_id']}:
-                message_stored['message_string'] = message
+                message_stored['message'] = message
     
     return {}
 
@@ -108,7 +109,7 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
         for channel in channels:
             for message in channel['messages']:
                 if og_message_id == {'message_id': message['message_id']}:
-                    new_message = message['message_string']
+                    new_message = message['message']
                     shared_message_id = message_send_v1(token, channel_id, new_message)
 
 
@@ -129,8 +130,77 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
                 
     return {'shared_message_id': shared_message_id}
 
+def message_sendlater_v1(token, channel_id, message, time_sent):
+    '''Send a message to a channel at a specified time in the future'''
+    auth_user_id = token_to_id(token)
+    if test_user_is_invalid(auth_user_id):
+        raise InputError()
+    if test_channel_is_invalid(channel_id):
+        raise InputError()
+    if len(message) > 1000:
+        raise InputError()
+    if not test_if_user_in_ch(auth_user_id, channel_id):
+        raise AccessError() 
 
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    if time_now > time_sent:
+        raise InputError()
     
+    seconds_after = time_sent - time_now
+    #start message_send after '_a sec 
+    Timer(seconds_after, message_send_v1, [token, channel_id, message]).start()
+
+    message_id = get_current_message_id()
+    message_id = message_id + 1
+    return {"message_id": message_id}
+
+def message_sendlaterdm_v1(token, dm_id, message, time_sent):
+    auth_user_id = token_to_id(token)
+    if test_user_is_invalid(auth_user_id):
+        raise InputError()
+    #if dm_id not valid dm -> inputer
+    if test_dm_is_invalid(dm_id):
+        raise InputError()
+    if len(message) > 1000:
+        raise InputError()
+    # invalid user
+    if not check_user_in_dm(auth_user_id, dm_id):
+        raise AccessError()
+
+
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    if time_now > time_sent:
+        raise InputError()
+    
+    seconds_after = time_sent - time_now
+    #start message_senddm after seconds_after has past
+    Timer(seconds_after, message_senddm_v2, [token, dm_id, message]).start()
+
+    message_id = get_current_message_id()
+    message_id = message_id + 1
+    return {"message_id": message_id}
+
+def message_react(token, message_id, react_id):
+    #check if token is valid
+    token_u_id = token_to_u_id(token)
+    #check if channel exists
+    channel_id = int(str(message_id)[:3])
+    if channel_id not in global_data().channels:
+        raise InputError(description="channel not stored in data")
+    channel = global_data().channels[channel_id]
+    #check if user is a member of channel
+    if token_u_id not in channel.members:
+        raise AccessError(description="User is not part of the channel")
+    #check if react_id is valid
+    if react_id not in REACTS:
+        raise InputError(description=f"{react_id} is not a valid react ID")
+
+    #find the message object with given message_id
+    #msg = get_message_dict(channel_id, message_id)
+    result = alter_reaction(False, channel_id, message_id, react_id, token_u_id)
+    if result == "Success":
+        return {}
+    raise InputError(description=result)
 
 
 # -----------------------
@@ -222,7 +292,7 @@ def is_message_edited(message_id, new_message):
     for channel in channels:
         for message in channel['messages']:
             if message_id == {'message_id': message['message_id']}:
-                if new_message == message['message_string']:
+                if new_message == message['message']:
                     message_test = True 
     return message_test
 
@@ -268,3 +338,14 @@ def is_user_in_dm(auth_user_id, dm_id):
         if user['u_id'] == auth_user_id:
             result = True
     return result
+
+def get_current_message_id():
+    num_messages = 0
+    for channel in channels:
+        num_messages = num_messages + len(channel['messages'])
+
+    for dm in dms:
+        num_messages = num_messages + len(dm['messages'])
+
+    return num_messages
+
