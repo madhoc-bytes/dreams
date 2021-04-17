@@ -7,12 +7,17 @@ if not os.path.isfile('persistent_data.p'):
     # example of what users list with 1 user would look like
     '''
     {
-        'email': 'emai@email.com',
-        'password': 'Password1',
-        'name_first': 'user',
-        'name_last': 'name',
-        'handle': 'username',
-        'u_id': 0,
+        'email': email,
+        'password': password,
+        'name_first': name_first,
+        'name_last': name_last,
+        'handle': handle,
+        'u_id': auth_user_id,
+        'token': new_token,
+        'permission_id': permission_id,
+        'timestamp_ch': 1234,
+        'timestamp_dm': 1234,
+        'timestamp_msg': 1234,
     }
     '''
     channels = []
@@ -71,17 +76,24 @@ if not os.path.isfile('persistent_data.p'):
             }
         ],
     }
-    '''
+    ''' 
+    dreams = {
+        'timestamp_ch': 0,
+        'timestamp_dm': 0,
+        'timestamp_msg': 0,
+    }
 # persistent
 else:
     with open('persistent_data.p', 'rb') as file:
         users = pickle.load(file)
         channels = pickle.load(file)
         dms = pickle.load(file)
+        dreams = pickle.load(file)
 
 def persist_data():
     with open('persistent_data.p', 'wb') as file:
         pickle.dump(users, file)
         pickle.dump(channels, file)
         pickle.dump(dms, file)
+        pickle.dump(dreams, file)
 
