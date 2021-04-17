@@ -17,7 +17,7 @@ def test_standup_start_invalidtoken():
     channel_user1_id = channels_create_v2(user1_token, 'gitb' , True).get('channel_id')
 
     token_item = user1_token + ' '
-    with pytest.raises(InputError):
+    with pytest.raises(AccessError):
         standup_start_v1(token_item, channel_user1_id, 1)
 
 def test_standup_start_invalidchannelid():
@@ -48,7 +48,7 @@ def test_standup_start():
 
     standup_start_v1(user1_token, channel_user1_id, 3)
 
-    with pytest.raises(InputError):
+    with pytest.raises(AccessError):
         standup_start_v1(user1_token, channel_user1_id, 1)
 
 def test_standup_active_invalidchannel_id():
@@ -67,7 +67,7 @@ def test_standup_active_invalidchannel_id():
     standup_start_v1(user1_token, channel_user1_id, 1)
 
     channel_item = channel_user1_id + 1
-    with pytest.raises(InputError):
+    with pytest.raises(AccessError):
         standup_active_v1(user1_token, channel_item)
 
 def test_standup_active():
