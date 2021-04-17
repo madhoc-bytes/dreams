@@ -11,10 +11,10 @@ def standup_start_v1(token, channel_id, length):
     auth_user_id = token_to_id(token)
     # invalid channel
     if test_channel_is_invalid(channel_id):
-        raise InputError()
+        raise InputError('Channel ID is not a valid channel')
     # invalid user
     if not test_if_user_in_ch(auth_user_id, channel_id):
-        raise AccessError()
+        raise AccessError('Authorised user is not in the channel')
     #channel get.
     standupchannel = channelid_to_channel(channel_id)
     #get now time
@@ -24,7 +24,7 @@ def standup_start_v1(token, channel_id, length):
     difference = standupchannel['standup']['finishtime'] - timesymbol
      # no active standup
     if difference <= 0:
-        raise InputError()
+        raise InputError('An active standup is currently running in this channel')
 
     #clear all the message
     nonemessage(channel_id)
@@ -40,7 +40,7 @@ def standup_start_v1(token, channel_id, length):
 def standup_active_v1(token, channel_id):
     # invalid channel
     if test_channel_is_invalid(channel_id):
-        raise InputError()
+        raise InputError('Channel ID is not a valid channel')
     #channel get.
     standupchannel = channelid_to_channel(channel_id)
     #get now time
@@ -66,13 +66,13 @@ def standup_send_v1(token, channel_id, message):
     auth_user_id = token_to_id(token)
     # invalid channel
     if test_channel_is_invalid(channel_id):
-        raise InputError()
+        raise InputError('Channel ID is not a valid channel')
     # invalid user
     if not test_if_user_in_ch(auth_user_id, channel_id):
-        raise AccessError()
+        raise AccessError('The authorised user is not a member of the channel that the message is within')
     # invalid message
     if len(message) > 1000:                
-        raise InputError()
+        raise InputError('Message is more than 1000 characters (not including the username and colon)')
     #channel get.
     standupchannel = channelid_to_channel(channel_id)
     #get now time
@@ -82,7 +82,7 @@ def standup_send_v1(token, channel_id, message):
     difference = standupchannel['standup']['finishtime'] - timesymbol
      # no active standup is runing in the given channel
     if difference <= 0:
-        raise InputError()
+        raise InputError('An active standup is not currently running in this channel')
     
     userfirstname = token_to_name(token)
     send_message = userfirstname + '-> ' + message + '\n'
