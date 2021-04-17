@@ -46,8 +46,6 @@ def test_standup_start_occpuy():
     #create the channel.
     channel_user1_id = channels_create_v2(user1_token, 'gitb' , True).get('channel_id')
 
-    standup_start_v1(user1_token, channel_user1_id, 3)
-
     with pytest.raises(InputError):
         standup_start_v1(user1_token, channel_user1_id, 1)
 
@@ -62,9 +60,6 @@ def test_standup_active_invalidchannel_id():
 
     #create the channel.
     channel_user1_id = channels_create_v2(user1_token, 'gitb' , True).get('channel_id')
-
-    #start a standup
-    standup_start_v1(user1_token, channel_user1_id, 1)
 
     channel_item = channel_user1_id + 1
     with pytest.raises(InputError):
@@ -107,9 +102,6 @@ def test_stand_send_invalidchannelid():
     #create a channel 
     channel_user1_id = channels_create_v2(user1_token,'gitb',True).get('channel_id')
 
-    #start a standup
-    standup_start_v1(user1_token, channel_user1_id, 1)
-
     channel_item = channel_user1_id + 1
     with pytest.raises(InputError):
         standup_send_v1(user1_token, channel_item,'')
@@ -143,9 +135,6 @@ def test_stand_send_not_member():
     #create a channel 
     channel_user1_id = channels_create_v2(user1_token,'gitb',True).get('channel_id')
 
-    #start a standup
-    standup_start_v1(user1_token, channel_user1_id, 1)
-
     with pytest.raises(AccessError):
         standup_send_v1(user2_token, channel_user1_id,'')
 
@@ -159,9 +148,6 @@ def test_standup_long_message():
 
     #create a channel 
     channel_user1_id = channels_create_v2(user1_token,'gitb',True).get('channel_id')
-
-    #start a standup
-    standup_start_v1(user1_token, channel_user1_id, 1)
 
     #longmessage check
     message = "jjjjj"
