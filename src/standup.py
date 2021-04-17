@@ -1,7 +1,7 @@
 from src.channel import test_channel_is_invalid, test_if_user_in_ch, token_to_id
 from src.data import channels, users
 from src.error import InputError, AccessError
-from src.message_send import message_send
+from src.message import message_send_v1
 import datetime
 import threading
 import json
@@ -115,7 +115,7 @@ def token_to_name(token):
 #send message start
 def sendmessagestart(token, channel_id):
     send_message = channelid_to_channel(channel_id)['standup']['messagesend_pack']
-    message_send(token, channel_id, send_message)
+    message_send_v1(token, channel_id, send_message)
 
 def finishtime(channel_id, timefinish):
     with open('src/data/channels.json', 'r') as file:
