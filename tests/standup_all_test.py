@@ -9,8 +9,8 @@ def test_standup_start_invalidtoken():
     clear_v2()
 
     #create and login in user
-    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qweasd', 'Dyu', 'Baidas')
-    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qweasd')
+    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qwerasdf', 'Dyu', 'Baidas')
+    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qwerasdf')
     user1_token = user1['token']
 
     #create the channel.
@@ -24,8 +24,8 @@ def test_standup_start_invalidchannelid():
     clear_v2()
 
     #create and login in user
-    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qweasd', 'Dyu', 'Baidas')
-    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qweasd')
+    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qwerasdf', 'Dyu', 'Baidas')
+    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qwerasdf')
     user1_token = user1['token']
 
     #create the channel.
@@ -39,8 +39,8 @@ def test_standup_start_occpuy():
     clear_v2()
 
     #create and login in user
-    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qweasd', 'Dyu', 'Baidas')
-    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qweasd')
+    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qwerasdf', 'Dyu', 'Baidas')
+    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qwerasdf')
     user1_token = user1['token']
 
     #create the channel.
@@ -56,8 +56,8 @@ def test_standup_active_invalidchannel_id():
     clear_v2()
 
     #create and login in user
-    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qweasd', 'Dyu', 'Baidas')
-    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qweasd')
+    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qwerasdf', 'Dyu', 'Baidas')
+    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qwerasdf')
     user1_token = user1['token']
 
     #create the channel.
@@ -75,8 +75,8 @@ def test_standup_active():
     clear_v2()
 
     #create and login in user
-    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qweasd', 'Dyu', 'Baidas')
-    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qweasd')
+    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qwerasdf', 'Dyu', 'Baidas')
+    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qwerasdf')
     user1_token = user1['token']
 
     #create two channels 
@@ -100,8 +100,8 @@ def test_stand_send_invalidchannelid():
     clear_v2()
 
     #create and login in user
-    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qweasd', 'du', 'asdf')
-    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qweasd')
+    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qwerasdf', 'du', 'asdf')
+    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qwerasdf')
     user1_token = user1['token']
 
     #create a channel 
@@ -119,8 +119,8 @@ def test_stand_send_no_active():
     clear_v2()
 
     #create and login in user
-    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qweasd', 'df', 'asdf')
-    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qweasd')
+    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qwerasdf', 'df', 'asdf')
+    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qwerasdf')
     user1_token = user1['token']
 
     #create a channel 
@@ -133,11 +133,11 @@ def test_stand_send_not_member():
     clear_v2()
 
     #create and login in two users
-    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qweasd', 'df', 'asdf')
-    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qweasd')
+    user1 = auth_register_v2('dbdqwe3@gmail.com', 'qwerasdf', 'df', 'asdf')
+    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qwerasdf')
     user1_token = user1['token']
-    user2 = auth_register_v2('qweaqwed@gmail.com', 'asd', 'df2', 'asdf2')
-    user2 = auth_login_v2('qweaqwed@gmail.com', 'asd')
+    user2 = auth_register_v2('qweaqwed@gmail.com', 'tyuighjk', 'df2', 'asdf2')
+    user2 = auth_login_v2('qweaqwed@gmail.com', 'tyuighjk')
     user2_token = user2['token']
 
     #create a channel 
@@ -153,8 +153,8 @@ def test_standup_long_message():
     clear_v2()
 
     #create and login in user
-    user1 = auth_register_v2('qweasd@gmail.com', 'qweasd', 'df', 'asdf')
-    user1 = auth_login_v2('qweasd@gmail.com', 'qweasd')
+    user1 = auth_register_v2('qwerasdf@gmail.com', 'qwerasdf', 'df', 'asdf')
+    user1 = auth_login_v2('qwerasdf@gmail.com', 'qwerasdf')
     user1_token = user1['token']
 
     #create a channel 
@@ -164,7 +164,7 @@ def test_standup_long_message():
     standup_start_v1(user1_token, channel_user1_id, 1)
 
     #longmessage check
-    message = "qwera"
+    message = "jjjjj"
     message = 2000 * message
     with pytest.raises(InputError):
         standup_send_v1(user1_token, channel_user1_id, message)
