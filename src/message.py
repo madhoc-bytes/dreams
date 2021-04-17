@@ -180,28 +180,6 @@ def message_sendlaterdm_v1(token, dm_id, message, time_sent):
     message_id = message_id + 1
     return {"message_id": message_id}
 
-def message_react(token, message_id, react_id):
-    #check if token is valid
-    token_u_id = token_to_u_id(token)
-    #check if channel exists
-    channel_id = int(str(message_id)[:3])
-    if channel_id not in global_data().channels:
-        raise InputError(description="channel not stored in data")
-    channel = global_data().channels[channel_id]
-    #check if user is a member of channel
-    if token_u_id not in channel.members:
-        raise AccessError(description="User is not part of the channel")
-    #check if react_id is valid
-    if react_id not in REACTS:
-        raise InputError(description=f"{react_id} is not a valid react ID")
-
-    #find the message object with given message_id
-    #msg = get_message_dict(channel_id, message_id)
-    result = alter_reaction(False, channel_id, message_id, react_id, token_u_id)
-    if result == "Success":
-        return {}
-    raise InputError(description=result)
-
 
 # -----------------------
 # Jack's Helper Functions
