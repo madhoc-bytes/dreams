@@ -29,7 +29,7 @@ def test_standup_start_invalidchannelid():
     user1_token = user1['token']
 
     #create the channel.
-    channel_user1_id = channels_create_v2(user1_token, 'gitb' , True).get('channel_id')
+    channel_user1_id = channels_create_v2(user1_token, 'gitb' , True)
 
     channel_item = channel_user1_id + 1
     with pytest.raises(InputError):
@@ -43,7 +43,7 @@ def test_standup_start_occpuy():
     user1_token = user1['token']
 
     #create the channel.
-    channel_user1_id = channels_create_v2(user1_token, 'gitb' , True).get('channel_id')
+    channel_user1_id = channels_create_v2(user1_token, 'gitb' , True)
 
     with pytest.raises(InputError):
         standup_start_v1(user1_token, channel_user1_id, 1)
