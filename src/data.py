@@ -16,6 +16,8 @@ if not os.path.isfile('persistent_data.p'):
         'token': new_token,
         'permission_id': permission_id,
         'num_channels_joined': 0,
+        'num_dms_joined': 0,
+        'num_messages_sent': 0,
         'timestamp_ch': [
             {
                 'num_channels_joined': 0,
