@@ -22,17 +22,14 @@ def standup_start_v1(token, channel_id, length):
     timesymbol = int(now.replace(tzinfo=datetime.timezone.utc).timestamp())
     #find the difference time
     difference = standupchannel['standup']['finishtime'] - timesymbol
-     # no active standup is runing in the given channel
+     # no active standup
     if difference <= 0:
         raise InputError()
 
     #clear all the message
     nonemessage(channel_id)
-
-    #last_time = datetime.datetime.strptime(f_time,'%Y-%m-%d %H:%M:%S')
     timefinishsend = timesymbol + length
     finishtime(channel_id, timefinishsend)
-
     threading.Timer(length, sendmessagestart(token, channel_id)).start()
 
     return {
