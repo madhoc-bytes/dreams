@@ -2,6 +2,8 @@ from src.data import users, channels, dms
 
 ''' Resets the internal data of the application to it's initial state '''
 def clear_v2():
+    if os.path.isfile('persistent_data.p') == True:
+        os.remove('persistent_data.p')
     users.clear()
     channels.clear()
     dms.clear()
