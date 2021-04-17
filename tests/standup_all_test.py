@@ -35,7 +35,7 @@ def test_standup_start_invalidchannelid():
     with pytest.raises(InputError):
         standup_start_v1(user1_token, channel_item, 1)
 
-def test_standup_start():
+def test_standup_start_occpuy():
     clear_v2()
 
     #create and login in user
@@ -67,7 +67,7 @@ def test_standup_active_invalidchannel_id():
     standup_start_v1(user1_token, channel_user1_id, 1)
 
     channel_item = channel_user1_id + 1
-    with pytest.raises(AccessError):
+    with pytest.raises(InputError):
         standup_active_v1(user1_token, channel_item)
 
 def test_standup_active():
@@ -95,7 +95,7 @@ def test_standup_active():
     assert standupactive2['finishtime'] == None
 
 
-def test_send_invalid_channel_id():
+def test_stand_send_invalidchannelid():
     #clear
     clear_v2()
 
@@ -114,7 +114,7 @@ def test_send_invalid_channel_id():
     with pytest.raises(InputError):
         standup_send_v1(user1_token, channel_item,'')
 
-def test_send_no_active():
+def test_stand_send_no_active():
     #clear
     clear_v2()
 
@@ -129,8 +129,7 @@ def test_send_no_active():
     with pytest.raises(InputError):
         standup_send_v1(user1_token, channel_user1_id,'')
 
-def test_send_not_member():
-    '''test for accessing the error when the user is not the member in the channel'''
+def test_stand_send_not_member():
     clear_v2()
 
     #create and login in two users
@@ -151,7 +150,6 @@ def test_send_not_member():
         standup_send_v1(user2_token, channel_user1_id,'')
 
 def test_standup_long_message():
-    '''test for inputing the error that the message is more than 1000 words'''
     clear_v2()
 
     #create and login in user
