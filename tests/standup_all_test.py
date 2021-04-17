@@ -40,7 +40,6 @@ def test_standup_start_occpuy():
 
     #create and login in user
     user1 = auth_register_v2('dbdqwe3@gmail.com', 'qwerasdf', 'Dyu', 'Baidas')
-    user1 = auth_login_v2('dbdqwe3@gmail.com', 'qwerasdf')
     user1_token = user1['token']
 
     #create the channel.
