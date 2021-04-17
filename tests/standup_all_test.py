@@ -130,7 +130,7 @@ def test_stand_send_not_member():
     user2_token = user2['token']
 
     #create a channel 
-    channel_user1_id = channels_create_v2(user1_token,'gitb',True)
+    channel_user1_id = channels_create_v2(user1_token,'gitb',True).get('channel_id')
 
     with pytest.raises(AccessError):
         standup_send_v1(user2_token, channel_user1_id,'')
