@@ -13,7 +13,7 @@ def standup_start_v1(token, channel_id, length):
     if test_channel_is_invalid(channel_id):
         raise InputError('Channel ID is not a valid channel')
     # invalid user
-    if test_if_user_in_ch(auth_user_id, channel_id):
+    if not test_if_user_in_ch(auth_user_id, channel_id):
         raise AccessError('Authorised user is not in the channel')
     #channel get.
     standupchannel = channelid_to_channel(channel_id)
