@@ -4,7 +4,7 @@
 from src.error import AccessError, InputError
 import jwt
 from src.data import users, channels, dms
-from src.channel import token_to_id, test_user_is_invalid, test_channel_is_invalid, test_if_user_in_ch
+from src.channel import token_to_id, test_user_is_invalid, test_channel_is_invalid, test_if_user_in_ch 
 from datetime import datetime, timezone
 from src.dm import test_dm_is_invalid, check_user_in_dm
 from src.message_senddm_v2 import message_senddm_v2
@@ -48,7 +48,7 @@ def message_send_v1(token, channel_id, message):
             'u_id': m_u_id,
             'message': m_message,
             'time_created': m_time,
-            'reacts': m_react_id,
+            'reacts': [],
             'is_pinned': False,
         }
     )
@@ -139,8 +139,6 @@ def message_sendlater_v1(token, channel_id, message, time_sent):
         raise InputError()
     if len(message) > 1000:
         raise InputError()
-    if not test_if_user_in_ch(auth_user_id, channel_id):
-        raise AccessError() 
 
     time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
     if time_now > time_sent:
@@ -180,10 +178,32 @@ def message_sendlaterdm_v1(token, dm_id, message, time_sent):
     message_id = message_id + 1
     return {"message_id": message_id}
 
+def message_react_v1(token, message_id, react_id):
+    #check if token is valid
+    auth_user_id = token_to_id(token)
+    if test_user_is_invalid(auth_user_id):
+        raise InputError()
+    #check if react_id is valid
+    if react_id != 1:
+        raise InputError()
+    #find the message object with given message_id
+    msg = get_message_from_mid(message_id)
 
-# -----------------------
-# Jack's Helper Functions
-# -----------------------
+    for react in msg['reacts']:
+        key, value = 'u_id', auth_user_id
+        if key in react and value == react[key]:
+            raise InputError()
+
+    newreact = {
+        'react_id': react_id,
+        'u_id': auth_user_id,
+    }
+
+    msg['reacts'].append(newreact)
+
+    return {}
+
+# helper functions
 
 def valid_message_length(message):
     ''' Function that checks if the length of a message is valid'''
@@ -318,7 +338,7 @@ def is_user_in_dm(auth_user_id, dm_id):
     return result
 
 def get_current_message_id():
-    num_messages = 0
+    num_messages = -1
     for channel in channels:
         num_messages = num_messages + len(channel['messages'])
 
@@ -327,3 +347,18 @@ def get_current_message_id():
 
     return num_messages
 
+def get_message_from_mid(message_id):
+    for dm_id in range(len(dms)):
+        for msg in dms[dm_id]['messages']:
+            key, value = 'message_id', message_id
+            if key in msg and value == msg[key]:
+                return msg
+
+
+    for ch_id in range(len(channels)):
+        for msg in channels[ch_id]['messages']:
+            key, value = 'message_id', message_id
+            if key in msg and value == msg[key]:
+                return msg
+    
+    return {}
