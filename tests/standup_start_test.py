@@ -11,11 +11,11 @@ import datetime
 def channels():
     channels = None
     # if file doesn't exist, create it
-    path = os.getcwd() + '/src/data/channels.json'
+    path = os.getcwd() + '/src/channels.json'
     if not os.path.exists(path):
         with open(path, 'w') as file:
             json.dump([], file)
-    with open('src/data/channels.json', 'r') as file:
+    with open('src/channels.json', 'r') as file:
         channels = json.load(file)
     return channels
 
