@@ -9,7 +9,7 @@ from src.other import clear_v2
 from src.error import AccessError, InputError
 
 def test_react_basic():
-    clear_v2
+    clear_v2()
     auth_token = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')['token']
     test_channel = channels_create_v2(auth_token, "test channel", True)['channel_id']
     channel_join_v2(auth_token, test_channel)
@@ -22,5 +22,39 @@ def test_react_basic():
     reacts = test_message[0]['reacts']
     assert reacts == [{
         'react_id': 1,
-        'u_id': 0,
+        'u_ids': [0],
+        'is_this_user_reacted': True
     }]
+
+def test_react_invalidmid():
+    clear_v2()
+
+    auth_token = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')['token']
+    
+    with pytest.raises(InputError):
+        message_react_v1(auth_token, 1, 1)
+
+def test_react_invalidreactid():
+    clear_v2()
+
+    auth_token = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')['token']
+    test_channel = channels_create_v2(auth_token, "test channel", True)['channel_id']
+    channel_join_v2(auth_token, test_channel)
+
+    message_send_v1(auth_token, test_channel, 'message')
+
+    with pytest.raises(InputError):
+        message_react_v1(auth_token, 0, 2)
+
+def test_already_reacted():
+    clear_v2()
+    auth_token = auth_register_v2('test_auth@gmail.com', 'test_pw_auth', 'testf', 'testl')['token']
+    test_channel = channels_create_v2(auth_token, "test channel", True)['channel_id']
+    channel_join_v2(auth_token, test_channel)
+
+    message_send_v1(auth_token, test_channel, 'message')
+
+    message_react_v1(auth_token, 0, 1)   
+
+    with pytest.raises(InputError):
+        message_react_v1(auth_token, 0, 1)
