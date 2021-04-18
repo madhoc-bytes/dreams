@@ -76,7 +76,12 @@ if not os.path.isfile('persistent_data.p'):
                 'u_id': 0,
                 'message': 'hello123',
                 'time_created': 123123123,
-                'reacts': 'reacts',
+                'reacts': [
+                    {
+                        'react_id': 1 (only 1 on frontend)
+                        'u_id': 0,
+                    }
+                ],
                 'is_pinned': false,
             }
         ],
@@ -101,7 +106,12 @@ if not os.path.isfile('persistent_data.p'):
                 'u_id': 0,
                 'message': 'hello123',
                 'time_created': 123123123,
-                'reacts': 'reacts',
+                'reacts': [
+                    {
+                        'react_id': 1 (only 1 on frontend)
+                        'u_id': 0,
+                    }
+                ],
                 'is_pinned': false,
             }
         ],
