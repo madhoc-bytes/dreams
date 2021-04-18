@@ -60,6 +60,13 @@ def channel_messages_v2(token, channel_id, start):
     result = []
     i = 0
     for msg in channels[channel_id]['messages']:
+        if len(msg['reacts']) != 0:
+            for react in msg['reacts']:
+                if auth_user_id not in react['u_ids']:
+                    react['is_this_user_reacted'] = False
+                else:
+                    react['is_this_user_reacted'] = True
+
         result.append(msg)
         i += 1
         if i == 50:

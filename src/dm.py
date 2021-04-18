@@ -128,6 +128,13 @@ def dm_messages_v1(token, dm_id, start):
     result = []
     i = 0
     for msg in dms[dm_id]['messages']:
+        if len(msg['reacts']) != 0:
+            for react in msg['reacts']:
+                if auth_user_id not in react['u_ids']:
+                    react['is_this_user_reacted'] = False
+                else:
+                    react['is_this_user_reacted'] = True
+
         result.append(msg)
         i += 1
         if i == 50:

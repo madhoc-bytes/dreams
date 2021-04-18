@@ -179,29 +179,38 @@ def message_sendlaterdm_v1(token, dm_id, message, time_sent):
     return {"message_id": message_id}
 
 def message_react_v1(token, message_id, react_id):
-    #check if token is valid
     auth_user_id = token_to_id(token)
     if test_user_is_invalid(auth_user_id):
         raise InputError()
-    #check if react_id is valid
-    if react_id != 1:
+    ## ADD MORE TO HERE IN FUTURE IF NEED MORE
+    valid_reacts = [1]
+    if react_id not in valid_reacts:
         raise InputError()
-    #find the message object with given message_id
+
     msg = get_message_from_mid(message_id)
 
-    for react in msg['reacts']:
-        key, value = 'u_id', auth_user_id
-        if key in react and value == react[key]:
-            raise InputError()
-
-    newreact = {
-        'react_id': react_id,
-        'u_id': auth_user_id,
-    }
-
-    msg['reacts'].append(newreact)
+    if msg == {}:
+        raise InputError()
+    
+    if len(msg['reacts']) != 0:
+        for react in msg['reacts']:
+            key, value = 'react_id', react_id
+            if key in react and value == react[key]:
+                if auth_user_id in react['u_ids']:
+                    raise InputError()
+                else:
+                    react['u_ids'].append(auth_user_id)
+                    react['is_this_user_reacted'] = True
+    else:
+        newreact = {
+            'react_id': react_id,
+            'u_ids': [auth_user_id],
+            'is_this_user_reacted': True
+        }
+        msg['reacts'].append(newreact)
 
     return {}
+
 
 # helper functions
 

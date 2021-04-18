@@ -78,8 +78,9 @@ if not os.path.isfile('persistent_data.p'):
                 'time_created': 123123123,
                 'reacts': [
                     {
-                        'react_id': 1 (only 1 on frontend)
-                        'u_id': 0,
+                        'react_id': 1,
+                        'u_ids': [],
+                        'is_this_user_reacted': False,
                     }
                 ],
                 'is_pinned': false,
@@ -108,8 +109,9 @@ if not os.path.isfile('persistent_data.p'):
                 'time_created': 123123123,
                 'reacts': [
                     {
-                        'react_id': 1 (only 1 on frontend)
-                        'u_id': 0,
+                        'react_id': 1,
+                        'u_ids': [],
+                        'is_this_user_reacted': False,
                     }
                 ],
                 'is_pinned': false,
@@ -117,15 +119,54 @@ if not os.path.isfile('persistent_data.p'):
         ],
     }
     ''' 
+    dreams = {}
+    # example of what dreams stats dict would look like 
+    '''
+    'channels': 1,
+    'dms': 1,
+    'msgs': 0,
+    'timestamp_ch': [
+        {
+            'num_channels_exist': 0, 
+            'time_stamp': 123
+        },
+        {
+            'num_channels_exist': 1, 
+            'time_stamp': 125
+        }
+    ],
+    'timestamp_dm': [
+        {
+            'num_dms_exist': 0, 
+            'time_stamp': 123
+        },
+        {
+            'num_dms_exist': 1, 
+            'time_stamp': 125
+        }
+    ],
+    'timestamp_msg': [
+        {
+            'num_messages_exist': 0, 
+            'time_stamp': 123
+        },
+        {
+            'num_messages_exist': 1, 
+            'time_stamp': 125
+        }
+    ]
+    '''
 # persistent
 else:
     with open('persistent_data.p', 'rb') as file:
         users = pickle.load(file)
         channels = pickle.load(file)
         dms = pickle.load(file)
+        dreams = pickle.load(file)
 
 def persist_data():
     with open('persistent_data.p', 'wb') as file:
         pickle.dump(users, file)
         pickle.dump(channels, file)
         pickle.dump(dms, file)
+        pickle.dump(dreams, file)
