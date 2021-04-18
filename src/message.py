@@ -212,6 +212,35 @@ def message_react_v1(token, message_id, react_id):
 
     return {}
 
+def message_unreact_v1(token, message_id, react_id):
+    auth_user_id = token_to_id(token)
+    if test_user_is_invalid(auth_user_id):
+        raise InputError()
+    ## ADD MORE TO HERE IN FUTURE IF NEED MORE
+    valid_reacts = [1]
+    if react_id not in valid_reacts:
+        raise InputError()
+
+    msg = get_message_from_mid(message_id)
+
+    if msg == {}:
+        raise InputError()
+
+    if len(msg['reacts']) == 0:
+        raise InputError()
+    
+    for react in msg['reacts']:
+        key, value = 'react_id', react_id
+        if key in react and value == react[key]:
+            if len(react['u_ids']) != 1:
+                if auth_user_id in react['u_ids']:
+                    react['u_ids'].remove(auth_user_id)
+                else:
+                    raise InputError
+            else:
+                msg['reacts'].remove(react)
+    return {}
+
 
 # helper functions
 
