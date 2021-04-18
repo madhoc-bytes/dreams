@@ -11,11 +11,12 @@ from src.channel import channel_details_v2, channel_invite_v2
 from src.channel import channel_addowner_v2,channel_removeowner_v2, channel_messages_v2
 from src.channel import channel_join_v2, channel_leave_v2
 from src.channels import channels_create_v2
+from src.standup import standup_active_v1, standup_start_v1, standup_send_v1
 from src.message import message_send_v1, message_edit_v1, message_remove_v1, message_share_v1
 from src.message import message_sendlater_v1, message_sendlaterdm_v1, message_react_v1, message_unreact_v1
 from src.channels import channels_list_v2, channels_listall_v2
-from src.users import users_all_v1
-from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_sethandle_v1, user_profile_setname_v1
+from src.users import users_all_v1, users_stats_v1
+from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_sethandle_v1, user_profile_setname_v1, user_stats_v1
 from src.message_senddm_v2 import message_senddm_v2
 from src.admin_userpermission_change_v1 import adminuserpermissionchangev1
 from src.search import search_v2
@@ -76,6 +77,12 @@ def auth_logout():
     return_value = auth_logout_v2(token)
     persist_data()
     return dumps(return_value)
+
+# user stats
+@APP.route("/user/stats/v1", methods=['GET'])
+def user_stats():
+    token = request.args.get('token')
+    return dumps(user_stats_v1(token))
 
 @APP.route('/user/profile/v1', methods=['GET'])
 def user_profile():
@@ -275,6 +282,12 @@ def users_all():
     token = request.args.get('token')
     return dumps(users_all_v1(token))
 
+# users stats
+@APP.route("/users/stats/v1", methods=['GET'])
+def users_stats():
+    token = request.args.get('token')
+    return dumps(users_stats_v1(token))
+
 # search
 @APP.route("/search/v2", methods=['GET'])
 def search():
@@ -288,6 +301,30 @@ def clear():
     persist_data()
     return dumps(clear_v2())
 
+#standup start
+@APP.route('/standup/start/v1', methods = ['POST'])
+def standup_start():
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    length = data['length']
+    persist_data()
+    return dumps(standup_start_v1(token, channel_id, length))
+#standup_active
+@APP.route('/standup/active/v1', methods = ['GET'])
+def is_active():
+    token = request.args.get('token')
+    channel_id = int(request.args.get('channel_id'))
+    return dumps(standup_active_v1(token, channel_id))
+#standup_send
+@APP.route('/standup/send/v1', methods = ['POST'])
+def standup_send():
+    data = request.get_json()
+    token = data['token']
+    channel_id = data['channel_id']
+    message = data['message']
+    persist_data()
+    return dumps(standup_send_v1(token, channel_id, message))
 
 # dm create
 @APP.route('/dm/create/v1', methods = ['POST'])

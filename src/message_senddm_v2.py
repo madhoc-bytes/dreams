@@ -1,6 +1,6 @@
 from src.error import InputError, AccessError
 from src.channel import token_to_id
-from src.data import users, dms, channels
+from src.data import users, dms, channels, dreams
 from datetime import datetime, timezone
 
 def message_senddm_v2(token, dm_id, message):
@@ -12,6 +12,23 @@ def message_senddm_v2(token, dm_id, message):
     #Message is more than 1000 characters
     if len(message) > 1000:
         raise InputError('Message is more than 1000 characters')
+    
+    # user analytics
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[token_uid]['num_messages_sent'] += 1
+    users[token_uid]['timestamp_msg'].append({
+        'num_messages_sent': users[token_uid]['num_messages_sent'],
+        'time_stamp': time_now,
+    })
+
+    # dreams analytics
+    dreams['msgs'] += 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    dreams['timestamp_msg'].append({
+        'num_messages_exist': dreams['msgs'], 
+        'time_stamp': time_now,
+    })
+
     return {
         'message_id': messagesendreturn(dm_id, token_uid, message),
     }

@@ -1,7 +1,8 @@
 from src.error import InputError
-from src.data import users
+from src.data import users, channels, dms
 import re
-from src.channel import token_to_id
+from src.channel import token_to_id, test_if_user_in_ch
+from src.dm import check_user_in_dm
 
 def user_profile_v1(token, u_id):
 
@@ -94,8 +95,69 @@ def user_profile_sethandle_v1(token, handle_str):
     return {
     }
 
-#helpers 
+def user_stats_v1(token):
+    auth_user_id = token_to_id(token)
+    num_msgs_sent = 0
 
+    # find the number of channels that the user is a part of
+    num_channels_joined = 0    
+    for channel in channels:
+        if (test_if_user_in_ch(auth_user_id, channel['id'])):
+            num_channels_joined += 1
+        num_msgs_sent += user_msgs_in_channel(auth_user_id, channel)        
+
+    # find the number of dms that the user is a part of
+    num_dms_joined = 0
+    for dm in dms:
+        if (check_user_in_dm(auth_user_id, dm['dm_id'])):
+            num_dms_joined += 1
+        num_msgs_sent += user_msgs_in_dm(auth_user_id, dm)    
+
+    # involvement rate as defined by spec
+    user_activity = num_channels_joined + num_dms_joined + num_msgs_sent
+    possible_activity = num_dreams_channels() + num_dreams_dms() + num_dreams_msgs()
+    involvement_rate = user_activity / possible_activity
+    
+    return {
+        'user_stats' : {
+            'channels_joined': users[auth_user_id]['timestamp_ch'],
+            'dms_joined': users[auth_user_id]['timestamp_dm'],
+            'messages_sent': users[auth_user_id]['timestamp_msg'],
+            'involvement_rate': involvement_rate,
+        }
+    }
+
+
+# jeff's stats helpers
+def user_msgs_in_channel(auth_user_id, channel_dict):
+    result = 0
+    for msg in channel_dict['messages']:
+        if msg['u_id'] == auth_user_id:
+            result += 1
+    return result
+
+def user_msgs_in_dm(auth_user_id, dm_dict):
+    result = 0
+    for msg in dm_dict['messages']:
+        if msg['u_id'] == auth_user_id:
+            result += 1
+    return result
+
+def num_dreams_msgs():
+    total = 0
+    for channel in channels:
+        total += len(channel['messages'])
+    for dm in dms:
+        total += len(dm['messages'])
+    return total
+
+def num_dreams_channels():
+    return len(channels)
+
+def num_dreams_dms():
+    return len(dms)
+
+#helpers 
 def is_email_used(email):
     used = False
     for user in users:

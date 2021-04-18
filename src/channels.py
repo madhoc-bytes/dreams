@@ -1,8 +1,9 @@
 from src.channel import test_if_user_in_ch
 from src.channel import token_to_id
-from src.data import channels, users
+from src.data import channels, users, dreams
 from src.error import InputError, AccessError
 import jwt
+from datetime import datetime, timezone
 
 def channels_list_v2(token):
     """Function that lists all channels for which a certain user has access"""
@@ -46,7 +47,7 @@ def channels_create_v2(token, name, is_public):
     if len(name) > 20:
         raise InputError("Name is more than 20 characters long!")
     if check_channel_empty():
-        # if the channel is empty
+        # if the server is empty
         channel_id = 0
     else:
         #last channels id plus 1
@@ -60,6 +61,14 @@ def channels_create_v2(token, name, is_public):
         'messages': [],
     }
     channels.append(new_channel)
+    
+    # dreams analytics
+    dreams['channels'] += 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    dreams['timestamp_ch'].append({
+        'num_channels_exist': dreams['channels'], 
+        'time_stamp': time_now,
+    })
 
     return {
         'channel_id': channel_id,
