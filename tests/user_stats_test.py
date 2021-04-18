@@ -1,6 +1,7 @@
 import pytest
 
 from datetime import datetime, timezone
+import time
 from src.auth import auth_register_v2
 from src.channel import channel_join_v2
 from src.channels import channels_create_v2
@@ -47,15 +48,18 @@ def test_system():
         'test_fname_user2',
         'test_lname_user2')
     
+    # delay execution to check timestamp 
+    time.sleep(0.1)
+
     dm_id = dm_create_v1(user1['token'], [user2['auth_user_id']])['dm_id']
+
+     # check the timestamp again
+    time_now2 = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    assert user_stats_v1(user1['token'])['user_stats']['dms_joined'][user1['auth_user_id']]['time_stamp'] == time_now2
 
     # check if their joining of the dm was recorded
     assert len(user_stats_v1(user1['token'])['user_stats']['dms_joined']) == 1
-    assert len(user_stats_v1(user2['token'])['user_stats']['dms_joined']) == 1
-
-    # check the timestamp again
-    time_now2 = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
-    assert user_stats_v1(user1['token'])['user_stats']['dms_joined'][user1['auth_user_id']]['time_stamp'] == time_now2
+    assert len(user_stats_v1(user2['token'])['user_stats']['dms_joined']) == 1   
     
     # check if messages sent are updating
     message_senddm_v2(user1['token'], dm_id, "test_message_dm")

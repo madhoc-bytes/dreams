@@ -3,7 +3,6 @@ from src.data import users, channels, dms
 import re
 from src.channel import token_to_id, test_if_user_in_ch
 from src.dm import check_user_in_dm
-from src.users import num_dreams_channels, num_dreams_dms, num_dreams_msgs
 
 def user_profile_v1(token, u_id):
 
@@ -143,6 +142,20 @@ def user_msgs_in_dm(auth_user_id, dm_dict):
         if msg['u_id'] == auth_user_id:
             result += 1
     return result
+
+def num_dreams_msgs():
+    total = 0
+    for channel in channels:
+        total += len(channel['messages'])
+    for dm in dms:
+        total += len(dm['messages'])
+    return total
+
+def num_dreams_channels():
+    return len(channels)
+
+def num_dreams_dms():
+    return len(dms)
 
 #helpers 
 def is_email_used(email):

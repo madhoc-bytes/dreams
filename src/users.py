@@ -1,4 +1,5 @@
-from src.data import users, channels, dms
+from src.data import users, channels, dms, dreams
+from src.channel import token_to_id
 
 def users_all_v1(token):
     users_list = []
@@ -16,18 +17,16 @@ def users_all_v1(token):
     return {'users': users_list}
 
 def users_stats_v1(token):
-    pass
+    num_users_with_involvement = 0
+    for user in users:
+        if len(user['timestamp_ch']) + len(user['timestamp_dm']) > 0:
+            num_users_with_involvement += 1    
 
-def num_dreams_msgs():
-    total = 0
-    for channel in channels:
-        total += len(channel['messages'])
-    for dm in dms:
-        total += len(dm['messages'])
-    return total
-
-def num_dreams_channels():
-    return len(channels)
-
-def num_dreams_dms():
-    return len(dms)
+    return {
+        'dreams_stats' : {
+            'channels_exist': dreams['timestamp_ch'],
+            'dms_exist': dreams['timestamp_dm'],
+            'messages_exist': dreams['timestamp_msg'],
+            'utilization_rate': num_users_with_involvement / len(users)
+        }
+    }

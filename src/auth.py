@@ -8,7 +8,7 @@ import ssl
 import jwt
 import pickle
 from src.error import InputError, AccessError
-from src.data import users
+from src.data import users, dreams
 from datetime import datetime, timezone
 
 
@@ -120,7 +120,7 @@ def auth_register_v2(email, password, name_first, name_last):
 
     permission_id = False
 
-    #adding info to data structure
+    # adding info to data structure
     users.append({
             'email': email,
             'password': password,
@@ -138,9 +138,17 @@ def auth_register_v2(email, password, name_first, name_last):
             'timestamp_msg': [],
         })
 
+    # when first user is reg'd, they become owner of dreams
     if len(users) == 1:
-            users[0]['permission_id'] = True
+        users[0]['permission_id'] = True
 
+        # initialise dreams analytics
+        dreams['channels'] = 0
+        dreams['dms'] = 0
+        dreams['msgs'] = 0
+        dreams['timestamp_ch'] = []
+        dreams['timestamp_dm'] = []
+        dreams['timestamp_msg'] = []
     
     return ({
         'token': new_token,
