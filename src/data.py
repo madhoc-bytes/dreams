@@ -78,8 +78,9 @@ if not os.path.isfile('persistent_data.p'):
                 'time_created': 123123123,
                 'reacts': [
                     {
-                        'react_id': 1 (only 1 on frontend)
-                        'u_id': 0,
+                        'react_id': 1,
+                        'u_ids': [],
+                        'is_this_user_reacted': False,
                     }
                 ],
                 'is_pinned': false,
@@ -108,8 +109,9 @@ if not os.path.isfile('persistent_data.p'):
                 'time_created': 123123123,
                 'reacts': [
                     {
-                        'react_id': 1 (only 1 on frontend)
-                        'u_id': 0,
+                        'react_id': 1,
+                        'u_ids': [],
+                        'is_this_user_reacted': False,
                     }
                 ],
                 'is_pinned': false,
