@@ -1,7 +1,8 @@
 from src.channel import test_user_is_invalid, user_details
 from src.error import InputError, AccessError
-from src.data import dms, users
+from src.data import dms, users, dreams
 from src.channel import token_to_id
+from datetime import datetime, timezone
 import jwt
 SECRET = 'team'
 
@@ -10,19 +11,12 @@ def dm_create_v1(token, u_ids):
     members = []
     handles = []
     u_id = token_to_id(token)
-    if test_user_is_invalid(u_id):
-        raise InputError("id from token is invalid")
+    # add owner to start of list of ids to be added to dm
+    u_ids.insert(0, u_id)
+
     for uid in u_ids:
         if test_user_is_invalid(uid):
-            raise InputError("id in list is invalid")
-
-    owner_details = user_details(u_id)
-    details = {}
-    details['u_id'] = owner_details['u_id']
-    details['name_first'] = owner_details['name_first']
-    details['name_last'] = owner_details['name_last']
-    members.append(details)
-    handles.append(get_handle_from_uid(u_id))
+            raise InputError("id in list is invalid")    
 
     for uid in u_ids:
         new_user_details = user_details(uid)
@@ -32,6 +26,13 @@ def dm_create_v1(token, u_ids):
         new_user['name_last'] = new_user_details['name_last']
         members.append(new_user)
         handles.append(get_handle_from_uid(uid))
+        # user analytics
+        time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+        users[uid]['num_dms_joined'] += 1
+        users[uid]['timestamp_dm'].append({
+            'num_dms_joined': users[uid]['num_dms_joined'],
+            'time_stamp': time_now,
+        })
     dm_id = len(dms)
     dm_name = ", ".join(handles)
     dms.append(
@@ -44,11 +45,18 @@ def dm_create_v1(token, u_ids):
         }
     )
 
+    # dreams analytics
+    dreams['dms'] += 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    dreams['timestamp_dm'].append({
+        'num_dms_exist': dreams['dms'], 
+        'time_stamp': time_now,
+    })
+
     return {
         'dm_id': dm_id,
         'dm_name': dm_name
     }
-
 
 def dm_details_v1(token, dm_id):
     auth_user_id = token_to_id(token)
@@ -110,6 +118,14 @@ def dm_invite_v1(token, dm_id, u_id):
     new_member['name_last'] = new_member_details['name_last']
     new_member['u_id'] = new_member_details['u_id']
     dms[dm_id]['all_members'].append(new_member)
+    
+    # user analytics
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[u_id]['num_dms_joined'] += 1
+    users[u_id]['timestamp_dm'].append({
+        'num_dms_joined': users[u_id]['num_dms_joined'],
+        'time_stamp': time_now,
+    })
 
     return {}
 
@@ -147,7 +163,7 @@ def dm_leave_v1(token, dm_id):
     # change the token to a u id
     auth_user_id = token_to_id(token)
 
-    # invalid channel
+    # invalid dm id
     if test_dm_is_invalid(dm_id):
         raise InputError()
 
@@ -157,16 +173,48 @@ def dm_leave_v1(token, dm_id):
 
     removed = find_user_in_dm(auth_user_id, dm_id)
     dms[dm_id]['all_members'].remove(removed)
+    
+    # user analytics
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[auth_user_id]['num_dms_joined'] -= 1
+    users[auth_user_id]['timestamp_dm'].append({
+        'num_dms_joined': users[auth_user_id]['num_dms_joined'],
+        'time_stamp': time_now,
+    })   
+
     return {}
 
 def dm_remove_v1(token, dm_id):
     auth_user_id = token_to_id(token)
+
+    # invalid dm id
+    if test_dm_is_invalid(dm_id):
+        raise InputError()
+
     if test_dm_is_invalid(dm_id):
         raise InputError()
     if auth_user_id != dms[dm_id]['owner_id']:
         raise AccessError()
-    dms.remove(dms[dm_id])
+    
 
+    # user analytics
+    for member in dms[dm_id]['all_members']:
+        time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+        users[member['u_id']]['num_dms_joined'] -= 1
+        users[member['u_id']]['timestamp_dm'].append({
+            'num_dms_joined': users[member['u_id']]['num_dms_joined'],
+            'time_stamp': time_now,
+        })    
+
+    # dreams analytics
+    dreams['dms'] -= 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    dreams['timestamp_dm'].append({
+        'num_dms_exist': dreams['dms'], 
+        'time_stamp': time_now,
+    })
+
+    dms.remove(dms[dm_id])
     return {}
 
 

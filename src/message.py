@@ -3,7 +3,7 @@
 # Imports
 from src.error import AccessError, InputError
 import jwt
-from src.data import users, channels, dms
+from src.data import users, channels, dms, dreams
 from src.channel import token_to_id
 from datetime import datetime, timezone
 from src.message_senddm_v2 import message_senddm_v2
@@ -25,7 +25,6 @@ def message_send_v1(token, channel_id, message):
 
     
     # Message Details
-
     total_messages = 0
     for channel in channels:
         total_messages = total_messages + len(channel['messages'])
@@ -49,8 +48,21 @@ def message_send_v1(token, channel_id, message):
             'time': m_time,
         }
     )
+    # user analytics
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[auth_user_id]['num_messages_sent'] += 1
+    users[auth_user_id]['timestamp_msg'].append({
+        'num_messages_sent': users[auth_user_id]['num_messages_sent'],
+        'time_stamp': time_now,
+    })
 
-    total_messages = total_messages + 1
+    # dreams analytics
+    dreams['msgs'] += 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    dreams['timestamp_msg'].append({
+        'num_messages_exist': dreams['msgs'], 
+        'time_stamp': time_now,
+    })
 
     # Return message_id
     return {
@@ -88,8 +100,23 @@ def message_remove_v1(token, message_id):
     if message_sent_by_user(auth_user_id, message_id) == False and is_user_owner(auth_user_id, message_id) == False:
         raise AccessError(description='Access Error')
 
-
+    # user analytics
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[auth_user_id]['num_messages_sent'] -= 1
+    users[auth_user_id]['timestamp_msg'].append({
+        'num_messages_sent': users[auth_user_id]['num_messages_sent'],
+        'time_stamp': time_now,
+    })
     delete_message(message_id)
+
+    # dreams analytics
+    dreams['msgs'] -= 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    dreams['timestamp_msg'].append({
+        'num_messages_exist': dreams['msgs'], 
+        'time_stamp': time_now,
+    })
+
     return {}
 
 # Share Message
@@ -125,13 +152,24 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
                 if og_message_id == {'message_id': message['message_id']}:
                     new_message = message['message']
                     shared_message_id = message_senddm_v2(token, dm_id, new_message)
-
-                
-    return {'shared_message_id': shared_message_id}
-
-
     
+    # user analytics
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[auth_user_id]['num_messages_sent'] += 1
+    users[auth_user_id]['timestamp_msg'].append({
+        'num_messages_sent': users[auth_user_id]['num_messages_sent'],
+        'time_stamp': time_now,
+    })
+    
+    # dreams analytics
+    dreams['msgs'] += 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    dreams['timestamp_msg'].append({
+        'num_messages_exist': dreams['msgs'], 
+        'time_stamp': time_now,
+    })
 
+    return {'shared_message_id': shared_message_id}
 
 # -----------------------
 # Jack's Helper Functions
