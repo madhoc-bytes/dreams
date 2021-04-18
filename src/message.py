@@ -33,7 +33,6 @@ def message_send_v1(token, channel_id, message):
     m_message_id = m_message_id + 1
     m_u_id = auth_user_id
     m_message = message
-    m_react_id = 0
     m_time = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
 
     # Find appropriate channel
@@ -139,6 +138,8 @@ def message_sendlater_v1(token, channel_id, message, time_sent):
         raise InputError()
     if len(message) > 1000:
         raise InputError()
+    if not test_if_user_in_ch(auth_user_id, channel_id):
+        raise AccessError()
 
     time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
     if time_now > time_sent:

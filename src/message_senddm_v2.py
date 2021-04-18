@@ -1,6 +1,7 @@
 from src.error import InputError, AccessError
 from src.channel import token_to_id
 from src.data import users, dms, channels
+from datetime import datetime, timezone
 
 def message_senddm_v2(token, dm_id, message):
     #import uid from token
@@ -40,17 +41,20 @@ def messagesendreturn(dm_id, u_id, message):
         if dm['dm_id'] == dm_id:
             break
 
-    message_send = { 'message_id': total_messages + 1, 
-                    'u_id': u_id, 
-                    'message': message,  
-                    } 
+    m_time = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    message_send = { 
+        'message_id': total_messages + 1, 
+        'u_id': u_id, 
+        'message': message,
+        'time_created': m_time,
+        'reacts': [],
+        'is_pinned': False,
+    } 
     dm['messages'].append(message_send)
-    print(f"this is the length: {len(dm['messages'])}")
-
     return message_send['message_id']
 
 def num_message():
-    total = 0
+    total = -1
     for channel in channels:
         for message in channel['messages']:
             total = total + len(message)

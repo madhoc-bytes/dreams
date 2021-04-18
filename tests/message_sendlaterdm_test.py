@@ -20,6 +20,7 @@ def test_message_sendlaterdm_basic():
     message_sendlaterdm_v1(auth_token, dm_id, "message", time_sent)
     time.sleep(3)
     test_message = dm_messages_v1(auth_token, dm_id , 0)['messages']
+    print(test_message)
     assert test_message[dm_id]['message'] == "message"
 
 def test_message_sendlaterdm_timeinpast():

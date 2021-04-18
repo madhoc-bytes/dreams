@@ -65,7 +65,7 @@ def test_one_message():
     # Assertions: InputError
     message_id = message_send_v1(token, channel, message)
     exists = is_message_shared(message_id, channel)
-    assert exists == True and message_id == {'message_id': 1}
+    assert exists == True and message_id == {'message_id': 0}
 
 
 def test_two_messages():
@@ -86,7 +86,7 @@ def test_two_messages():
     exists2 = is_message_shared(message_id_2, channel) 
 
     # Assertion
-    assert exists1 == True and exists2 == True and message_id_2 == {'message_id': 2}
+    assert exists1 == True and exists2 == True and message_id_2 == {'message_id': 1}
 
 
 def test_two_messages_channels():
