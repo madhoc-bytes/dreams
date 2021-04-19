@@ -10,7 +10,8 @@ import pickle
 from src.error import InputError, AccessError
 from src.data import users
 from random import randint
-'''
+import smtplib, ssl
+
 def auth_login_v1(email, password):
     
     if len(users) != 0:
@@ -71,7 +72,7 @@ def auth_register_v1(email, password, name_first, name_last):
         })
 
     return {'auth_user_id': auth_user_id}
-'''
+
 
 def get_users():
     global users
@@ -118,7 +119,7 @@ def auth_register_v2(email, password, name_first, name_last):
     new_token = generate_token(auth_user_id)
 
     permission_id = False
-
+    blank = ''
     #adding info to data structure
     users.append({
             'email': email,
@@ -128,7 +129,8 @@ def auth_register_v2(email, password, name_first, name_last):
             'handle': handle,
             'u_id': auth_user_id,
             'token': new_token,
-            'permission_id': permission_id
+            'permission_id': permission_id,
+            'profile_img_url': blank
         })
 
     if len(users) == 1:
@@ -172,14 +174,23 @@ def auth_logout_v2(token):
 def auth_passwordreset_request_v1(email):
     for user in users:
         if user['email'] == email:
-            #name_first = user['name_first']
-            u_id = user['u_id']
-            code = u_id + 10000 + randint(9999, 89999)
-        
-
-        
+            code = randint(100000, 999999) + 10101
+            first_name = user['name_first']
     
-    # send code to the email
+    port = 465  # For SSL
+    password = 'Password01!@'
+    context = ssl.create_default_context()
+    sender_email = 'comp1531.testingphoto@gmail.com'
+    receiver_email = email
+    message = """\
+        Subject: Code for Password reset request for your Dreams account
+        Hi {name}
+        The code to reset your password is {code}""".format(name=first_name, code=code)
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+        server.login("comp1531.testingphoto@gmail.com", password)  # named it testing photo instead of testing email in hurry 
+        server.sendmail(sender_email, receiver_email, message)
+    return {}
 
 def auth_passwordreset_reset_v1(reset_code, new_password):
     if new_password <= 6:
@@ -213,6 +224,3 @@ def is_email_used(email):
             used = True
     return used
 
-
-#request.form.get only for POST and PUT
-#

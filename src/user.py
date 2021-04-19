@@ -3,6 +3,7 @@ from src.data import users
 import re
 from src.channel import token_to_id
 import urllib
+import urllib.request
 import imghdr
 from PIL import Image
 from src.channel import token_to_id
@@ -102,12 +103,11 @@ def user_profile_sethandle_v1(token, handle_str):
 def user_profile_uploadphoto_v1(token, img_url, x_start, y_start, x_end, y_end):
     for user in users:
         if user['token'] == token:
+            u_id = user['u_id']
             crop_img(img_url, x_start, y_start, x_end, y_end, u_id)
             user['profile_img_url'] = src.config.url + f"/static/avatar_{u_id}.jpg"
-    response = requests.get(img_url)
-    if response.status_code != 200:
-        raise AccessError(description='img_url returns an HTTP status other than 200.')
-        
+    
+    return {}
 
 #helpers 
 
