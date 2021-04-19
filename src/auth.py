@@ -9,8 +9,8 @@ import jwt
 import pickle
 from src.error import InputError, AccessError
 from src.data import users
-
-
+from random import randint
+'''
 def auth_login_v1(email, password):
     
     if len(users) != 0:
@@ -71,7 +71,7 @@ def auth_register_v1(email, password, name_first, name_last):
         })
 
     return {'auth_user_id': auth_user_id}
-
+'''
 
 def get_users():
     global users
@@ -169,11 +169,34 @@ def auth_logout_v2(token):
 
     return ({'is_success': is_success})
 
+def auth_passwordreset_request_v1(email):
+    for user in users:
+        if user['email'] == email:
+            #name_first = user['name_first']
+            u_id = user['u_id']
+            code = u_id + 10000 + randint(9999, 89999)
+        
+
+        
+    
+    # send code to the email
+
+def auth_passwordreset_reset_v1(reset_code, new_password):
+    if new_password <= 6:
+        raise InputError
+    
+    for user in users:
+        if reset_code != user['reset_code']:
+            raise InputError
+        elif user['reset_code'] == reset_code:
+            user['password'] = new_password
+            return {}
+
+####### HELPERS ########
 def generate_token(u_id):
     SECRET = 'break'
     token = jwt.encode({'u_id': u_id}, SECRET, algorithm='HS256')
     return str(token)
-
 
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()

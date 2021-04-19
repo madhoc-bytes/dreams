@@ -14,7 +14,7 @@ from src.channels import channels_create_v2
 from src.message import message_send_v1, message_edit_v1, message_remove_v1, message_share_v1
 from src.channels import channels_list_v2, channels_listall_v2
 from src.users import users_all_v1
-from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_sethandle_v1, user_profile_setname_v1
+from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_sethandle_v1, user_profile_setname_v1, user_profile_uploadphoto_v1
 from src.message_senddm_v2 import message_senddm_v2
 from src.admin_userpermission_change_v1 import adminuserpermissionchangev1
 from src.search import search_v2
@@ -110,6 +110,19 @@ def user_profile_sethandle():
     token = data['token']
     handle_str = data['handle_str']
     return_value = user_profile_sethandle_v1(token, handle_str)
+    persist_data()
+    return dumps(return_value)
+
+@APP.route('/user/profile/uploadphoto/v1', methods=['POST'])
+def user_profile_sethandle():
+    data = request.get_json()
+    token = data['token']
+    img_url = data['img_url']
+    x_start = data['x_start']
+    y_start = data['y_start']
+    x_end = data['x_end']
+    y_end = data['y_end']
+    return_value = user_profile_uploadphoto_v1(token, img_url, x_start, y_start, x_end, y_end)
     persist_data()
     return dumps(return_value)
 
