@@ -172,7 +172,7 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
 
     return {'shared_message_id': shared_message_id}
 
-<<<<<<< src/message.py
+
 # Pin Message
 def message_pin_v1(token, message_id):
     auth_user_id = token_to_id(token)
