@@ -1,6 +1,6 @@
 import pytest
 from src.data import channels, users, dms
-from src.message import message_send_v1, message_react_v1
+from src.message import message_send_v2, message_react_v1
 from src.auth import auth_register_v2
 from src.dm import dm_create_v1, dm_messages_v1
 from src.channels import channels_create_v2
@@ -14,7 +14,7 @@ def test_react_basic():
     test_channel = channels_create_v2(auth_token, "test channel", True)['channel_id']
     channel_join_v2(auth_token, test_channel)
 
-    message_send_v1(auth_token, test_channel, 'message')
+    message_send_v2(auth_token, test_channel, 'message')
 
     message_react_v1(auth_token, 0, 1)
 
@@ -41,7 +41,7 @@ def test_react_invalidreactid():
     test_channel = channels_create_v2(auth_token, "test channel", True)['channel_id']
     channel_join_v2(auth_token, test_channel)
 
-    message_send_v1(auth_token, test_channel, 'message')
+    message_send_v2(auth_token, test_channel, 'message')
 
     with pytest.raises(InputError):
         message_react_v1(auth_token, 0, 2)
@@ -52,7 +52,7 @@ def test_already_reacted():
     test_channel = channels_create_v2(auth_token, "test channel", True)['channel_id']
     channel_join_v2(auth_token, test_channel)
 
-    message_send_v1(auth_token, test_channel, 'message')
+    message_send_v2(auth_token, test_channel, 'message')
 
     message_react_v1(auth_token, 0, 1)   
 
