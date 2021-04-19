@@ -132,7 +132,7 @@ def auth_register_v2(email, password, name_first, name_last):
             'u_id': auth_user_id,
             'token': new_token,
             'permission_id': permission_id,
-            'profile_img_url': blank
+            'profile_img_url': blank,
             'num_channels_joined': 0,                    
             'num_dms_joined': 0,
             'num_messages_sent': 0,
