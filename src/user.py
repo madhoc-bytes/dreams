@@ -142,8 +142,6 @@ def user_stats_v1(token):
         }
     }
 
->>>>>>> src/user.py
-
 # jeff's stats helpers
 def user_msgs_in_channel(auth_user_id, channel_dict):
     result = 0
