@@ -24,7 +24,8 @@ def test_system():
                 'handle': 'test_fname1test_lname1',
                 'u_id': user1['auth_user_id'],
                 'token': user1['token'],
-                'permission_id': True
+                'permission_id': True,
+                'profile_img_url': ''
             }
         ]
     }
@@ -53,7 +54,8 @@ def test_system():
                 'handle': 'test_fname1test_lname1',
                 'u_id': user1['auth_user_id'],
                 'token': user1['token'],
-                'permission_id': True
+                'permission_id': True,
+                'profile_img_url': ''
             },
             {
                 'email': 'test_email2@gmail.com',
@@ -63,7 +65,8 @@ def test_system():
                 'handle': 'test_fname2test_lname2',
                 'u_id': user2['auth_user_id'],
                 'token': user2['token'],
-                'permission_id': False
+                'permission_id': False,
+                'profile_img_url': ''
             },
             {
                 'email': 'test_email3@gmail.com',
@@ -73,7 +76,8 @@ def test_system():
                 'handle': 'test_fname3test_lname3',
                 'u_id': user3['auth_user_id'],
                 'token': user3['token'],
-                'permission_id': False
+                'permission_id': False,
+                'profile_img_url': ''
             },
         ]
     }
