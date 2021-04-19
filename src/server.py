@@ -80,7 +80,6 @@ def auth_logout():
     persist_data()
     return dumps(return_value)
 
-<<<<<<< src/server.py
 @APP.route('/auth/passwordreset/request/v1', methods=['POST'])
 def auth_passwordreset_request():
     data = request.get_json()
@@ -97,14 +96,11 @@ def auth_passwordreset_reset():
     return_value = auth_passwordreset_reset_v1(reset_code, new_password)
     persist_data()
     return dumps(return_value)
-
-=======
 # user stats
 @APP.route("/user/stats/v1", methods=['GET'])
 def user_stats():
     token = request.args.get('token')
     return dumps(user_stats_v1(token))
->>>>>>> src/server.py
 
 @APP.route('/user/profile/v1', methods=['GET'])
 def user_profile():
@@ -424,11 +420,9 @@ def dm_remove():
     persist_data()
     return dumps(dm_remove_v1(token, dm_id))
 
-<<<<<<< src/server.py
 @APP.route('/static/<path:path>')
 def send_js(path):
     return send_from_directory('', path)
-=======
 # message sendlater
 @APP.route('/message/sendlater/v1', methods = ['POST'])
 def message_sendlater():
@@ -470,8 +464,6 @@ def message_unreact():
     react_id = data['react_id']
     persist_data()
     return dumps(message_unreact_v1(token, message_id, react_id))
-
->>>>>>> src/server.py
 
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port 

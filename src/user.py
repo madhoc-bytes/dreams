@@ -100,7 +100,6 @@ def user_profile_sethandle_v1(token, handle_str):
     return {
     }
 
-<<<<<<< src/user.py
 def user_profile_uploadphoto_v1(token, img_url, x_start, y_start, x_end, y_end):
     for user in users:
         if user['token'] == token:
@@ -111,7 +110,6 @@ def user_profile_uploadphoto_v1(token, img_url, x_start, y_start, x_end, y_end):
     return {}
 
 #helpers 
-=======
 def user_stats_v1(token):
     auth_user_id = token_to_id(token)
     num_msgs_sent = 0

@@ -120,13 +120,9 @@ def auth_register_v2(email, password, name_first, name_last):
     new_token = generate_token(auth_user_id)
 
     permission_id = False
-<<<<<<< src/auth.py
+
     blank = ''
     #adding info to data structure
-=======
-
-    # adding info to data structure
->>>>>>> src/auth.py
     users.append({
             'email': email,
             'password': password,
@@ -136,16 +132,14 @@ def auth_register_v2(email, password, name_first, name_last):
             'u_id': auth_user_id,
             'token': new_token,
             'permission_id': permission_id,
-<<<<<<< src/auth.py
             'profile_img_url': blank
-=======
             'num_channels_joined': 0,                    
             'num_dms_joined': 0,
             'num_messages_sent': 0,
             'timestamp_ch': [],
             'timestamp_dm': [],
             'timestamp_msg': [],
->>>>>>> src/auth.py
+
         })
 
     # when first user is reg'd, they become owner of dreams
