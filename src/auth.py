@@ -8,9 +8,10 @@ import ssl
 import jwt
 import pickle
 from src.error import InputError, AccessError
-from src.data import users
 from random import randint
 import smtplib, ssl
+from src.data import users, dreams
+from datetime import datetime, timezone
 
 def auth_login_v1(email, password):
     
@@ -119,8 +120,13 @@ def auth_register_v2(email, password, name_first, name_last):
     new_token = generate_token(auth_user_id)
 
     permission_id = False
+<<<<<<< src/auth.py
     blank = ''
     #adding info to data structure
+=======
+
+    # adding info to data structure
+>>>>>>> src/auth.py
     users.append({
             'email': email,
             'password': password,
@@ -130,12 +136,29 @@ def auth_register_v2(email, password, name_first, name_last):
             'u_id': auth_user_id,
             'token': new_token,
             'permission_id': permission_id,
+<<<<<<< src/auth.py
             'profile_img_url': blank
+=======
+            'num_channels_joined': 0,                    
+            'num_dms_joined': 0,
+            'num_messages_sent': 0,
+            'timestamp_ch': [],
+            'timestamp_dm': [],
+            'timestamp_msg': [],
+>>>>>>> src/auth.py
         })
 
+    # when first user is reg'd, they become owner of dreams
     if len(users) == 1:
-            users[0]['permission_id'] = True
+        users[0]['permission_id'] = True
 
+        # initialise dreams analytics
+        dreams['channels'] = 0
+        dreams['dms'] = 0
+        dreams['msgs'] = 0
+        dreams['timestamp_ch'] = []
+        dreams['timestamp_dm'] = []
+        dreams['timestamp_msg'] = []
     
     return ({
         'token': new_token,

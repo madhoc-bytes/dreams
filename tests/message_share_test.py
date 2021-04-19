@@ -71,7 +71,7 @@ def test_message_share_one_message_to_channel():
     # Make sure it is shared
     result = is_message_shared(sharing_id, channel1)
     
-    assert result == True and first_share_id == {'shared_message_id': {'message_id': 2}}
+    assert result == True and first_share_id == {'shared_message_id': {'message_id': 1}}
 
 # Test sharing two messages to channels
 def test_message_share_two_messages_to_channel():
@@ -117,7 +117,7 @@ def test_message_share_two_messages_to_channel():
     result_1 = is_message_shared(sharing_id_1, channel1)
     result_2 = is_message_shared(sharing_id_2, channel0)
     
-    assert result_1 == True and result_2 == True and first_share_id == {'shared_message_id': {'message_id': 3}} and second_share_id == {'shared_message_id': {'message_id': 4}}
+    assert result_1 == True and result_2 == True and first_share_id == {'shared_message_id': {'message_id': 2}} and second_share_id == {'shared_message_id': {'message_id': 3}}
 
 # Test sharing to a DM
 def test_share_message_to_dm():
@@ -157,7 +157,7 @@ def test_share_message_to_dm():
         if message['message_id'] == sharing_id['message_id']:
             result = True
 
-    assert result == True and first_share_id == {'shared_message_id': {'message_id': 4}} 
+    assert result == True and first_share_id == {'shared_message_id': {'message_id': 6}} 
 
 # Test sharing to a DM with user not in DM
 def test_share_message_dm_with_user_not_in_dm():

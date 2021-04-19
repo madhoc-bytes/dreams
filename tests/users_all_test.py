@@ -13,12 +13,11 @@ def test_system():
         'test_fname1',
         'test_lname1'
     )
-
     assert users_all_v1(user1['token']) == {
         'users' : [
             {
+                'u_id': user1['auth_user_id'],
                 'email': 'test_email1@gmail.com',
-                'password': 'test_pw1',
                 'name_first': 'test_fname1',
                 'name_last': 'test_lname1',
                 'handle': 'test_fname1test_lname1',
@@ -43,12 +42,11 @@ def test_system():
         'test_fname3',
         'test_lname3'
     )
-
     assert users_all_v1(user1['token']) == {
-        'users' : [
+        'users': [
             {
+                'u_id': user1['auth_user_id'],
                 'email': 'test_email1@gmail.com',
-                'password': 'test_pw1',
                 'name_first': 'test_fname1',
                 'name_last': 'test_lname1',
                 'handle': 'test_fname1test_lname1',
@@ -58,8 +56,8 @@ def test_system():
                 'profile_img_url': ''
             },
             {
+                'u_id': user2['auth_user_id'],
                 'email': 'test_email2@gmail.com',
-                'password': 'test_pw2',
                 'name_first': 'test_fname2',
                 'name_last': 'test_lname2',
                 'handle': 'test_fname2test_lname2',
@@ -69,8 +67,8 @@ def test_system():
                 'profile_img_url': ''
             },
             {
+                'u_id': user3['auth_user_id'],
                 'email': 'test_email3@gmail.com',
-                'password': 'test_pw3',
                 'name_first': 'test_fname3',
                 'name_last': 'test_lname3',
                 'handle': 'test_fname3test_lname3',

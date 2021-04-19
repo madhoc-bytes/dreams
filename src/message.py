@@ -3,10 +3,13 @@
 # Imports
 from src.error import AccessError, InputError
 import jwt
-from src.data import users, channels, dms
-from src.channel import token_to_id
+from src.data import users, channels, dms, dreams
+from src.channel import token_to_id, test_user_is_invalid, test_channel_is_invalid, test_if_user_in_ch 
 from datetime import datetime, timezone
+from src.dm import test_dm_is_invalid, check_user_in_dm
 from src.message_senddm_v2 import message_senddm_v2
+from threading import Timer
+from time import mktime
 
 # Send Message
 def message_send_v1(token, channel_id, message):
@@ -25,14 +28,11 @@ def message_send_v1(token, channel_id, message):
 
     
     # Message Details
+    m_message_id = get_current_message_id()
+    m_message_id = m_message_id + 1
 
-    total_messages = 0
-    for channel in channels:
-        total_messages = total_messages + len(channel['messages'])
-
-    m_message_id = total_messages + 1
     m_u_id = auth_user_id
-    m_message_string = message
+    m_message = message
     m_time = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
 
     # Find appropriate channel
@@ -45,12 +45,27 @@ def message_send_v1(token, channel_id, message):
         {
             'message_id' : m_message_id,
             'u_id': m_u_id,
-            'message_string': m_message_string,
-            'time': m_time,
+            'message': m_message,
+            'time_created': m_time,
+            'reacts': [],
+            'is_pinned': False,
         }
     )
+    # user analytics
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[auth_user_id]['num_messages_sent'] += 1
+    users[auth_user_id]['timestamp_msg'].append({
+        'num_messages_sent': users[auth_user_id]['num_messages_sent'],
+        'time_stamp': time_now,
+    })
 
-    total_messages = total_messages + 1
+    # dreams analytics
+    dreams['msgs'] += 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    dreams['timestamp_msg'].append({
+        'num_messages_exist': dreams['msgs'], 
+        'time_stamp': time_now,
+    })
 
     # Return message_id
     return {
@@ -71,7 +86,7 @@ def message_edit_v1(token, message_id, message):
     for channel in channels:
         for message_stored in channel['messages']:
             if message_id == {'message_id': message_stored['message_id']}:
-                message_stored['message_string'] = message
+                message_stored['message'] = message
     
     return {}
 
@@ -88,8 +103,23 @@ def message_remove_v1(token, message_id):
     if message_sent_by_user(auth_user_id, message_id) == False and is_user_owner(auth_user_id, message_id) == False:
         raise AccessError(description='Access Error')
 
-
+    # user analytics
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[auth_user_id]['num_messages_sent'] -= 1
+    users[auth_user_id]['timestamp_msg'].append({
+        'num_messages_sent': users[auth_user_id]['num_messages_sent'],
+        'time_stamp': time_now,
+    })
     delete_message(message_id)
+
+    # dreams analytics
+    dreams['msgs'] -= 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    dreams['timestamp_msg'].append({
+        'num_messages_exist': dreams['msgs'], 
+        'time_stamp': time_now,
+    })
+
     return {}
 
 # Share Message
@@ -108,7 +138,7 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
         for channel in channels:
             for message in channel['messages']:
                 if og_message_id == {'message_id': message['message_id']}:
-                    new_message = message['message_string']
+                    new_message = message['message']
                     shared_message_id = message_send_v1(token, channel_id, new_message)
 
 
@@ -125,17 +155,139 @@ def message_share_v1(token, og_message_id, message, channel_id, dm_id):
                 if og_message_id == {'message_id': message['message_id']}:
                     new_message = message['message']
                     shared_message_id = message_senddm_v2(token, dm_id, new_message)
+    # user analytics
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[auth_user_id]['num_messages_sent'] += 1
+    users[auth_user_id]['timestamp_msg'].append({
+        'num_messages_sent': users[auth_user_id]['num_messages_sent'],
+        'time_stamp': time_now,
+    })
+    
+    # dreams analytics
+    dreams['msgs'] += 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    dreams['timestamp_msg'].append({
+        'num_messages_exist': dreams['msgs'], 
+        'time_stamp': time_now,
+    })
 
-                
     return {'shared_message_id': shared_message_id}
 
+def message_sendlater_v1(token, channel_id, message, time_sent):
+    '''Send a message to a channel at a specified time in the future'''
+    auth_user_id = token_to_id(token)
+    if test_user_is_invalid(auth_user_id):
+        raise InputError()
+    if test_channel_is_invalid(channel_id):
+        raise InputError()
+    if len(message) > 1000:
+        raise InputError()
+    if not test_if_user_in_ch(auth_user_id, channel_id):
+        raise AccessError()
 
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    if time_now > time_sent:
+        raise InputError()
     
+    seconds_after = time_sent - time_now
+    #start message_send after '_a sec 
+    Timer(seconds_after, message_send_v1, [token, channel_id, message]).start()
+
+    message_id = get_current_message_id()
+    message_id = message_id + 1
+    
+    return {"message_id": message_id}
+
+def message_sendlaterdm_v1(token, dm_id, message, time_sent):
+    auth_user_id = token_to_id(token)
+    if test_user_is_invalid(auth_user_id):
+        raise InputError()
+    #if dm_id not valid dm -> inputer
+    if test_dm_is_invalid(dm_id):
+        raise InputError()
+    if len(message) > 1000:
+        raise InputError()
+    # invalid user
+    if not check_user_in_dm(auth_user_id, dm_id):
+        raise AccessError()
 
 
-# -----------------------
-# Jack's Helper Functions
-# -----------------------
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    if time_now > time_sent:
+        raise InputError()
+    
+    seconds_after = time_sent - time_now
+    #start message_senddm after seconds_after has past
+    Timer(seconds_after, message_senddm_v2, [token, dm_id, message]).start()
+
+    message_id = get_current_message_id()
+    message_id = message_id + 1
+    return {"message_id": message_id}
+
+def message_react_v1(token, message_id, react_id):
+    auth_user_id = token_to_id(token)
+    if test_user_is_invalid(auth_user_id):
+        raise InputError()
+    ## ADD MORE TO HERE IN FUTURE IF NEED MORE
+    valid_reacts = [1]
+    if react_id not in valid_reacts:
+        raise InputError()
+
+    msg = get_message_from_mid(message_id)
+
+    if msg == {}:
+        raise InputError()
+    
+    if len(msg['reacts']) != 0:
+        for react in msg['reacts']:
+            key, value = 'react_id', react_id
+            if key in react and value == react[key]:
+                if auth_user_id in react['u_ids']:
+                    raise InputError()
+                else:
+                    react['u_ids'].append(auth_user_id)
+                    react['is_this_user_reacted'] = True
+    else:
+        newreact = {
+            'react_id': react_id,
+            'u_ids': [auth_user_id],
+            'is_this_user_reacted': True
+        }
+        msg['reacts'].append(newreact)
+
+    return {}
+
+def message_unreact_v1(token, message_id, react_id):
+    auth_user_id = token_to_id(token)
+    if test_user_is_invalid(auth_user_id):
+        raise InputError()
+    ## ADD MORE TO HERE IN FUTURE IF NEED MORE
+    valid_reacts = [1]
+    if react_id not in valid_reacts:
+        raise InputError()
+
+    msg = get_message_from_mid(message_id)
+
+    if msg == {}:
+        raise InputError()
+
+    if len(msg['reacts']) == 0:
+        raise InputError()
+    
+    for react in msg['reacts']:
+        key, value = 'react_id', react_id
+        if key in react and value == react[key]:
+            if len(react['u_ids']) != 1:
+                if auth_user_id in react['u_ids']:
+                    react['u_ids'].remove(auth_user_id)
+                else:
+                    raise InputError
+            else:
+                msg['reacts'].remove(react)
+    return {}
+
+
+# helper functions
 
 def valid_message_length(message):
     ''' Function that checks if the length of a message is valid'''
@@ -222,7 +374,7 @@ def is_message_edited(message_id, new_message):
     for channel in channels:
         for message in channel['messages']:
             if message_id == {'message_id': message['message_id']}:
-                if new_message == message['message_string']:
+                if new_message == message['message']:
                     message_test = True 
     return message_test
 
@@ -268,3 +420,29 @@ def is_user_in_dm(auth_user_id, dm_id):
         if user['u_id'] == auth_user_id:
             result = True
     return result
+
+def get_current_message_id():
+    num_messages = -1
+    for channel in channels:
+        num_messages = num_messages + len(channel['messages'])
+
+    for dm in dms:
+        num_messages = num_messages + len(dm['messages'])
+
+    return num_messages
+
+def get_message_from_mid(message_id):
+    for dm_id in range(len(dms)):
+        for msg in dms[dm_id]['messages']:
+            key, value = 'message_id', message_id
+            if key in msg and value == msg[key]:
+                return msg
+
+
+    for ch_id in range(len(channels)):
+        for msg in channels[ch_id]['messages']:
+            key, value = 'message_id', message_id
+            if key in msg and value == msg[key]:
+                return msg
+    
+    return {}
