@@ -17,8 +17,8 @@ def search_v2(token, query_str):
 
     for channel in participated_channels:
         for msg in channel['messages']:
-            if query_str in msg['message_string']:
-                found_messages.append(msg['message_string'])
+            if query_str in msg['message']:
+                found_messages.append(msg['message'])
 
     for dm in participated_dms:
         for msg in dm['messages']:

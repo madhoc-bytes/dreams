@@ -1,5 +1,6 @@
 from src.data import users, channels
 from src.error import InputError, AccessError
+from datetime import datetime, timezone
 
 def channel_invite_v2(token, channel_id, u_id):
     # change the token to a u id
@@ -24,6 +25,13 @@ def channel_invite_v2(token, channel_id, u_id):
     new_member['u_id'] = users[u_id]['u_id']
     channels[channel_id]['all_members'].append(new_member)
 
+
+    users[u_id]['num_channels_joined'] += 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[u_id]['timestamp_ch'].append({
+        'num_channels_joined': users[u_id]['num_channels_joined'],
+        'time_stamp': time_now,
+    })
     return {}
 
 def channel_details_v2(token, channel_id):
@@ -60,6 +68,13 @@ def channel_messages_v2(token, channel_id, start):
     result = []
     i = 0
     for msg in channels[channel_id]['messages']:
+        if len(msg['reacts']) != 0:
+            for react in msg['reacts']:
+                if auth_user_id not in react['u_ids']:
+                    react['is_this_user_reacted'] = False
+                else:
+                    react['is_this_user_reacted'] = True
+
         result.append(msg)
         i += 1
         if i == 50:
@@ -94,7 +109,13 @@ def channel_leave_v2(token, channel_id):
 
     removed = find_user_in_ch(auth_user_id, channel_id)
     channels[channel_id]['all_members'].remove(removed)   
-
+    
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[auth_user_id]['num_channels_joined'] -= 1
+    users[auth_user_id]['timestamp_ch'].append({
+        'num_channels_joined': users[auth_user_id]['num_channels_joined'],
+        'time_stamp': time_now,
+    })
     return {}
 
 def channel_join_v2(token, channel_id):
@@ -116,6 +137,13 @@ def channel_join_v2(token, channel_id):
 
     '''Appends to 'all_members' key in dictionary'''
     channels[channel_id]['all_members'].append(new_user)
+
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[auth_user_id]['num_channels_joined'] += 1
+    users[auth_user_id]['timestamp_ch'].append({
+        'num_channels_joined': users[auth_user_id]['num_channels_joined'],
+        'time_stamp': time_now,
+    })
     return {}
 
 def channel_addowner_v2(token, channel_id, u_id):
@@ -142,6 +170,12 @@ def channel_addowner_v2(token, channel_id, u_id):
     # then add them to all_members first
     if not test_if_user_in_ch(u_id, channel_id):
         channels[channel_id]['all_members'].append(new_owner)
+        time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+        users[u_id]['num_channels_joined'] += 1
+        users[u_id]['timestamp_ch'].append({
+            'num_channels_joined': users[u_id]['num_channels_joined'],
+            'time_stamp': time_now,
+        })
 
     channels[channel_id]['owner_members'].append(new_owner)
 

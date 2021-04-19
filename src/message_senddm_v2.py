@@ -1,6 +1,7 @@
 from src.error import InputError, AccessError
 from src.channel import token_to_id
-from src.data import users, dms, channels
+from src.data import users, dms, channels, dreams
+from datetime import datetime, timezone
 
 def message_senddm_v2(token, dm_id, message):
     #import uid from token
@@ -11,6 +12,23 @@ def message_senddm_v2(token, dm_id, message):
     #Message is more than 1000 characters
     if len(message) > 1000:
         raise InputError('Message is more than 1000 characters')
+    
+    # user analytics
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    users[token_uid]['num_messages_sent'] += 1
+    users[token_uid]['timestamp_msg'].append({
+        'num_messages_sent': users[token_uid]['num_messages_sent'],
+        'time_stamp': time_now,
+    })
+
+    # dreams analytics
+    dreams['msgs'] += 1
+    time_now = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    dreams['timestamp_msg'].append({
+        'num_messages_exist': dreams['msgs'], 
+        'time_stamp': time_now,
+    })
+
     return {
         'message_id': messagesendreturn(dm_id, token_uid, message),
     }
@@ -40,18 +58,20 @@ def messagesendreturn(dm_id, u_id, message):
         if dm['dm_id'] == dm_id:
             break
 
-    message_send = { 'message_id': total_messages + 1, 
-                    'u_id': u_id, 
-                    'message': message,
-                    'is_pinned': False  
-                    } 
+    m_time = int(datetime.now().replace(tzinfo=timezone.utc).timestamp())
+    message_send = { 
+        'message_id': total_messages + 1, 
+        'u_id': u_id, 
+        'message': message,
+        'time_created': m_time,
+        'reacts': [],
+        'is_pinned': False,
+    } 
     dm['messages'].append(message_send)
-    print(f"this is the length: {len(dm['messages'])}")
-
     return message_send['message_id']
 
 def num_message():
-    total = 0
+    total = -1
     for channel in channels:
         for message in channel['messages']:
             total = total + len(message)
