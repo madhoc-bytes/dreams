@@ -21,6 +21,7 @@ def test_system():
                 'name_first': 'test_fname1',
                 'name_last': 'test_lname1',
                 'handle_str': 'test_fname1test_lname1',
+                'profile_img_url': ''
             }
         ]
     }
@@ -46,6 +47,7 @@ def test_system():
                 'name_first': 'test_fname1',
                 'name_last': 'test_lname1',
                 'handle_str': 'test_fname1test_lname1',
+                'profile_img_url': ''
             },
             {
                 'u_id': user2['auth_user_id'],
@@ -53,6 +55,7 @@ def test_system():
                 'name_first': 'test_fname2',
                 'name_last': 'test_lname2',
                 'handle_str': 'test_fname2test_lname2',
+                'profile_img_url': ''
             },
             {
                 'u_id': user3['auth_user_id'],
@@ -60,6 +63,7 @@ def test_system():
                 'name_first': 'test_fname3',
                 'name_last': 'test_lname3',
                 'handle_str': 'test_fname3test_lname3',
+                'profile_img_url': ''
             },
         ]
     }
