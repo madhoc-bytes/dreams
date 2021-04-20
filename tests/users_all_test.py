@@ -21,7 +21,6 @@ def test_system():
                 'name_first': 'test_fname1',
                 'name_last': 'test_lname1',
                 'handle': 'test_fname1test_lname1',
-                'u_id': user1['auth_user_id'],
                 'token': user1['token'],
                 'permission_id': True,
                 'profile_img_url': ''
@@ -50,7 +49,6 @@ def test_system():
                 'name_first': 'test_fname1',
                 'name_last': 'test_lname1',
                 'handle': 'test_fname1test_lname1',
-                'u_id': user1['auth_user_id'],
                 'token': user1['token'],
                 'permission_id': True,
                 'profile_img_url': ''
@@ -61,7 +59,6 @@ def test_system():
                 'name_first': 'test_fname2',
                 'name_last': 'test_lname2',
                 'handle': 'test_fname2test_lname2',
-                'u_id': user2['auth_user_id'],
                 'token': user2['token'],
                 'permission_id': False,
                 'profile_img_url': ''
@@ -72,7 +69,6 @@ def test_system():
                 'name_first': 'test_fname3',
                 'name_last': 'test_lname3',
                 'handle': 'test_fname3test_lname3',
-                'u_id': user3['auth_user_id'],
                 'token': user3['token'],
                 'permission_id': False,
                 'profile_img_url': ''
