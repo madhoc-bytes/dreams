@@ -1,9 +1,9 @@
-'''Test file for message_send_v1.py'''
+'''Test file for message_send_v2.py'''
 
 # Imports
 import pytest
 from src.data import channels, users, dms
-from src.message import message_send_v1, is_message_shared
+from src.message import message_send_v2, is_message_shared
 from src.auth import auth_register_v2
 from src.channel import channel_join_v2
 from src.channels import channels_create_v2
@@ -24,7 +24,7 @@ def test_message_too_long():
 
     # Assertions: InputError
     with pytest.raises(InputError):
-        message_send_v1(token, channel, message)
+        message_send_v2(token, channel, message)
         
     
 
@@ -49,7 +49,7 @@ def test_not_authorised_user():
 
     # Assertions: AccessError
     with pytest.raises(AccessError):
-        message_send_v1(token_1, channel2, message)
+        message_send_v2(token_1, channel2, message)
 
 
 # Test normal message with authorised user in channel
@@ -63,7 +63,7 @@ def test_one_message():
     message = 'Valid message!'
 
     # Assertions: InputError
-    message_id = message_send_v1(token, channel, message)
+    message_id = message_send_v2(token, channel, message)
     exists = is_message_shared(message_id, channel)
     assert exists == True and message_id == {'message_id': 0}
 
@@ -79,8 +79,8 @@ def test_two_messages():
     message_two = 'My ID should be 2!'
 
     # Send first message
-    message_id_1 = message_send_v1(token, channel, message_one)
-    message_id_2 = message_send_v1(token, channel, message_two)
+    message_id_1 = message_send_v2(token, channel, message_one)
+    message_id_2 = message_send_v2(token, channel, message_two)
     
     exists1 = is_message_shared(message_id_1, channel)
     exists2 = is_message_shared(message_id_2, channel) 
@@ -107,8 +107,8 @@ def test_two_messages_channels():
     message_two = 'My ID should be 2!'
 
     # Send first message
-    message_id_1 = message_send_v1(token_1, channel_1, message_one)
-    message_id_2 = message_send_v1(token_2, channel_1, message_two)
+    message_id_1 = message_send_v2(token_1, channel_1, message_one)
+    message_id_2 = message_send_v2(token_2, channel_1, message_two)
     
     exists1 = is_message_shared(message_id_1, channel_1)
     exists2 = is_message_shared(message_id_2, channel_1) 

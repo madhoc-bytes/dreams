@@ -5,7 +5,7 @@ import time
 from src.auth import auth_register_v2
 from src.channel import channel_join_v2
 from src.channels import channels_create_v2
-from src.message import message_send_v1
+from src.message import message_send_v2
 from src.dm import dm_create_v1
 from src.search import search_v2
 from src.message_senddm_v2 import message_senddm_v2
@@ -65,6 +65,6 @@ def test_system():
     message_senddm_v2(user1['token'], dm_id, "test_message_dm")
     assert len(user_stats_v1(user1['token'])['user_stats']['messages_sent']) == 1
 
-    message_send_v1(user1['token'], test_channel_id, "test_message_ch")
+    message_send_v2(user1['token'], test_channel_id, "test_message_ch")
     assert len(user_stats_v1(user1['token'])['user_stats']['messages_sent']) == 2
 
