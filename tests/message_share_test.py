@@ -4,7 +4,7 @@
 import pytest
 from src.data import channels, users, dms
 from src.dm import dm_create_v1
-from src.message import message_send_v1, message_share_v1, is_message_shared, message_exists, is_message_in_dm
+from src.message import message_send_v2, message_share_v1, is_message_shared, message_exists, is_message_in_dm
 from src.message_senddm_v2 import message_senddm_v2
 from src.auth import auth_register_v2
 from src.channel import channel_join_v2
@@ -33,7 +33,7 @@ def test_message_share_not_authorised_to_channel():
     message_one = 'I am message #1'
 
     # Send message to channel 1
-    og_message_id = message_send_v1(token, channel0, message_one)
+    og_message_id = message_send_v2(token, channel0, message_one)
 
     # AccessError
     with pytest.raises(AccessError):
@@ -62,7 +62,7 @@ def test_message_share_one_message_to_channel():
     message_one = 'I am message #1'
 
     # Send message to channel 1
-    og_message_id = message_send_v1(token, channel0, message_one)
+    og_message_id = message_send_v2(token, channel0, message_one)
 
     # Share message to channel 2
     first_share_id = message_share_v1(token, og_message_id, message, channel1, dm_id)
@@ -103,8 +103,8 @@ def test_message_share_two_messages_to_channel():
     message_three = 'Goodbye!'
 
     # Send messages
-    message_one_id = message_send_v1(token, channel0, message_one)  
-    message_three_id = message_send_v1(token, channel2, message_three) 
+    message_one_id = message_send_v2(token, channel0, message_one)  
+    message_three_id = message_send_v2(token, channel2, message_three) 
 
     # Share messages
     first_share_id = message_share_v1(token, message_one_id, message, channel1, dm_id) 

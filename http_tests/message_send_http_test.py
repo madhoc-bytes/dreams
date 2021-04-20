@@ -7,6 +7,7 @@ import json
 from src import config
 import flask
 from src.error import InputError, AccessError
+from src.message import message_exists, is_message_shared
 
 
 def test_valid_message_send():
@@ -36,6 +37,7 @@ def test_valid_message_send():
     r = requests.post(config.url + 'channels/create/v2', json=ch_data)
     ch_id = r.json().get('channel_id')
 
+    
     # join user to channel
     join_data = {
         'token': token,
@@ -48,6 +50,8 @@ def test_valid_message_send():
     message_data = {'token': token, 'channel_id': ch_id, 'message': message}
     r = requests.post(config.url + 'message/send/v1', json=message_data)
 
+    #result = message_exists(message_id)
+    #assert result == True
     assert r.status_code == 200
 
 def test_long_message_send():
@@ -92,6 +96,7 @@ def test_long_message_send():
     assert r.status_code == 400
 
 def test_message_send_not_authorised_user():
+
     requests.delete(config.url + 'clear/v1')
 
     # register a user

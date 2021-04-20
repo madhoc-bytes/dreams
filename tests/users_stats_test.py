@@ -5,7 +5,7 @@ import time
 from src.auth import auth_register_v2
 from src.channel import channel_join_v2
 from src.channels import channels_create_v2
-from src.message import message_send_v1, message_remove_v1
+from src.message import message_send_v2, message_remove_v1
 from src.dm import dm_create_v1, dm_remove_v1
 from src.search import search_v2
 from src.message_senddm_v2 import message_senddm_v2
@@ -63,7 +63,7 @@ def test_system():
     msg_id1 = message_senddm_v2(user1['token'], dm_id, "test_message_dm")['message_id']
     assert len(users_stats_v1(user1['token'])['dreams_stats']['messages_exist']) == 1
 
-    msg_id2 = message_send_v1(user1['token'], test_channel_id, "test_message_ch")['message_id']
+    msg_id2 = message_send_v2(user1['token'], test_channel_id, "test_message_ch")['message_id']
     assert len(users_stats_v1(user1['token'])['dreams_stats']['messages_exist']) == 2
 
     # remove both and check if there are 4 timestamps
