@@ -157,7 +157,7 @@ def test_share_message_to_dm():
         if message['message_id'] == sharing_id['message_id']:
             result = True
 
-    assert result == True and first_share_id == {'shared_message_id': {'message_id': 5}} 
+    assert result == True and first_share_id == {'shared_message_id': {'message_id': 6}} 
 
 # Test sharing to a DM with user not in DM
 def test_share_message_dm_with_user_not_in_dm():
