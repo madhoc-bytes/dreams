@@ -1,11 +1,11 @@
 import sys
 from json import dumps
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from src.error import InputError
 from src import config
 from src.data import persist_data
-from src.auth import auth_register_v2, auth_login_v2, auth_logout_v2
+from src.auth import auth_register_v2, auth_login_v2, auth_logout_v2, auth_passwordreset_request_v1, auth_passwordreset_reset_v1
 from src.dm import dm_create_v1, dm_details_v1, dm_invite_v1, dm_leave_v1, dm_list_v1, dm_messages_v1, dm_remove_v1
 from src.channel import channel_details_v2, channel_invite_v2
 from src.channel import channel_addowner_v2,channel_removeowner_v2, channel_messages_v2
@@ -16,11 +16,13 @@ from src.message import message_send_v2, message_edit_v1, message_remove_v1, mes
 from src.message import message_sendlater_v1, message_sendlaterdm_v1, message_react_v1, message_unreact_v1
 from src.channels import channels_list_v2, channels_listall_v2
 from src.users import users_all_v1, users_stats_v1
-from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_sethandle_v1, user_profile_setname_v1, user_stats_v1
+from src.user import user_profile_v1, user_profile_setemail_v1, user_profile_sethandle_v1, user_profile_setname_v1, user_stats_v1, user_profile_uploadphoto_v1
+
 from src.message_senddm_v2 import message_senddm_v2
 from src.admin_userpermission_change_v1 import adminuserpermissionchangev1
 from src.search import search_v2
 from src.other import clear_v2
+import requests
 
 def defaultHandler(err):
     response = err.get_response()
@@ -33,7 +35,7 @@ def defaultHandler(err):
     response.content_type = 'application/json'
     return response
 
-APP = Flask(__name__)
+APP = Flask(__name__, static_url_path='/static/')
 CORS(APP)
 
 APP.config['TRAP_HTTP_EXCEPTIONS'] = True
@@ -78,6 +80,22 @@ def auth_logout():
     persist_data()
     return dumps(return_value)
 
+@APP.route('/auth/passwordreset/request/v1', methods=['POST'])
+def auth_passwordreset_request():
+    data = request.get_json()
+    email = data['email']
+    return_value = auth_passwordreset_request_v1(email)
+    persist_data()
+    return dumps(return_value)
+
+@APP.route('/auth/passwordreset/reset/v1', methods=['POST'])
+def auth_passwordreset_reset():
+    data = request.get_json()
+    reset_code = data['reset_code']
+    new_password = data['new_password']
+    return_value = auth_passwordreset_reset_v1(reset_code, new_password)
+    persist_data()
+    return dumps(return_value)
 # user stats
 @APP.route("/user/stats/v1", methods=['GET'])
 def user_stats():
@@ -118,6 +136,24 @@ def user_profile_sethandle():
     token = data['token']
     handle_str = data['handle_str']
     return_value = user_profile_sethandle_v1(token, handle_str)
+    persist_data()
+    return dumps(return_value)
+
+@APP.route('/user/profile/uploadphoto/v1', methods=['POST'])
+def user_profile_uploadphoto():
+    data = request.get_json()
+    token = data['token']
+    img_url = data['img_url']
+    x_start = data['x_start']
+    y_start = data['y_start']
+    x_end = data['x_end']
+    y_end = data['y_end']
+
+    response = requests.get('img_url')
+    if response.status_code != 200:
+        raise InputError(description='img_url returns an HTTP status other than 200.')
+        
+    return_value = user_profile_uploadphoto_v1(token, img_url, x_start, y_start, x_end, y_end)
     persist_data()
     return dumps(return_value)
 
@@ -400,6 +436,9 @@ def dm_remove():
     persist_data()
     return dumps(dm_remove_v1(token, dm_id))
 
+@APP.route('/static/<path:path>')
+def send_js(path):
+    return send_from_directory('', path)
 # message sendlater
 @APP.route('/message/sendlater/v1', methods = ['POST'])
 def message_sendlater():
@@ -441,7 +480,6 @@ def message_unreact():
     react_id = data['react_id']
     persist_data()
     return dumps(message_unreact_v1(token, message_id, react_id))
-
 
 if __name__ == "__main__":
     APP.run(port=config.port) # Do not edit this port 

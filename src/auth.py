@@ -8,9 +8,10 @@ import ssl
 import jwt
 import pickle
 from src.error import InputError, AccessError
+from random import randint
+import smtplib, ssl
 from src.data import users, dreams
 from datetime import datetime, timezone
-
 
 def auth_login_v1(email, password):
     
@@ -121,7 +122,7 @@ def auth_register_v2(email, password, name_first, name_last):
     permission_id = False
 
     blank = ''
-    # adding info to data structure
+    #adding info to data structure
     users.append({
             'email': email,
             'password': password,
@@ -138,6 +139,7 @@ def auth_register_v2(email, password, name_first, name_last):
             'timestamp_ch': [],
             'timestamp_dm': [],
             'timestamp_msg': [],
+
         })
 
     # when first user is reg'd, they become owner of dreams
@@ -186,11 +188,43 @@ def auth_logout_v2(token):
 
     return ({'is_success': is_success})
 
+def auth_passwordreset_request_v1(email):
+    for user in users:
+        if user['email'] == email:
+            code = randint(100000, 999999) + 10101
+            first_name = user['name_first']
+    
+    port = 465  # For SSL
+    password = 'Password01!@'
+    context = ssl.create_default_context()
+    sender_email = 'comp1531.testingphoto@gmail.com'
+    receiver_email = email
+    message = """\
+        Subject: Code for Password reset request for your Dreams account
+        Hi {name}
+        The code to reset your password is {code}""".format(name=first_name, code=code)
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+        server.login("comp1531.testingphoto@gmail.com", password)  # named it testing photo instead of testing email in hurry 
+        server.sendmail(sender_email, receiver_email, message)
+    return {}
+
+def auth_passwordreset_reset_v1(reset_code, new_password):
+    if new_password <= 6:
+        raise InputError
+    
+    for user in users:
+        if reset_code != user['reset_code']:
+            raise InputError
+        elif user['reset_code'] == reset_code:
+            user['password'] = new_password
+            return {}
+
+####### HELPERS ########
 def generate_token(u_id):
     SECRET = 'break'
     token = jwt.encode({'u_id': u_id}, SECRET, algorithm='HS256')
     return str(token)
-
 
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
@@ -207,6 +241,3 @@ def is_email_used(email):
             used = True
     return used
 
-
-#request.form.get only for POST and PUT
-#

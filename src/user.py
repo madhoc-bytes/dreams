@@ -1,7 +1,12 @@
 from src.error import InputError
 from src.data import users, channels, dms
 import re
-from src.channel import token_to_id, test_if_user_in_ch
+from src.channel import token_to_id,  test_if_user_in_ch
+import urllib
+import urllib.request
+import imghdr
+from PIL import Image
+import src.config
 from src.dm import check_user_in_dm
 
 def user_profile_v1(token, u_id):
@@ -95,6 +100,16 @@ def user_profile_sethandle_v1(token, handle_str):
     return {
     }
 
+def user_profile_uploadphoto_v1(token, img_url, x_start, y_start, x_end, y_end):
+    for user in users:
+        if user['token'] == token:
+            u_id = user['u_id']
+            crop_img(img_url, x_start, y_start, x_end, y_end, u_id)
+            user['profile_img_url'] = src.config.url + f"/static/avatar_{u_id}.jpg"
+    
+    return {}
+
+#helpers 
 def user_stats_v1(token):
     auth_user_id = token_to_id(token)
     num_msgs_sent = 0
@@ -126,7 +141,6 @@ def user_stats_v1(token):
             'involvement_rate': involvement_rate,
         }
     }
-
 
 # jeff's stats helpers
 def user_msgs_in_channel(auth_user_id, channel_dict):
@@ -169,3 +183,16 @@ def email_is_valid(email):
     '''checking for a valid email using regex'''
     regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
     return bool(re.search(regex, email))
+
+def crop_img(img_url, x_start, y_start, x_end, y_end, token):
+    u_id = token_to_id(token)
+    path = f"./static/avatar_{u_id}.jpg"
+    urllib.request.urlretrieve(img_url, path)
+    if imghdr.what(path) != 'jpeg':
+        raise InputError(description='Image uploaded is not a JPG')
+    img = Image.open(path)
+    width,height = img.size
+    if int(x_start) < 0 or int(x_end) > width or int(y_start) < 0 or int(y_end) >height:
+        raise InputError(description='crop dimensions are not within the dimensions of the image.')
+    cropped_img = img.crop((int(x_start), int(y_start), int(x_end), int(y_end)))
+    cropped_img.save(path)
