@@ -10,7 +10,8 @@ def users_all_v1(token):
             'email': user['email'], 
             'name_first': user['name_first'], 
             'name_last': user['name_last'], 
-            'handle_str': user['handle']
+            'handle_str': user['handle'],
+            'profile_img_url': user['profile_img_url']
         }
         users_list.append(new_user)
 
