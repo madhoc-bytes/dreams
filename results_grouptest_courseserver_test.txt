@@ -1,191 +1,36 @@
 ============================= test session starts ==============================
-platform linux -- Python 3.7.3, pytest-6.2.3, py-1.10.0, pluggy-0.13.1 -- /usr/bin/python3
-cachedir: .pytest_cache
-hypothesis profile 'default' -> database=DirectoryBasedExampleDatabase('/tmp_amd/kamen/export/kamen/3/cs1531/automark/tempstore/.hypothesis/examples')
+platform linux -- Python 3.7.3, pytest-6.2.3, py-1.10.0, pluggy-0.13.1
 rootdir: /tmp_amd/kamen/export/kamen/3/cs1531/automark/tempstore, configfile: pytest.ini
 plugins: forked-1.3.0, xdist-2.2.1, hypothesis-6.1.1, timeout-1.4.2
-collecting ... collected 130 items
+collected 75 items
 
-http_tests/auth_login_http_test.py::test_valid_login PASSED              [  0%]
-http_tests/auth_login_http_test.py::test_invalid_email_login PASSED      [  1%]
-http_tests/auth_login_http_test.py::test_unused_email_login PASSED       [  2%]
-http_tests/auth_login_http_test.py::test_incorrect_password_login PASSED [  3%]
-http_tests/auth_login_http_test.py::test_valid_login PASSED              [  3%]
-http_tests/auth_login_http_test.py::test_invalid_email_login PASSED      [  3%]
-http_tests/auth_login_http_test.py::test_unused_email_login PASSED       [  3%]
-http_tests/auth_login_http_test.py::test_incorrect_password_login PASSED [  3%]
-http_tests/auth_logout_http_test.py::test_logout_valid FAILED            [  3%]
-http_tests/auth_register_http_test.py::test_basic PASSED                 [  4%]
-http_tests/auth_register_http_test.py::test_invalid_email PASSED         [  5%]
-http_tests/auth_register_http_test.py::test_auth_register_short_password PASSED [  6%]
-http_tests/auth_register_http_test.py::test_auth_register_short_first_name FAILED [  6%]
-http_tests/auth_register_http_test.py::test_auth_register_short_last_name PASSED [  7%]
-http_tests/auth_register_http_test.py::test_auth_register_long_first_name PASSED [  8%]
-http_tests/auth_register_http_test.py::test_auth_register_long_last_name PASSED [  9%]
-http_tests/channel_addowner_http_test.py::test_basic FAILED              [ 10%]
-http_tests/channel_addowner_http_test.py::test_invalid_channel PASSED    [ 10%]
-http_tests/channel_addowner_http_test.py::test_already_owner PASSED      [ 11%]
-http_tests/channel_addowner_http_test.py::test_no_privileges PASSED      [ 12%]
-http_tests/channel_details_http_test.py::test_valid PASSED               [ 13%]
-http_tests/channel_details_http_test.py::test_invalid_channel PASSED     [ 13%]
-http_tests/channel_details_http_test.py::test_unauthorised_user FAILED   [ 14%]
-http_tests/channel_invite_http_test.py::test_valid PASSED                [ 15%]
-http_tests/channel_invite_http_test.py::test_invite_channel_invalid PASSED [ 16%]
-http_tests/channel_invite_http_test.py::test_invite_user_invalid PASSED  [ 16%]
-http_tests/channel_invite_http_test.py::test_invite_inviter_not_in_channel FAILED [ 17%]
-http_tests/channel_join_http_test.py::test_join_channel FAILED           [ 18%]
-http_tests/channel_join_http_test.py::test_join_invalid_uid PASSED       [ 19%]
-http_tests/channel_join_http_test.py::test_join_private FAILED           [ 20%]
-http_tests/channel_leave_http_test.py::test_basic FAILED                 [ 20%]
-http_tests/channel_leave_http_test.py::test_invalid_channel FAILED       [ 21%]
-http_tests/channel_leave_http_test.py::test_unauthorised_user FAILED     [ 22%]
-http_tests/channel_messages_http_test.py::test_messages_nomessage PASSED [ 23%]
-http_tests/channel_messages_http_test.py::test_messages_invalid_ch_id PASSED [ 23%]
-http_tests/channel_messages_http_test.py::test_messages_start_too_big PASSED [ 24%]
-http_tests/channel_messages_http_test.py::test_messages_not_member PASSED [ 25%]
-http_tests/channel_removeowner_http_test.py::test_basic PASSED           [ 26%]
-http_tests/channel_removeowner_http_test.py::test_invalid_channel PASSED [ 26%]
-http_tests/channel_removeowner_http_test.py::test_not_an_owner PASSED    [ 27%]
-http_tests/channel_removeowner_http_test.py::test_only_owner PASSED      [ 28%]
-http_tests/channel_removeowner_http_test.py::test_no_privileges PASSED   [ 29%]
-http_tests/channels_create_http_test.py::test_channels_create_public PASSED [ 30%]
-http_tests/channels_create_http_test.py::test_channels_create_private PASSED [ 30%]
-http_tests/channels_create_http_test.py::test_channels_create_invalid PASSED [ 31%]
-http_tests/channels_list_http_test.py::test_no_channels_list FAILED      [ 32%]
-http_tests/channels_list_http_test.py::test_two_channels_one_user_list FAILED [ 33%]
-http_tests/channels_list_http_test.py::test_two_users_two_channels_list FAILED [ 33%]
-http_tests/channels_listall_http_test.py::test_no_channels_list PASSED   [ 34%]
-http_tests/channels_listall_http_test.py::test_two_channels_one_user_list PASSED [ 35%]
-http_tests/channels_listall_http_test.py::test_two_users_two_channels_list PASSED [ 36%]
-http_tests/dm_create_http_test.py::test_dm_create_basic PASSED           [ 36%]
-http_tests/dm_create_http_test.py::test_dm_invalid_id PASSED             [ 37%]
-http_tests/dm_details_http_test.py::test_dm_details_basic PASSED         [ 38%]
-http_tests/dm_details_http_test.py::test_dm_details_invalid_dmid PASSED  [ 39%]
-http_tests/dm_details_http_test.py::test_dm_details_not_member PASSED    [ 40%]
-http_tests/dm_invite_http_test.py::test_invite_basic PASSED              [ 40%]
-http_tests/dm_invite_http_test.py::test_invite_invalid_dmid PASSED       [ 41%]
-http_tests/dm_leave_http_test.py::test_dm_leave_basic PASSED             [ 42%]
-http_tests/dm_leave_http_test.py::test_dm_leave_invalid_dmid PASSED      [ 43%]
-http_tests/dm_leave_http_test.py::test_dm_leave_not_member PASSED        [ 43%]
-http_tests/dm_list_http_test.py::test_dm_list_basic PASSED               [ 44%]
-http_tests/dm_messages_http_test.py::test_dm_messages_nomessage PASSED   [ 45%]
-http_tests/dm_messages_http_test.py::test_dm_messages_invalid_d_id PASSED [ 46%]
-http_tests/dm_messages_http_test.py::test_dm_messages_start_too_big PASSED [ 46%]
-http_tests/dm_messages_http_test.py::test_dm_messages_not_member PASSED  [ 47%]
-http_tests/dm_remove_http_test.py::test_dm_remove_basic PASSED           [ 48%]
-http_tests/dm_remove_http_test.py::test_dm_remove_invalid_dmid PASSED    [ 49%]
-http_tests/echo_http_test.py::test_echo FAILED                           [ 50%]
-http_tests/message_edit_http_test.py::test_valid_message_edit FAILED     [ 50%]
-http_tests/message_edit_http_test.py::test_long_message_edit FAILED      [ 51%]
-http_tests/message_edit_http_test.py::test_message_not_sent_by_same_user_message_edit FAILED [ 52%]
-http_tests/message_pin_http_test.py::test_valid_message_pin_channel FAILED [ 53%]
-http_tests/message_pin_http_test.py::test_invalid_message_pin PASSED     [ 53%]
-http_tests/message_pin_http_test.py::test_pin_message_pinned FAILED      [ 54%]
-http_tests/message_pin_http_test.py::test_pin_message_not_authorised_user FAILED [ 55%]
-http_tests/message_pin_http_test.py::test_pin_message_dm FAILED          [ 56%]
-http_tests/message_react_http_test.py::test_message_react_basic FAILED   [ 56%]
-http_tests/message_react_http_test.py::test_react_invalidmid PASSED      [ 57%]
-http_tests/message_react_http_test.py::test_react_invalidreactid PASSED  [ 58%]
-http_tests/message_react_http_test.py::test_already_reacted PASSED       [ 59%]
-http_tests/message_remove_http_test.py::test_message_remove_from_channel_invalid_message FAILED [ 60%]
-http_tests/message_remove_http_test.py::test_message_remove_from_channel_not_sent_by_same_user FAILED [ 60%]
-http_tests/message_remove_http_test.py::test_message_remove_from_channe FAILED [ 61%]
-http_tests/message_remove_http_test.py::test_message_remove_from_dm FAILED [ 62%]
-http_tests/message_send_http_test.py::test_valid_message_send FAILED     [ 63%]
-http_tests/message_send_http_test.py::test_long_message_send FAILED      [ 63%]
-http_tests/message_send_http_test.py::test_message_send_not_authorised_user FAILED [ 64%]
-http_tests/message_senddm_v2_http_test.py::test_long_message_send FAILED [ 65%]
-http_tests/message_sendlater_http_test.py::test_message_sendlater_basic PASSED [ 66%]
-http_tests/message_sendlater_http_test.py::test_message_sendlater_timeinpast FAILED [ 66%]
-http_tests/message_sendlater_http_test.py::test_message_sendlater_invalid_ch PASSED [ 67%]
-http_tests/message_sendlater_http_test.py::test_message_sendlater_longmsg PASSED [ 68%]
-http_tests/message_sendlater_http_test.py::test_message_sendlater_notinch PASSED [ 69%]
-http_tests/message_sendlaterdm_http_test.py::test_message_sendlaterdm_basic PASSED [ 70%]
-http_tests/message_sendlaterdm_http_test.py::test_message_sendlaterdm_timeinpast FAILED [ 70%]
-http_tests/message_sendlaterdm_http_test.py::test_message_sendlaterdm_invalid_dmid PASSED [ 71%]
-http_tests/message_sendlaterdm_http_test.py::test_message_sendlaterdm_longstring PASSED [ 72%]
-http_tests/message_sendlaterdm_http_test.py::test_sendlaterdm_not_in_dm PASSED [ 73%]
-http_tests/message_share_http_test.py::test_not_authorised_to_channel_message_share FAILED [ 73%]
-http_tests/message_share_http_test.py::test_valid_message_share_to_channel FAILED [ 74%]
-http_tests/message_share_http_test.py::test_message_share_to_dm FAILED   [ 75%]
-http_tests/message_share_http_test.py::test_message_share_to_dm_user_not_in_dm FAILED [ 76%]
-http_tests/message_unpin_http_test.py::test_valid_message_pin_channel FAILED [ 76%]
-http_tests/message_unpin_http_test.py::test_unpin_message_unpinned FAILED [ 77%]
-http_tests/message_unpin_http_test.py::test_pin_message_not_authorised_user FAILED [ 78%]
-http_tests/message_unpin_http_test.py::test_pin_message_dm FAILED        [ 79%]
-http_tests/message_unreact_http_test.py::test_unreact_basic FAILED       [ 80%]
-http_tests/message_unreact_http_test.py::test_unreact_invalidmid PASSED  [ 80%]
-http_tests/message_unreact_http_test.py::test_unreact_invalidreactid PASSED [ 81%]
-http_tests/message_unreact_http_test.py::test_unreact_has_no_react_from_user PASSED [ 82%]
-http_tests/search_http_test.py::test_valid PASSED                        [ 83%]
-http_tests/search_http_test.py::test_long_querystr PASSED                [ 83%]
-http_tests/user_profile_http_test.py::test_valid_user_profile FAILED     [ 84%]
-http_tests/user_profile_http_test.py::test_invalid_user FAILED           [ 85%]
-http_tests/user_profile_setemail_http_test.py::test_valid_user_email FAILED [ 86%]
-http_tests/user_profile_setemail_http_test.py::test_invalid_user_email FAILED [ 86%]
-http_tests/user_profile_setemail_http_test.py::test_user_profile_setemail_used FAILED [ 87%]
-http_tests/user_profile_sethandle_http_test.py::test_user_profile_sethandle_valid PASSED [ 88%]
-http_tests/user_profile_sethandle_http_test.py::test_user_profile_sethandle_used FAILED [ 89%]
-http_tests/user_profile_sethandle_http_test.py::test_new_handle_too_long PASSED [ 90%]
-http_tests/user_profile_sethandle_http_test.py::test_new_handle_too_short PASSED [ 90%]
-http_tests/user_profile_setname_http_test.py::test_user_profile_setname_valid FAILED [ 91%]
-http_tests/user_profile_setname_http_test.py::test_first_name_too_short FAILED [ 92%]
-http_tests/user_profile_setname_http_test.py::test_first_name_too_long FAILED [ 93%]
-http_tests/user_profile_setname_http_test.py::test_last_name_too_short FAILED [ 93%]
-http_tests/user_profile_setname_http_test.py::test_last_name_too_long FAILED [ 94%]
-http_tests/user_stats_http_test.py::test_system PASSED                   [ 95%]
-http_tests/users_all_http_test.py::test_system PASSED                    [ 96%]
-http_tests/users_stats_http_test.py::test_system FAILED                  [ 96%]
+http_tests/channel_addowner_http_test.py F...F...                        [  5%]
+http_tests/channel_details_http_test.py FFF                              [  9%]
+http_tests/channel_invite_http_test.py ...F                              [ 14%]
+http_tests/channel_join_http_test.py F.F                                 [ 18%]
+http_tests/channel_leave_http_test.py FFF                                [ 22%]
+http_tests/channel_messages_http_test.py FF.F                            [ 28%]
+http_tests/channel_removeowner_http_test.py .....                        [ 34%]
+http_tests/channels_create_http_test.py ...                              [ 38%]
+http_tests/channels_list_http_test.py FFF                                [ 42%]
+http_tests/channels_listall_http_test.py FFF                             [ 46%]
+http_tests/dm_create_http_test.py ..                                     [ 49%]
+http_tests/dm_details_http_test.py FFF                                   [ 53%]
+http_tests/dm_invite_http_test.py ..                                     [ 56%]
+http_tests/dm_leave_http_test.py ...                                     [ 60%]
+http_tests/dm_list_http_test.py .                                        [ 61%]
+http_tests/dm_messages_http_test.py FFFF                                 [ 66%]
+http_tests/dm_remove_http_test.py ..                                     [ 69%]
+http_tests/echo_http_test.py F                                           [ 70%]
+http_tests/message_edit_http_test.py FFF                                 [ 74%]
+http_tests/message_remove_http_test.py .FFF                              [ 80%]
+http_tests/message_send_http_test.py FFF                                 [ 84%]
+http_tests/message_senddm_v2_http_test.py F                              [ 85%]
+http_tests/message_share_http_test.py FFFF                               [ 90%]
+http_tests/search_http_test.py FF                                        [ 93%]
+http_tests/users_all_http_test.py .
 
 =================================== FAILURES ===================================
-______________________________ test_logout_valid _______________________________
-
-    def test_logout_valid():
-        data_register = {
-                'email': 'abc@def.com',
-                'password': 'Password01!',
-                'name_first': 'John',
-                'name_last': 'Smith'
-            }
-    
-        data_login = {
-            'email': 'abc@def.com',
-            'password': 'Password01!'
-        }
-    
-        requests.post(config.url + 'auth/register/v2', json=data_register)
-        resp_login = requests.post(config.url + 'auth/login/v2', json=data_login)
-        token = resp_login.json().get('token')
-    
-        data_logout = {
-            'token': token
-        }
-    
-    
-        resp_logout = requests.post(config.url + 'auth/logout/v2', json=data_logout)
->       assert resp_logout.status_code == 200
-E       assert 404 == 200
-E         +404
-E         -200
-
-http_tests/auth_logout_http_test.py:34: AssertionError
-_____________________ test_auth_register_short_first_name ______________________
-
-    def test_auth_register_short_first_name():
-        data = {
-            'email': 'abc@def.com',
-            'password': 'Password01!',
-            'name_first': 'J',
-            'name_last': 'Smith'
-        }
-    
-        resp_register = requests.post(config.url + 'auth/register/v2', json=data)
->       assert resp_register.status_code == 400
-E       assert 200 == 400
-E         +200
-E         -400
-
-http_tests/auth_register_http_test.py:57: AssertionError
 __________________________________ test_basic __________________________________
 
     def test_basic():
@@ -224,10 +69,126 @@ __________________________________ test_basic __________________________________
         r = requests.post(config.url + 'channel/addowner/v1', json=addowner_data)
 >       assert r.status_code == 200
 E       assert 400 == 200
-E         +400
-E         -200
+E        +  where 400 = <Response [400]>.status_code
 
 http_tests/channel_addowner_http_test.py:40: AssertionError
+__________________________________ test_basic __________________________________
+
+    def test_basic():
+        requests.delete(config.url + 'clear/v1')
+    
+        # register a user
+        reg_data = {
+            'email': 'test@gmail.com',
+            'password': 'testpw123',
+            'name_first': 'test_fname',
+            'name_last': 'test_lname'
+        }
+    
+        # acquire token and id of user
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+        u_id = r.json().get('auth_user_id')
+    
+        # create a channel
+        ch_data = {
+            'token': token,
+            'name': 'test_ch',
+            'is_public': True
+        }
+    
+        # acquire channel id
+        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+        ch_id = r.json().get('channel_id')
+    
+        # testing channel addowner v2
+        addowner_data = {
+            'token': token,
+            'channel_id': ch_id,
+            'u_id': u_id
+        }
+        r = requests.post(config.url + 'channel/addowner/v1', json=addowner_data)
+>       assert r.status_code == 200
+E       assert 400 == 200
+E        +  where 400 = <Response [400]>.status_code
+
+http_tests/channel_addowner_http_test.py:40: AssertionError
+__________________________________ test_valid __________________________________
+
+    def test_valid():
+        requests.delete(config.url + 'clear/v1')
+    
+        # register a user
+        reg_data = {
+            'email': 'test@gmail.com',
+            'password': 'testpw123',
+            'name_first': 'test_fname',
+            'name_last': 'test_lname'
+        }
+    
+        # acquire token of user
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+    
+        # create a channel
+        ch_data = {
+            'token': token,
+            'name': 'test_ch',
+            'is_public': True
+        }
+    
+        # acquire channel id
+        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+        ch_id = r.json().get('channel_id')
+    
+        # join user to channel
+        join_data = {
+            'token': token,
+            'channel_id': ch_id
+        }
+        requests.post(config.url + 'channel/join/v2', json=join_data)
+    
+        # testing channel details v2
+        details_params = {
+            'token': token,
+            'channel_id': ch_id,
+        }
+        r = requests.get(config.url + 'channel/details/v2', json=details_params)
+>       assert r.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <Response [500]>.status_code
+
+http_tests/channel_details_http_test.py:45: AssertionError
+_____________________________ test_invalid_channel _____________________________
+
+    def test_invalid_channel():
+        requests.delete(config.url + 'clear/v1')
+    
+        # register a user
+        reg_data = {
+            'email': 'test@gmail.com',
+            'password': 'testpw123',
+            'name_first': 'test_fname',
+            'name_last': 'test_lname'
+        }
+    
+        # acquire token of user
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+    
+        # try to recall details of a non-existent channel and expect input
+        # error
+        invalid_id = 10
+        details_params = {
+            'token': token,
+            'channel_id': invalid_id
+        }
+        r = requests.get(config.url + 'channel/details/v2', json=details_params)
+>       assert r.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <Response [500]>.status_code
+
+http_tests/channel_details_http_test.py:70: AssertionError
 ____________________________ test_unauthorised_user ____________________________
 
     def test_unauthorised_user():
@@ -243,7 +204,7 @@ ____________________________ test_unauthorised_user ____________________________
     
         # acquire token of user
         r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json()['token']
+        token = r.json().get('token')
     
         # create a channel
         ch_data = {
@@ -254,7 +215,7 @@ ____________________________ test_unauthorised_user ____________________________
     
         # acquire channel id
         r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-        ch_id = r.json()['channel_id']
+        ch_id = r.json().get('channel_id')
     
         # try to call channel_details when auth_user is not in the channel
         # and expect access error
@@ -262,11 +223,10 @@ ____________________________ test_unauthorised_user ____________________________
             'token': token,
             'channel_id': ch_id,
         }
-        r = requests.get(config.url + 'channel/details/v2', params=details_params)
+        r = requests.get(config.url + 'channel/details/v2', json=details_params)
 >       assert r.status_code == 403
-E       assert 200 == 403
-E         +200
-E         -403
+E       assert 500 == 403
+E        +  where 500 = <Response [500]>.status_code
 
 http_tests/channel_details_http_test.py:105: AssertionError
 ______________________ test_invite_inviter_not_in_channel ______________________
@@ -316,8 +276,7 @@ ______________________ test_invite_inviter_not_in_channel ______________________
         r = requests.post(config.url + 'channel/invite/v2', json=invite_data)
 >       assert r.status_code == 403
 E       assert 200 == 403
-E         +200
-E         -403
+E        +  where 200 = <Response [200]>.status_code
 
 http_tests/channel_invite_http_test.py:181: AssertionError
 ______________________________ test_join_channel _______________________________
@@ -357,8 +316,7 @@ ______________________________ test_join_channel _______________________________
     
 >       assert r.status_code == 200
 E       assert 400 == 200
-E         +400
-E         -200
+E        +  where 400 = <Response [400]>.status_code
 
 http_tests/channel_join_http_test.py:40: AssertionError
 ______________________________ test_join_private _______________________________
@@ -398,8 +356,7 @@ ______________________________ test_join_private _______________________________
     
 >       assert(r.status_code == 403)
 E       assert 400 == 403
-E         +400
-E         -403
+E        +  where 400 = <Response [400]>.status_code
 
 http_tests/channel_join_http_test.py:100: AssertionError
 __________________________________ test_basic __________________________________
@@ -447,8 +404,7 @@ __________________________________ test_basic __________________________________
         requests.post(config.url + 'channel/leave/v2', json=leave_data)
 >       assert r.status_code == 200
 E       assert 400 == 200
-E         +400
-E         -200
+E        +  where 400 = <Response [400]>.status_code
 
 http_tests/channel_leave_http_test.py:47: AssertionError
 _____________________________ test_invalid_channel _____________________________
@@ -479,8 +435,7 @@ _____________________________ test_invalid_channel _____________________________
         r = requests.post(config.url + 'channel/leave/v2', json=leave_data)
 >       assert r.status_code == 400
 E       assert 404 == 400
-E         +404
-E         -400
+E        +  where 404 = <Response [404]>.status_code
 
 http_tests/channel_leave_http_test.py:73: AssertionError
 ____________________________ test_unauthorised_user ____________________________
@@ -519,10 +474,140 @@ ____________________________ test_unauthorised_user ____________________________
         r = requests.post(config.url + 'channel/leave/v2', json=leave_data)
 >       assert r.status_code == 403
 E       assert 404 == 403
-E         +404
-E         -403
+E        +  where 404 = <Response [404]>.status_code
 
 http_tests/channel_leave_http_test.py:107: AssertionError
+___________________________ test_messages_nomessage ____________________________
+
+    def test_messages_nomessage():
+        requests.delete(config.url + 'clear/v1')
+    
+        # register a user
+        reg_data = {
+            'email': 'test@gmail.com',
+            'password': 'testpw123',
+            'name_first': 'test_fname',
+            'name_last': 'test_lname'
+        }
+    
+        # acquire token and id of user
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+    
+        # create a channel
+        ch_data = {
+            'token': token,
+            'name': 'test_ch',
+            'is_public': True
+        }
+    
+        # acquire channel id
+        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+        ch_id = r.json().get('channel_id')
+    
+        # join user to channel
+        join_data = {
+            'token': token,
+            'channel_id': ch_id
+        }
+        r = requests.post(config.url + 'channel/join/v2', json=join_data)
+    
+        messages_params = {
+            'token': token,
+            'channel_id': ch_id,
+            'start': 0
+        }
+        r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
+    
+>       assert(r.status_code == 200)
+E       assert 500 == 200
+E        +  where 500 = <Response [500]>.status_code
+
+http_tests/channel_messages_http_test.py:47: AssertionError
+_________________________ test_messages_invalid_ch_id __________________________
+
+    def test_messages_invalid_ch_id():
+        requests.delete(config.url + 'clear/v1')
+    
+        # register a user
+        reg_data = {
+            'email': 'test@gmail.com',
+            'password': 'testpw123',
+            'name_first': 'test_fname',
+            'name_last': 'test_lname'
+        }
+    
+        # acquire token and id of user
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+        messages_params = {
+            'token': token,
+            'channel_id': 10,
+            'start': 0
+        }
+    
+        r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
+    
+>       assert(r.status_code == 400)
+E       assert 500 == 400
+E        +  where 500 = <Response [500]>.status_code
+
+http_tests/channel_messages_http_test.py:71: AssertionError
+___________________________ test_messages_not_member ___________________________
+
+    def test_messages_not_member():
+        requests.delete(config.url + 'clear/v1')
+    
+        #owner of dm/caller of dm_create
+        reg_data = {
+            'email': 'test_auth@gmail.com',
+            'password': 'test_pw_auth',
+            'name_first': 'testf',
+            'name_last': 'testl'
+        }
+    
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+        #create one user to pass in the list of users for dm create
+        reg_data2 = {
+            'email': 'test_second@gmail.com',
+            'password': 'test_pw_second',
+            'name_first': 'secondf',
+            'name_last': 'secondl'
+        }
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
+        token2 = r.json().get('token')
+    
+    
+        ch_data = {
+            'token': token,
+            'name': 'test_ch',
+            'is_public': True
+        }
+    
+        # acquire channel id
+        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+        ch_id = r.json().get('channel_id')
+    
+        join_data = {
+            'token': token,
+            'channel_id': ch_id
+        }
+        r = requests.post(config.url + 'channel/join/v2', json=join_data)
+        #channel messages
+        messages_params = {
+            'token': token2,
+            'channel_id': ch_id,
+            'start': 0
+        }
+    
+        r = requests.get(config.url + 'channel/messages/v2', json=messages_params)
+    
+>       assert(r.status_code == 403)
+E       assert 500 == 403
+E        +  where 500 = <Response [500]>.status_code
+
+http_tests/channel_messages_http_test.py:160: AssertionError
 ____________________________ test_no_channels_list _____________________________
 
     def test_no_channels_list():
@@ -538,7 +623,7 @@ ____________________________ test_no_channels_list _____________________________
     
         # acquire token and id of user
         r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json()['token']
+        token = r.json().get('token')
     
     
         # create a channel 1
@@ -550,19 +635,42 @@ ____________________________ test_no_channels_list _____________________________
         # acquire channel id
         r = requests.post(config.url + 'channels/create/v2', json=ch_data)
     
+    
+    
         # Testing listing the channels for user
         channels_list_data = {'token': token}
-        r = requests.get(config.url + 'channels/list/v2', params=channels_list_data)
+        r = requests.get(config.url + 'channels/list/v2', json=channels_list_data)
     
 >       assert json.loads(r.text) == {'channels': []} and r.status_code == 200
-E       AssertionError: assert ({'channels': [{'channel_id': 72, 'name': 'test_ch'}]} == {'channels': []}
-E         Differing items:
-E         {'channels': [{'channel_id': 72, 'name': 'test_ch'}]} != {'channels': []}
-E         Full diff:
-E         - {'channels': []}
-E         + {'channels': [{'channel_id': 72, 'name': 'test_ch'}]})
 
-http_tests/channels_list_http_test.py:39: AssertionError
+http_tests/channels_list_http_test.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.7/json/__init__.py:348: in loads
+    return _default_decoder.decode(s)
+/usr/lib/python3.7/json/decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7fa68af35358>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>403 Forbidden</title>\n<h1>Forbidden</h1>\n<p>Invalid token</p>\n'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/usr/lib/python3.7/json/decoder.py:355: JSONDecodeError
 _______________________ test_two_channels_one_user_list ________________________
 
     def test_two_channels_one_user_list():
@@ -578,7 +686,7 @@ _______________________ test_two_channels_one_user_list ________________________
     
         # acquire token and id of user
         r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json()['token']
+        token = r.json().get('token')
     
     
         # create a channel 1
@@ -590,7 +698,7 @@ _______________________ test_two_channels_one_user_list ________________________
     
         # acquire channel id
         r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-        ch_id_1 = r.json()['channel_id']
+        ch_id_1 = r.json().get('channel_id')
     
         # create a channel 2
         ch_data = {
@@ -613,24 +721,38 @@ _______________________ test_two_channels_one_user_list ________________________
     
         # Testing listing the channels for user
         channels_list_data = {'token': token}
-        r = requests.get(config.url + 'channels/list/v2', params=channels_list_data)
+        r = requests.get(config.url + 'channels/list/v2', json=channels_list_data)
     
 >       assert json.loads(r.text) == {'channels': [{'all_members': [{'name_first': 'test_fname', 'name_last': 'test_lname', 'u_id': 0}], 'name': 'test_ch'}]} and r.status_code == 200
-E       AssertionError: assert ({'channels': [{'channel_id': 75, 'name': 'test_ch_2'},\n              {'channel_id': 74, 'name': 'test_ch'}]} == {'channels': [{'all_members': [{'name_first': 'test_fname',\n                                'name_last': 'test_lname',\n                                'u_id': 0}],\n               'name': 'test_ch'}]}
-E         Differing items:
-E         {'channels': [{'channel_id': 75, 'name': 'test_ch_2'}, {'channel_id': 74, 'name': 'test_ch'}]} != {'channels': [{'all_members': [{'name_first': 'test_fname', 'name_last': 'test_lname', 'u_id': 0}], 'name': 'test_ch'}]}
-E         Full diff:
-E           {
-E         -  'channels': [{'all_members': [{'name_first': 'test_fname',
-E         -                                 'name_last': 'test_lname',
-E         -                                 'u_id': 0}],
-E         +  'channels': [{'channel_id': 75,
-E         +                'name': 'test_ch_2'},
-E         +               {'channel_id': 74,
-E                          'name': 'test_ch'}],
-E           })
 
-http_tests/channels_list_http_test.py:92: AssertionError
+http_tests/channels_list_http_test.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.7/json/__init__.py:348: in loads
+    return _default_decoder.decode(s)
+/usr/lib/python3.7/json/decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7fa68af35358>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>403 Forbidden</title>\n<h1>Forbidden</h1>\n<p>Invalid token</p>\n'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/usr/lib/python3.7/json/decoder.py:355: JSONDecodeError
 _______________________ test_two_users_two_channels_list _______________________
 
     def test_two_users_two_channels_list():
@@ -646,7 +768,7 @@ _______________________ test_two_users_two_channels_list _______________________
     
         # acquire token and id of user
         r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json()['token']
+        token = r.json().get('token')
     
     
         # register a user 2
@@ -659,7 +781,7 @@ _______________________ test_two_users_two_channels_list _______________________
     
         # acquire token and id of user
         r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token_2 = r.json()['token']
+        token_2 = r.json().get('token')
     
         # create a channel 1
         ch_data = {
@@ -670,7 +792,7 @@ _______________________ test_two_users_two_channels_list _______________________
     
         # acquire channel id
         r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-        ch_id_1 = r.json()['channel_id']
+        ch_id_1 = r.json().get('channel_id')
     
         # create a channel 2
         ch_data = {
@@ -681,7 +803,7 @@ _______________________ test_two_users_two_channels_list _______________________
     
         # acquire channel id
         r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-        ch_id_2 = r.json()['channel_id']
+        ch_id_2 = r.json().get('channel_id')
     
         # Make user 1 join channel 1
         join_data = {
@@ -701,22 +823,526 @@ _______________________ test_two_users_two_channels_list _______________________
     
         # Testing listing the channels for user
         channels_list_data = {'token': token_2}
-        r = requests.get(config.url + 'channels/list/v2', params=channels_list_data)
+        r = requests.get(config.url + 'channels/list/v2', json=channels_list_data)
     
 >       assert json.loads(r.text) == {'channels': [{'all_members': [{'name_first': 'test_fname', 'name_last': 'test_lname', 'u_id': 1}], 'name': 'test_ch_2'}]} and r.status_code == 200
-E       AssertionError: assert ({'channels': [{'channel_id': 79, 'name': 'test_ch_2'}]} == {'channels': [{'all_members': [{'name_first': 'test_fname',\n                                'name_last': 'test_lname',\n                                'u_id': 1}],\n               'name': 'test_ch_2'}]}
-E         Differing items:
-E         {'channels': [{'channel_id': 79, 'name': 'test_ch_2'}]} != {'channels': [{'all_members': [{'name_first': 'test_fname', 'name_last': 'test_lname', 'u_id': 1}], 'name': 'test_ch_2'}]}
-E         Full diff:
-E           {
-E         +  'channels': [{'channel_id': 79,
-E         -  'channels': [{'all_members': [{'name_first': 'test_fname',
-E         -                                 'name_last': 'test_lname',
-E         -                                 'u_id': 1}],
-E                          'name': 'test_ch_2'}],
-E           })
 
-http_tests/channels_list_http_test.py:164: AssertionError
+http_tests/channels_list_http_test.py:166: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.7/json/__init__.py:348: in loads
+    return _default_decoder.decode(s)
+/usr/lib/python3.7/json/decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7fa68af35358>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>403 Forbidden</title>\n<h1>Forbidden</h1>\n<p>Invalid token</p>\n'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+            obj, end = self.scan_once(s, idx)
+        except StopIteration as err:
+>           raise JSONDecodeError("Expecting value", s, err.value) from None
+E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/usr/lib/python3.7/json/decoder.py:355: JSONDecodeError
+____________________________ test_no_channels_list _____________________________
+
+    def test_no_channels_list():
+        requests.delete(config.url + 'clear/v1')
+    
+        # register a user
+        reg_data = {
+            'email': 'test@gmail.com',
+            'password': 'testpw123',
+            'name_first': 'test_fname',
+            'name_last': 'test_lname'
+        }
+    
+        # acquire token and id of user
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+    
+    
+        # create a channel 1
+        ch_data = {
+            'token': token,
+            'name': 'test_ch',
+            'is_public': True
+        }
+        # acquire channel id
+        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    
+    
+    
+        # Testing listing the channels for user
+        channels_list_data = {'token': token}
+        r = requests.get(config.url + 'channels/listall/v2', json=channels_list_data)
+    
+>       assert r.status_code == 200
+E       assert 403 == 200
+E        +  where 403 = <Response [403]>.status_code
+
+http_tests/channels_listall_http_test.py:41: AssertionError
+_______________________ test_two_channels_one_user_list ________________________
+
+    def test_two_channels_one_user_list():
+        requests.delete(config.url + 'clear/v1')
+    
+        # register a user
+        reg_data = {
+            'email': 'test@gmail.com',
+            'password': 'testpw123',
+            'name_first': 'test_fname',
+            'name_last': 'test_lname'
+        }
+    
+        # acquire token and id of user
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+    
+    
+        # create a channel 1
+        ch_data = {
+            'token': token,
+            'name': 'test_ch',
+            'is_public': True
+        }
+    
+        # acquire channel id
+        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+        ch_id_1 = r.json().get('channel_id')
+    
+        # create a channel 2
+        ch_data = {
+            'token': token,
+            'name': 'test_ch_2',
+            'is_public': True
+        }
+    
+        # acquire channel id
+        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+    
+    
+        # Make user 1 join channel 1
+        join_data = {
+            'token': token,
+            'channel_id': ch_id_1
+        }
+        requests.post(config.url + 'channel/join/v2', json=join_data)
+    
+    
+        # Testing listing the channels for user
+        channels_list_data = {'token': token}
+        r = requests.get(config.url + 'channels/listall/v2', json=channels_list_data)
+    
+>       assert r.status_code == 200
+E       assert 403 == 200
+E        +  where 403 = <Response [403]>.status_code
+
+http_tests/channels_listall_http_test.py:93: AssertionError
+_______________________ test_two_users_two_channels_list _______________________
+
+    def test_two_users_two_channels_list():
+        requests.delete(config.url + 'clear/v1')
+    
+        # register a user 1
+        reg_data = {
+            'email': 'test@gmail.com',
+            'password': 'testpw123',
+            'name_first': 'test_fname',
+            'name_last': 'test_lname'
+        }
+    
+        # acquire token and id of user
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+    
+    
+        # register a user 2
+        reg_data = {
+            'email': 'test123@gmail.com',
+            'password': 'testpw123',
+            'name_first': 'test_fname',
+            'name_last': 'test_lname'
+        }
+    
+        # acquire token and id of user
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token_2 = r.json().get('token')
+    
+        # create a channel 1
+        ch_data = {
+            'token': token,
+            'name': 'test_ch',
+            'is_public': True
+        }
+    
+        # acquire channel id
+        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+        ch_id_1 = r.json().get('channel_id')
+    
+        # create a channel 2
+        ch_data = {
+            'token': token,
+            'name': 'test_ch_2',
+            'is_public': True
+        }
+    
+        # acquire channel id
+        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
+        ch_id_2 = r.json().get('channel_id')
+    
+        # Make user 1 join channel 1
+        join_data = {
+            'token': token,
+            'channel_id': ch_id_1
+        }
+        requests.post(config.url + 'channel/join/v2', json=join_data)
+    
+        # Make user 2 join channel 1
+        join_data = {
+            'token': token,
+            'channel_id': ch_id_1
+        }
+        requests.post(config.url + 'channel/join/v2', json=join_data)
+    
+        # Make user 2 join channel 2
+        join_data = {
+            'token': token,
+            'channel_id': ch_id_2
+        }
+        requests.post(config.url + 'channel/join/v2', json=join_data)
+    
+    
+        # Testing listing the channels for user
+        channels_list_data = {'token': token_2}
+        r = requests.get(config.url + 'channels/listall/v2', json=channels_list_data)
+    
+>       assert r.status_code == 200
+E       assert 403 == 200
+E        +  where 403 = <Response [403]>.status_code
+
+http_tests/channels_listall_http_test.py:171: AssertionError
+____________________________ test_dm_details_basic _____________________________
+
+    def test_dm_details_basic():
+        requests.delete(config.url + 'clear/v1')
+    
+        #owner of dm/caller of dm_create
+        reg_data = {
+            'email': 'test_auth@gmail.com',
+            'password': 'test_pw_auth',
+            'name_first': 'testf',
+            'name_last': 'testl'
+        }
+    
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+        #create one user to pass in the list of users for dm create
+        reg_data2 = {
+            'email': 'test_second@gmail.com',
+            'password': 'test_pw_second',
+            'name_first': 'secondf',
+            'name_last': 'secondl'
+        }
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
+        u_id2 = r.json().get('auth_user_id')
+    
+        create_data = {
+            'token': token,
+            'u_ids': [u_id2]
+        }
+    
+        r = requests.post(config.url + 'dm/create/v1', json=create_data)
+        dm_id = r.json().get('dm_id')
+    
+        details_params = {
+            'token': token,
+            'dm_id': dm_id
+        }
+    
+        r = requests.get(config.url + 'dm/details/v1', json=details_params)
+>       assert r.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <Response [500]>.status_code
+
+http_tests/dm_details_http_test.py:44: AssertionError
+_________________________ test_dm_details_invalid_dmid _________________________
+
+    def test_dm_details_invalid_dmid():
+        requests.delete(config.url + 'clear/v1')
+    
+        #owner of dm/caller of dm_create
+        reg_data = {
+            'email': 'test_auth@gmail.com',
+            'password': 'test_pw_auth',
+            'name_first': 'testf',
+            'name_last': 'testl'
+        }
+    
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+        #create one user to pass in the list of users for dm create
+        reg_data2 = {
+            'email': 'test_second@gmail.com',
+            'password': 'test_pw_second',
+            'name_first': 'secondf',
+            'name_last': 'secondl'
+        }
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
+        u_id2 = r.json().get('auth_user_id')
+    
+        create_data = {
+            'token': token,
+            'u_ids': [u_id2]
+        }
+    
+        r = requests.post(config.url + 'dm/create/v1', json=create_data)
+    
+        details_params = {
+            'token': token,
+            'dm_id': 3
+        }
+    
+        r = requests.get(config.url + 'dm/details/v1', json=details_params)
+>       assert r.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <Response [500]>.status_code
+
+http_tests/dm_details_http_test.py:82: AssertionError
+__________________________ test_dm_details_not_member __________________________
+
+    def test_dm_details_not_member():
+        requests.delete(config.url + 'clear/v1')
+    
+        #owner of dm/caller of dm_create
+        reg_data = {
+            'email': 'test_auth@gmail.com',
+            'password': 'test_pw_auth',
+            'name_first': 'testf',
+            'name_last': 'testl'
+        }
+    
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+        #create one user to pass in the list of users for dm create
+        reg_data2 = {
+            'email': 'test_second@gmail.com',
+            'password': 'test_pw_second',
+            'name_first': 'secondf',
+            'name_last': 'secondl'
+        }
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
+        u_id2 = r.json().get('auth_user_id')
+    
+        reg_data3 = {
+            'email': 'test_auth@gmail.com',
+            'password': 'test_pw_auth',
+            'name_first': 'testf',
+            'name_last': 'testl'
+        }
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data3)
+>       token3 = r.json().get('token')
+
+http_tests/dm_details_http_test.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
+    return complexjson.loads(self.text, **kwargs)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
+    return _default_decoder.decode(s)
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
+    obj, end = self.raw_decode(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <simplejson.decoder.JSONDecoder object at 0x7fa68a5347b8>
+s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>test_auth@gmail.com already taken</p>\n'
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fa68ade09f0>
+_PY3 = True
+
+    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
+        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
+        beginning with a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+        Optionally, ``idx`` can be used to specify an offset in ``s`` where
+        the JSON document begins.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        if idx < 0:
+            # Ensure that raw_decode bails on negative indexes, the regex
+            # would otherwise mask this behavior. #98
+            raise JSONDecodeError('Expecting value', s, idx)
+        if _PY3 and not isinstance(s, str):
+            raise TypeError("Input string must be text, not bytes")
+        # strip UTF-8 bom
+        if len(s) > idx:
+            ord0 = ord(s[idx])
+            if ord0 == 0xfeff:
+                idx += 1
+            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
+                idx += 3
+>       return self.scan_once(s, idx=_w(s, idx).end())
+E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
+__________________________ test_dm_messages_nomessage __________________________
+
+    def test_dm_messages_nomessage():
+        requests.delete(config.url + 'clear/v1')
+    
+        #owner of dm/caller of dm_create
+        reg_data = {
+            'email': 'test_auth@gmail.com',
+            'password': 'test_pw_auth',
+            'name_first': 'testf',
+            'name_last': 'testl'
+        }
+    
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+    
+        create_data = {
+            'token': token,
+            'u_ids': []
+        }
+    
+        r = requests.post(config.url + 'dm/create/v1', json=create_data)
+        dm_id = r.json().get('dm_id')
+    
+        msg_params = {
+            'token': token,
+            'dm_id': dm_id,
+            'start': 0
+        }
+    
+        r = requests.get(config.url + 'dm/messages/v1', json=msg_params)
+>       assert r.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <Response [500]>.status_code
+
+http_tests/dm_messages_http_test.py:36: AssertionError
+________________________ test_dm_messages_invalid_d_id _________________________
+
+    def test_dm_messages_invalid_d_id():
+        requests.delete(config.url + 'clear/v1')
+    
+        #owner of dm/caller of dm_create
+        reg_data = {
+            'email': 'test_auth@gmail.com',
+            'password': 'test_pw_auth',
+            'name_first': 'testf',
+            'name_last': 'testl'
+        }
+    
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+    
+        msg_params = {
+            'token': token,
+            'dm_id': 10,
+            'start': 0
+        }
+    
+        r = requests.get(config.url + 'dm/messages/v1', json=msg_params)
+    
+>       assert r.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <Response [500]>.status_code
+
+http_tests/dm_messages_http_test.py:60: AssertionError
+________________________ test_dm_messages_start_too_big ________________________
+
+    def test_dm_messages_start_too_big():
+        requests.delete(config.url + 'clear/v1')
+    
+        #owner of dm/caller of dm_create
+        reg_data = {
+            'email': 'test_auth@gmail.com',
+            'password': 'test_pw_auth',
+            'name_first': 'testf',
+            'name_last': 'testl'
+        }
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+    
+        create_data = {
+            'token': token,
+            'u_ids': []
+        }
+    
+        r = requests.post(config.url + 'dm/create/v1', json=create_data)
+        dm_id = r.json().get('dm_id')
+    
+        msg_params = {
+            'token': token,
+            'dm_id': dm_id,
+            'start': 2
+        }
+    
+        r = requests.get(config.url + 'dm/messages/v1', json=msg_params)
+    
+>       assert r.status_code == 400
+E       assert 500 == 400
+E        +  where 500 = <Response [500]>.status_code
+
+http_tests/dm_messages_http_test.py:91: AssertionError
+_________________________ test_dm_messages_not_member __________________________
+
+    def test_dm_messages_not_member():
+        requests.delete(config.url + 'clear/v1')
+    
+        #owner of dm/caller of dm_create
+        reg_data = {
+            'email': 'test_auth@gmail.com',
+            'password': 'test_pw_auth',
+            'name_first': 'testf',
+            'name_last': 'testl'
+        }
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+    
+        reg_data2 = {
+            'email': 'test_second@gmail.com',
+            'password': 'test_pw_second',
+            'name_first': 'secondf',
+            'name_last': 'secondl'
+        }
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
+        token2 = r.json().get('token')
+    
+        create_data = {
+            'token': token,
+            'u_ids': []
+        }
+    
+        r = requests.post(config.url + 'dm/create/v1', json=create_data)
+        dm_id = r.json().get('dm_id')
+    
+        msg_params = {
+            'token': token2,
+            'dm_id': dm_id,
+            'start': 0
+        }
+    
+        r = requests.get(config.url + 'dm/messages/v1', json=msg_params)
+    
+>       assert r.status_code == 403
+E       assert 500 == 403
+E        +  where 500 = <Response [500]>.status_code
+
+http_tests/dm_messages_http_test.py:131: AssertionError
 __________________________________ test_echo ___________________________________
 
     def test_echo():
@@ -732,7 +1358,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s, idx=_w(s, 0).end())
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <json.decoder.JSONDecoder object at 0x7f7e4c741470>
+self = <json.decoder.JSONDecoder object at 0x7fa68af35358>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
 idx = 0
 
@@ -804,9 +1430,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
+self = <simplejson.decoder.JSONDecoder object at 0x7fa68a5347b8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fa68ade09f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -889,9 +1515,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
+self = <simplejson.decoder.JSONDecoder object at 0x7fa68a5347b8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fa68ade09f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -994,485 +1620,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
+self = <simplejson.decoder.JSONDecoder object at 0x7fa68a5347b8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-________________________ test_valid_message_pin_channel ________________________
-
-    def test_valid_message_pin_channel():
-        requests.delete(config.url + 'clear/v1')
-    
-        # register a user
-        reg_data = {
-            'email': 'test@gmail.com',
-            'password': 'testpw123',
-            'name_first': 'test_fname',
-            'name_last': 'test_lname'
-        }
-    
-        # acquire token and id of user
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json().get('token')
-    
-    
-        # create a channel
-        ch_data = {
-            'token': token,
-            'name': 'test_ch',
-            'is_public': True
-        }
-    
-        # acquire channel id
-        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-        ch_id = r.json().get('channel_id')
-    
-        # join user to channel
-        join_data = {
-            'token': token,
-            'channel_id': ch_id
-        }
-        requests.post(config.url + 'channel/join/v2', json=join_data)
-    
-        # sending message
-        message = 'a'
-        message_data = {'token': token, 'channel_id': ch_id, 'message': message}
-        r = requests.post(config.url + 'message/send/v1', json=message_data)
->       message_id = r.json().get('message_id')
-
-http_tests/message_pin_http_test.py:52: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-___________________________ test_pin_message_pinned ____________________________
-
-    def test_pin_message_pinned():
-    
-        requests.delete(config.url + '/clear/v1')
-    
-        # register a user
-        reg_data = {
-            'email': 'test@gmail.com',
-            'password': 'testpw123',
-            'name_first': 'test_fname',
-            'name_last': 'test_lname'
-        }
-    
-        # acquire token and id of user
-        r = requests.post(config.url + '/auth/register/v2', json=reg_data)
-        token = r.json()['token']
-    
-    
-        # create a channel
-        ch_data = {
-            'token': token,
-            'name': 'test_ch',
-            'is_public': True
-        }
-    
-        # acquire channel id
-        r = requests.post(config.url + '/channels/create/v2', json=ch_data)
-        ch_id = r.json()['channel_id']
-    
-        # join user to channel
-        join_data = {
-            'token': token,
-            'channel_id': ch_id
-        }
-        requests.post(config.url + '/channel/join/v2', json=join_data)
-    
-    
-        message = 'a'
-        message_data = {'token': token, 'channel_id': ch_id, 'message': message}
-        r = requests.post(config.url + '/message/send/v1', json=message_data)
->       message_id = r.json()['message_id']
-
-http_tests/message_pin_http_test.py:144: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-_____________________ test_pin_message_not_authorised_user _____________________
-
-    def test_pin_message_not_authorised_user():
-        requests.delete(config.url + 'clear/v1')
-    
-        # register a user
-        reg_data = {
-            'email': 'test@gmail.com',
-            'password': 'testpw123',
-            'name_first': 'test_fname',
-            'name_last': 'test_lname'
-        }
-    
-        # acquire token and id of user
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json().get('token')
-    
-        # register a user
-        reg_data = {
-            'email': 'test123@gmail.com',
-            'password': 'testpw123',
-            'name_first': 'test_fname',
-            'name_last': 'test_lname'
-        }
-    
-        # acquire token and id of user
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token2 = r.json().get('token')
-    
-    
-        # create a channel
-        ch_data = {
-            'token': token,
-            'name': 'test_ch',
-            'is_public': True
-        }
-    
-        # acquire channel id
-        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-        ch_id = r.json().get('channel_id')
-    
-        # join user to channel
-        join_data = {
-            'token': token,
-            'channel_id': ch_id
-        }
-        requests.post(config.url + 'channel/join/v2', json=join_data)
-    
-        # Testing sending message
-        message = 'a'
-        message_data = {'token': token, 'channel_id': ch_id, 'message': message}
-        r = requests.post(config.url + 'message/send/v1', json=message_data)
->       message_id = r.json().get('message_id')
-
-http_tests/message_pin_http_test.py:203: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-_____________________________ test_pin_message_dm ______________________________
-
-    def test_pin_message_dm():
-        requests.delete(config.url + 'clear/v1')
-    
-        #owner of dm/caller of dm_create
-        reg_data = {
-            'email': 'test_auth@gmail.com',
-            'password': 'test_pw_auth',
-            'name_first': 'testf',
-            'name_last': 'testl'
-        }
-    
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json().get('token')
-        auth_id = r.json().get('auth_user_id')
-    
-    
-        # Create DM 1
-        create_data = {
-            'token': token,
-            'u_ids': [auth_id]
-        }
-    
-        r = requests.post(config.url + 'dm/create/v1', json=create_data)
->       dm_id_1 = r.json().get('dm_id')
-
-http_tests/message_pin_http_test.py:234: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>testftestl is already a member of testftestl, testftestl</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-___________________________ test_message_react_basic ___________________________
-
-    def test_message_react_basic():
-        requests.delete(config.url + 'clear/v1')
-    
-        reg_data = {
-            'email': 'test_auth@gmail.com',
-            'password': 'test_pw_auth',
-            'name_first': 'testf',
-            'name_last': 'testl'
-        }
-    
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json().get('token')
-    
-        ch_data = {
-            'token': token,
-            'name': 'test_ch',
-            'is_public': True
-        }
-    
-        # acquire channel id
-        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-        ch_id = r.json().get('channel_id')
-    
-        # join user to channel
-        join_data = {
-            'token': token,
-            'channel_id': ch_id
-        }
-        r = requests.post(config.url + 'channel/join/v2', json=join_data)
-    
-        send_data = {
-            'token': token,
-            'channel_id': ch_id,
-            'message': 'string',
-        }
-    
-        r = requests.post(config.url + 'message/send/v1', json=send_data)
-    
-        react_data = {
-            'token': token,
-            'message_id': 0,
-            'react_id': 1,
-        }
-    
-        r = requests.post(config.url + 'message/react/v1', json=react_data)
->       assert r.status_code == 200
-E       assert 400 == 200
-E         +400
-E         -200
-
-http_tests/message_react_http_test.py:53: AssertionError
-_______________ test_message_remove_from_channel_invalid_message _______________
-
-    def test_message_remove_from_channel_invalid_message():
-        requests.delete(config.url + 'clear/v1')
-    
-        # register a user
-        reg_data = {
-            'email': 'test@gmail.com',
-            'password': 'testpw123',
-            'name_first': 'test_fname',
-            'name_last': 'test_lname'
-        }
-    
-        # acquire token and id of user
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json().get('token')
-    
-    
-        # create a channel
-        ch_data = {
-            'token': token,
-            'name': 'test_ch',
-            'is_public': True
-        }
-    
-        # acquire channel id
-        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-        ch_id = r.json().get('channel_id')
-    
-        # join user to channel
-        join_data = {
-            'token': token,
-            'channel_id': ch_id
-        }
-        requests.post(config.url + 'channel/join/v2', json=join_data)
-    
-        # Sending message
-        message = 'a'
-        message_data = {'token': token, 'channel_id': ch_id, 'message': message}
-        r = requests.post(config.url + 'message/send/v1', json=message_data)
->       message_id = r.json().get('message_id')
-
-http_tests/message_remove_http_test.py:50: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fa68ade09f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -1558,7 +1708,7 @@ ____________ test_message_remove_from_channel_not_sent_by_same_user ____________
         r = requests.post(config.url + 'message/send/v1', json=message_data)
 >       message_id = r.json().get('message_id')
 
-http_tests/message_remove_http_test.py:111: 
+http_tests/message_remove_http_test.py:112: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
     return complexjson.loads(self.text, **kwargs)
@@ -1568,9 +1718,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
+self = <simplejson.decoder.JSONDecoder object at 0x7fa68a5347b8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fa68ade09f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -1643,7 +1793,7 @@ _______________________ test_message_remove_from_channe ________________________
         r = requests.post(config.url + 'message/send/v1', json=message_data)
 >       message_id = r.json().get('message_id')
 
-http_tests/message_remove_http_test.py:157: 
+http_tests/message_remove_http_test.py:158: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
     return complexjson.loads(self.text, **kwargs)
@@ -1653,9 +1803,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
+self = <simplejson.decoder.JSONDecoder object at 0x7fa68a5347b8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fa68ade09f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -1738,7 +1888,7 @@ _________________________ test_message_remove_from_dm __________________________
         r = requests.post(config.url + '/message/senddm/v2', json=message_data)
 >       message_id = r.json().get('message_id')
 
-http_tests/message_remove_http_test.py:213: 
+http_tests/message_remove_http_test.py:214: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
     return complexjson.loads(self.text, **kwargs)
@@ -1748,9 +1898,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
+self = <simplejson.decoder.JSONDecoder object at 0x7fa68a5347b8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fa68ade09f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -1810,7 +1960,6 @@ ___________________________ test_valid_message_send ____________________________
         r = requests.post(config.url + 'channels/create/v2', json=ch_data)
         ch_id = r.json().get('channel_id')
     
-    
         # join user to channel
         join_data = {
             'token': token,
@@ -1823,14 +1972,11 @@ ___________________________ test_valid_message_send ____________________________
         message_data = {'token': token, 'channel_id': ch_id, 'message': message}
         r = requests.post(config.url + 'message/send/v1', json=message_data)
     
-        #result = message_exists(message_id)
-        #assert result == True
 >       assert r.status_code == 200
 E       assert 404 == 200
-E         +404
-E         -200
+E        +  where 404 = <Response [404]>.status_code
 
-http_tests/message_send_http_test.py:55: AssertionError
+http_tests/message_send_http_test.py:51: AssertionError
 ____________________________ test_long_message_send ____________________________
 
     def test_long_message_send():
@@ -1874,14 +2020,12 @@ ____________________________ test_long_message_send ____________________________
     
 >       assert r.status_code == 400
 E       assert 404 == 400
-E         +404
-E         -400
+E        +  where 404 = <Response [404]>.status_code
 
-http_tests/message_send_http_test.py:96: AssertionError
+http_tests/message_send_http_test.py:92: AssertionError
 ____________________ test_message_send_not_authorised_user _____________________
 
     def test_message_send_not_authorised_user():
-    
         requests.delete(config.url + 'clear/v1')
     
         # register a user
@@ -1916,10 +2060,9 @@ ____________________ test_message_send_not_authorised_user _____________________
     
 >       assert r.status_code == 403
 E       assert 404 == 403
-E         +404
-E         -403
+E        +  where 404 = <Response [404]>.status_code
 
-http_tests/message_send_http_test.py:132: AssertionError
+http_tests/message_send_http_test.py:127: AssertionError
 ____________________________ test_long_message_send ____________________________
 
     def test_long_message_send():
@@ -1960,98 +2103,9 @@ ____________________________ test_long_message_send ____________________________
     
 >       assert r.status_code == 404
 E       assert 400 == 404
-E         +400
-E         -404
+E        +  where 400 = <Response [400]>.status_code
 
 http_tests/message_senddm_v2_http_test.py:43: AssertionError
-______________________ test_message_sendlater_timeinpast _______________________
-
-    def test_message_sendlater_timeinpast():
-        requests.delete(config.url + 'clear/v1')
-    
-        reg_data = {
-            'email': 'test_auth@gmail.com',
-            'password': 'test_pw_auth',
-            'name_first': 'testf',
-            'name_last': 'testl'
-        }
-    
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json().get('token')
-    
-        ch_data = {
-            'token': token,
-            'name': 'test_ch',
-            'is_public': True
-        }
-    
-        # acquire channel id
-        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-        ch_id = r.json().get('channel_id')
-    
-        # join user to channel
-        join_data = {
-            'token': token,
-            'channel_id': ch_id
-        }
-        r = requests.post(config.url + 'channel/join/v2', json=join_data)
-    
-        time_sent = int(datetime.now().replace(tzinfo=timezone.utc).timestamp()) - 1
-    
-        sendlater_data = {
-            'token': token,
-            'channel_id': ch_id,
-            'message': 'string',
-            'time_sent': time_sent,
-        }
-    
-        r = requests.post(config.url + 'message/sendlater/v1', json=sendlater_data)
-    
->       assert r.status_code == 400
-E       assert 200 == 400
-E         +200
-E         -400
-
-http_tests/message_sendlater_http_test.py:92: AssertionError
-_____________________ test_message_sendlaterdm_timeinpast ______________________
-
-    def test_message_sendlaterdm_timeinpast():
-        requests.delete(config.url + 'clear/v1')
-    
-        reg_data = {
-            'email': 'test_auth@gmail.com',
-            'password': 'test_pw_auth',
-            'name_first': 'testf',
-            'name_last': 'testl'
-        }
-    
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json().get('token')
-    
-        dm_data = {
-            'token': token,
-            'u_ids': [],
-        }
-    
-        r = requests.post(config.url + 'dm/create/v1', json=dm_data)
-        dm_id = r.json().get('dm_id')
-    
-        time_sent = int(datetime.now().replace(tzinfo=timezone.utc).timestamp()) - 1
-        sendlater_data = {
-            'token': token,
-            'dm_id': dm_id,
-            'message': 'string',
-            'time_sent': time_sent,
-        }
-    
-        r = requests.post(config.url + 'message/sendlaterdm/v1', json=sendlater_data)
-    
->       assert r.status_code == 400
-E       assert 200 == 400
-E         +200
-E         -400
-
-http_tests/message_sendlaterdm_http_test.py:73: AssertionError
 _________________ test_not_authorised_to_channel_message_share _________________
 
     def test_not_authorised_to_channel_message_share():
@@ -2115,9 +2169,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
+self = <simplejson.decoder.JSONDecoder object at 0x7fa68a5347b8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fa68ade09f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -2217,9 +2271,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
+self = <simplejson.decoder.JSONDecoder object at 0x7fa68a5347b8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fa68ade09f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -2312,9 +2366,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
+self = <simplejson.decoder.JSONDecoder object at 0x7fa68a5347b8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fa68ade09f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -2392,9 +2446,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     obj, end = self.raw_decode(s)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
+self = <simplejson.decoder.JSONDecoder object at 0x7fa68a5347b8>
 s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>secondfsecondl is already a member of secondfsecondl, secondfsecondl</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
+idx = 0, _w = <built-in method match of re.Pattern object at 0x7fa68ade09f0>
 _PY3 = True
 
     def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
@@ -2425,9 +2479,9 @@ _PY3 = True
 E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 
 /import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-________________________ test_valid_message_pin_channel ________________________
+__________________________________ test_valid __________________________________
 
-    def test_valid_message_pin_channel():
+    def test_valid():
         requests.delete(config.url + 'clear/v1')
     
         # register a user
@@ -2437,815 +2491,56 @@ ________________________ test_valid_message_pin_channel ________________________
             'name_first': 'test_fname',
             'name_last': 'test_lname'
         }
-    
-        # acquire token and id of user
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json().get('token')
-    
-    
-        # create a channel
-        ch_data = {
-            'token': token,
-            'name': 'test_ch',
-            'is_public': True
-        }
-    
-        # acquire channel id
-        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-        ch_id = r.json().get('channel_id')
-    
-        # join user to channel
-        join_data = {
-            'token': token,
-            'channel_id': ch_id
-        }
-        requests.post(config.url + 'channel/join/v2', json=join_data)
-    
-        # sending message
-        message = 'a'
-        message_data = {'token': token, 'channel_id': ch_id, 'message': message}
-        r = requests.post(config.url + 'message/send/v1', json=message_data)
->       message_id = r.json().get('message_id')
-
-http_tests/message_unpin_http_test.py:52: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-_________________________ test_unpin_message_unpinned __________________________
-
-    def test_unpin_message_unpinned():
-    
-        requests.delete(config.url + '/clear/v1')
-    
-        # register a user
-        reg_data = {
-            'email': 'test@gmail.com',
-            'password': 'testpw123',
-            'name_first': 'test_fname',
-            'name_last': 'test_lname'
-        }
-    
-        # acquire token and id of user
-        r = requests.post(config.url + '/auth/register/v2', json=reg_data)
-        token = r.json()['token']
-    
-    
-        # create a channel
-        ch_data = {
-            'token': token,
-            'name': 'test_ch',
-            'is_public': True
-        }
-    
-        # acquire channel id
-        r = requests.post(config.url + '/channels/create/v2', json=ch_data)
-        ch_id = r.json()['channel_id']
-    
-        # join user to channel
-        join_data = {
-            'token': token,
-            'channel_id': ch_id
-        }
-        requests.post(config.url + '/channel/join/v2', json=join_data)
-    
-    
-        message = 'a'
-        message_data = {'token': token, 'channel_id': ch_id, 'message': message}
-        r = requests.post(config.url + '/message/send/v1', json=message_data)
->       message_id = r.json()['message_id']
-
-http_tests/message_unpin_http_test.py:100: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-_____________________ test_pin_message_not_authorised_user _____________________
-
-    def test_pin_message_not_authorised_user():
-        requests.delete(config.url + 'clear/v1')
-    
-        # register a user
-        reg_data = {
-            'email': 'test@gmail.com',
-            'password': 'testpw123',
-            'name_first': 'test_fname',
-            'name_last': 'test_lname'
-        }
-    
-        # acquire token and id of user
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json().get('token')
-    
-        # register a user
-        reg_data = {
-            'email': 'test123@gmail.com',
-            'password': 'testpw123',
-            'name_first': 'test_fname',
-            'name_last': 'test_lname'
-        }
-    
-        # acquire token and id of user
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token2 = r.json().get('token')
-    
-    
-        # create a channel
-        ch_data = {
-            'token': token,
-            'name': 'test_ch',
-            'is_public': True
-        }
-    
-        # acquire channel id
-        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-        ch_id = r.json().get('channel_id')
-    
-        # join user to channel
-        join_data = {
-            'token': token,
-            'channel_id': ch_id
-        }
-        requests.post(config.url + 'channel/join/v2', json=join_data)
-    
-        # Testing sending message
-        message = 'a'
-        message_data = {'token': token, 'channel_id': ch_id, 'message': message}
-        r = requests.post(config.url + 'message/send/v1', json=message_data)
->       message_id = r.json().get('message_id')
-
-http_tests/message_unpin_http_test.py:160: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-_____________________________ test_pin_message_dm ______________________________
-
-    def test_pin_message_dm():
-        requests.delete(config.url + 'clear/v1')
-    
-        #owner of dm/caller of dm_create
-        reg_data = {
-            'email': 'test_auth@gmail.com',
-            'password': 'test_pw_auth',
-            'name_first': 'testf',
-            'name_last': 'testl'
-        }
-    
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json().get('token')
-        auth_id = r.json().get('auth_user_id')
-    
-    
-        # Create DM 1
-        create_data = {
-            'token': token,
-            'u_ids': [auth_id]
-        }
-    
-        r = requests.post(config.url + 'dm/create/v1', json=create_data)
->       dm_id_1 = r.json().get('dm_id')
-
-http_tests/message_unpin_http_test.py:192: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/requests/models.py:900: in json
-    return complexjson.loads(self.text, **kwargs)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/__init__.py:525: in loads
-    return _default_decoder.decode(s)
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:370: in decode
-    obj, end = self.raw_decode(s)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-self = <simplejson.decoder.JSONDecoder object at 0x7f7e4bd54748>
-s = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">\n<title>400 Bad Request</title>\n<h1>Bad Request</h1>\n<p>testftestl is already a member of testftestl, testftestl</p>\n'
-idx = 0, _w = <built-in method match of re.Pattern object at 0x7f7e4c5ae9f0>
-_PY3 = True
-
-    def raw_decode(self, s, idx=0, _w=WHITESPACE.match, _PY3=PY3):
-        """Decode a JSON document from ``s`` (a ``str`` or ``unicode``
-        beginning with a JSON document) and return a 2-tuple of the Python
-        representation and the index in ``s`` where the document ended.
-        Optionally, ``idx`` can be used to specify an offset in ``s`` where
-        the JSON document begins.
-    
-        This can be used to decode a JSON document from a string that may
-        have extraneous data at the end.
-    
-        """
-        if idx < 0:
-            # Ensure that raw_decode bails on negative indexes, the regex
-            # would otherwise mask this behavior. #98
-            raise JSONDecodeError('Expecting value', s, idx)
-        if _PY3 and not isinstance(s, str):
-            raise TypeError("Input string must be text, not bytes")
-        # strip UTF-8 bom
-        if len(s) > idx:
-            ord0 = ord(s[idx])
-            if ord0 == 0xfeff:
-                idx += 1
-            elif ord0 == 0xef and s[idx:idx + 3] == '\xef\xbb\xbf':
-                idx += 3
->       return self.scan_once(s, idx=_w(s, idx).end())
-E       simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-/import/kamen/3/cs1531/.local/lib/python3.7/site-packages/simplejson/decoder.py:400: JSONDecodeError
-______________________________ test_unreact_basic ______________________________
-
-    def test_unreact_basic():
-        requests.delete(config.url + 'clear/v1')
-    
-        reg_data = {
-            'email': 'test_auth@gmail.com',
-            'password': 'test_pw_auth',
-            'name_first': 'testf',
-            'name_last': 'testl'
-        }
-    
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
-        token = r.json().get('token')
-    
-        ch_data = {
-            'token': token,
-            'name': 'test_ch',
-            'is_public': True
-        }
-    
-        # acquire channel id
-        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
-        ch_id = r.json().get('channel_id')
-    
-        # join user to channel
-        join_data = {
-            'token': token,
-            'channel_id': ch_id
-        }
-        r = requests.post(config.url + 'channel/join/v2', json=join_data)
-    
-        send_data = {
-            'token': token,
-            'channel_id': ch_id,
-            'message': 'string',
-        }
-    
-        r = requests.post(config.url + 'message/send/v1', json=send_data)
-    
-        react_data = {
-            'token': token,
-            'message_id': 0,
-            'react_id': 1,
-        }
-    
-        r = requests.post(config.url + 'message/react/v1', json=react_data)
-    
-        unreact_data = {
-            'token': token,
-            'message_id': 0,
-            'react_id': 1,
-        }
-        r = requests.post(config.url + 'message/unreact/v1', json=unreact_data)
->       assert r.status_code == 200
-E       assert 400 == 200
-E         +400
-E         -200
-
-http_tests/message_unreact_http_test.py:61: AssertionError
-___________________________ test_valid_user_profile ____________________________
-
-    def test_valid_user_profile():
-        requests.delete(config.url + 'clear/v1')
-    
-        data_1 = {
-            'email': 'abc@def.com',
-            'password': 'Password01!',
-            'name_first': 'John',
-            'name_last': 'Smith'
-        }
-    
-        data_2 = {
-            'email': 'abc@defgh.com',
-            'password': 'Password01!',
-            'name_first': 'mitchel',
-            'name_last': 'johnson'
-        }
-    
-        resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-        token_1 = resp_register_1.json()['token']
-        resp_register_2 = requests.post(config.url + 'auth/register/v2', json=data_2)
-        u_id_2 = resp_register_2.json()['auth_user_id']
-        data_3 = {
-            'token': token_1,
-            'u_id': u_id_2
-        }
-        print(data_3)
-    
-        resp_user_profile = requests.get(config.url + 'user/profile/v1', params=data_3)
->       assert resp_user_profile.status_code == 200
-E       assert 404 == 200
-E         +404
-E         -200
-
-http_tests/user_profile_http_test.py:41: AssertionError
------------------------------ Captured stdout call -----------------------------
-{'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnaWQiOjIzMSwibG9naW5fdGltZSI6MTYxODk0MDE3Miwic2FsdCI6ImJlN2Q1ZDljLWM3YWYtNGFlMi04ZWIwLTk3YWFhNDM3ZGMwMCJ9.4M8pT5uHAZ_ba_j4Q8FEGjFCInSlgiPKp47jQ5TaMEM', 'u_id': 232}
-______________________________ test_invalid_user _______________________________
-
-    def test_invalid_user():
-        requests.delete(config.url + 'clear/v1')
-    
-        data_1 = {
-            'email': 'abc@def.com',
-            'password': 'Password01!',
-            'name_first': 'John',
-            'name_last': 'Smith'
-        }
-    
-        data_2 = {
-            'email': 'abc@defgh.com',
-            'password': 'Password01!',
-            'name_first': 'mitchel',
-            'name_last': 'johnson'
-        }
-    
-        resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-        token_1 = resp_register_1.json()['token']
-        requests.post(config.url + 'auth/register/v2', json=data_2)
-        u_id_2 = 4
-        data_3 = {
-            'token': token_1,
-            'u_id': u_id_2
-        }
-    
-        resp_user_profile = requests.get(config.url + 'user/profile/v1', params=data_3)
->       assert resp_user_profile.status_code == 400
-E       assert 404 == 400
-E         +404
-E         -400
-
-http_tests/user_profile_http_test.py:71: AssertionError
-____________________________ test_valid_user_email _____________________________
-
-    def test_valid_user_email():
-        requests.delete(config.url + 'clear/v1')
-    
-        data_1 = {
-            'email': 'abc@def.com',
-            'password': 'Password01!',
-            'name_first': 'John',
-            'name_last': 'Smith'
-        }
-    
-        resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-        token_1 = resp_register_1.json().get('token')
-        new_email = 'newemail@valid.com'
-        data_2 = {
-            'token': token_1,
-            'email': new_email
-        }
-        #print(data_3)
-    
-        resp_user_profile = requests.put(config.url + 'user/profile/setemail/v1', json=data_2)
->       assert resp_user_profile.status_code == 200
-E       assert 404 == 200
-E         +404
-E         -200
-
-http_tests/user_profile_setemail_http_test.py:34: AssertionError
-___________________________ test_invalid_user_email ____________________________
-
-    def test_invalid_user_email():
-        requests.delete(config.url + 'clear/v1')
-    
-        data_1 = {
-            'email': 'abc@def.com',
-            'password': 'Password01!',
-            'name_first': 'John',
-            'name_last': 'Smith'
-        }
-    
-        resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-        token_1 = resp_register_1.json().get('token')
-        new_email = 'newinvalidemail.com'
-        data_2 = {
-            'token': token_1,
-            'email': new_email
-        }
-        #print(data_3)
-    
-        resp_user_profile = requests.put(config.url + 'user/profile/setemail/v1', json=data_2)
->       assert resp_user_profile.status_code == 400
-E       assert 404 == 400
-E         +404
-E         -400
-
-http_tests/user_profile_setemail_http_test.py:56: AssertionError
-_______________________ test_user_profile_setemail_used ________________________
-
-    def test_user_profile_setemail_used():
-        requests.delete(config.url + 'clear/v1')
-    
-        data_1 = {
-            'email': 'abc@def.com',
-            'password': 'Password01!',
-            'name_first': 'John',
-            'name_last': 'Smith'
-        }
-    
-        data_2 = {
-            'email': 'abc@defgh.com',
-            'password': 'Password01!',
-            'name_first': 'steve',
-            'name_last': 'Smith'
-        }
-    
-        resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-        requests.post(config.url + 'auth/register/v2', json=data_2)
-        token_1 = resp_register_1.json().get('token')
-        #token_2 = resp_register_2.json().get('token')
-        new_email = 'abc@defgh.com'
-    
-        data_3 = {
-            'token': token_1,
-            'email': new_email
-        }
-    
-        resp_user_setemail = requests.put(config.url + 'user/profile/setemail/v1', json=data_3)
->       assert resp_user_setemail.status_code == 400
-E       assert 404 == 400
-E         +404
-E         -400
-
-http_tests/user_profile_setemail_http_test.py:87: AssertionError
-_______________________ test_user_profile_sethandle_used _______________________
-
-    def test_user_profile_sethandle_used():
-        requests.delete(config.url + 'clear/v1')
-        data_1 = {
-            'email': 'abc@def.com',
-            'password': 'Password01!',
-            'name_first': 'John',
-            'name_last': 'Smith'
-        }
-    
-        data_2 = {
-            'email': 'abc@defgh.com',
-            'password': 'Password01!',
-            'name_first': 'mitch',
-            'name_last': 'john'
-        }
-    
-        resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-        resp_register_2 = requests.post(config.url + 'auth/register/v2', json=data_2)
-        token_1 = resp_register_1.json().get('token')
-        handle_used = resp_register_2.json().get('handle')
-    
-    
-        data_3 = {
-            'token': token_1,
-            'handle_str': handle_used
-        }
-    
-        resp_user_setemail = requests.put(config.url + 'user/profile/sethandle/v1', json=data_3)
->       assert resp_user_setemail.status_code == 400
-E       assert 200 == 400
-E         +200
-E         -400
-
-http_tests/user_profile_sethandle_http_test.py:64: AssertionError
-_______________________ test_user_profile_setname_valid ________________________
-
-    def test_user_profile_setname_valid():
-        requests.delete(config.url + 'clear/v1')
-        data_1 = {
-            'email': 'abc@def.com',
-            'password': 'Password01!',
-            'name_first': 'John',
-            'name_last': 'Smith'
-        }
-    
-        resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-        token_1 = resp_register_1.json().get('token')
-        new_name_first = 'mitch'
-        new_name_last = 'johnson'
-    
-        data_2 = {
-            'token': token_1,
-            'name_first': new_name_first,
-            'name_last': new_name_last
-        }
-    
-        resp_user_setname = requests.put(config.url + 'user/profile/setname/v1', json=data_2)
->       assert resp_user_setname.status_code == 200
-E       assert 404 == 200
-E         +404
-E         -200
-
-http_tests/user_profile_setname_http_test.py:33: AssertionError
-__________________________ test_first_name_too_short ___________________________
-
-    def test_first_name_too_short():
-        requests.delete(config.url + 'clear/v1')
-        data_1 = {
-            'email': 'abc@def.com',
-            'password': 'Password01!',
-            'name_first': 'John',
-            'name_last': 'Smith'
-        }
-    
-        resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-        token_1 = resp_register_1.json().get('token')
-        new_name_first = 'm'
-        new_name_last = 'johnson'
-    
-        data_2 = {
-            'token': token_1,
-            'name_first': new_name_first,
-            'name_last': new_name_last
-        }
-    
-        resp_user_setname = requests.put(config.url + 'user/profile/setname/v1', json=data_2)
->       assert resp_user_setname.status_code == 400
-E       assert 404 == 400
-E         +404
-E         -400
-
-http_tests/user_profile_setname_http_test.py:56: AssertionError
-___________________________ test_first_name_too_long ___________________________
-
-    def test_first_name_too_long():
-        requests.delete(config.url + 'clear/v1')
-        data_1 = {
-            'email': 'abc@def.com',
-            'password': 'Password01!',
-            'name_first': 'John',
-            'name_last': 'Smith'
-        }
-    
-        resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-        token_1 = resp_register_1.json().get('token')
-        new_name_first = 'm' *52
-        new_name_last = 'johnson'
-    
-        data_2 = {
-            'token': token_1,
-            'name_first': new_name_first,
-            'name_last': new_name_last
-        }
-    
-        resp_user_setname = requests.put(config.url + 'user/profile/setname/v1', json=data_2)
->       assert resp_user_setname.status_code == 400
-E       assert 404 == 400
-E         +404
-E         -400
-
-http_tests/user_profile_setname_http_test.py:79: AssertionError
-___________________________ test_last_name_too_short ___________________________
-
-    def test_last_name_too_short():
-        requests.delete(config.url + 'clear/v1')
-        data_1 = {
-            'email': 'abc@def.com',
-            'password': 'Password01!',
-            'name_first': 'John',
-            'name_last': 'Smith'
-        }
-    
-        resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-        token_1 = resp_register_1.json().get('token')
-        new_name_first = 'mitch'
-        new_name_last = 'j'
-    
-        data_2 = {
-            'token': token_1,
-            'name_first': new_name_first,
-            'name_last': new_name_last
-        }
-    
-        resp_user_setname = requests.put(config.url + 'user/profile/setname/v1', json=data_2)
->       assert resp_user_setname.status_code == 400
-E       assert 404 == 400
-E         +404
-E         -400
-
-http_tests/user_profile_setname_http_test.py:102: AssertionError
-___________________________ test_last_name_too_long ____________________________
-
-    def test_last_name_too_long():
-        requests.delete(config.url + 'clear/v1')
-        data_1 = {
-            'email': 'abc@def.com',
-            'password': 'Password01!',
-            'name_first': 'John',
-            'name_last': 'Smith'
-        }
-    
-        resp_register_1 = requests.post(config.url + 'auth/register/v2', json=data_1)
-        token_1 = resp_register_1.json().get('token')
-        new_name_first = 'mitch'
-        new_name_last = 'j' * 52
-    
-    
-        data_2 = {
-            'token': token_1,
-            'name_first': new_name_first,
-            'name_last': new_name_last
-        }
-    
-        resp_user_setname = requests.put(config.url + 'user/profile/setname/v1', json=data_2)
->       assert resp_user_setname.status_code == 400
-E       assert 404 == 400
-E         +404
-E         -400
-
-http_tests/user_profile_setname_http_test.py:126: AssertionError
-_________________________________ test_system __________________________________
-
-    def test_system():
-        requests.delete(config.url + 'clear/v1')
-    
-        # register a user
-        reg_data1 = {
-            'email': 'test1@gmail.com',
-            'password': 'testpw1',
-            'name_first': 'test_fname1',
-            'name_last': 'test_lname1'
-        }
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data1)
     
         # acquire token of user
-        token1 = r.json().get('token')
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
     
-        # create a channel
-        ch_data = {
-            'token': token1,
-            'name': 'test_ch',
-            'is_public': True
+        search_data = {
+            'token': token,
+            'query_str': 'test'
         }
-        r = requests.post(config.url + 'channels/create/v2', json=ch_data)
     
-        # acquire channel id
-        ch_id = r.json().get('channel_id')
-    
-        # join user to channel
-        join_data = {
-            'token': token1,
-            'channel_id': ch_id
-        }
-        requests.post(config.url + 'channel/join/v2', json=join_data)
-    
-        #create one user to pass in the list of users for dm create
-        reg_data2 = {
-            'email': 'test2@gmail.com',
-            'password': 'testpw2',
-            'name_first': 'test_fname2',
-            'name_last': 'test_lname2'
-        }
-        r = requests.post(config.url + 'auth/register/v2', json=reg_data2)
-    
-        # get id of user2
-        u_id2 = r.json().get('auth_user_id')
-    
-        create_data = {
-            'token': token1,
-            'u_ids': [u_id2]
-        }
-        r = requests.post(config.url + 'dm/create/v1', json=create_data)
-    
-        # create dm
-        dm_id = r.json().get('dm_id')
-    
-        # send a message
-        message_data = {'token': token1, 'dm_id': dm_id, 'message': 'hello'}
-        r = requests.post(config.url + 'message/senddm/v1', json=message_data)
-    
-        stats_params = {
-            'token': token1
-        }
-        r = requests.get(config.url + 'users/stats/v1', params=stats_params)
-    
+        r = requests.get(config.url + 'search/v2', json=search_data)
 >       assert r.status_code == 200
-E       assert 404 == 200
-E         +404
-E         -200
+E       assert 403 == 200
+E        +  where 403 = <Response [403]>.status_code
 
-http_tests/users_stats_http_test.py:69: AssertionError
+http_tests/search_http_test.py:27: AssertionError
+______________________________ test_long_querystr ______________________________
+
+    def test_long_querystr():
+        requests.delete(config.url + 'clear/v1')
+    
+        # register a user
+        reg_data = {
+            'email': 'test@gmail.com',
+            'password': 'testpw123',
+            'name_first': 'test_fname',
+            'name_last': 'test_lname'
+        }
+    
+        # acquire token of user
+        r = requests.post(config.url + 'auth/register/v2', json=reg_data)
+        token = r.json().get('token')
+    
+        long_str = 'a' * 1001
+        search_data = {
+            'token': token,
+            'query_str': long_str
+        }
+    
+        r = requests.get(config.url + 'search/v2', json=search_data)
+>       assert r.status_code == 400
+E       assert 403 == 400
+E        +  where 403 = <Response [403]>.status_code
+
+http_tests/search_http_test.py:88: AssertionError
 =========================== short test summary info ============================
-FAILED http_tests/auth_logout_http_test.py::test_logout_valid - assert 404 ==...
-FAILED http_tests/auth_register_http_test.py::test_auth_register_short_first_name
 FAILED http_tests/channel_addowner_http_test.py::test_basic - assert 400 == 200
+FAILED http_tests/channel_addowner_http_test.py::test_basic - assert 400 == 200
+FAILED http_tests/channel_details_http_test.py::test_valid - assert 500 == 200
+FAILED http_tests/channel_details_http_test.py::test_invalid_channel - assert...
 FAILED http_tests/channel_details_http_test.py::test_unauthorised_user - asse...
 FAILED http_tests/channel_invite_http_test.py::test_invite_inviter_not_in_channel
 FAILED http_tests/channel_join_http_test.py::test_join_channel - assert 400 =...
@@ -3253,19 +2548,26 @@ FAILED http_tests/channel_join_http_test.py::test_join_private - assert 400 =...
 FAILED http_tests/channel_leave_http_test.py::test_basic - assert 400 == 200
 FAILED http_tests/channel_leave_http_test.py::test_invalid_channel - assert 4...
 FAILED http_tests/channel_leave_http_test.py::test_unauthorised_user - assert...
-FAILED http_tests/channels_list_http_test.py::test_no_channels_list - Asserti...
+FAILED http_tests/channel_messages_http_test.py::test_messages_nomessage - as...
+FAILED http_tests/channel_messages_http_test.py::test_messages_invalid_ch_id
+FAILED http_tests/channel_messages_http_test.py::test_messages_not_member - a...
+FAILED http_tests/channels_list_http_test.py::test_no_channels_list - json.de...
 FAILED http_tests/channels_list_http_test.py::test_two_channels_one_user_list
 FAILED http_tests/channels_list_http_test.py::test_two_users_two_channels_list
+FAILED http_tests/channels_listall_http_test.py::test_no_channels_list - asse...
+FAILED http_tests/channels_listall_http_test.py::test_two_channels_one_user_list
+FAILED http_tests/channels_listall_http_test.py::test_two_users_two_channels_list
+FAILED http_tests/dm_details_http_test.py::test_dm_details_basic - assert 500...
+FAILED http_tests/dm_details_http_test.py::test_dm_details_invalid_dmid - ass...
+FAILED http_tests/dm_details_http_test.py::test_dm_details_not_member - simpl...
+FAILED http_tests/dm_messages_http_test.py::test_dm_messages_nomessage - asse...
+FAILED http_tests/dm_messages_http_test.py::test_dm_messages_invalid_d_id - a...
+FAILED http_tests/dm_messages_http_test.py::test_dm_messages_start_too_big - ...
+FAILED http_tests/dm_messages_http_test.py::test_dm_messages_not_member - ass...
 FAILED http_tests/echo_http_test.py::test_echo - json.decoder.JSONDecodeError...
 FAILED http_tests/message_edit_http_test.py::test_valid_message_edit - simple...
 FAILED http_tests/message_edit_http_test.py::test_long_message_edit - simplej...
 FAILED http_tests/message_edit_http_test.py::test_message_not_sent_by_same_user_message_edit
-FAILED http_tests/message_pin_http_test.py::test_valid_message_pin_channel - ...
-FAILED http_tests/message_pin_http_test.py::test_pin_message_pinned - simplej...
-FAILED http_tests/message_pin_http_test.py::test_pin_message_not_authorised_user
-FAILED http_tests/message_pin_http_test.py::test_pin_message_dm - simplejson....
-FAILED http_tests/message_react_http_test.py::test_message_react_basic - asse...
-FAILED http_tests/message_remove_http_test.py::test_message_remove_from_channel_invalid_message
 FAILED http_tests/message_remove_http_test.py::test_message_remove_from_channel_not_sent_by_same_user
 FAILED http_tests/message_remove_http_test.py::test_message_remove_from_channe
 FAILED http_tests/message_remove_http_test.py::test_message_remove_from_dm - ...
@@ -3273,27 +2575,10 @@ FAILED http_tests/message_send_http_test.py::test_valid_message_send - assert...
 FAILED http_tests/message_send_http_test.py::test_long_message_send - assert ...
 FAILED http_tests/message_send_http_test.py::test_message_send_not_authorised_user
 FAILED http_tests/message_senddm_v2_http_test.py::test_long_message_send - as...
-FAILED http_tests/message_sendlater_http_test.py::test_message_sendlater_timeinpast
-FAILED http_tests/message_sendlaterdm_http_test.py::test_message_sendlaterdm_timeinpast
 FAILED http_tests/message_share_http_test.py::test_not_authorised_to_channel_message_share
 FAILED http_tests/message_share_http_test.py::test_valid_message_share_to_channel
 FAILED http_tests/message_share_http_test.py::test_message_share_to_dm - simp...
 FAILED http_tests/message_share_http_test.py::test_message_share_to_dm_user_not_in_dm
-FAILED http_tests/message_unpin_http_test.py::test_valid_message_pin_channel
-FAILED http_tests/message_unpin_http_test.py::test_unpin_message_unpinned - s...
-FAILED http_tests/message_unpin_http_test.py::test_pin_message_not_authorised_user
-FAILED http_tests/message_unpin_http_test.py::test_pin_message_dm - simplejso...
-FAILED http_tests/message_unreact_http_test.py::test_unreact_basic - assert 4...
-FAILED http_tests/user_profile_http_test.py::test_valid_user_profile - assert...
-FAILED http_tests/user_profile_http_test.py::test_invalid_user - assert 404 =...
-FAILED http_tests/user_profile_setemail_http_test.py::test_valid_user_email
-FAILED http_tests/user_profile_setemail_http_test.py::test_invalid_user_email
-FAILED http_tests/user_profile_setemail_http_test.py::test_user_profile_setemail_used
-FAILED http_tests/user_profile_sethandle_http_test.py::test_user_profile_sethandle_used
-FAILED http_tests/user_profile_setname_http_test.py::test_user_profile_setname_valid
-FAILED http_tests/user_profile_setname_http_test.py::test_first_name_too_short
-FAILED http_tests/user_profile_setname_http_test.py::test_first_name_too_long
-FAILED http_tests/user_profile_setname_http_test.py::test_last_name_too_short
-FAILED http_tests/user_profile_setname_http_test.py::test_last_name_too_long
-FAILED http_tests/users_stats_http_test.py::test_system - assert 404 == 200
-======================== 53 failed, 77 passed in 6.20s =========================
+FAILED http_tests/search_http_test.py::test_valid - assert 403 == 200
+FAILED http_tests/search_http_test.py::test_long_querystr - assert 403 == 400
+======================== 44 failed, 31 passed in 3.39s =========================

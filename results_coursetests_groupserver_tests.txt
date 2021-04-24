@@ -1,359 +1,65 @@
 ============================= test session starts ==============================
-platform linux -- Python 3.7.3, pytest-6.2.3, py-1.10.0, pluggy-0.13.1 -- /usr/bin/python3
-cachedir: .pytest_cache
-hypothesis profile 'default' -> database=DirectoryBasedExampleDatabase('/tmp_amd/kamen/export/kamen/3/cs1531/automark/tempstore/.hypothesis/examples')
+platform linux -- Python 3.7.3, pytest-6.2.3, py-1.10.0, pluggy-0.13.1
 rootdir: /tmp_amd/kamen/export/kamen/3/cs1531/automark/tempstore, configfile: pytest.ini
 plugins: forked-1.3.0, xdist-2.2.1, hypothesis-6.1.1, timeout-1.4.2
-collecting ... collected 343 items
+collected 343 items
 
-http_tests/admin_tests/test_admin_user_remove.py::test_removal_can_do_no_action ERROR [  0%]
-http_tests/admin_tests/test_admin_user_remove.py::test_removal_messages_correct_format ERROR [  0%]
-http_tests/admin_tests/test_admin_user_remove.py::test_removal_profile_still_fetchable ERROR [  0%]
-http_tests/admin_tests/test_admin_user_remove.py::test_removal_removed_from_channel ERROR [  1%]
-http_tests/admin_tests/test_admin_user_remove.py::test_removal_removed_from_dm ERROR [  1%]
-http_tests/admin_tests/test_admin_user_remove.py::test_removal_not_in_users_all ERROR [  1%]
-http_tests/admin_tests/test_admin_user_remove.py::test_email_handle_reusable SKIPPED [  2%]
-http_tests/admin_tests/test_admin_user_remove.py::test_invalid_user ERROR [  2%]
-http_tests/admin_tests/test_admin_user_remove.py::test_cannot_remove_last_owner ERROR [  2%]
-http_tests/admin_tests/test_admin_user_remove.py::test_cannot_remove_user_nonowner ERROR [  2%]
-http_tests/admin_tests/test_admin_user_remove.py::test_invalid_token ERROR [  3%]
-http_tests/admin_tests/test_admin_userpermission_change.py::test_successful_permission_change ERROR [  3%]
-http_tests/admin_tests/test_admin_userpermission_change.py::test_changing_to_same_permission_idempotent ERROR [  3%]
-http_tests/admin_tests/test_admin_userpermission_change.py::test_nonowner_cant_change_permissions ERROR [  4%]
-http_tests/admin_tests/test_admin_userpermission_change.py::test_invalid_user ERROR [  4%]
-http_tests/admin_tests/test_admin_userpermission_change.py::test_invalid_permission ERROR [  4%]
-http_tests/admin_tests/test_admin_userpermission_change.py::test_invalid_token ERROR [  4%]
-http_tests/auth_tests/test_auth_login.py::test_successful_login ERROR    [  5%]
-http_tests/auth_tests/test_auth_login.py::test_can_have_two_sessions ERROR [  5%]
-http_tests/auth_tests/test_auth_login.py::test_unregistered_user PASSED  [  5%]
-http_tests/auth_tests/test_auth_login.py::test_registered_but_incorrect_password ERROR [  6%]
-http_tests/auth_tests/test_auth_logout.py::test_successful_logout ERROR  [  6%]
-http_tests/auth_tests/test_auth_logout.py::test_not_logged_in_logout ERROR [  6%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[--12345-@gmail.com] PASSED [  6%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[--12345-bob] PASSED [  7%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[--12345-bob@bob@bob.com] PASSED [  7%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[---@gmail.com] PASSED [  7%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[---bob] PASSED [  8%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[---bob@bob@bob.com] PASSED [  8%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-12345-@gmail.com] PASSED [  8%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-12345-bob] PASSED [  9%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-12345-bob@bob@bob.com] PASSED [  9%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--@gmail.com] PASSED [  9%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--bob] PASSED [  9%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--bob@bob@bob.com] PASSED [ 10%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb--12345-@gmail.com] PASSED [ 10%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb--12345-bob] PASSED [ 10%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb--12345-bob@bob@bob.com] PASSED [ 11%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb---@gmail.com] PASSED [ 11%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb---bob] PASSED [ 11%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb---bob@bob@bob.com] PASSED [ 11%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-12345-@gmail.com] PASSED [ 12%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-12345-bob] PASSED [ 12%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-12345-bob@bob@bob.com] PASSED [ 12%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--@gmail.com] PASSED [ 13%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--bob] PASSED [ 13%]
-http_tests/auth_tests/test_auth_register.py::test_invalid_inputs[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--bob@bob@bob.com] PASSED [ 13%]
-http_tests/auth_tests/test_auth_register.py::test_duplicate_email PASSED [ 13%]
-http_tests/auth_tests/test_auth_register.py::test_successful_registration ERROR [ 14%]
-http_tests/auth_tests/test_auth_register.py::test_handle_generation_unique[Bob-Smith-bobsmith] FAILED [ 14%]
-http_tests/auth_tests/test_auth_register.py::test_handle_generation_unique[ababababab-cdcdcdcdcdcd-abababababcdcdcdcdcd] FAILED [ 14%]
-http_tests/auth_tests/test_auth_register.py::test_handle_generation_duplicate FAILED [ 15%]
-http_tests/auth_tests/test_passwordreset_request.py::test_return_format_correct ERROR [ 15%]
-http_tests/auth_tests/test_passwordreset_request.py::test_password_request_logs_out_everywhere ERROR [ 15%]
-http_tests/auth_tests/test_passwordreset_request.py::test_email_sent SKIPPED [ 16%]
-http_tests/auth_tests/test_passwordreset_reset.py::test_invalid_password PASSED [ 16%]
-http_tests/auth_tests/test_passwordreset_reset.py::test_invalid_reset_code PASSED [ 16%]
-http_tests/channel_tests/test_channel_addowner.py::test_global_owner_non_member_can_addowner SKIPPED [ 16%]
-http_tests/channel_tests/test_channel_addowner.py::test_channel_owner_can_addowner_when_member ERROR [ 17%]
-http_tests/channel_tests/test_channel_addowner.py::test_channel_owner_can_addowner_when_non_member SKIPPED [ 17%]
-http_tests/channel_tests/test_channel_addowner.py::test_non_member_cannot_add_owner ERROR [ 17%]
-http_tests/channel_tests/test_channel_addowner.py::test_member_cannot_add_owner ERROR [ 18%]
-http_tests/channel_tests/test_channel_addowner.py::test_cannot_addowner_prexisting_channel_owner ERROR [ 18%]
-http_tests/channel_tests/test_channel_addowner.py::test_with_invalid_u_id SKIPPED [ 18%]
-http_tests/channel_tests/test_channel_addowner.py::test_with_invalid_channel_id ERROR [ 18%]
-http_tests/channel_tests/test_channel_addowner.py::test_invalid_token ERROR [ 19%]
-http_tests/channel_tests/test_channel_details.py::test_member_successful ERROR [ 19%]
-http_tests/channel_tests/test_channel_details.py::test_non_member_not_successful ERROR [ 19%]
-http_tests/channel_tests/test_channel_details.py::test_invalid_channel_id ERROR [ 20%]
-http_tests/channel_tests/test_channel_details.py::test_invalid_token ERROR [ 20%]
-http_tests/channel_tests/test_channel_invite.py::test_duplicate_invite SKIPPED [ 20%]
-http_tests/channel_tests/test_channel_invite.py::test_invite_global_owner ERROR [ 20%]
-http_tests/channel_tests/test_channel_invite.py::test_invite_global_member ERROR [ 21%]
-http_tests/channel_tests/test_channel_invite.py::test_invitation_from_non_channel_member ERROR [ 21%]
-http_tests/channel_tests/test_channel_invite.py::test_channel_id_invalid ERROR [ 21%]
-http_tests/channel_tests/test_channel_invite.py::test_u_id_invalid ERROR [ 22%]
-http_tests/channel_tests/test_channel_invite.py::test_invalidated_token ERROR [ 22%]
-http_tests/channel_tests/test_channel_join.py::test_global_owner_join_channel_public ERROR [ 22%]
-http_tests/channel_tests/test_channel_join.py::test_global_owner_join_channel_private ERROR [ 23%]
-http_tests/channel_tests/test_channel_join.py::test_global_member_join_public ERROR [ 23%]
-http_tests/channel_tests/test_channel_join.py::test_already_joined_channel SKIPPED [ 23%]
-http_tests/channel_tests/test_channel_join.py::test_join_invalid_channel_id ERROR [ 23%]
-http_tests/channel_tests/test_channel_join.py::test_invalidated_token ERROR [ 24%]
-http_tests/channel_tests/test_channel_leave.py::test_member_leave_channel_successfully ERROR [ 24%]
-http_tests/channel_tests/test_channel_leave.py::test_leave_channel_when_not_member ERROR [ 24%]
-http_tests/channel_tests/test_channel_leave.py::test_invalid_channel_id ERROR [ 25%]
-http_tests/channel_tests/test_channel_leave.py::test_invalid_token ERROR [ 25%]
-http_tests/channel_tests/test_channel_messages.py::test_under_fifty_messages_sent ERROR [ 25%]
-http_tests/channel_tests/test_channel_messages.py::test_over_fifty_messages_sent ERROR [ 25%]
-http_tests/channel_tests/test_channel_messages.py::test_removal_by_edit_reflected ERROR [ 26%]
-http_tests/channel_tests/test_channel_messages.py::test_removal_by_deletion_reflected ERROR [ 26%]
-http_tests/channel_tests/test_channel_messages.py::test_input_error_when_start_greater_than_message_num ERROR [ 26%]
-http_tests/channel_tests/test_channel_messages.py::test_access_error_when_user_is_non_member ERROR [ 27%]
-http_tests/channel_tests/test_channel_messages.py::test_input_error_when_channel_id_invalid ERROR [ 27%]
-http_tests/channel_tests/test_channel_messages.py::test_access_error_when_invalid_token_given ERROR [ 27%]
-http_tests/channel_tests/test_channel_removeowner.py::test_owner_can_remove_owner ERROR [ 27%]
-http_tests/channel_tests/test_channel_removeowner.py::test_global_owner_can_remove_owner ERROR [ 28%]
-http_tests/channel_tests/test_channel_removeowner.py::test_nonmember_cannot_remove_owner ERROR [ 28%]
-http_tests/channel_tests/test_channel_removeowner.py::test_member_cannot_remove_owner ERROR [ 28%]
-http_tests/channel_tests/test_channel_removeowner.py::test_cannot_remove_last_owner ERROR [ 29%]
-http_tests/channel_tests/test_channel_removeowner.py::test_cannot_remove_non_owner ERROR [ 29%]
-http_tests/channel_tests/test_channel_removeowner.py::test_invalid_u_id SKIPPED [ 29%]
-http_tests/channel_tests/test_channel_removeowner.py::test_with_invalid_channel_id ERROR [ 30%]
-http_tests/channel_tests/test_channel_removeowner.py::test_invalidated_token ERROR [ 30%]
-http_tests/channels_tests/test_channels_create.py::test_create_channel[True-andys room] ERROR [ 30%]
-http_tests/channels_tests/test_channels_create.py::test_create_channel[False-andys room] ERROR [ 30%]
-http_tests/channels_tests/test_channels_create.py::test_channel_name_length[True-I AM NOT A TOY AND ALSO THIS NAME IS TOO LONG] ERROR [ 31%]
-http_tests/channels_tests/test_channels_create.py::test_channel_name_length[False-I AM NOT A TOY AND ALSO THIS NAME IS TOO LONG] ERROR [ 31%]
-http_tests/channels_tests/test_channels_create.py::test_invalidated_token ERROR [ 31%]
-http_tests/channels_tests/test_channels_list.py::test_when_in_no_channels ERROR [ 32%]
-http_tests/channels_tests/test_channels_list.py::test_when_in_one_channel[True-andy] ERROR [ 32%]
-http_tests/channels_tests/test_channels_list.py::test_when_in_one_channel[False-andy] ERROR [ 32%]
-http_tests/channels_tests/test_channels_list.py::test_when_in_multiple_channels[False-True-ZERG-andy] ERROR [ 32%]
-http_tests/channels_tests/test_channels_list.py::test_when_in_multiple_channels[False-False-ZERG-andy] ERROR [ 33%]
-http_tests/channels_tests/test_channels_list.py::test_when_in_multiple_channels[True-True-ZERG-andy] ERROR [ 33%]
-http_tests/channels_tests/test_channels_list.py::test_when_in_multiple_channels[True-False-ZERG-andy] ERROR [ 33%]
-http_tests/channels_tests/test_channels_list.py::test_list_after_leave_channel ERROR [ 34%]
-http_tests/channels_tests/test_channels_list.py::test_invalidated_token ERROR [ 34%]
-http_tests/channels_tests/test_channels_listall.py::test_when_no_channels ERROR [ 34%]
-http_tests/channels_tests/test_channels_listall.py::test_when_one_channel_exists_private ERROR [ 34%]
-http_tests/channels_tests/test_channels_listall.py::test_when_one_channel_exists_public ERROR [ 35%]
-http_tests/channels_tests/test_channels_listall.py::test_when_multiple_channels_exist ERROR [ 35%]
-http_tests/channels_tests/test_channels_listall.py::test_invalidated_token ERROR [ 35%]
-http_tests/dm_tests/test_dm_create.py::test_successful_dm_creation ERROR [ 36%]
-http_tests/dm_tests/test_dm_create.py::test_dm_name_creation_single ERROR [ 36%]
-http_tests/dm_tests/test_dm_create.py::test_dm_name_creation_multiple ERROR [ 36%]
-http_tests/dm_tests/test_dm_create.py::test_dm_to_invalid_user ERROR     [ 37%]
-http_tests/dm_tests/test_dm_create.py::test_invalid_token ERROR          [ 37%]
-http_tests/dm_tests/test_dm_details.py::test_member_successful ERROR     [ 37%]
-http_tests/dm_tests/test_dm_details.py::test_non_member_not_successful ERROR [ 37%]
-http_tests/dm_tests/test_dm_details.py::test_invalid_dm_id ERROR         [ 38%]
-http_tests/dm_tests/test_dm_details.py::test_invalid_token ERROR         [ 38%]
-http_tests/dm_tests/test_dm_invite.py::test_duplicate_dm_invite SKIPPED  [ 38%]
-http_tests/dm_tests/test_dm_invite.py::test_invite_global_member ERROR   [ 39%]
-http_tests/dm_tests/test_dm_invite.py::test_invitation_from_non_dm_member ERROR [ 39%]
-http_tests/dm_tests/test_dm_invite.py::test_dm_id_invalid ERROR          [ 39%]
-http_tests/dm_tests/test_dm_invite.py::test_u_id_invalid ERROR           [ 39%]
-http_tests/dm_tests/test_dm_invite.py::test_invalidated_token ERROR      [ 40%]
-http_tests/dm_tests/test_dm_leave.py::test_member_leave_dm_successfully ERROR [ 40%]
-http_tests/dm_tests/test_dm_leave.py::test_leave_channel_when_not_member ERROR [ 40%]
-http_tests/dm_tests/test_dm_leave.py::test_invalid_dm_id ERROR           [ 41%]
-http_tests/dm_tests/test_dm_leave.py::test_invalid_token ERROR           [ 41%]
-http_tests/dm_tests/test_dm_list.py::test_when_in_no_dms ERROR           [ 41%]
-http_tests/dm_tests/test_dm_list.py::test_when_in_one_dm ERROR           [ 41%]
-http_tests/dm_tests/test_dm_list.py::test_when_in_multiple_dms ERROR     [ 42%]
-http_tests/dm_tests/test_dm_list.py::test_list_after_leave_dm ERROR      [ 42%]
-http_tests/dm_tests/test_dm_list.py::test_invalidated_token ERROR        [ 42%]
-http_tests/dm_tests/test_dm_messages.py::test_under_fifty_messages_sent ERROR [ 43%]
-http_tests/dm_tests/test_dm_messages.py::test_over_fifty_messages_sent ERROR [ 43%]
-http_tests/dm_tests/test_dm_messages.py::test_removal_by_edit_reflected ERROR [ 43%]
-http_tests/dm_tests/test_dm_messages.py::test_removal_by_deletion_reflected ERROR [ 44%]
-http_tests/dm_tests/test_dm_messages.py::test_input_error_when_start_greater_than_message_num ERROR [ 44%]
-http_tests/dm_tests/test_dm_messages.py::test_access_error_when_user_is_non_member ERROR [ 44%]
-http_tests/dm_tests/test_dm_messages.py::test_input_error_when_dm_id_invalid ERROR [ 44%]
-http_tests/dm_tests/test_dm_messages.py::test_access_error_when_invalid_token_given ERROR [ 45%]
-http_tests/dm_tests/test_dm_remove.py::test_successful_dm_removal ERROR  [ 45%]
-http_tests/dm_tests/test_dm_remove.py::test_removal_removes_messages ERROR [ 45%]
-http_tests/dm_tests/test_dm_remove.py::test_nonowner_cannot_remove_dm ERROR [ 46%]
-http_tests/dm_tests/test_dm_remove.py::test_invalid_dm_id ERROR          [ 46%]
-http_tests/dm_tests/test_dm_remove.py::test_invalid_token ERROR          [ 46%]
-http_tests/echo_tests/echo_test.py::test_echo PASSED                     [ 46%]
-http_tests/echo_tests/echo_test.py::test_echo_except PASSED              [ 47%]
-http_tests/message_tests/test_message_edit.py::test_original_poster_can_edit_message ERROR [ 47%]
-http_tests/message_tests/test_message_edit.py::test_owner_can_edit_members_message ERROR [ 47%]
-http_tests/message_tests/test_message_edit.py::test_global_owner_can_edit_members_message ERROR [ 48%]
-http_tests/message_tests/test_message_edit.py::test_empty_edit_deletes_message ERROR [ 48%]
-http_tests/message_tests/test_message_edit.py::test_invalid_message_length ERROR [ 48%]
-http_tests/message_tests/test_message_edit.py::test_cannot_edit_deleted_message ERROR [ 48%]
-http_tests/message_tests/test_message_edit.py::test_nonowner_nonposter_cant_edit ERROR [ 49%]
-http_tests/message_tests/test_message_edit.py::test_invalid_token ERROR  [ 49%]
-http_tests/message_tests/test_message_meta.py::test_message_ids_unique ERROR [ 49%]
-http_tests/message_tests/test_message_pin.py::test_successful_pin_in_channel ERROR [ 50%]
-http_tests/message_tests/test_message_pin.py::test_successful_pin_in_dm ERROR [ 50%]
-http_tests/message_tests/test_message_pin.py::test_invalid_message_id ERROR [ 50%]
-http_tests/message_tests/test_message_pin.py::test_cannot_pin_twice ERROR [ 51%]
-http_tests/message_tests/test_message_pin.py::test_channel_member_cant_pin ERROR [ 51%]
-http_tests/message_tests/test_message_pin.py::test_dm_member_cant_pin ERROR [ 51%]
-http_tests/message_tests/test_message_pin.py::test_nonmember_cant_pin ERROR [ 51%]
-http_tests/message_tests/test_message_pin.py::test_invalid_token ERROR   [ 52%]
-http_tests/message_tests/test_message_react.py::test_successful_react_in_channel ERROR [ 52%]
-http_tests/message_tests/test_message_react.py::test_successful_react_to_dm_message ERROR [ 52%]
-http_tests/message_tests/test_message_react.py::test_invalid_message_id ERROR [ 53%]
-http_tests/message_tests/test_message_react.py::test_invalid_react_id ERROR [ 53%]
-http_tests/message_tests/test_message_react.py::test_cant_react_twice ERROR [ 53%]
-http_tests/message_tests/test_message_react.py::test_nonmember_cannot_react ERROR [ 53%]
-http_tests/message_tests/test_message_react.py::test_invalid_token ERROR [ 54%]
-http_tests/message_tests/test_message_remove.py::test_original_poster_can_remove_message ERROR [ 54%]
-http_tests/message_tests/test_message_remove.py::test_owner_can_remove_members_message ERROR [ 54%]
-http_tests/message_tests/test_message_remove.py::test_global_owner_can_remove_members_message ERROR [ 55%]
-http_tests/message_tests/test_message_remove.py::test_cannot_remove_deleted_message ERROR [ 55%]
-http_tests/message_tests/test_message_remove.py::test_nonowner_nonposter_cant_remove_message ERROR [ 55%]
-http_tests/message_tests/test_message_remove.py::test_invalid_token ERROR [ 55%]
-http_tests/message_tests/test_message_send.py::test_valid_message ERROR  [ 56%]
-http_tests/message_tests/test_message_send.py::test_nonmember_post ERROR [ 56%]
-http_tests/message_tests/test_message_send.py::test_invalid_channel SKIPPED [ 56%]
-http_tests/message_tests/test_message_send.py::test_invalid_message ERROR [ 57%]
-http_tests/message_tests/test_message_send.py::test_invalid_token ERROR  [ 57%]
-http_tests/message_tests/test_message_senddm.py::test_valid_message ERROR [ 57%]
-http_tests/message_tests/test_message_senddm.py::test_nonmember_post ERROR [ 58%]
-http_tests/message_tests/test_message_senddm.py::test_invalid_dm SKIPPED [ 58%]
-http_tests/message_tests/test_message_senddm.py::test_invalid_message ERROR [ 58%]
-http_tests/message_tests/test_message_senddm.py::test_invalid_token ERROR [ 58%]
-http_tests/message_tests/test_message_sendlater.py::test_valid_future_message ERROR [ 59%]
-http_tests/message_tests/test_message_sendlater.py::test_nonmeber_cannot_sendlater ERROR [ 59%]
-http_tests/message_tests/test_message_sendlater.py::test_cannot_time_travel ERROR [ 59%]
-http_tests/message_tests/test_message_sendlater.py::test_message_too_long ERROR [ 60%]
-http_tests/message_tests/test_message_sendlater.py::test_invalid_channel ERROR [ 60%]
-http_tests/message_tests/test_message_sendlater.py::test_invalid_token ERROR [ 60%]
-http_tests/message_tests/test_message_sendlaterdm.py::test_valid_future_message ERROR [ 60%]
-http_tests/message_tests/test_message_sendlaterdm.py::test_nonmeber_cannot_sendlater ERROR [ 61%]
-http_tests/message_tests/test_message_sendlaterdm.py::test_cannot_time_travel ERROR [ 61%]
-http_tests/message_tests/test_message_sendlaterdm.py::test_message_too_long ERROR [ 61%]
-http_tests/message_tests/test_message_sendlaterdm.py::test_invalid_dm ERROR [ 62%]
-http_tests/message_tests/test_message_sendlaterdm.py::test_invalid_token ERROR [ 62%]
-http_tests/message_tests/test_message_share.py::test_successful_share_to_channel ERROR [ 62%]
-http_tests/message_tests/test_message_share.py::test_successful_share_to_dm ERROR [ 62%]
-http_tests/message_tests/test_message_share.py::test_successful_cross_share[True] ERROR [ 63%]
-http_tests/message_tests/test_message_share.py::test_successful_cross_share[False] ERROR [ 63%]
-http_tests/message_tests/test_message_share.py::test_cannot_share_to_unjoined_dm ERROR [ 63%]
-http_tests/message_tests/test_message_share.py::test_cannot_share_to_unjoined_channel ERROR [ 64%]
-http_tests/message_tests/test_message_share.py::test_cannot_share_from_unjoined_channel SKIPPED [ 64%]
-http_tests/message_tests/test_message_share.py::test_cannot_share_from_unjoined_dm SKIPPED [ 64%]
-http_tests/message_tests/test_message_share.py::test_invalid_og_message_id SKIPPED [ 65%]
-http_tests/message_tests/test_message_share.py::test_invalid_message_length SKIPPED [ 65%]
-http_tests/message_tests/test_message_share.py::test_share_to_invalid_channel_id SKIPPED [ 65%]
-http_tests/message_tests/test_message_share.py::test_share_to_invalid_dm_id SKIPPED [ 65%]
-http_tests/message_tests/test_message_share.py::test_invalid_token ERROR [ 66%]
-http_tests/message_tests/test_message_unpin.py::test_successful_unpin_in_channel ERROR [ 66%]
-http_tests/message_tests/test_message_unpin.py::test_successful_unpin_in_dm ERROR [ 66%]
-http_tests/message_tests/test_message_unpin.py::test_invalid_message_id ERROR [ 67%]
-http_tests/message_tests/test_message_unpin.py::test_cannot_unpin_twice ERROR [ 67%]
-http_tests/message_tests/test_message_unpin.py::test_channel_member_cant_unpin ERROR [ 67%]
-http_tests/message_tests/test_message_unpin.py::test_dm_member_cant_unpin ERROR [ 67%]
-http_tests/message_tests/test_message_unpin.py::test_nonmember_cant_unpin ERROR [ 68%]
-http_tests/message_tests/test_message_unpin.py::test_invalid_token ERROR [ 68%]
-http_tests/message_tests/test_message_unreact.py::test_successful_unreact_in_channel ERROR [ 68%]
-http_tests/message_tests/test_message_unreact.py::test_successful_unreact_to_dm_message ERROR [ 69%]
-http_tests/message_tests/test_message_unreact.py::test_invalid_message_id ERROR [ 69%]
-http_tests/message_tests/test_message_unreact.py::test_invalid_react_id ERROR [ 69%]
-http_tests/message_tests/test_message_unreact.py::test_cant_unreact_twice ERROR [ 69%]
-http_tests/message_tests/test_message_unreact.py::test_nonmember_cannot_unreact ERROR [ 70%]
-http_tests/message_tests/test_message_unreact.py::test_invalid_token ERROR [ 70%]
-http_tests/other_tests/test_clear.py::test_clear_works ERROR             [ 70%]
-http_tests/other_tests/test_notifications_get.py::test_tag_thru_message_send_triggers_notification ERROR [ 71%]
-http_tests/other_tests/test_notifications_get.py::test_tag_thru_message_senddm_triggers_notification ERROR [ 71%]
-http_tests/other_tests/test_notifications_get.py::test_tag_thru_message_edit_triggers_notification SKIPPED [ 71%]
-http_tests/other_tests/test_notifications_get.py::test_tag_thru_message_share_triggers_notification SKIPPED [ 72%]
-http_tests/other_tests/test_notifications_get.py::test_tag_thru_standup_finishing_triggers_notification SKIPPED [ 72%]
-http_tests/other_tests/test_notifications_get.py::test_tag_thru_message_sendlater_triggers_notification ERROR [ 72%]
-http_tests/other_tests/test_notifications_get.py::test_tag_thru_message_sendlaterdm_triggers_notification ERROR [ 72%]
-http_tests/other_tests/test_notifications_get.py::test_tag_notification_message_preview_length[a small message] ERROR [ 73%]
-http_tests/other_tests/test_notifications_get.py::test_tag_notification_message_preview_length[AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA] ERROR [ 73%]
-http_tests/other_tests/test_notifications_get.py::test_react_triggers_notification[ch] ERROR [ 73%]
-http_tests/other_tests/test_notifications_get.py::test_react_triggers_notification[dm] ERROR [ 74%]
-http_tests/other_tests/test_notifications_get.py::test_add_thru_ch_invite_triggers_notification ERROR [ 74%]
-http_tests/other_tests/test_notifications_get.py::test_add_thru_ch_addowner_triggers_notification SKIPPED [ 74%]
-http_tests/other_tests/test_notifications_get.py::test_add_thru_dm_create_triggers_notification ERROR [ 74%]
-http_tests/other_tests/test_notifications_get.py::test_add_thru_dm_invite_triggers_notification ERROR [ 75%]
-http_tests/other_tests/test_notifications_get.py::test_most_recent_20_notifications_fetched ERROR [ 75%]
-http_tests/other_tests/test_notifications_get.py::test_invalid_token ERROR [ 75%]
-http_tests/other_tests/test_search.py::test_no_matches ERROR             [ 76%]
-http_tests/other_tests/test_search.py::test_single_match ERROR           [ 76%]
-http_tests/other_tests/test_search.py::test_multiple_matches ERROR       [ 76%]
-http_tests/other_tests/test_search.py::test_multiple_channels_joined ERROR [ 76%]
-http_tests/other_tests/test_search.py::test_search_includes_only_joined_channels ERROR [ 77%]
-http_tests/other_tests/test_search.py::test_search_matches_more_than_just_authorised_user ERROR [ 77%]
-http_tests/other_tests/test_search.py::test_invalid_search[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa] ERROR [ 77%]
-http_tests/other_tests/test_search.py::test_invalid_token ERROR          [ 78%]
-http_tests/other_tests/test_users_all.py::test_successful_users_all ERROR [ 78%]
-http_tests/other_tests/test_users_all.py::test_invalid_token ERROR       [ 78%]
-http_tests/standup_tests/test_standup_active.py::test_correct_return_format[True] ERROR [ 79%]
-http_tests/standup_tests/test_standup_active.py::test_correct_return_format[False] ERROR [ 79%]
-http_tests/standup_tests/test_standup_active.py::test_active_standup ERROR [ 79%]
-http_tests/standup_tests/test_standup_active.py::test_inactive_standup ERROR [ 79%]
-http_tests/standup_tests/test_standup_active.py::test_invalid_channel_id ERROR [ 80%]
-http_tests/standup_tests/test_standup_active.py::test_invalid_token ERROR [ 80%]
-http_tests/standup_tests/test_standup_send.py::test_messages_buffered_and_displayed_correctly ERROR [ 80%]
-http_tests/standup_tests/test_standup_send.py::test_return_format ERROR  [ 81%]
-http_tests/standup_tests/test_standup_send.py::test_non_member_cannot_standup_send ERROR [ 81%]
-http_tests/standup_tests/test_standup_send.py::test_send_when_standup_inactive ERROR [ 81%]
-http_tests/standup_tests/test_standup_send.py::test_invalid_message_length ERROR [ 81%]
-http_tests/standup_tests/test_standup_send.py::test_invalid_channel_id ERROR [ 82%]
-http_tests/standup_tests/test_standup_send.py::test_invalid_token ERROR  [ 82%]
-http_tests/standup_tests/test_standup_start.py::test_standup_start_return_format ERROR [ 82%]
-http_tests/standup_tests/test_standup_start.py::test_standup_restartable_after_lapse ERROR [ 83%]
-http_tests/standup_tests/test_standup_start.py::test_standup_affects_only_one_channel ERROR [ 83%]
-http_tests/standup_tests/test_standup_start.py::test_creator_cannot_leave_during_startup SKIPPED [ 83%]
-http_tests/standup_tests/test_standup_start.py::test_standup_cannot_be_started_in_dm ERROR [ 83%]
-http_tests/standup_tests/test_standup_start.py::test_nonmember_cannot_start_standup ERROR [ 84%]
-http_tests/standup_tests/test_standup_start.py::test_cannot_start_standup_when_already_active ERROR [ 84%]
-http_tests/standup_tests/test_standup_start.py::test_invalid_channel_id ERROR [ 84%]
-http_tests/standup_tests/test_standup_start.py::test_invalid_token ERROR [ 85%]
-http_tests/stats_tests/test_user_stats.py::test_return_type_correct ERROR [ 85%]
-http_tests/stats_tests/test_user_stats.py::test_channels_tracked_channels_create ERROR [ 85%]
-http_tests/stats_tests/test_user_stats.py::test_channels_tracked_channel_join ERROR [ 86%]
-http_tests/stats_tests/test_user_stats.py::test_channels_tracked_channel_invite ERROR [ 86%]
-http_tests/stats_tests/test_user_stats.py::test_channels_tracked_channel_leave ERROR [ 86%]
-http_tests/stats_tests/test_user_stats.py::test_channels_tracked_channel_add_owner ERROR [ 86%]
-http_tests/stats_tests/test_user_stats.py::test_dms_tracked_dm_create ERROR [ 87%]
-http_tests/stats_tests/test_user_stats.py::test_dms_tracked_dm_invite ERROR [ 87%]
-http_tests/stats_tests/test_user_stats.py::test_dms_tracked_dm_leave ERROR [ 87%]
-http_tests/stats_tests/test_user_stats.py::test_dms_tracked_dm_remove ERROR [ 88%]
-http_tests/stats_tests/test_user_stats.py::test_messages_tracked_message_send ERROR [ 88%]
-http_tests/stats_tests/test_user_stats.py::test_messages_tracked_message_sendlater ERROR [ 88%]
-http_tests/stats_tests/test_user_stats.py::test_messages_tracked_message_senddm ERROR [ 88%]
-http_tests/stats_tests/test_user_stats.py::test_messages_tracked_message_senddmlater ERROR [ 89%]
-http_tests/stats_tests/test_user_stats.py::test_messages_tracked_message_share ERROR [ 89%]
-http_tests/stats_tests/test_user_stats.py::test_messages_tracked_standup_finish ERROR [ 89%]
-http_tests/stats_tests/test_user_stats.py::test_involvement_tracked ERROR [ 90%]
-http_tests/stats_tests/test_user_stats.py::test_invalid_token ERROR      [ 90%]
-http_tests/user_tests/test_user_profile.py::test_user_profile_valid ERROR [ 90%]
-http_tests/user_tests/test_user_profile.py::test_invalid_user ERROR      [ 90%]
-http_tests/user_tests/test_user_profile.py::test_invalid_token ERROR     [ 91%]
-http_tests/user_tests/test_user_profile_setemail.py::test_successful_email_change ERROR [ 91%]
-http_tests/user_tests/test_user_profile_setemail.py::test_cannot_change_to_taken_email ERROR [ 91%]
-http_tests/user_tests/test_user_profile_setemail.py::test_invalid_email[] ERROR [ 92%]
-http_tests/user_tests/test_user_profile_setemail.py::test_invalid_email[bob] ERROR [ 92%]
-http_tests/user_tests/test_user_profile_setemail.py::test_invalid_email[a@mgail.com] ERROR [ 92%]
-http_tests/user_tests/test_user_profile_setemail.py::test_invalid_email[ab.com] ERROR [ 93%]
-http_tests/user_tests/test_user_profile_setemail.py::test_invalid_email[@gmail.com] ERROR [ 93%]
-http_tests/user_tests/test_user_profile_setemail.py::test_invalid_email[ab@ab@gmail.com] ERROR [ 93%]
-http_tests/user_tests/test_user_profile_setemail.py::test_invalid_token ERROR [ 93%]
-http_tests/user_tests/test_user_profile_sethandle.py::test_successful_handle_change ERROR [ 94%]
-http_tests/user_tests/test_user_profile_sethandle.py::test_cannot_change_to_taken_handle ERROR [ 94%]
-http_tests/user_tests/test_user_profile_sethandle.py::test_invalid_handle[] ERROR [ 94%]
-http_tests/user_tests/test_user_profile_sethandle.py::test_invalid_handle[a] ERROR [ 95%]
-http_tests/user_tests/test_user_profile_sethandle.py::test_invalid_handle[aa] ERROR [ 95%]
-http_tests/user_tests/test_user_profile_sethandle.py::test_invalid_handle[aaaaaaaaaaaaaaaaaaaaa] ERROR [ 95%]
-http_tests/user_tests/test_user_profile_sethandle.py::test_invalid_token ERROR [ 95%]
-http_tests/user_tests/test_user_profile_setname.py::test_user_profile_setname_valid_name ERROR [ 96%]
-http_tests/user_tests/test_user_profile_setname.py::test_invalid_name[-] ERROR [ 96%]
-http_tests/user_tests/test_user_profile_setname.py::test_invalid_name[-MRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMR] ERROR [ 96%]
-http_tests/user_tests/test_user_profile_setname.py::test_invalid_name[PotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHead-] ERROR [ 97%]
-http_tests/user_tests/test_user_profile_setname.py::test_invalid_name[PotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHead-MRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMR] ERROR [ 97%]
-http_tests/user_tests/test_user_profile_setname.py::test_invalid_token ERROR [ 97%]
-http_tests/user_tests/test_user_profile_uploadphoto.py::test_return_format_correct ERROR [ 97%]
-http_tests/user_tests/test_user_profile_uploadphoto.py::test_cannot_upload_non_jpeg ERROR [ 98%]
-http_tests/user_tests/test_user_profile_uploadphoto.py::test_invalid_dimensions[-1000-0-0-0] ERROR [ 98%]
-http_tests/user_tests/test_user_profile_uploadphoto.py::test_invalid_dimensions[0--1000-0-0] ERROR [ 98%]
-http_tests/user_tests/test_user_profile_uploadphoto.py::test_invalid_dimensions[0-0--1000-0] ERROR [ 99%]
-http_tests/user_tests/test_user_profile_uploadphoto.py::test_invalid_dimensions[0-0-0--1000] ERROR [ 99%]
-http_tests/user_tests/test_user_profile_uploadphoto.py::test_invalid_url ERROR [ 99%]
-http_tests/user_tests/test_user_profile_uploadphoto.py::test_invalid_token ERROR [100%]
+http_tests/admin_tests/test_admin_user_remove.py EEEEEEsEEEE             [  3%]
+http_tests/admin_tests/test_admin_userpermission_change.py EEEEEE        [  4%]
+http_tests/auth_tests/test_auth_login.py EE.E                            [  6%]
+http_tests/auth_tests/test_auth_logout.py EE                             [  6%]
+http_tests/auth_tests/test_auth_register.py .........................EFF [ 14%]
+F                                                                        [ 15%]
+http_tests/auth_tests/test_passwordreset_request.py EEs                  [ 16%]
+http_tests/auth_tests/test_passwordreset_reset.py ..                     [ 16%]
+http_tests/channel_tests/test_channel_addowner.py sEsEEEsEE              [ 19%]
+http_tests/channel_tests/test_channel_details.py EEEE                    [ 20%]
+http_tests/channel_tests/test_channel_invite.py sEEEEEE                  [ 22%]
+http_tests/channel_tests/test_channel_join.py EEEsEE                     [ 24%]
+http_tests/channel_tests/test_channel_leave.py EEEE                      [ 25%]
+http_tests/channel_tests/test_channel_messages.py EEEEEEEE               [ 27%]
+http_tests/channel_tests/test_channel_removeowner.py EEEEEEsEE           [ 30%]
+http_tests/channels_tests/test_channels_create.py EEEEE                  [ 31%]
+http_tests/channels_tests/test_channels_list.py EEEEEEEEE                [ 34%]
+http_tests/channels_tests/test_channels_listall.py EEEEE                 [ 35%]
+http_tests/dm_tests/test_dm_create.py EEEEE                              [ 37%]
+http_tests/dm_tests/test_dm_details.py EEEE                              [ 38%]
+http_tests/dm_tests/test_dm_invite.py sEEEEE                             [ 40%]
+http_tests/dm_tests/test_dm_leave.py EEEE                                [ 41%]
+http_tests/dm_tests/test_dm_list.py EEEEE                                [ 42%]
+http_tests/dm_tests/test_dm_messages.py EEEEEEEE                         [ 45%]
+http_tests/dm_tests/test_dm_remove.py EEEEE                              [ 46%]
+http_tests/echo_tests/echo_test.py ..                                    [ 47%]
+http_tests/message_tests/test_message_edit.py EEEEEEEE                   [ 49%]
+http_tests/message_tests/test_message_meta.py E                          [ 49%]
+http_tests/message_tests/test_message_pin.py EEEEEEEE                    [ 52%]
+http_tests/message_tests/test_message_react.py EEEEEEE                   [ 54%]
+http_tests/message_tests/test_message_remove.py EEEEEE                   [ 55%]
+http_tests/message_tests/test_message_send.py EEsEE                      [ 57%]
+http_tests/message_tests/test_message_senddm.py EEsEE                    [ 58%]
+http_tests/message_tests/test_message_sendlater.py EEEEEE                [ 60%]
+http_tests/message_tests/test_message_sendlaterdm.py EEEEEE              [ 62%]
+http_tests/message_tests/test_message_share.py EEEEEEssssssE             [ 66%]
+http_tests/message_tests/test_message_unpin.py EEEEEEEE                  [ 68%]
+http_tests/message_tests/test_message_unreact.py EEEEEEE                 [ 70%]
+http_tests/other_tests/test_clear.py E                                   [ 70%]
+http_tests/other_tests/test_notifications_get.py EEsssEEEEEEEsEEEE       [ 75%]
+http_tests/other_tests/test_search.py EEEEEEEE                           [ 78%]
+http_tests/other_tests/test_users_all.py EE                              [ 78%]
+http_tests/standup_tests/test_standup_active.py EEEEEE                   [ 80%]
+http_tests/standup_tests/test_standup_send.py EEEEEEE                    [ 82%]
+http_tests/standup_tests/test_standup_start.py EEEsEEEEE                 [ 85%]
+http_tests/stats_tests/test_user_stats.py EEEEEEEEEEEEEEEEEE             [ 90%]
+http_tests/user_tests/test_user_profile.py EEE                           [ 91%]
+http_tests/user_tests/test_user_profile_setemail.py EEEEEEEEE            [ 93%]
+http_tests/user_tests/test_user_profile_sethandle.py EEEEEEE             [ 95%]
+http_tests/user_tests/test_user_profile_setname.py EEEEEE                [ 97%]
+http_tests/user_tests/test_user_profile_uploadphoto.py EEEEEEEE          [100%]
 
 ==================================== ERRORS ====================================
 _______________ ERROR at setup of test_removal_can_do_no_action ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2947730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9256598>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -383,7 +89,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_removal_messages_correct_format ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2850ae8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9196f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -413,7 +119,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_removal_profile_still_fetchable ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2850840>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9189a60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -443,7 +149,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_removal_removed_from_channel ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe289ac80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9189f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -473,7 +179,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_removal_removed_from_dm ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe289a510>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9187bf8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -503,7 +209,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_removal_not_in_users_all ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2885e18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a91879d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -533,7 +239,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_user ______________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe281f730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9109e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -563,7 +269,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_cannot_remove_last_owner ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe281ff28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a91316a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -593,7 +299,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_cannot_remove_user_nonowner ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe28038c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9131f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -623,7 +329,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2803c80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a91378c8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -653,7 +359,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_successful_permission_change ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2813a60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9137268>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -683,7 +389,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________ ERROR at setup of test_changing_to_same_permission_idempotent _________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2813d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a91299d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -713,7 +419,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________ ERROR at setup of test_nonowner_cant_change_permissions ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe28f7b70>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9129f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -743,7 +449,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_user ______________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe28f7c80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a91ceb70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -773,7 +479,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invalid_permission ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2914d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a91cec80>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -803,7 +509,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe291e620>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a91dad08>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -833,7 +539,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_successful_login ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe291eea0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a91a6620>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -863,7 +569,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_can_have_two_sessions _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe27ec840>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a91a6f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -893,7 +599,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________ ERROR at setup of test_registered_but_incorrect_password ___________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe27ecea0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a90b5ae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -923,7 +629,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_successful_logout ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe27d7950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a90b5a60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -953,7 +659,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_not_logged_in_logout __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe27d7400>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a90d89d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -983,7 +689,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_successful_registration ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe27e0bf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a90d8f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1013,7 +719,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_return_format_correct _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2785488>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a90cbd90>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1043,7 +749,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________ ERROR at setup of test_password_request_logs_out_everywhere __________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe27999d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9074ae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1073,7 +779,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________ ERROR at setup of test_channel_owner_can_addowner_when_member _________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2799f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a908f488>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1103,7 +809,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_non_member_cannot_add_owner ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe27e06a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a90cbae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1133,7 +839,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_member_cannot_add_owner ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2798f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a90a07b8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1163,7 +869,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______ ERROR at setup of test_cannot_addowner_prexisting_channel_owner ________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2749950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a90a08c8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1193,7 +899,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_with_invalid_channel_id ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe27497b8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a903c9d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1223,7 +929,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe274db70>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a903cd90>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1253,7 +959,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_member_successful ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe274dc80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9042b70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1283,7 +989,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_non_member_not_successful _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe275fd08>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9042400>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1313,7 +1019,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invalid_channel_id ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2703620>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9034d08>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1343,7 +1049,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2703ea0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8fe9620>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1373,7 +1079,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invite_global_owner __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2709840>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8fe9f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1403,7 +1109,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_invite_global_member __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe27091e0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ff47b8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1433,7 +1139,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________ ERROR at setup of test_invitation_from_non_channel_member ___________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2723950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ff48c8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1463,7 +1169,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_channel_id_invalid ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2723e18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9016950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1493,7 +1199,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_u_id_invalid ______________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe26bfa60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9016e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1523,7 +1229,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_invalidated_token ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe26bff28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9022ae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1553,7 +1259,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________ ERROR at setup of test_global_owner_join_channel_public ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe26c3c80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a9022840>
 
     @pytest.fixture
     def user_buzz(user_factory):
@@ -1583,7 +1289,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________ ERROR at setup of test_global_owner_join_channel_private ___________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe26c3730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8fc7bf8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1613,7 +1319,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_global_member_join_public _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe26e5d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8fc79d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1643,7 +1349,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_join_invalid_channel_id ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe269e7b8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8fbfea0>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1673,7 +1379,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_invalidated_token ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe269ef28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f6c730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1703,7 +1409,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________ ERROR at setup of test_member_leave_channel_successfully ___________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe267b8c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f6cf28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1733,7 +1439,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_leave_channel_when_not_member _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe267bc80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f87840>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1763,7 +1469,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invalid_channel_id ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2698a60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f87b70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1793,7 +1499,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2698f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f8a9d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1823,7 +1529,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_under_fifty_messages_sent _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe26b2bf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f8af28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1853,7 +1559,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_over_fifty_messages_sent ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe26b26a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f9db70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1883,7 +1589,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_removal_by_edit_reflected _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2641d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f9dc80>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1913,7 +1619,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_removal_by_deletion_reflected _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe26546a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f33d08>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1943,7 +1649,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____ ERROR at setup of test_input_error_when_start_greater_than_message_num ____
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2654ea0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f49620>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -1973,7 +1679,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________ ERROR at setup of test_access_error_when_user_is_non_member __________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25f8840>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f49f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2003,7 +1709,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________ ERROR at setup of test_input_error_when_channel_id_invalid __________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25f8950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f5b840>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2033,7 +1739,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________ ERROR at setup of test_access_error_when_invalid_token_given _________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe26339d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f5b950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2063,7 +1769,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_owner_can_remove_owner _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2633f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ef8950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2093,7 +1799,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_global_owner_can_remove_owner _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25ffb70>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ef8510>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -2123,7 +1829,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_nonmember_cannot_remove_owner _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25ff400>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f00b70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2153,7 +1859,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_member_cannot_remove_owner _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25b5d08>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f00620>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2183,7 +1889,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_cannot_remove_last_owner ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25b5d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a90741e0>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2213,7 +1919,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_cannot_remove_non_owner ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25c5b70>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8f22e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2243,7 +1949,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_with_invalid_channel_id ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25c5bf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ebfb70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2273,7 +1979,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_invalidated_token ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25d0c80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ebfbf8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2303,7 +2009,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_create_channel[True-andys room] ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25e9598>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ebbc80>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -2333,7 +2039,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________ ERROR at setup of test_create_channel[False-andys room] ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25e9ea0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ed6620>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -2363,7 +2069,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _ ERROR at setup of test_channel_name_length[True-I AM NOT A TOY AND ALSO THIS NAME IS TOO LONG] _
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe257d730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ed6e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2393,7 +2099,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _ ERROR at setup of test_channel_name_length[False-I AM NOT A TOY AND ALSO THIS NAME IS TOO LONG] _
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe257df28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8e6c730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2423,7 +2129,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_invalidated_token ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2586950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8e6ca60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2453,7 +2159,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_when_in_no_channels __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25862f0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8e7e950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2483,7 +2189,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_when_in_one_channel[True-andy] _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25a2ae8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8e7e730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2513,7 +2219,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_when_in_one_channel[False-andy] ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25a2378>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8e8ba60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2543,7 +2249,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____ ERROR at setup of test_when_in_multiple_channels[False-True-ZERG-andy] ____
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2536bf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8e8bf28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2573,7 +2279,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___ ERROR at setup of test_when_in_multiple_channels[False-False-ZERG-andy] ____
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2536510>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8e2cbf8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2603,7 +2309,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____ ERROR at setup of test_when_in_multiple_channels[True-True-ZERG-andy] _____
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe254fd90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8e2c9d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2633,7 +2339,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____ ERROR at setup of test_when_in_multiple_channels[True-False-ZERG-andy] ____
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe255c6a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8e35d90>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2663,7 +2369,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_list_after_leave_channel ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe255cf28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8e526a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2693,7 +2399,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_invalidated_token ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25028c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8e52f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2723,7 +2429,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_when_no_channels ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe25029d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8de78c8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2753,7 +2459,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_when_one_channel_exists_private ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe24ffa60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8de7400>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2783,7 +2489,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_when_one_channel_exists_public _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe24ff598>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8df39d8>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -2813,7 +2519,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_when_multiple_channels_exist ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2530bf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8df3f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2843,7 +2549,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_invalidated_token ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2530950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8dffbf8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2873,7 +2579,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_successful_dm_creation _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe24bad08>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8dff950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2903,7 +2609,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_dm_name_creation_single ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe24e9620>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8e16d08>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2933,7 +2639,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_dm_name_creation_multiple _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe24e9f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ddf6a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2963,7 +2669,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_dm_to_invalid_user ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe24ca7b8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ddfea0>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -2993,7 +2699,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe24ca8c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8dd87b8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3023,7 +2729,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_member_successful ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe248a950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8dd88c8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3053,7 +2759,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_non_member_not_successful _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe248ae18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d68950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3083,7 +2789,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_dm_id _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe248a9d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d68f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3113,7 +2819,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2477e18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d6eae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3143,7 +2849,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_invite_global_member __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe249ed08>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d77488>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3173,7 +2879,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_invitation_from_non_dm_member _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe243b620>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d77d08>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -3203,7 +2909,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_dm_id_invalid _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe243be18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d98598>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3233,7 +2939,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_u_id_invalid ______________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe246e730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d98e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3263,7 +2969,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_invalidated_token ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe246ef28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d2b730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3293,7 +2999,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_member_leave_dm_successfully ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe244a950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d2ba60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3323,7 +3029,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_leave_channel_when_not_member _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe244a2f0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d3c950>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -3353,7 +3059,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_dm_id _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe246aa60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d3ce18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3383,7 +3089,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe246af28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d4da60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3413,7 +3119,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________________ ERROR at setup of test_when_in_no_dms _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2427bf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d4df28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3443,7 +3149,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________________ ERROR at setup of test_when_in_one_dm _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe24279d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8cfabf8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3473,7 +3179,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_when_in_multiple_dms __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2411d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8cfa9d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3503,7 +3209,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_list_after_leave_dm __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe241e6a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8cf1d90>
 
     @pytest.fixture
     def user_buzz(user_factory):
@@ -3533,7 +3239,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_invalidated_token ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe241ef28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d146a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3563,7 +3269,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_under_fifty_messages_sent _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe23c08c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8d14f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3593,7 +3299,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_over_fifty_messages_sent ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe23c09d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8cba8c8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3623,7 +3329,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_removal_by_edit_reflected _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe23cca60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8cba400>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3653,7 +3359,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_removal_by_deletion_reflected _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe23cc598>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8cb9a60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3683,7 +3389,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____ ERROR at setup of test_input_error_when_start_greater_than_message_num ____
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe23e0bf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8cb9f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3713,7 +3419,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________ ERROR at setup of test_access_error_when_user_is_non_member __________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe23e0f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8cbbb70>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -3743,7 +3449,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_input_error_when_dm_id_invalid _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2378d08>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8cbbc80>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3773,7 +3479,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________ ERROR at setup of test_access_error_when_invalid_token_given _________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe23826a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c69d08>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3803,7 +3509,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_successful_dm_removal _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2382ea0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c79620>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3833,7 +3539,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_removal_removes_messages ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe239f840>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c79f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3863,7 +3569,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_nonowner_cannot_remove_dm _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe239f598>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c8f840>
 
     @pytest.fixture
     def user_buzz(user_factory):
@@ -3893,7 +3599,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_dm_id _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe234a950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c8f950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3923,7 +3629,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe234ae18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c25950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3953,7 +3659,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________ ERROR at setup of test_original_poster_can_edit_message ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2343b70>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c25e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -3983,7 +3689,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_owner_can_edit_members_message _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2343378>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c2cae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4013,7 +3719,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________ ERROR at setup of test_global_owner_can_edit_members_message _________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe234ed08>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c41488>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -4043,7 +3749,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_empty_edit_deletes_message _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe22f7598>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c41c80>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4073,7 +3779,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_invalid_message_length _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe22f7ea0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c58620>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4103,7 +3809,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_cannot_edit_deleted_message ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe23037b8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c58e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4133,7 +3839,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_nonowner_nonposter_cant_edit ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe23038c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c1c730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4163,7 +3869,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe23148c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c1cf28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4193,7 +3899,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_message_ids_unique ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe23149d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8bfe950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4223,7 +3929,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_successful_pin_in_channel _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2323a60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8bfee18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4253,7 +3959,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_successful_pin_in_dm __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2323f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c17ae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4283,7 +3989,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invalid_message_id ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe22c4c80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8c17840>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4313,7 +4019,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_cannot_pin_twice ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe22c47b8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8bafbf8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4343,7 +4049,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_channel_member_cant_pin ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe22cfe18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8baf7b8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4373,7 +4079,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_dm_member_cant_pin ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2275730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8bb8e18>
 
     @pytest.fixture
     def user_buzz(user_factory):
@@ -4403,7 +4109,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_nonmember_cant_pin ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2275f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8bda730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4433,7 +4139,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe227b840>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8bdaf28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4463,7 +4169,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_successful_react_in_channel ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe227bb70>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b9a840>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4493,7 +4199,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_successful_react_to_dm_message _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2287a60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b9a950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4523,7 +4229,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invalid_message_id ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2287e18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b96a60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4553,7 +4259,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_invalid_react_id ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe228cbf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b967b8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4583,7 +4289,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_cant_react_twice ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe228c730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b8dbf8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4613,7 +4319,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_nonmember_cannot_react _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2239d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b8d488>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4643,7 +4349,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2262620>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b28d08>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4673,7 +4379,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________ ERROR at setup of test_original_poster_can_remove_message ___________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2262f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b2d6a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4703,7 +4409,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________ ERROR at setup of test_owner_can_remove_members_message ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2263840>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b2dea0>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4733,7 +4439,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________ ERROR at setup of test_global_owner_can_remove_members_message ________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2263bf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b4e840>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -4763,7 +4469,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_cannot_remove_deleted_message _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe21f99d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b4eea0>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4793,7 +4499,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________ ERROR at setup of test_nonowner_nonposter_cant_remove_message _________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe21f9d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8aec9d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4823,7 +4529,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe220cae8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8aec730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4853,7 +4559,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_valid_message _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe220ce18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b21ae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4883,7 +4589,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________________ ERROR at setup of test_nonmember_post _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2225c80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b21e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4913,7 +4619,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________________ ERROR at setup of test_invalid_message ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe21bb620>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8b0ed08>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4943,7 +4649,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe21bbe18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8aab598>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -4973,7 +4679,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_valid_message _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe21d4730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8aabe18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5003,7 +4709,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________________ ERROR at setup of test_nonmember_post _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe21d4a60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ab87b8>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -5033,7 +4739,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________________ ERROR at setup of test_invalid_message ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe21d69d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ab8b70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5063,7 +4769,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe21d6f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ad08c8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5093,7 +4799,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_valid_future_message __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2178a60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8ad07b8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5123,7 +4829,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_nonmeber_cannot_sendlater _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2178e18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8adea60>
 
     @pytest.fixture
     def user_buzz(user_factory):
@@ -5153,7 +4859,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_cannot_time_travel ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe217cc80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8aded90>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5183,7 +4889,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_message_too_long ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe217ca60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8a6dc80>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5213,7 +4919,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________________ ERROR at setup of test_invalid_channel ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe219ee18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8a6da60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5243,7 +4949,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2147730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8a85e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5273,7 +4979,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_valid_future_message __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2147f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8aa06a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5303,7 +5009,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_nonmeber_cannot_sendlater _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe21748c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8aa0f28>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -5333,7 +5039,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_cannot_time_travel ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2174f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8a49840>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5363,7 +5069,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_message_too_long ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe215aa60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8a49b70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5393,7 +5099,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________________ ERROR at setup of test_invalid_dm _______________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe215af28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8a46a60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5423,7 +5129,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe20f8bf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8a46598>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5453,7 +5159,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_successful_share_to_channel ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe20f8730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8a5ab70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5483,7 +5189,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_successful_share_to_dm _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2103d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8a5ac80>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5513,7 +5219,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_successful_cross_share[True] ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe21176a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a89e9d08>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5543,7 +5249,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_successful_cross_share[False] _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2117f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a89fa620>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5573,7 +5279,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_cannot_share_to_unjoined_dm ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe20b8840>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a89faea0>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -5603,7 +5309,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________ ERROR at setup of test_cannot_share_to_unjoined_channel ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe20b8b70>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8a177b8>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -5633,7 +5339,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe20f2c80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a89b9400>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5663,7 +5369,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_successful_unpin_in_channel ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe20f28c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8a17e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5693,7 +5399,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_successful_unpin_in_dm _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe20e4b70>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a89b97b8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5723,7 +5429,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invalid_message_id ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe20e4950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a89dcb70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5753,7 +5459,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_cannot_unpin_twice ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe20eed08>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a89dc6a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5783,7 +5489,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_channel_member_cant_unpin _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe20ab598>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a89d8c80>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5813,7 +5519,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_dm_member_cant_unpin __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe20abea0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a896a620>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5843,7 +5549,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_nonmember_cant_unpin __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe20997b8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a896aea0>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5873,7 +5579,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2099f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a897a730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5903,7 +5609,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_successful_unreact_in_channel _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe209f950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a897af28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5933,7 +5639,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________ ERROR at setup of test_successful_unreact_to_dm_message ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe209f9d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a899b8c8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5963,7 +5669,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invalid_message_id ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe203cae8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a899b9d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -5993,7 +5699,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_invalid_react_id ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe203c2f0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8925ae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6023,7 +5729,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_cant_unreact_twice ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe205bc80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8925e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6053,7 +5759,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_nonmember_cannot_unreact ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe205ba60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8935bf8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6083,7 +5789,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe204fe18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8943598>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6113,7 +5819,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________________ ERROR at setup of test_clear_works ______________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ffb6a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8943d90>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6143,7 +5849,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______ ERROR at setup of test_tag_thru_message_send_triggers_notification ______
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ffbf28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a88e96a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6173,7 +5879,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____ ERROR at setup of test_tag_thru_message_senddm_triggers_notification _____
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2028840>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a88e9f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6203,7 +5909,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___ ERROR at setup of test_tag_thru_message_sendlater_triggers_notification ____
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe202a2f0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a88fa9d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6233,7 +5939,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __ ERROR at setup of test_tag_thru_message_sendlaterdm_triggers_notification ___
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe202a400>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a88faf28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6263,7 +5969,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _ ERROR at setup of test_tag_notification_message_preview_length[a small message] _
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe202af28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a890e9d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6293,7 +5999,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _ ERROR at setup of test_tag_notification_message_preview_length[AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA] _
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2024b70>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a890ef28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6323,7 +6029,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_react_triggers_notification[ch] ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe2024bf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a88b6b70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6353,7 +6059,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_react_triggers_notification[dm] ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1fc5d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a88b6c80>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6383,7 +6089,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______ ERROR at setup of test_add_thru_ch_invite_triggers_notification ________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1fca6a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a88c6d90>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6413,7 +6119,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______ ERROR at setup of test_add_thru_dm_create_triggers_notification ________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1fcaf28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a88c1730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6443,7 +6149,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______ ERROR at setup of test_add_thru_dm_invite_triggers_notification ________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f7c840>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a88c1f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6473,7 +6179,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________ ERROR at setup of test_most_recent_20_notifications_fetched __________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f7c950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8866840>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6503,7 +6209,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f859d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8866950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6533,7 +6239,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________________ ERROR at setup of test_no_matches _______________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f85f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a888c950>
 
     @pytest.fixture
     def user_buzz(user_factory):
@@ -6563,7 +6269,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_single_match ______________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f84ae8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a888ce18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6593,7 +6299,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_multiple_matches ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f84e18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a887cae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6623,7 +6329,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_multiple_channels_joined ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1fa4d08>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a889a488>
 
     @pytest.fixture
     def user_zerg(user_factory):
@@ -6653,7 +6359,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________ ERROR at setup of test_search_includes_only_joined_channels __________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f3d620>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a889ac80>
 
     @pytest.fixture
     def user_buzz(user_factory):
@@ -6683,7 +6389,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____ ERROR at setup of test_search_matches_more_than_just_authorised_user _____
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f3dea0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8859620>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6713,7 +6419,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _ ERROR at setup of test_invalid_search[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa] _
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f56730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8859e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6743,7 +6449,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f56f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8840730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6773,7 +6479,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_successful_users_all __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f698c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8840f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6803,7 +6509,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f696a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a885e8c8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6833,7 +6539,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_correct_return_format[True] ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f00ae8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a885e6a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6863,7 +6569,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_correct_return_format[False] ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f00e18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a87eaa60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6893,7 +6599,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________________ ERROR at setup of test_active_standup _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f0fc80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a87eaf28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6923,7 +6629,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_inactive_standup ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f19598>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a880ac80>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6953,7 +6659,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invalid_channel_id ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1f19e18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a880a7b8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -6983,7 +6689,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ed46a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8817d90>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7013,7 +6719,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______ ERROR at setup of test_messages_buffered_and_displayed_correctly _______
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ed4f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a87ae730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7043,7 +6749,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_return_format _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ece840>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a87aef28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7073,7 +6779,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_non_member_cannot_standup_send _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1eceb70>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a87bb840>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7103,7 +6809,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_send_when_standup_inactive _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ee59d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a87bb950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7133,7 +6839,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_invalid_message_length _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ee5ea0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a87d7a60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7163,7 +6869,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invalid_channel_id ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e7cbf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a87d7f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7193,7 +6899,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e7c9d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8768b70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7223,7 +6929,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_standup_start_return_format ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e89d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8768c80>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7253,7 +6959,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_standup_restartable_after_lapse ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ea66a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a87a1d08>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7283,7 +6989,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________ ERROR at setup of test_standup_affects_only_one_channel ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ea6f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8781620>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7313,7 +7019,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_standup_cannot_be_started_in_dm ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e398c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8781f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7343,7 +7049,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_nonmember_cannot_start_standup _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e39f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a87287b8>
 
     @pytest.fixture
     def user_buzz(user_factory):
@@ -7373,7 +7079,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______ ERROR at setup of test_cannot_start_standup_when_already_active ________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e489d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8728ae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7403,7 +7109,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invalid_channel_id ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e48f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a87629d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7433,7 +7139,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e5aae8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8762f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7463,7 +7169,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_return_type_correct __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e5ae18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8742ae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7493,7 +7199,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________ ERROR at setup of test_channels_tracked_channels_create ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1df6d08>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8742e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7523,7 +7229,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_channels_tracked_channel_join _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e32598>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a86e6c80>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7553,7 +7259,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_channels_tracked_channel_invite ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e32ea0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a871e598>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7583,7 +7289,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_channels_tracked_channel_leave _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e16730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a871ee18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7613,7 +7319,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________ ERROR at setup of test_channels_tracked_channel_add_owner ___________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1e16a60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a86ff730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7643,7 +7349,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_dms_tracked_dm_create _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1dbf950>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a86ffa60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7673,7 +7379,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_dms_tracked_dm_invite _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1dbf730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8717950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7703,7 +7409,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_dms_tracked_dm_leave __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1dd5ae8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8717488>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7733,7 +7439,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_dms_tracked_dm_remove _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1dd5620>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a86afae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7763,7 +7469,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_messages_tracked_message_send _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1dcdbf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a86af620>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7793,7 +7499,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________ ERROR at setup of test_messages_tracked_message_sendlater ___________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1dcdf28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a86c3bf8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7823,7 +7529,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_messages_tracked_message_senddm ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d75e18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a86c39d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7853,7 +7559,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________ ERROR at setup of test_messages_tracked_message_senddmlater __________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d83730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a86dad90>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7883,7 +7589,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_messages_tracked_message_share _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d83f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a86856a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7913,7 +7619,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_messages_tracked_standup_finish ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d978c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8685f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7943,7 +7649,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_involvement_tracked __________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d97620>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a867e840>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -7973,7 +7679,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1da89d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a867e950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8003,7 +7709,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_user_profile_valid ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1da8f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a86a29d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8033,7 +7739,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_user ______________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d40b70>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a86a2f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8063,7 +7769,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d40c80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a862bb70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8093,7 +7799,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_successful_email_change ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d49d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a862bc80>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8123,7 +7829,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_cannot_change_to_taken_email ______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d6c6a8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8635d08>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8153,7 +7859,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________________ ERROR at setup of test_invalid_email[] ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d6cf28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a865a6a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8183,7 +7889,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invalid_email[bob] ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1cfd7b8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a865aea0>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8213,7 +7919,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________ ERROR at setup of test_invalid_email[a@mgail.com] _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1cfdae8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85eb7b8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8243,7 +7949,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_invalid_email[ab.com] _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d0f9d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85eb8c8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8273,7 +7979,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_invalid_email[@gmail.com] _______________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d0ff28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85fc950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8303,7 +8009,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_invalid_email[ab@ab@gmail.com] _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d1bb70>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85fc730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8333,7 +8039,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1d1b400>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a860db70>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8363,7 +8069,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _______________ ERROR at setup of test_successful_handle_change ________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1cbed08>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a860d6a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8393,7 +8099,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________ ERROR at setup of test_cannot_change_to_taken_handle _____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1cce620>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85b9d08>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8423,7 +8129,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_invalid_handle[] ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1cceea0>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85b6620>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8453,7 +8159,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ___________________ ERROR at setup of test_invalid_handle[a] ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1cdd730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85b6e18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8483,7 +8189,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 __________________ ERROR at setup of test_invalid_handle[aa] ___________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1cddf28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85cf730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8513,7 +8219,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________ ERROR at setup of test_invalid_handle[aaaaaaaaaaaaaaaaaaaaa] _________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ca68c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85cff28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8543,7 +8249,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ca69d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8575950>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8573,7 +8279,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_user_profile_setname_valid_name ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1c83ae8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85752f0>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8603,7 +8309,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________________ ERROR at setup of test_invalid_name[-] ____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1c83e18>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85a0ae8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8633,7 +8339,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _ ERROR at setup of test_invalid_name[-MRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMR] _
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ca1bf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85a08c8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8663,7 +8369,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _ ERROR at setup of test_invalid_name[PotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHead-] _
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1ca17b8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a858fbf8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8693,7 +8399,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _ ERROR at setup of test_invalid_name[PotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHeadPotatoeHead-MRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMRMR] _
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1c3ad90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a858f9d8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8723,7 +8429,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1c46730>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a852ce18>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8753,7 +8459,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _________________ ERROR at setup of test_return_format_correct _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1c46f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85336a8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8783,7 +8489,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ________________ ERROR at setup of test_cannot_upload_non_jpeg _________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1c4e8c8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8533f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8813,7 +8519,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_invalid_dimensions[-1000-0-0-0] ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1c4ec80>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85438c8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8843,7 +8549,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_invalid_dimensions[0--1000-0-0] ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1bf5a60>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a85430d0>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8873,7 +8579,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_invalid_dimensions[0-0--1000-0] ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1bf5f28>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8563a60>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8903,7 +8609,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ____________ ERROR at setup of test_invalid_dimensions[0-0-0--1000] ____________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1c03bf8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a8563f28>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8933,7 +8639,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 ______________________ ERROR at setup of test_invalid_url ______________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1c039d8>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a84ecbf8>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -8963,7 +8669,7 @@ E           http_tests.error.InputError: 400 Bad Request: <Response [404]>
 http_tests/fakepi/util.py:73: InputError
 _____________________ ERROR at setup of test_invalid_token _____________________
 
-user_factory = <function user_factory.<locals>.make_user at 0x7ffbe1c19d90>
+user_factory = <function user_factory.<locals>.make_user at 0x7f06a84ec730>
 
     @pytest.fixture
     def user_woody(user_factory):
@@ -9382,4 +9088,4 @@ ERROR http_tests/user_tests/test_user_profile_uploadphoto.py::test_invalid_dimen
 ERROR http_tests/user_tests/test_user_profile_uploadphoto.py::test_invalid_dimensions[0-0-0--1000]
 ERROR http_tests/user_tests/test_user_profile_uploadphoto.py::test_invalid_url
 ERROR http_tests/user_tests/test_user_profile_uploadphoto.py::test_invalid_token
-============ 3 failed, 30 passed, 22 skipped, 288 errors in 24.61s =============
+============ 3 failed, 30 passed, 22 skipped, 288 errors in 16.94s =============
